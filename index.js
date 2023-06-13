@@ -1,25 +1,4 @@
-// ⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈
-//▮ZIM BOT INC 2022 ®️ALL RIGHTS RESERVED
-//▮
-//▮FORK AND DON'T FORGET TO GIVE A STAR
-//▮
-//▮THIS SOFTWARE IS UNDER UZ COPYRIGHT
-//▮
-//▮REPORT ABUSE OF THIS SOFTWARE EMAIL US
-//▮reinhardtuna@mail.uk
-//▮WHATSAPP US : +44 7441 437150
-//▮YOUTUBE CHANNELL: https://youtube.com/c/DRIPSOFC
-//▮
-//╰▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-//
-//┏━━━━━━━━━━━━━━━━━━━━━━━━━
-//┃THIS SOFTWARE INCLUDES 
-//┃SOME ENCRYPTED FILES
-//┃
-//┃THANKS FOR CHOOSING ZIMBOT
-//┃I WROTE THIS SCRIPT BY MYSELF THIS SCRIPT IS FOR EVERYONE DONT SELL IT
-//┗━━━━━━━━━━━━━━━━━━━━━━━━━
-//
+// BAKAR-BOT By DEV Lido
 
 require('./bot')
 const { default: ZimBotIncConnect, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto , delay} = require("@adiwajshing/baileys")
@@ -44,9 +23,9 @@ global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.
 const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
 const { say } =  require('cfonts')
 const { color } = require('./lib/color')
-say('ZIM-BOT\nV4', {
+say('BAKAR  BOT\nV4', {
     font: '3d',
-    colors: ["#0ff",'green',"#ff0"],
+    colors: ["blue",'red',"blue"],
     align: 'center',
     gradient: false,
     background: "transparent",
@@ -56,23 +35,44 @@ say('ZIM-BOT\nV4', {
     maxLenght: '0'
 
   })
-  say(`ZIM-BOT-INC By @${author.name || author}`, {
+  say(`BAKAR-BOT By ${author.name || author}`, {
     font: 'console',
     align: 'center',
-    gradient: ['red', 'green']
+    gradient: ['red', 'blue']
   })
-Drips.hr();
-console.log(color(''), color('THANKS FOR CHOOSING ZIM BOT', 'green'))
-console.log(color(''), color('SCRIPT BY DRIPS', 'red'))
-console.log(color( ''), color('https://wa.me/+447441437150','cyan'))
-Drips.hr();
-Drips.banner(`DRIPS ZIM BOT OWNER`)
-Drips.ok('WELCOME TO ZIMBOT')
-Drips.done('I WROTE THIS SCRIPT BY MYSELF')
-Drips.info('YOU WANNA CONTRUBUTE FEEL FREE TO CONTACT ME, BEING FRIENDLY IS MY LANGUAGE')
-Drips.error('')
-Drips.time('')
-Drips.hr();
+  
+say(`< ======================================================================== >`, {
+    font: 'console',
+    align: 'center',
+    gradient: ['red', 'red']
+  })
+
+console.log(color(''), color('◍ › ɪɴғᴏʀᴍᴀᴛɪᴏɴѕ ᴅᴇᴠᴇʟᴏᴘᴇʀ ʟɪᴅᴏ ♡', 'red'))
+console.log(color( ''), color('','red'))
+console.log(color( ''), color('◍ › ɴᴀᴍᴇ : ᴡᴀʟᴇᴇᴅ ᴍᴏʜᴀᴍᴇᴅ (ʟɪᴅᴏᴏ)','red'))
+console.log(color( ''), color('','red'))
+console.log(color(''), color('◍ › ᴀɢᴇ : 20 ', 'red'))
+console.log(color( ''), color('','red'))
+console.log(color( ''), color('◍ › ʙɪᴏ : "-Try ßut Đont Cry-" ','red'))
+console.log(color( ''), color('','red'))
+console.log(color(''), color('◍ › ʟᴀɢ : ᴘʏᴛʜᴏɴ, ʟᴜᴀ, ᴘʜᴘ, ʜᴛᴍʟ, ᴊᴀᴠᴀsᴄʀɪᴘᴛ', 'red'))
+console.log(color( ''), color('','red'))
+console.log(color( ''), color('◍ › ғʀᴏᴍ : ᴇɢʏᴘᴛ, sᴏʜᴀɢ)','red'))
+console.log(color( ''), color('','red'))
+console.log(color(''), color('◍ › ɴụᴍ : ( @201028453763 - @201554496598 )', 'red'))
+console.log(color( ''), color('','red'))
+
+console.log(color(''), color('◍ › ᴛᴇʟᴇ : @J0KER7x', 'red'))
+console.log(color( ''), color('','red'))
+console.log(color( ''), color('◍ › ɪɴѕᴛᴀ : @Lido7x','red'))
+console.log(color( ''), color('','red'))
+console.log(color(''), color('◍ › ғᴀᴄᴇʙᴏᴏᴋ  : @7WaleedMohamed', 'red'))
+
+say(`< ======================================================================== >`, {
+    font: 'console',
+    align: 'center',
+    gradient: ['red', 'red']
+  })
 
 async function startZimBotInc() {
     const connectToWhatsApp = async () => {
@@ -82,7 +82,7 @@ async function startZimBotInc() {
          syncFullHistory: true,
          logger: logg({ level: 'silent' }),
          auth: state,
-         browser: ["ZIM-BOT", "Safari", "3.0"],
+         browser: ["BAKAR-BOT", "Safari", "3.0"],
          patchMessageBeforeSending: (message) => {
                 const requiresPatch = !!(
                     message.buttonsMessage 
