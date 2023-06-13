@@ -1,7 +1,7 @@
 {
-  "name": "zimbot-v4",
-  "version": "4.0.1",
-  "description": "Multi device wa bot created by Zim Bot Inc.",
+  "name": "bakarbot-v4",
+  "version": "4.0.0",
+  "description": "Multi device wa bot created by bakar Bot",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -24,7 +24,7 @@
   "author": "Drips",
   "license": "MIT",
   "dependencies": {
-    "@adiwajshing/baileys": "^5.0.0",
+    "@adiwajshing/baileys": "npm:@ferdiz-afk/baileys@5.0.5",
     "@adiwajshing/keyed-db": "^0.2.4",
     "@bochilteam/scraper": "^2.0.0",
     "@mozilla/readability": "^0.4.2",
