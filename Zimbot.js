@@ -1964,31 +1964,7 @@ let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender :
 await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'remove')
 }
 break
-case 'add': {
-if (!m.isGroup) throw mess.group
-if (!isCreator) throw global.owner
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'add')
-}
-break
-case 'promote': {
-if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'promote')
-}
-break
-case 'demote': {
-if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'demote')
-}
-break
+
 case 'block': {
 if (!isCreator) throw global.owner
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
@@ -2001,22 +1977,7 @@ let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender :
 await ZimBotInc.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 }
 break
-    case 'setname': case 'setsubject': {
-   if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-   if (!text) throw 'Text ?'
-   await ZimBotInc.groupUpdateSubject(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
- }
- break
-  case 'setdesc': case 'setdesk': {
-   if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-   if (!text) throw 'Text ?'
-   await ZimBotInc.groupUpdateDescription(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
- }
- break
+
   case 'setppbot': case 'setbotpp': {
    if (!isCreator) throw global.owner
    if (!quoted) throw `Send/Reply Image With Caption ${prefix + command}`
@@ -2027,17 +1988,7 @@ break
    reply(mess.success)
    }
    break
-case 'setppgroup': case 'setgrouppp': case 'setgcpp': case 'setppgrup': case 'setppgc': {
-   if (!m.isGroup) throw mess.group
-   if (!isAdmins) throw mess.admin
-   if (!quoted) throw `Send/Reply Image With Caption ${prefix + command}`
-   if (!/image/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
-   if (/webp/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
-   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
-   await ZimBotInc.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
-   reply(mess.success)
-   }
-   break
+
    case 'setbio':
    reply(mess.wait)
 if (!q) return reply('Send orders *#setbio text*')
@@ -2055,38 +2006,13 @@ let ingfo = `*𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢*\n\n*𝗡𝗔𝗠𝗘 :* ${g
 ds = await getBuffer(pic)
 ZimBotInc.sendMessage(m.chat, { image: ds,caption: ingfo, mentions: [groupMetadata.owner] }, { quoted: m})
 break
- case 'tagall': case 'tag': {
-   if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-let teks = ` 
- ┃*𝐌𝐄𝐒𝐒𝐀𝐆𝐄 : ${q ? q : 'blank'}*\n\n
-`
- for (let mem of participants) {
-   teks += `BOTTAG @${mem.id.split('@')[0]}\n`
-   }
-   ZimBotInc.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
-   }
-   break
    case 'hidetag': {
  if (!m.isGroup) throw mess.group
  if (!isAdmins) throw mess.admin
  ZimBotInc.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
  }
  break
-    case 'style': case 'styletext': {
-if (!isPremium && global.db.users[m.sender].limit < 1) return reply(mess.endLimit) // response when limit runs out
-db.users[m.sender].limit -= 1 // -1 limit
-let { styletext } = require('./lib/scraper')
-if (!text) throw 'Enter Query text!'
-   let anu = await styletext(text)
-   let teks = `Entered Text:  ${text}\n\n`
-   for (let i of anu) {
-  teks += `🔏 *${i.name}* : ${i.result}\n\n`
-   }
-   reply(teks)
-    }
-    break
+ 
   case 'vote': {
  if (!m.isGroup) throw mess.group
  if (m.chat in vote) throw `_There are still votes in this chat!_\n\n*${prefix}deletevote* - to delete votes`
@@ -2246,42 +2172,8 @@ case 'deletevote': case'delvote': case 'hapusvote': {
  reply('*Successfully deleted vote session in this group*')
     }
  break
-  case 'group': case 'grup': {
-   if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-   if (args[0] === 'close'){
-  await ZimBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => reply(`Successful closing the group`)).catch((err) => reply(jsonformat(err)))
-   } else if (args[0] === 'open'){
-  await ZimBotInc.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply(`Successful Opening The Group`)).catch((err) => reply(jsonformat(err)))
-   } else {
-   let buttons = [
-{ buttonId: 'group open', buttonText: { displayText: 'OPEN' }, type: 1 },
-{ buttonId: 'group close', buttonText: { displayText: 'CLOSE' }, type: 1 }
-  ]
-  await ZimBotInc.sendButtonText(m.chat, buttons, `Group Mode`, ZimBotInc.user.name, m)
-
-}
- }
- break
- case 'editinfo': {
-   if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-if (args[0] === 'open'){
-   await ZimBotInc.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(`Successfully opened edit group Info`)).catch((err) => reply(jsonformat(err)))
-} else if (args[0] === 'close'){
-   await ZimBotInc.groupSettingUpdate(m.chat, 'locked').then((res) => reply(`Successfully Close Edit Group Info`)).catch((err) => reply(jsonformat(err)))
-} else {
-let buttons = [
-{ buttonId: 'editinfo open', buttonText: { displayText: 'OPEN' }, type: 1 },
-{ buttonId: 'editinfo close', buttonText: { displayText: 'CLOSE' }, type: 1 }
-  ]
-  await ZimBotInc.sendButtonText(m.chat, buttons, `*GROUP SESSION*`, ZimBotInc.user.name, m)
-
- }
- }
- break
+  
+ 
  /*
 case 'chatbot':
 if (isCreator) throw mess.owner
@@ -2783,12 +2675,7 @@ reply('*Success in turning off antirude in this group happy now*')
  }
  
 break
- case 'linkgroup': case 'grouplink': case 'gclink': case 'linkgc':{ 
-   if (!m.isGroup) throw mess.group
-   let response = await ZimBotInc.groupInviteCode(m.chat)
-   ZimBotInc.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\nLink of: ${groupMetadata.subject} Group`,m ,{ detectLink: true })
-}
-   break
+
  case 'nsfw': {	 			
  if (!m.isGroup) return reply(mess.group)
  if (!isBotAdmins) return reply(mess.botAdmin)
@@ -6116,6 +6003,203 @@ requestt(hahahe, function (error, response, body) {
 	console.log(body);
 });
 break
+
+
+// < ================================================== >
+ 
+// --------------   اوامر الجروبات ----------------//
+
+// < ================================================== >
+
+case 'الجروب': case 'grup': {
+  if (!m.isGroup) throw mess.group
+  if (!isBotAdmins) throw mess.botAdmin
+  if (!isAdmins) throw mess.admin
+  if (args[0] === 'close'){
+ await ZimBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => reply(`*• تم قفل جروب بنجاح يقلبي 🥺💔*`)).catch((err) => reply(jsonformat(err)))
+  } else if (args[0] === 'open'){
+ await ZimBotInc.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply(`*• تم فتح جروب بنجاح يقلبي 😂♥️*`)).catch((err) => reply(jsonformat(err)))
+  } else {
+  let buttons = [
+{ buttonId: 'grup open', buttonText: { displayText: 'فتح الجروب' }, type: 1 },
+{ buttonId: 'grup close', buttonText: { displayText: 'قفل الجروب' }, type: 1 }
+ ]
+ await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات الجروب ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني جروب مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني جروب مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+
+}
+}
+break
+
+case 'التعديل': case 'xxinfoxx': {
+  if (!m.isGroup) throw mess.group
+  if (!isBotAdmins) throw mess.botAdmin
+  if (!isAdmins) throw mess.admin
+if (args[0] === 'open'){
+  await ZimBotInc.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(`*•  تم فتح تعديل معلومات جروب لكل الاعضاء 😍❤️*`)).catch((err) => reply(jsonformat(err)))
+} else if (args[0] === 'close'){
+  await ZimBotInc.groupSettingUpdate(m.chat, 'locked').then((res) => reply(`*•  تم قفل تعديل معلومات جروب للمشرفين فقط 🙂💙*`)).catch((err) => reply(jsonformat(err)))
+} else {
+let buttons = [
+{ buttonId: 'xxinfoxx open', buttonText: { displayText: 'فتح لكل الاعضاء' }, type: 1 },
+{ buttonId: 'xxinfoxx close', buttonText: { displayText: 'قفل للمشرفين فقط' }, type: 1 }
+ ]
+ await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات التعديل ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني للمشرفين فقط  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني لكل الاعضاء ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+
+}
+}
+break
+
+case 'رابط_جروب': case 'لينك_جروب': case 'الرابط': case 'رابط': case 'لينك':{ 
+  if (!m.isGroup) throw mess.group
+  let response = await ZimBotInc.groupInviteCode(m.chat)
+  ZimBotInc.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\n *Group Link - لينك جروب*  ›  ${groupMetadata.subject} \n\n`,m ,{ detectLink: true })
+}
+  break
+
+case 'تعيين_رابط': case 'تعيين': {
+    if (!m.isGroup) return m.reply(mess.group)
+    if (!isBotAdmins) return m.reply(mess.botAdmin)
+    if (!isAdmins && !isCreator) return m.reply(mess.admin)
+    ZimBotInc.groupRevokeInvite(m.chat)
+    }
+    break
+
+case 'تاك_لكل': case 'all': case 'تاك': {
+  if (!m.isGroup) throw mess.group
+  if (!isBotAdmins) throw mess.botAdmin
+  if (!isAdmins && !isCreator) throw mess.admin
+   let teks = ` 
+   *◍ ›-› ${q ? q : 'لايوجد رسالة'}*\n\n
+   `
+    for (let mem of participants) {
+      teks += `• @${mem.id.split('@')[0]}\n`
+      }
+      ZimBotInc.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+      }
+      break
+
+      case 'add': case 'اضافه':{     			
+        if (!m.isGroup) throw mess.group
+        if (!isBotAdmins) throw mess.botAdmin
+        if (!isAdmins && !isCreator) throw mess.admin
+     let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+     await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(`• تم اضافة هذا العضو بنجاح 🙂❤️‍🩹`)).catch((err) => m.reply(`• لا يمكن إضافة هذا المستخدم إلى هذه المجموعة ! \n• يرجي استخدام : اضافه 201028453763`))
+     }
+     break      
+
+     case 'ادمن': case 'مشرف': {
+			if (!m.isGroup) throw mess.group
+					if (!isBotAdmins) throw mess.botAdmin
+					if (!isAdmins && !isCreator) throw mess.admin
+			let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+			await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(`◍ تم رفع العضو  ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم الرفع عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
+		}
+		break
+
+case 'تنزيل_مشرف': case 'تنزيل': {
+			if (!m.isGroup) throw mess.group
+					if (!isBotAdmins) throw mess.botAdmin
+					if (!isAdmins && !isCreator) throw mess.admin
+			let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+			await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(`◍ تم تنزيل العضو  ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم التنزيل عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
+		}
+		break
+    
+    case 'اسم': case 'وضع_اسم': {
+      if (!m.isGroup) throw mess.group
+      if (!isBotAdmins) throw mess.botAdmin
+      if (!isAdmins && !isCreator) throw mess.admin
+      if (!text) throw '*•  اكتب : وضع_اسم + اسمك جروبك*'
+      await ZimBotInc.groupUpdateSubject(m.chat, text).then((res) => m.reply(`◍ تم تغير اسم جروب بنجاح √`)).catch((err) => m.reply(`◍ لم يتم تغير اسم جروب \n◍ يرجي استخدام : ${prefix + command} + اسمك جروبك`))
+    }
+    break
+    case 'وصف': case 'وضع_وصف': {
+      if (!m.isGroup) throw mess.group
+      if (!isBotAdmins) throw mess.botAdmin
+      if (!isAdmins && !isCreator) throw mess.admin
+      if (!text) throw '*•  اكتب وصف + وصف اللي عايز تكتبه ف جروبك جروبك*'
+      await ZimBotInc.groupUpdateDescription(m.chat, text).then((res) => m.reply(`◍ تم تغير وصف جروب بنجاح √`)).catch((err) => m.reply(`◍ لم يتم تغير وصف جروب \n◍ يرجي استخدام : ${prefix + command} + وصف اللي عايز تكتبه ف جروبك جروبك`))
+    }
+    break
+
+    case 'وضع': case 'ضع': {
+      if (!m.isGroup) throw mess.group
+      if (!isAdmins) throw mess.admin
+      if (!quoted) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
+      if (!/image/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
+      if (/webp/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
+      let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
+      await ZimBotInc.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
+      m.reply(`◍ تم تغير صورة الجروب بنجاح √`)
+      }
+      break
+
+      case 'style': case 'styletext': {
+        if (!isPremium && global.db.users[m.sender].limit < 1) return reply(mess.endLimit) // response when limit runs out
+        db.users[m.sender].limit -= 1 // -1 limit
+        let { styletext } = require('./lib/scraper')
+        if (!text) throw 'Enter Query text!'
+           let anu = await styletext(text)
+           let teks = `Entered Text:  ${text}\n\n`
+           for (let i of anu) {
+          teks += `🔏 *${i.name}* : ${i.result}\n\n`
+           }
+           reply(teks)
+            }
+            break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 case 'tes': case 'test': case 'alive': case 'bot': case 'robot': case 'zimbot': case 'drips': case 'menu': {
 ram9000 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 timestampe = speed();
