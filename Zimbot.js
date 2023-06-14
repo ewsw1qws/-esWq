@@ -1189,9 +1189,9 @@ if (db.chats[m.chat].antisticker) {
 let isSticker = m.mtype
 if(isSticker === "stickerMessage"){		  
 if (!m.key.fromMe) {
-if (isAdmins) return reply(`*you are admin lucky you dont send stickers here*`)
-if (isCreator) return reply(`*𝘖𝘰𝘰𝘰𝘩 𝘴𝘩𝘪𝘵😩 𝘴𝘰𝘳𝘳𝘺 𝘺𝘶 𝘢𝘳𝘦 𝘵𝘩𝘦 𝘰𝘸𝘯𝘦𝘳 𝘭𝘶𝘤𝘬𝘺 𝘺𝘰𝘶*`)
-reply('*ANTI STICKER*\n\n*NO STICKERS  ALLOWED HERE OKAY GOODBYE*')
+if (isAdmins) return m.reply(`◍ تم ارسال ملصق من المشرفين √`)
+if (isCreator) return m.reply(`◍ تم ارسال ملصق من  ${global.devlido} روح قلبي 🥺♥️ √`)
+m.reply('*ANTI STICKER*\n\n*NO STICKERS  ALLOWED HERE OKAY GOODBYE*')
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
 ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no stickers here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
@@ -1203,9 +1203,9 @@ if (db.chats[m.chat].antivn) {
 let isAudio = m.mtype
 if(isAudio === "audioMessage"){		  
 if (!m.key.fromMe) {
-if (isAdmins) return reply(`*you are admin lucky you dont send voice note here*`)
-if (isCreator) return reply(`*𝘖𝘰𝘰𝘰𝘩 𝘴𝘩𝘪𝘵😩 𝘴𝘰𝘳𝘳𝘺 𝘺𝘶 𝘢𝘳𝘦 𝘵𝘩𝘦 𝘰𝘸𝘯𝘦𝘳 𝘭𝘶𝘤𝘬𝘺 𝘺𝘰𝘶*`)
-reply('*ANTI VOICE NOTE*\n\n*NO VOICE ALLOWED HERE  OKAY GOODBYE*')
+if (isAdmins) return m.reply(`◍ تم ارسال صوت من المشرفين √`)
+if (isCreator) return m.reply(`◍ تم ارسال صوت من  ${global.devlido} روح قلبي 🥺♥️ √`)
+m.reply('*ANTI VOICE NOTE*\n\n*NO VOICE ALLOWED HERE  OKAY GOODBYE*')
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
 ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no voice note here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
@@ -1213,13 +1213,14 @@ ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split
 }
 }
 
+
 if (db.chats[m.chat].antivideo) {
 let isVideo = m.mtype
 if(isVideo === "videoMessage"){		  
 if (!m.key.fromMe) {
-if (isAdmins) return reply(`*you are admin lucky you dont send videos here*`)
-if (isCreator) return reply(`*𝘖𝘰𝘰𝘰𝘩 𝘴𝘩𝘪𝘵😩 𝘴𝘰𝘳𝘳𝘺 𝘺𝘶 𝘢𝘳𝘦 𝘵𝘩𝘦 𝘰𝘸𝘯𝘦𝘳 𝘭𝘶𝘤𝘬𝘺 𝘺𝘰𝘶*`)
-reply('*ANTI VIDEO*\n\n*NO VIDEOS ALLOWED HERE  OKAY GOODBYE*')
+if (isAdmins) return m.reply(`◍ تم ارسال فيديو من المشرفين √`)
+if (isCreator) return m.reply(`◍ تم ارسال فيديو من  ${global.devlido} روح قلبي 🥺♥️ √`)
+m.reply('*ANTI VIDEO*\n\n*NO VIDEOS ALLOWED HERE  OKAY GOODBYE*')
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
 ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no videos here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
@@ -1231,9 +1232,9 @@ if (db.chats[m.chat].antiphoto) {
 let isPhoto = m.mtype
 if(isPhoto === "imageMessage"){		  
 if (!m.key.fromMe) {
-if (isAdmins) return reply(`*you are admin lucky you dont send photos here*`)
-if (isCreator) return reply(`*𝘖𝘰𝘰𝘰𝘩 𝘴𝘩𝘪𝘵😩 𝘴𝘰𝘳𝘳𝘺 𝘺𝘶 𝘢𝘳𝘦 𝘵𝘩𝘦 𝘰𝘸𝘯𝘦𝘳 𝘭𝘶𝘤𝘬𝘺 𝘺𝘰𝘶*`)
-reply('*ANTI PHOTOS*\n\n*NO PHOTOS ALLOWED HERE  OKAY GOODBYE*')
+if (isAdmins) return m.reply(`◍ تم ارسال صورة من المشرفين √`)
+if (isCreator) return m.reply(`◍ تم ارسال صورة من  ${global.devlido} روح قلبي 🥺♥️ √`)
+m.reply('*ANTI PHOTOS*\n\n*NO PHOTOS ALLOWED HERE  OKAY GOODBYE*')
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
 ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no photos here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
@@ -6211,19 +6212,19 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
   if (args[0] === "on") {
-  if (db.chats[m.chat].antivn) return reply(`◍ تم تفعل حظر الصوت + ريكورد من قبل √`)
+  if (db.chats[m.chat].antivn) return m.reply(`◍ تم تفعل حظر الصوت + ريكورد من قبل √`)
   db.chats[m.chat].antivn = true
-  reply(`◍ تم تفعل حظر الصوت + ريكورد √`)
+  m.reply(`◍ تم تفعل حظر الصوت + ريكورد √`)
   } else if (args[0] === "off") {
-  if (!db.chats[m.chat].antivn) return reply(`*Already off okay*`)
+  if (!db.chats[m.chat].antivn) return m.reply(`◍ تم تعطيل حظر الصوت + ريكورد من قبل √`)
   db.chats[m.chat].antivn = false
-  reply(`*Antivn disabled*`)
+  reply(`◍ تم تعطيل حظر الصوت + ريكورد √`)
   } else {
-   let drips = [
-     { buttonId: `xxvnvnxx on`, buttonText: { displayText: 'ON' }, type: 1 },
-     { buttonId: `xxvnvnxx off`, buttonText: { displayText: 'OFF' }, type: 1 }
+   let lido7x = [
+     { buttonId: `xxvnvnxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+     { buttonId: `xxvnvnxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
  ]
- await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ᴠɴ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+ await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الصوت + ريكورد ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
    }
  break
@@ -6233,19 +6234,19 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
   if (args[0] === "on") {
-  if (db.chats[m.chat].antisticker) return reply(`◍ تم تفعل حظر الملصقات من قبل √`)
+  if (db.chats[m.chat].antisticker) return m.reply(`◍ تم تفعل حظر الملصقات من قبل √`)
   db.chats[m.chat].antisticker = true
-  reply(`◍ تم تفعل حظر الملصقات √`)
+  m.reply(`◍ تم تفعل حظر الملصقات √`)
   } else if (args[0] === "off") {
-  if (!db.chats[m.chat].antisticker) return reply(`*Already off okay*`)
+  if (!db.chats[m.chat].antisticker) return m.reply(`◍ تم تعطيل حظر الملصقات من قبل √`)
   db.chats[m.chat].antisticker = false
-  reply(`*Antisticker disabled*`)
+  m.reply(`◍ تم تعطيل حظر الملصقات √`)
   } else {
-  let drips = [
-  { buttonId: `xxskskxx on`, buttonText: { displayText: 'ON' }, type: 1 },
-  { buttonId: `xxskskxx off`, buttonText: { displayText: 'OFF' }, type: 1 }
+  let lido7x = [
+  { buttonId: `xxskskxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+  { buttonId: `xxskskxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ sᴛɪᴄᴋᴇʀ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+  await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الملصقات ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
   }
   break
@@ -6254,19 +6255,19 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
   if (args[0] === "on") {
-  if (db.chats[m.chat].antiphoto) return reply(`◍ تم تفعل حظر الصور من قبل √`)
+  if (db.chats[m.chat].antiphoto) return m.reply(`◍ تم تفعل حظر الصور من قبل √`)
   db.chats[m.chat].antiphoto = true
-  reply(`◍ تم تفعل حظر الصور √`)
+  m.reply(`◍ تم تفعل حظر الصور √`)
   } else if (args[0] === "off") {
-  if (!db.chats[m.chat].antiphoto) return reply(`◍ تم تعطيل حظر الصور من قبل √`)
+  if (!db.chats[m.chat].antiphoto) return m.reply(`◍ تم تعطيل حظر الصور من قبل √`)
   db.chats[m.chat].antiphoto = false
-  reply(`◍ تم تعطيل حظر الصور √`)
+  m.reply(`◍ تم تعطيل حظر الصور √`)
   } else {
-  let drips = [
-  { buttonId: `xxphphxx on`, buttonText: { displayText: 'ON' }, type: 1 },
-  { buttonId: `xxphphxx off`, buttonText: { displayText: 'OFF' }, type: 1 }
+  let lido7x = [
+  { buttonId: `xxphphxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+  { buttonId: `xxphphxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+  await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الصور ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
   }
   break
@@ -6275,19 +6276,19 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins && !isCreator) throw mess.admin
     if (args[0] === "on") {
-    if (db.chats[m.chat].antivideo) return reply(`◍ تم تفعل حظر الفيديوهات من قبل √`)
+    if (db.chats[m.chat].antivideo) return m.reply(`◍ تم تفعل حظر الفيديوهات من قبل √`)
     db.chats[m.chat].antivideo = true
-    reply(`◍ تم تفعل حظر الفيديوهات √`)
+    m.reply(`◍ تم تفعل حظر الفيديوهات √`)
     } else if (args[0] === "off") {
     if (!db.chats[m.chat].antivideo) return reply(`◍ تم تعطيل حظر الفيديوهات من قبل √`)
     db.chats[m.chat].antivideo = false
     reply(`◍ تم تعطيل حظر الفيديوهات √`)
     } else {
-     let drips = [
-       { buttonId: `xxvidxx on`, buttonText: { displayText: 'ON' }, type: 1 },
-       { buttonId: `xxvidxx off`, buttonText: { displayText: 'OFF' }, type: 1 }
+     let lido7x = [
+       { buttonId: `xxvidxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+       { buttonId: `xxvidxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
    ]
-   await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪᴠɪᴅᴇᴏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+   await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الفيديوهات ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
     }
      }
    break
