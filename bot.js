@@ -37,6 +37,8 @@ global.APIKeys = {
 global.Api = new (require('./plugins/neoxrApi.js'))(process.env.API_KEY)
 
 //settings
+
+global.devlido = 'مطور ليدو'
 global.owner = ['201554496598','201101389228'] //owner number ++447441437150
 global.wame = ['201554496598'] 
 global.pemilik = ['201554496598'] //owner number ++447441437150
