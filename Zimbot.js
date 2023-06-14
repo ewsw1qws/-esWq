@@ -2006,12 +2006,6 @@ let ingfo = `*𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢*\n\n*𝗡𝗔𝗠𝗘 :* ${g
 ds = await getBuffer(pic)
 ZimBotInc.sendMessage(m.chat, { image: ds,caption: ingfo, mentions: [groupMetadata.owner] }, { quoted: m})
 break
-   case 'hidetag': {
- if (!m.isGroup) throw mess.group
- if (!isAdmins) throw mess.admin
- ZimBotInc.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
- }
- break
  
   case 'vote': {
  if (!m.isGroup) throw mess.group
@@ -2705,18 +2699,7 @@ await ZimBotInc.sendButtonText(m.chat, button, `*▊▊▊HORNY MOOD▊▊▊*\n
 }
 }
 break
- case 'ephemeral': {
-   if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-   if (!text) throw 'Enter the enable/disable value, For Example ${prefix}ephemeral enable'
-   if (args[0] === 'enable') {
-  await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   } else if (args[0] === 'disable') {
-  await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   }
- }
- break
+
  case 'translate': case 'terjemahan': case 'tr': {
    tes = await fetchJson (`https://megayaa.herokuapp.com/api/translate?to=en&kata=${args.join(" ")}`)
    Infoo = tes.info
@@ -6016,9 +5999,9 @@ case 'الجروب': case 'grup': {
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
   if (args[0] === 'close'){
- await ZimBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => reply(`*• تم قفل جروب بنجاح يقلبي 🥺💔*`)).catch((err) => reply(jsonformat(err)))
+ await ZimBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => m.reply(`*• تم قفل جروب بنجاح يقلبي 🥺💔*`)).catch((err) => m.reply(jsonformat(err)))
   } else if (args[0] === 'open'){
- await ZimBotInc.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply(`*• تم فتح جروب بنجاح يقلبي 😂♥️*`)).catch((err) => reply(jsonformat(err)))
+ await ZimBotInc.groupSettingUpdate(m.chat, 'not_announcement').then((res) => m.reply(`*• تم فتح جروب بنجاح يقلبي 😂♥️*`)).catch((err) => m.reply(jsonformat(err)))
   } else {
   let buttons = [
 { buttonId: 'grup open', buttonText: { displayText: 'فتح الجروب' }, type: 1 },
@@ -6035,9 +6018,9 @@ case 'التعديل': case 'xxinfoxx': {
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
 if (args[0] === 'open'){
-  await ZimBotInc.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(`*•  تم فتح تعديل معلومات جروب لكل الاعضاء 😍❤️*`)).catch((err) => reply(jsonformat(err)))
+  await ZimBotInc.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`*•  تم فتح تعديل معلومات جروب لكل الاعضاء 😍❤️*`)).catch((err) => m.reply(jsonformat(err)))
 } else if (args[0] === 'close'){
-  await ZimBotInc.groupSettingUpdate(m.chat, 'locked').then((res) => reply(`*•  تم قفل تعديل معلومات جروب للمشرفين فقط 🙂💙*`)).catch((err) => reply(jsonformat(err)))
+  await ZimBotInc.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`*•  تم قفل تعديل معلومات جروب للمشرفين فقط 🙂💙*`)).catch((err) => m.reply(jsonformat(err)))
 } else {
 let buttons = [
 { buttonId: 'xxinfoxx open', buttonText: { displayText: 'فتح لكل الاعضاء' }, type: 1 },
@@ -6124,7 +6107,8 @@ case 'تنزيل_مشرف': case 'تنزيل': {
 
     case 'وضع': case 'ضع': {
       if (!m.isGroup) throw mess.group
-      if (!isAdmins) throw mess.admin
+      if (!isBotAdmins) throw mess.botAdmin
+      if (!isAdmins && !isCreator) throw mess.admin
       if (!quoted) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
       if (!/image/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
       if (/webp/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
@@ -6134,22 +6118,46 @@ case 'تنزيل_مشرف': case 'تنزيل': {
       }
       break
 
-      case 'style': case 'styletext': {
-        if (!isPremium && global.db.users[m.sender].limit < 1) return reply(mess.endLimit) // response when limit runs out
+case 'زخرفه': case 'زخرفة': {
+        if (!isPremium && global.db.users[m.sender].limit < 1) return reply(`◍ خطا ي ليدو`) // response when limit runs out
         db.users[m.sender].limit -= 1 // -1 limit
         let { styletext } = require('./lib/scraper')
-        if (!text) throw 'Enter Query text!'
+        if (!text) throw '◍ *لزخرفة اسمك 🌝♥️*\n◍ اكتب : زخرفه + اسمك بلغة الانجليزية \n◍ مثال : زخرفه lido'
            let anu = await styletext(text)
-           let teks = `Entered Text:  ${text}\n\n`
+           let teks = `◍ زخرفة اسم › ${text}\n\n`
            for (let i of anu) {
-          teks += `🔏 *${i.name}* : ${i.result}\n\n`
+          teks += `◍ › ${i.result}\n\n`
            }
            reply(teks)
             }
             break
 
+            case 'قول': {
+              if (!m.isGroup) throw mess.group
+              if (!isBotAdmins) throw mess.botAdmin
+              if (!isAdmins && !isCreator) throw mess.admin
+              ZimBotInc.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
+              }
+              break
 
-
+              case 'اختفاء': case 'xxephemexx': {
+                if (!m.isGroup) throw mess.group
+                if (!isBotAdmins) throw mess.botAdmin
+                if (!isAdmins && !isCreator) throw mess.admin
+                if (args[0] === 'enable') {
+               await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                } else if (args[0] === 'disable') {
+               await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => m.reply(`◍ تم ايقاف الاختفاء بنجاح √`)).catch((err) => reply(`◍ √`))
+                } else {
+               let buttons = [
+             { buttonId: 'xxephemexx enable', buttonText: { displayText: 'فتح الاختفاء' }, type: 1 },
+             { buttonId: 'xxephemexx disable', buttonText: { displayText: 'قفل الاختفاء' }, type: 1 }
+              ]
+              await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات خاصية الاختفاء ذاتي ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الاختفاء مقفل  ❬ ✘ ❭\n🔐 ╜ فتح «»  تعني الاختفاء مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+             
+             }
+             }
+             break
 
 
 
