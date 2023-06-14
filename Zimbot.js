@@ -82,6 +82,7 @@ const _petualang = JSON.parse(fs.readFileSync('./database/inventori.json'))
 const balance = JSON.parse(fs.readFileSync('./database/balance.json'))
 const dripsanti = JSON.parse(fs.readFileSync('./lib/rude.json'))
 let bad = JSON.parse(fs.readFileSync('./lib/rude.json'))
+let autosticker = JSON.parse(fs.readFileSync('./database/autosticker.json'))
 global.db = JSON.parse(fs.readFileSync('./src/database.json'))
 if (global.db) global.db = {
     sticker: {},
@@ -128,6 +129,25 @@ const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') 
 const antiToxic = m.isGroup ? dripsanti.includes(from) : false
 const zimbotincv3 = body.slice(0).trim().split(/ +/).shift().toLowerCase()
 //-----END HERE------\\
+/// AutoSticker
+const isAutoSticker = m.isGroup ? autosticker.includes(from) : false
+///AutoSticker
+			// Autosticker gc
+			if (isAutoSticker) {
+				if (/image/.test(mime) && !/webp/.test(mime)) {
+					let mediac = await quoted.download()
+					await ZimBotInc.sendImageAsSticker(from, mediac, m, { packname: global.author7X, author: pack7xname })
+					console.log(`Auto sticker detected`)
+				} else if (/video/.test(mime)) {
+					if ((quoted.msg || quoted).seconds > 11) return
+					let mediac = await quoted.download()
+					await ZimBotInc.sendVideoAsSticker(from, mediac, m, { packname: global.author7X, author: pack7xname })
+				}
+			}
+			
+
+      ///////---------------------------
+
 
 const runtime = function (seconds) {
 seconds = Number(seconds);
@@ -6159,7 +6179,23 @@ case 'زخرفه': case 'زخرفة': {
              }
              break
 
-
+case 'تلقائي': case 'autosticker':
+	if (!m.isGroup) return m.reply(mess.group)
+	if (!isBotAdmins) return m.reply(mess.botAdmin)
+	if (!isAdmins && !isCreator) return m.reply(mess.admin)
+	if (args.length < 1) return m.reply('- اكتب تلقائي on  > لتشغيل \n- اكتب تلقائي off  > لتعطيل')
+	if (args[0]  === 'on'){
+	if (isAutoSticker) return m.reply(`تم تفعيل`)
+	autosticker.push(from)
+	fs.writeFileSync('./database/autosticker.json', JSON.stringify(autosticker))
+	m.reply('مفعل ')
+	} else if (args[0] === 'off'){
+	let anuticker1 = autosticker.indexOf(from)
+	autosticker.splice(anuticker1, 1)
+	fs.writeFileSync('./database/autosticker.json', JSON.stringify(autosticker))
+	m.reply('غير مفعل ')
+	}
+	break
 
 
 
