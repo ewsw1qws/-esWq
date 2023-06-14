@@ -2266,26 +2266,7 @@ reply(`*It was nice to chat with you goodbye _Artificial Intelligence(AI) chatgp
 }
 break 
 
- case 'localonly': {
-  if (!m.isGroup) throw mess.group
-  if (!isAdmins)  throw mess.admin
-  if (args[0] === "on") {
-  if (db.chats[m.chat].localonly) return reply(`*🤖ʟᴏᴄᴀʟ ᴏɴʟʏ ᴀʟʀᴇᴀᴅʏ ᴏɴ ᴏᴋᴀʏ*`)
-  db.chats[m.chat].localonly = true
-  reply(`*🤖ʟᴏᴄᴀʟ ᴏɴʟʏ ᴏɴ*`)
-  } else if (args[0] === "off") {
-  if (!db.chats[m.chat].localonly) return reply(`*🧸ᴀʟʀᴇᴀᴅʏ ᴏғғ ᴏᴋᴀʏ*`)
-  db.chats[m.chat].localonly = false
-  reply(`*🤖ʟᴏᴄᴀʟ ᴏɴʟʏ ᴏғғ*`)
-  } else {
-   let drips = [
-  { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-  { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-    ]
-    await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-  }
-    }   
-  break 
+ 
   case 'grouponly': {
     if (!isCreator) throw mess.owner
     if (args[0] === "on") {
@@ -6224,6 +6205,27 @@ case 'الترحيب': case 'xxwelcomexx': {
     }   
   break
 
+  case 'الفيك': case 'xxlocalonlyxx': {
+    if (!m.isGroup) return m.reply(mess.group)
+    if (!isBotAdmins) return m.reply(mess.botAdmin)
+    if (!isAdmins && !isCreator) return m.reply(mess.admin)
+    if (args[0] === "on") {
+    if (db.chats[m.chat].localonly) return m.reply(`◍ تم تشغيل حظر الارقام الفيك بنجاح √`)
+    db.chats[m.chat].localonly = true
+    m.reply(`◍ تم تشغيل حظر الارقام الفيك بنجاح √`)
+    } else if (args[0] === "off") {
+    if (!db.chats[m.chat].localonly) return m.reply(`◍ تم ايقاف حظر الارقام الفيك بنجاح √`)
+    db.chats[m.chat].localonly = false
+    m.reply(`◍ تم ايقاف حظر الارقام الفيك بنجاح √`)
+    } else {
+     let lido7x = [
+    { buttonId: `xxlocalonlyxx on`, buttonText: { displayText: 'تشغيل حظر الارقام' }, type: 1 },
+    { buttonId: `xxlocalonlyxx off`, buttonText: { displayText: 'ايقاف حظر الارقام' }, type: 1 }
+      ]
+      await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الارقام الفيك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ ايقاف «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ تشغيل«»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════\n-› الارقام المسموح بيها ( مصر - المغرب ) `, botname, m)
+    }
+      }   
+    break   
 
 
 
