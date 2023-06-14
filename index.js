@@ -166,8 +166,8 @@ async function startZimBotInc() {
                 }
               if (anu.action == 'add') {
               if (db.chats[m.chat].localonly) {
-              if ( !member.startsWith('263') || !member.startsWith('263'))  {// put your country code for localonly 
-              ZimBotInc.sendMessage(anu.id, { text: `Sorry @${member.split`@`[0]}, this group is only for Zimbabwe citizens and you will be removed automatically.`})
+              if ( !member.startsWith('20') && !member.startsWith('20') && !member.startsWith('212'))  {
+              ZimBotInc.sendMessage(anu.id, { text: `◍ عزيزي ( @${member.split`@`[0]} )\n◍ تم تفعيل حظر الارقام الوهمية لم يمكن لك الدخول قم بدخول برقم غير وهمي √`})
               ZimBotInc.updateBlockStatus(member, 'block')
                return await Func.delay(2000).then(() => ZimBotInc.groupParticipantsUpdate(anu.id, [member], 'remove'))
                }
@@ -175,7 +175,7 @@ async function startZimBotInc() {
                }
          
                 
-                if (db.chats[m.chat].isWelcome) {//welcome by drips
+                if (db.chats[m.chat].isWelcome) {
                 if (anu.action == 'add') {
                 var buffer = await getBuffer(ppuser)
                 var wangu = await getBuffer(picak+'WELCOME CHOMIE')
