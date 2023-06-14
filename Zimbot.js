@@ -2798,13 +2798,7 @@ ${repo.open_issues} *ISSUES:*${repo.description ? `
 }).join('\n\n')
             reply(str)
 break
- case 'delete': case 'del': {
-   if (!m.quoted) throw false
-   let { chat, fromMe, id, isBaileys } = m.quoted
-   if (!isBaileys) throw '*The message was not sent by a bot💥*'
-   ZimBotInc.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
- }
- break
+
  case 'bcgc': case 'bcgroup': {
    if (!isCreator) throw global.owner
    if (!text) throw `Where is the text?\n\nExample : ${prefix + command} hello guys, am back`
@@ -6139,7 +6133,7 @@ case 'تنزيل_مشرف': case 'تنزيل': {
       break
 
 case 'زخرفه': case 'زخرفة': {
-        if (!isPremium && global.db.users[m.sender].limit < 1) return reply(`◍ خطا ي ليدو`) // response when limit runs out
+        if (!isPremium && global.db.users[m.sender].limit < 1) return reply(`◍ خطا ي ليدو`) 
         db.users[m.sender].limit -= 1 // -1 limit
         let { styletext } = require('./lib/scraper')
         if (!text) throw '◍ *لزخرفة اسمك 🌝♥️*\n◍ اكتب : زخرفه + اسمك بلغة الانجليزية \n◍ مثال : زخرفه lido'
@@ -6165,7 +6159,7 @@ case 'زخرفه': case 'زخرفة': {
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins && !isCreator) throw mess.admin
                 if (args[0] === 'enable') {
-               await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+               await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => m.reply(`◍ تم تشغيل الاختفاء بنجاح √`)).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'disable') {
                await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => m.reply(`◍ تم ايقاف الاختفاء بنجاح √`)).catch((err) => reply(`◍ √`))
                 } else {
@@ -6179,28 +6173,54 @@ case 'زخرفه': case 'زخرفة': {
              }
              break
 
-case 'تلقائي': case 'autosticker':
-	if (!m.isGroup) return m.reply(mess.group)
-	if (!isBotAdmins) return m.reply(mess.botAdmin)
-	if (!isAdmins && !isCreator) return m.reply(mess.admin)
-	if (args.length < 1) return m.reply('- اكتب تلقائي on  > لتشغيل \n- اكتب تلقائي off  > لتعطيل')
-	if (args[0]  === 'on'){
-	if (isAutoSticker) return m.reply(`تم تفعيل`)
-	autosticker.push(from)
-	fs.writeFileSync('./database/autosticker.json', JSON.stringify(autosticker))
-	m.reply('مفعل ')
-	} else if (args[0] === 'off'){
-	let anuticker1 = autosticker.indexOf(from)
-	autosticker.splice(anuticker1, 1)
-	fs.writeFileSync('./database/autosticker.json', JSON.stringify(autosticker))
-	m.reply('غير مفعل ')
-	}
-	break
 
+  case 'تلقائي': case 'xxautostickerxx':
+    if (!m.isGroup) return m.reply(mess.group)
+    if (!isBotAdmins) return m.reply(mess.botAdmin)
+    if (!isAdmins && !isCreator) return m.reply(mess.admin)
+    if (args[0]  === 'on'){
+    if (isAutoSticker) return m.reply(`◍ تم تشغيل تحويل صور بنجاح √`)
+    autosticker.push(from)
+    fs.writeFileSync('./database/autosticker.json', JSON.stringify(autosticker))
+    m.reply('◍ تم ايقاف تحويل صور بنجاح √')
+    } else if (args[0] === 'off'){
+    let anuticker1 = autosticker.indexOf(from)
+    autosticker.splice(anuticker1, 1)
+    fs.writeFileSync('./database/autosticker.json', JSON.stringify(autosticker))
+    m.reply('◍ تم ايقاف تحويل صور بنجاح √')
+    } else {
+    let buttons = [
+  { buttonId: 'xxautostickerxx on', buttonText: { displayText: 'فتح التحويل' }, type: 1 },
+  { buttonId: 'xxautostickerxx off', buttonText: { displayText: 'قفل التحويل' }, type: 1 }
+   ]
+   await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات تحويل الصور ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني تحويل مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني تحويل مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+  }
+  break
 
+  case 'امسح': case 'احذف': {
+    if (!m.isGroup) return m.reply(mess.group)
+    if (!isBotAdmins) return m.reply(mess.botAdmin)
+    if (!isAdmins && !isCreator) return m.reply(mess.admin)
+ if (!m.quoted) return reply('◍ رد علي الرسالة اللي عايز تحذفها')
+ let { chat, fromMe, id} = m.quoted
 
+const key = {
+    remoteJid: m.chat,
+    fromMe: false,
+    id: m.quoted.id,
+    participant: m.quoted.sender
+}
 
-
+await ZimBotInc.sendMessage(m.chat, { delete: key })
+ }
+ break
+ case 'مسح': case 'حذف': {
+  if (!m.quoted) throw false
+  let { chat, fromMe, id, isBaileys } = m.quoted
+  if (!isBaileys) throw '*◍  رسالة دي مش رسالة البوت » رد علي رسالة البوت*'
+  ZimBotInc.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
+}
+break
 
 
 
