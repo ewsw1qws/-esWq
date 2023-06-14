@@ -2330,26 +2330,7 @@ case 'antiwame': {
    }
 }
 break
-   case 'mute': {
-   if (!m.isGroup) throw mess.group
-   if (!isAdmins) throw mess.admin
-   if (args[0] === "on") {
-   if (db.chats[m.chat].mute) return reply(`Already activated`)
-   db.chats[m.chat].mute = true
-   reply(`${ZimBotInc.user.name} has been muted in this group !`)
-   } else if (args[0] === "off") {
-   if (!db.chats[m.chat].mute) return reply(`Already deactivated`)
-   db.chats[m.chat].mute = false
-   reply(`${ZimBotInc.user.name} has been unmuted in this group!`)
-   } else {
-    let buttons = [
-{ buttonId: 'mute on', buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: 'mute off', buttonText: { displayText: 'OFF' }, type: 1 }
-  ]
-  await ZimBotInc.sendButtonText(m.chat, buttons, `Mute Bot`, ZimBotInc.user.name, m)
-   }
-}
-break
+   
 case 'antilink': {
  if (!m.isGroup) throw mess.group
  if (!isBotAdmins) throw mess.botAdmin
@@ -6227,6 +6208,26 @@ case 'الترحيب': case 'xxwelcomexx': {
       }   
     break   
 
+    case 'تعطيل': case 'تفعيل':case 'xxmuuteexx': {
+      if (!m.isGroup) return m.reply(mess.group)
+      if (!isAdmins && !isCreator) return m.reply(mess.admin)
+      if (args[0] === "on") {
+      if (db.chats[m.chat].mute) return reply(`◍ الجروب معطل من قبل √`)
+      db.chats[m.chat].mute = true
+      reply(`◍ تم تعطيل البوت لكل الاعضاء بنجاح √`)
+      } else if (args[0] === "off") {
+      if (!db.chats[m.chat].mute) return reply(`◍ الجروب مفعل من قبل √`)
+      db.chats[m.chat].mute = false
+      reply(`◍ تم تفعيل البوت لكل الاعضاء بنجاح √`)
+      } else {
+       let buttons = [
+   { buttonId: 'xxmuuteexx on', buttonText: { displayText: 'تعطيل' }, type: 1 },
+   { buttonId: 'xxmuuteexx off', buttonText: { displayText: 'تفعيل' }, type: 1 }
+     ]
+     await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات تفعيل - تعطيل ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ تعطيل «» تعني البوت معطل ❬ ✘ ❭ \n🔐 ╜ تفعيل «»  تعني البوت مفعل ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+      }
+   }
+   break
 
 
 
@@ -6278,12 +6279,15 @@ case 'الترحيب': case 'xxwelcomexx': {
 
 
 
+// < ================================================== >
+ 
+// --------------   اوامر المطور ليدو  ----------------//
+
+// < ================================================== >
 
 
 
-
-
-
+/// ------------  endd --------------------//////
 
 
 
