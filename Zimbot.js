@@ -2265,26 +2265,7 @@ reply(`*It was nice to chat with you goodbye _Artificial Intelligence(AI) chatgp
 }
 }
 break 
-case 'welcome': {
-  if (!m.isGroup) throw mess.group
-  if (!isAdmins)  throw mess.admin
-  if (args[0] === "on") {
-  if (db.chats[m.chat].isWelcome) return reply(`*Welcome already on okay*`)
-  db.chats[m.chat].isWelcome = true
-  reply(`*welcome on*`)
-  } else if (args[0] === "off") {
-  if (!db.chats[m.chat].isWelcome) return reply(`*Already off okay*`)
-  db.chats[m.chat].isWelcome = false
-  reply(`*welcome off*`)
-  } else {
-   let drips = [
-  { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-  { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-    ]
-    await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴡᴇʟᴄᴏᴍᴇ ᴍᴏᴅᴇ🔏┃**`, ZimBotInc.user.name, m)
-  }
-    }   
-  break
+
  case 'localonly': {
   if (!m.isGroup) throw mess.group
   if (!isAdmins)  throw mess.admin
@@ -6221,6 +6202,46 @@ await ZimBotInc.sendMessage(m.chat, { delete: key })
   ZimBotInc.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
 }
 break
+case 'الترحيب': case 'xxwelcomexx': {
+  if (!m.isGroup) return m.reply(mess.group)
+  if (!isBotAdmins) return m.reply(mess.botAdmin)
+  if (!isAdmins && !isCreator) return m.reply(mess.admin)
+  if (args[0] === "on") {
+  if (db.chats[m.chat].isWelcome) return m.reply(`◍ تم تشغيل الترحيب بنجاح √`)
+  db.chats[m.chat].isWelcome = true
+  m.reply(`◍ تم تشغيل الترحيب بنجاح √`)
+  } else if (args[0] === "off") {
+  if (!db.chats[m.chat].isWelcome) return m.reply(`◍ تم ايقاف الترحيب بنجاح √`)
+  db.chats[m.chat].isWelcome = false
+  m.reply(`◍ تم ايقاف الترحيب بنجاح √`)
+  } else {
+   let lido7x = [
+  { buttonId: `xxwelcomexx on`, buttonText: { displayText: 'فتح الترحيب' }, type: 1 },
+  { buttonId: `xxwelcomexx off`, buttonText: { displayText: 'قفل الترحيب' }, type: 1 }
+    ]
+    await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات الترحيب ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الترحيب مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الترحيب مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+  }
+    }   
+  break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
