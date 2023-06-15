@@ -1324,7 +1324,7 @@ if (isgclink) return m.reply(`◍ تم حظرك 😂😂😂√\n\n\n\n*-›  ه
 }  
   
 if (db.chats[m.chat].antifb) {
-if(budy.includes("https://facebook.com/")){
+if(budy.includes("https://www.facebook.com/")){
 if (!isBotAdmins) return m.reply(mess.botAdmin)
 if (isAdmins) return m.reply(`◍ تم ارسال رابط فيسبوك من المشرفين √`)
 if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 406 تواصل مع المطور ليدو  | wa.me/201028453763`)
@@ -1360,7 +1360,7 @@ ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@
 }
 
 if (db.chats[m.chat].antitwitter) {
-if (budy.includes("https://twitter.com/")){
+if (budy.includes("https://www.twitter.com/")){
 if (!isBotAdmins) return m.reply(mess.botAdmin)
 if (isAdmins) return m.reply(`◍ تم ارسال رابط تويتر من المشرفين √`)
 if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 409 تواصل مع المطور ليدو  | wa.me/201028453763`)
@@ -6263,117 +6263,156 @@ case 'xxvnvnxx': case 'حظر_صوت': {
 
 
   break
-   case 'حظر_انستا': case 'xxantixinstaxx': {
+   
+  case 'حظر_انستا': case 'xxantixinstaxx': {
+    if (!m.isGroup) throw mess.group
+    if (!isBotAdmins) throw mess.botAdmin
+    if (!isAdmins) throw mess.admin
+    if (args[0] === "on") {
+    if (db.chats[m.chat].antiinstagram) return m.m.reply(`◍ تم تفعيل حظر روابط انستا من قبل √`)
+    db.chats[m.chat].antiinstagram= true
+    m.m.reply(`◍ تم تفعيل حظر روابط انستا √`)
+    } else if (args[0] === "off") {
+    if (!db.chats[m.chat].antiinstagram) return m.m.reply(`◍ تم تعطيل حظر روابط انستا من قبل √`)
+    db.chats[m.chat].antiinstagram = false
+    m.m.reply(`◍ تم تعطيل حظر روابط انستا √`)
+    } else {
+     let lido7x = [
+    { buttonId: `xxantixinstaxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+    { buttonId: `xxantixinstaxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
+     ]
+     await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  انستا ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+    }
+    }
+    break
+    case 'حظر_فيسبوك': case 'xxantixfbxx': {
+     if (!m.isGroup) throw mess.group
+     if (!isBotAdmins) throw mess.botAdmin
+     if (!isAdmins) throw mess.admin
+     if (args[0] === "on") {
+     if (db.chats[m.chat].antifb) return m.m.reply(`◍ تم تفعيل حظر روابط فيسبوك من قبل √`)
+     db.chats[m.chat].antifb = true
+     m.m.reply(`◍ تم تفعيل حظر روابط فيسبوك √`)
+     } else if (args[0] === "off") {
+     if (!db.chats[m.chat].antifb) return m.m.reply(`◍ تم تعطيل حظر روابط فيسبوك من قبل √`)
+     db.chats[m.chat].antifb = false
+     m.m.reply(`◍ تم تعطيل حظر روابط فيسبوك √`)
+     } else {
+      let lido7x = [
+        { buttonId: `${command} on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+        { buttonId: `${command} off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
+    ]
+    await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  فيسبوك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+     }
+      }
+    break
+    case 'حظر_تلي': case 'xxantitelexx': {    
+     if (!m.isGroup) throw mess.group
+     if (!isBotAdmins) throw mess.botAdmin
+     if (!isAdmins) throw mess.admin
+     if (args[0] === "on") {
+     if (db.chats[m.chat].antitelegram) return m.reply(`◍ تم تفعيل حظر روابط تليجرام من قبل √`)
+     db.chats[m.chat].antitelegram = true
+     m.reply(`◍ تم تفعيل حظر روابط تليجرام √`)
+     } else if (args[0] === "off") {
+     if (!db.chats[m.chat].antitelegram) return m.reply(`◍ تم تعطيل حظر روابط تليجرام من قبل √`)
+     db.chats[m.chat].antitelegram = false
+     m.reply(`◍ تم تعطيل حظر روابط تليجرام √`)
+     } else {
+    let lido7x = [
+      { buttonId: `xxantitelexx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+      { buttonId: `xxantitelexx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
+       ]
+       await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تليجرام ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+     }
+    }
+    break
+     
+  
+  
+  
+  case 'حظر_تيكتوك': case 'xxaantitikzxx': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
   if (args[0] === "on") {
-  if (db.chats[m.chat].antiinstagram) return reply(`◍ تم تفعيل حظر روابط انستا من قبل √`)
-  db.chats[m.chat].antiinstagram= true
-  reply(`◍ تم تفعيل حظر روابط انستا √`)
+  if (db.chats[m.chat].antitiktok) return m.reply(`◍ تم تفعيل حظر روابط تيكتوك من قبل √`)
+  db.chats[m.chat].antitiktok = true
+  m.reply(`◍ تم تفعيل حظر روابط تيكتوك √`)
   } else if (args[0] === "off") {
-  if (!db.chats[m.chat].antiinstagram) return reply(`◍ تم تعطيل حظر روابط انستا من قبل √`)
-  db.chats[m.chat].antiinstagram = false
-  reply(`◍ تم تعطيل حظر روابط انستا √`)
+  if (!db.chats[m.chat].antitiktok) return m.reply(`◍ تم تعطيل حظر روابط تيكتوك من قبل √`)
+  db.chats[m.chat].antitiktok = false
+  m.reply(`◍ تم تعطيل حظر روابط تيكتوك √`)
   } else {
-   let drips = [
-  { buttonId: `xxantixinstaxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
-  { buttonId: `xxantixinstaxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
-   ]
-   await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ɪɴsᴛᴀ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-  }
-  }
-  break
-  case 'antilinkfacebook': case 'antifb': {
-   if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-   if (args[0] === "on") {
-   if (db.chats[m.chat].antifb) return reply(`*Already on umm okay*`)
-   db.chats[m.chat].antifb = true
-   reply(`*Antilink active*`)
-   } else if (args[0] === "off") {
-   if (!db.chats[m.chat].antifb) return reply(`*Already off okay*`)
-   db.chats[m.chat].antifb = false
-   reply(`*Antilink disabled*`)
-   } else {
-    let drips = [
-      { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-      { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+  let lido7x = [
+  { buttonId: `xxaantitikzxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+  { buttonId: `xxaantitikzxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ғʙ ʟɪɴᴋs ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-   }
-    }
+  await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تيكتوك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+  }
+  }
   break
-  case 'antitelegram': case 'adripsantitele': {    
-   if (!m.isGroup) throw mess.group
-   if (!isBotAdmins) throw mess.botAdmin
-   if (!isAdmins) throw mess.admin
-   if (args[0] === "on") {
-   if (db.chats[m.chat].antitelegram) return reply(`*Already on umm okay*`)
-   db.chats[m.chat].antitelegram = true
-   reply(`*Antilink active*`)
-   } else if (args[0] === "off") {
-   if (!db.chats[m.chat].antitelegram) return reply(`*Already off okay*`)
-   db.chats[m.chat].antitelegram = false
-   reply(`*Antilink disabled*`)
-   } else {
-  let drips = [
-    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-     ]
-     await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ᴛᴇʟᴇ ʟɪɴᴋs ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+  
+  case 'حظر_تويتر': case 'xxantilinktxxwitxx': {
+  if (!m.isGroup) throw mess.group
+  if (!isBotAdmins) throw mess.botAdmin
+  if (!isAdmins) throw mess.admin
+  if (args[0] === "on") {
+  if (db.chats[m.chat].antitwitter) return m.reply(`◍ تم تفعيل حظر روابط تويتر من قبل √`)
+  db.chats[m.chat].antitwitter = true
+  m.reply(`◍ تم تفعيل حظر روابط تويتر √`)
+  } else if (args[0] === "off") {
+  if (!db.chats[m.chat].antitwitter) return m.reply(`◍ تم تعطيل حظر روابط تويتر من قبل √`)
+  db.chats[m.chat].antitwitter = false
+  m.reply(`◍ تم تعطيل حظر روابط تويتر √`)
+  } else {
+   let lido7x = [
+  { buttonId: `xxantilinktxxwitxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+  { buttonId: `xxantilinktxxwitxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
+   ]
+   await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تويتر ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
    }
   }
   break
-   
 
-
-
-case 'antitiktok': case 'aantitik': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
-if (db.chats[m.chat].antitiktok) return reply(`*Already on umm okay*`)
-db.chats[m.chat].antitiktok = true
-reply(`*Antilink active*`)
-} else if (args[0] === "off") {
-if (!db.chats[m.chat].antitiktok) return reply(`*Already off okay*`)
-db.chats[m.chat].antitiktok = false
-reply(`*Antilink disabled*`)
-} else {
-let drips = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪᴛɪᴋᴛᴏᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-}
-}
-break
-
-case 'adripsantitwt': case 'antitwitter': case 'antilinktwit': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
-if (db.chats[m.chat].antitwitter) return reply(`*Already on umm okay*`)
-db.chats[m.chat].antitwitter = true
-reply(`*Antilink active*`)
-} else if (args[0] === "off") {
-if (!db.chats[m.chat].antitwitter) return reply(`*Already off okay*`)
-db.chats[m.chat].antitwitter = false
-reply(`*Antilink disabled*`)
-} else {
- let dripsi = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
- ]
- await ZimBotInc.sendButtonText(m.chat, dripsi, `*┃🔏ᴀɴᴛɪ ᴛᴡɪᴛᴛᴇʀ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
- }
+case 'الاعدادات':
+    case 'groupsetting':{
+            let sections = []
+            let com = [`grup open`,`leveling on`,`antilinkgc on`,`antilinktg on`,`antilinktt on`,`antilinkytch on`,`antilinkytvid on`,`antilinkig on`,`antilinkfb on`,`antilinktwit on`,`antilinkall on`,`antiwame on`]
+            let comm = [`grup close`,`leveling off`,`antilinkgc off`,`antilinktg off`,`antilinktt off`,`antilinkytch off`,`antilinkytvid off`,`antilinkig on`,`antilinkfb off`,`antilinktwit off`,`antilinkall off`,`antiwame off`]
+            let listnya = [`Group open/close`,`Leveling on/off`,`Antilink Group on/off`,`Antilink Telegram on/off`,`Antilink Tiktok on/off`,`Antilink Youtube Channel on/off`,`Antilink Youtube Video on/off`,`Antilink Instagram on/off`,`Antilink Facebook on/off`,`Antilink Twitter on/off`,`Antilink All on/off`,`Anti Wame on/off`]
+            let suruh = [`• فتح`, `• قفل`]
+            let fiturname = [`Group`,`Leveling`,`Auto Sticker`,`Antilink Group`,`Antilink Telegram`,`Antilink Tiktok`,`Antilink Youtube Channel`,`Antilink Youtube Video`,`Antilink Instagram`,`Antilink Facebook`,`Antilink Twitter`,`Antilink All`,`Anti Wame`,`Auto Revoke`]
+            let startnum = 0; let startnu = 0; let startn = 0;let start = 0
+            let startnumm = 1
+            for (let x of com) {
+                const yy = {title: `${listnya[startnum++]}`,
+            rows: [
+               {
+                title: `${suruh[0]}`,
+                description: `Activate ${fiturname[startnu++]}`,
+                rowId: `${prefix}${x}`
+              },{
+                title: `${suruh[1]}`,
+                description: `Deactivate ${fiturname[startn++]}`,
+                rowId: `${prefix}${comm[start++]}`
+              }
+            ]
+           }
+                sections.push(yy)
+            }
+            const sendm =  ZimBotInc.sendMessage(
+from, 
+{
+text: "Group Settings",
+footer: botname,
+title: "Set your group settings here...",
+buttonText: "Click Button",
+sections
+}, { quoted : m }
+)  
 }
 break
-
 
 
 
