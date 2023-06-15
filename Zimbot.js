@@ -6375,46 +6375,50 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   }
   break
 
-case 'الاعدادات':
-    case 'groupsetting':{
-            let sections = []
-            let com = [`grup open`,`leveling on`,`antilinkgc on`,`antilinktg on`,`antilinktt on`,`antilinkytch on`,`antilinkytvid on`,`antilinkig on`,`antilinkfb on`,`antilinktwit on`,`antilinkall on`,`antiwame on`]
-            let comm = [`grup close`,`leveling off`,`antilinkgc off`,`antilinktg off`,`antilinktt off`,`antilinkytch off`,`antilinkytvid off`,`antilinkig on`,`antilinkfb off`,`antilinktwit off`,`antilinkall off`,`antiwame off`]
-            let listnya = [`Group open/close`,`Leveling on/off`,`Antilink Group on/off`,`Antilink Telegram on/off`,`Antilink Tiktok on/off`,`Antilink Youtube Channel on/off`,`Antilink Youtube Video on/off`,`Antilink Instagram on/off`,`Antilink Facebook on/off`,`Antilink Twitter on/off`,`Antilink All on/off`,`Anti Wame on/off`]
-            let suruh = [`• فتح`, `• قفل`]
-            let fiturname = [`Group`,`Leveling`,`Auto Sticker`,`Antilink Group`,`Antilink Telegram`,`Antilink Tiktok`,`Antilink Youtube Channel`,`Antilink Youtube Video`,`Antilink Instagram`,`Antilink Facebook`,`Antilink Twitter`,`Antilink All`,`Anti Wame`,`Auto Revoke`]
-            let startnum = 0; let startnu = 0; let startn = 0;let start = 0
-            let startnumm = 1
-            for (let x of com) {
-                const yy = {title: `${listnya[startnum++]}`,
-            rows: [
-               {
-                title: `${suruh[0]}`,
-                description: `Activate ${fiturname[startnu++]}`,
-                rowId: `${prefix}${x}`
-              },{
-                title: `${suruh[1]}`,
-                description: `Deactivate ${fiturname[startn++]}`,
-                rowId: `${prefix}${comm[start++]}`
+
+case 'الاعدادات': {
+  const sections = [	
+              {
+                "title": "⚙️┇اعدادات الجروب ⇊",
+                "rows": [
+                  {
+                    "title": "فتح الجروب",
+                    "description": "فتح «»  تعني جروب مفتوح ",
+                    "rowId": `grup open`
+                  },
+                  {
+                    "title": "قفل الجروب",
+                    "description": " قفل «» تعني جروب مقفل ",
+                    "rowId": `grup close`
+                    }
+                ]
+              },
+              {
+                "title": "⚙️┇اعدادات الجروب ⇊",
+                "rows": [
+                  {
+                    "title": "فتح الجروب",
+                    "description": "فتح «»  تعني جروب مفتوح ",
+                    "rowId": `grup open`
+                  },
+                  {
+                    "title": "قفل الجروب",
+                    "description": " قفل «» تعني جروب مقفل ",
+                    "rowId": `grup close`
+                    }
+                ]
               }
             ]
-           }
-                sections.push(yy)
-            }
-            const sendm =  ZimBotInc.sendMessage(
-from, 
-{
-text: "Group Settings",
-footer: botname,
-title: "Set your group settings here...",
-buttonText: "Click Button",
-sections
-}, { quoted : m }
-)  
+const listMessage = {
+  text: "- اختار المادة من قائمة المواد ⬇️",
+  footer: `  `,
+  title: `- نورت يا ${pushname} `,
+  buttonText: "قائمة مواد الترم التاني",
+  sections
+}
+const sendMsg = await ZimBotInc.sendMessage(m.chat, listMessage)
 }
 break
-
-
 
 
 
