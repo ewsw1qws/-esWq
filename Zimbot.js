@@ -75,6 +75,29 @@ const { isLimit, limitAdd, getLimit, giveLimit, addBalance, kurangBalance, getBa
 /* let drips = fs.readFileSync('./Zimbot/drips.jpg') 
 */
 
+        //TIME
+        const xtime = moment.tz('Asia/Kolkata').format('HH:mm:ss')
+        const xdate = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
+        const time2 = moment().tz('Asia/Kolkata').format('HH:mm:ss')  
+         if(time2 < "23:59:00"){
+var xeonytimewisher = `Good Night 🌌`
+ }
+ if(time2 < "19:00:00"){
+var xeonytimewisher = `Good Evening 🌃`
+ }
+ if(time2 < "18:00:00"){
+var xeonytimewisher = `Good Evening 🌃`
+ }
+ if(time2 < "15:00:00"){
+var xeonytimewisher = `Good Afternoon 🌅`
+ }
+ if(time2 < "11:00:00"){
+var xeonytimewisher = `Good Morning 🌄`
+ }
+ if(time2 < "05:00:00"){
+var xeonytimewisher = `Good Morning 🌄`
+ } 
+
 //database
 const  dripsno = JSON.parse(fs.readFileSync('./database/antilink.json'))
 const _level = JSON.parse(fs.readFileSync('./database/leveluser.json'))
@@ -83,6 +106,7 @@ const balance = JSON.parse(fs.readFileSync('./database/balance.json'))
 const dripsanti = JSON.parse(fs.readFileSync('./lib/rude.json'))
 let bad = JSON.parse(fs.readFileSync('./lib/rude.json'))
 let autosticker = JSON.parse(fs.readFileSync('./database/autosticker.json'))
+let ntilinkytch =JSON.parse(fs.readFileSync('./database/antilinkytchannel.json'))
 global.db = JSON.parse(fs.readFileSync('./src/database.json'))
 if (global.db) global.db = {
     sticker: {},
@@ -131,6 +155,7 @@ const zimbotincv3 = body.slice(0).trim().split(/ +/).shift().toLowerCase()
 //-----END HERE------\\
 /// AutoSticker
 const isAutoSticker = m.isGroup ? autosticker.includes(from) : false
+const AntiLinkYoutubeChannel = m.isGroup ? ntilinkytch.includes(from) : false
 ///AutoSticker
 			// Autosticker gc
 			if (isAutoSticker) {
@@ -1172,18 +1197,42 @@ if (isCreator) return reply(`𝘖𝘰𝘰𝘰𝘩 𝘴𝘩𝘪𝘵😩 𝘴𝘰�
 ZimBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 }
 }
-if (db.chats[m.chat].antiinstagram) {
-    if (budy.includes("https://www.instagram.com/")){
- if (!isBotAdmins) return
- zimbotv3 = `*▊▊▊DETECTED▊▊▊*\n\n*you are admn okay*`
- if (isAdmins) return reply(zimbotv3)
- if (m.key.fromMe) return reply(zimbotv3)
- if (isCreator) return reply(zimbotv3)
- kice = m.sender
- await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
- ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no ig links here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
- }
-}
+
+
+/*if (db.chats[m.chat].AntiLinkYoutubeVid)
+if (budy.includes("https://youtu.be/")){
+if (!isBotAdmins) return
+bvl = `\`\`\`「  Antilink System  」」\`\`\`\n\nLink sent by Admin so no action will be taken!`
+if (isAdmins) return reply(bvl)
+if (m.key.fromMe) return reply(bvl)
+if (isCreator) return reply(bvl)
+kice = m.sender
+await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+ZimBotInc.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Yt video link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+} else {
+}*/
+
+//antilink youtube channel by xeon
+/*if (AntiLinkYoutubeChannel)
+if (budy.includes("https://www.youtube.com/channel/")){
+if (!isBotAdmins) return
+bvl = `\`\`\`ã€Œ YoutTube Channel Link Detected ã€\`\`\`\n\nAdmin has sent a youtube channel link, admin is free to send any linkðŸ˜‡`
+if (isAdmins) return m.reply(bvl)
+if (m.key.fromMe) return m.reply(bvl)
+if (isCreator) return m.reply(bvl)
+ await ZimBotInc.sendMessage(m.chat,
+     {
+       delete: {
+         remoteJid: m.chat,
+         fromMe: false,
+         id: m.key.id,
+         participant: m.key.participant
+       }
+     })
+     ZimBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+   ZimBotInc.sendMessage(from, {text:`\`\`\`ã€Œ YouTube Channel Link Detected ã€\`\`\`\n\n@${m.sender.split("@")[0]} Has been kicked because of sending youtube channel link in this group`, contextInfo:{mentionedJid:[m.sendet]}}, {quoted:m})
+} else {
+}*/
 
 if (db.chats[m.chat].antisticker) {
 let isSticker = m.mtype
@@ -1191,13 +1240,16 @@ if(isSticker === "stickerMessage"){
 if (!m.key.fromMe) {
 if (isAdmins) return m.reply(`◍ تم ارسال ملصق من المشرفين √`)
 if (isCreator) return m.reply(`◍ تم ارسال ملصق من  ${global.devlido} روح قلبي 🥺♥️ √`)
-m.reply('*ANTI STICKER*\n\n*NO STICKERS  ALLOWED HERE OKAY GOODBYE*')
+m.reply('*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال ملصقات في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .')
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no stickers here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √ \n◍ قام بارسال ملصقات .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 }
+
+
+
 
 if (db.chats[m.chat].antivn) {
 let isAudio = m.mtype
@@ -1205,10 +1257,10 @@ if(isAudio === "audioMessage"){
 if (!m.key.fromMe) {
 if (isAdmins) return m.reply(`◍ تم ارسال صوت من المشرفين √`)
 if (isCreator) return m.reply(`◍ تم ارسال صوت من  ${global.devlido} روح قلبي 🥺♥️ √`)
-m.reply('*ANTI VOICE NOTE*\n\n*NO VOICE ALLOWED HERE  OKAY GOODBYE*')
+m.reply('*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال صوت + ريكورد في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .')
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no voice note here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال صوت .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 }
@@ -1220,10 +1272,10 @@ if(isVideo === "videoMessage"){
 if (!m.key.fromMe) {
 if (isAdmins) return m.reply(`◍ تم ارسال فيديو من المشرفين √`)
 if (isCreator) return m.reply(`◍ تم ارسال فيديو من  ${global.devlido} روح قلبي 🥺♥️ √`)
-m.reply('*ANTI VIDEO*\n\n*NO VIDEOS ALLOWED HERE  OKAY GOODBYE*')
+m.reply('*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال فيديوهات في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .')
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no videos here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال فيديو .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 }
@@ -1234,85 +1286,96 @@ if(isPhoto === "imageMessage"){
 if (!m.key.fromMe) {
 if (isAdmins) return m.reply(`◍ تم ارسال صورة من المشرفين √`)
 if (isCreator) return m.reply(`◍ تم ارسال صورة من  ${global.devlido} روح قلبي 🥺♥️ √`)
-m.reply('*ANTI PHOTOS*\n\n*NO PHOTOS ALLOWED HERE  OKAY GOODBYE*')
+m.reply('*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال صور في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .')
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no photos here okay, now get out* `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال صور .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 }
 
+if (db.chats[m.chat].antilinkall) {
+  if (budy.includes("http")){ 
+  if (!isBotAdmins) return m.reply(mess.botAdmin)
+let gclink = (`https://chat.whatsapp.com/`+await ZimBotInc.groupInviteCode(m.chat))
+let isLinkThisGc = new RegExp(gclink, 'i')
+let isgclink = isLinkThisGc.test(m.text)
+if (isgclink) return m.reply(`◍ تم حظرك 😂😂😂√\n\n\n\n*-›  ههه بهزر معاك يقلبي😂♥️*\n*-› مسموح بارسال رابط هذه المجموعة .*`)
+  if (isAdmins) return m.reply(`◍ تم ارسال رابط من المشرفين √`)
+  if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 404 تواصل مع المطور ليدو  | wa.me/201028453763`)
+  if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
+  m.reply(`*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال روابط في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .`)
+  kice = m.sender
+  await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+  ZimBotInc.sendMessage(m.chat, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال روابط .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+  }
+  }
+
+  if (db.chats[m.chat].antiinstagram) {
+    if (budy.includes("https://www.instagram.com/")){
+ if (!isBotAdmins) return m.reply(mess.botAdmin)
+ if (isAdmins) return m.reply(`◍ تم ارسال رابط انستا من المشرفين √`)
+ if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 405 تواصل مع المطور ليدو  | wa.me/201028453763`)
+ if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
+ kice = m.sender
+ await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+ ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط انستا . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ }
+}  
+  
 if (db.chats[m.chat].antifb) {
 if(budy.includes("https://facebook.com/")){
-if (!isBotAdmins) return
-zimbotv3 = `*▊▊▊DETECTED▊▊▊*\n\n*you are admin okay*`
-if (isAdmins) return reply(zimbotv3)
-if (m.key.fromMe) return reply(zimbotv3)
-if (isCreator) return reply(zimbotv3)
+if (!isBotAdmins) return m.reply(mess.botAdmin)
+if (isAdmins) return m.reply(`◍ تم ارسال رابط فيسبوك من المشرفين √`)
+if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 406 تواصل مع المطور ليدو  | wa.me/201028453763`)
+if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
- ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no fb links here okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط فيسبوك . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 } 
  }
 
  if (db.chats[m.chat].antitelegram) {
  if (budy.includes("https://t.me/")){
- if (!isBotAdmins) return
- zimbotv3 = `*▊▊▊DETECTED▊▊▊*\n*you are admin okay*`
- if (isAdmins) return reply(zimbotv3)
- if (m.key.fromMe) return reply(zimbotv3)
- if (isCreator) return reply(zimbotv3)
+ if (!isBotAdmins) return m.reply(mess.botAdmin)
+ if (isAdmins) return m.reply(`◍ تم ارسال رابط تليجرام من المشرفين √`)
+ if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 407 تواصل مع المطور ليدو  | wa.me/201028453763`)
+ if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
  kice = m.sender
  await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
- ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no telegram links here okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تليجرام . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 } 
  }
 
 if (db.chats[m.chat].antitiktok) {
 if (budy.includes("https://www.tiktok.com/")){
-if (!isBotAdmins) return
-zimbotv3 = `*▊▊▊DETECTED▊▊▊*\n\n*you are bot admin okay*`
-if (isAdmins) return m.reply(zimbotv3)
-if (m.key.fromMe) return m.reply(zimbotv3)
-if (isCreator) return m.reply(zimbotv3)
-kice = m.sender
+if (!isBotAdmins) return m.reply(mess.botAdmin)
+if (isAdmins) return m.reply(`◍ تم ارسال رابط تيكتوك من المشرفين √`)
+if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 408 تواصل مع المطور ليدو  | wa.me/201028453763`)
+if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
+  kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no tiktok links here okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تيكتوك . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 
 if (db.chats[m.chat].antitwitter) {
 if (budy.includes("https://twitter.com/")){
-if (!isBotAdmins) return
-zimbotv3 = `*▊▊▊DETECTED▊▊▊*\n *you are bot admin okay*`
-if (isAdmins) return reply(zimbotv3)
-if (m.key.fromMe) return reply(zimbotv3)
-if (isCreator) return reply(zimbotv3)
+if (!isBotAdmins) return m.reply(mess.botAdmin)
+if (isAdmins) return m.reply(`◍ تم ارسال رابط تويتر من المشرفين √`)
+if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 409 تواصل مع المطور ليدو  | wa.me/201028453763`)
+if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
 kice = m.sender
 await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no twittwer link here okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تويتر . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 
-if (db.chats[m.chat].antilinkall) {
-if (budy.includes("http")){ 
-if (!isBotAdmins) return
-zimbotv3 = `*▊▊▊DETECTED▊▊▊*\n *you are bot admin okay*`
-if (isAdmins) return reply(zimbotv3)
-if (m.key.fromMe) return reply(zimbotv3)
-if (isCreator) return reply(zimbotv3)
-kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(m.chat, {text:`*▊▊▊DETECTED▊▊▊*\n@${kice.split("@")[0]} *I said dont send any links okay*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
-}
-}
 
 
 if (m.mtype == 'viewOnceMessage') {
 if (!db.chats[m.chat].antionce) return
-teks = `*▊▊▊DETECTED ONCE▊▊▊*
-
-`
+teks = `*`
 ZimBotInc.sendTextWithMentions(m.chat, teks, m)
 await sleep(500)
 m.copyNForward(m.chat, true, { readViewOnce: true }).catch(_ => reply(`*I opened it by force*`))
@@ -1321,17 +1384,17 @@ m.copyNForward(m.chat, true, { readViewOnce: true }).catch(_ => reply(`*I opened
 
 
 if (db.chats[m.chat].antilinkyt) {
-if (budy.includes("https://youtube.com/")){ 
-if (!isBotAdmins) return
-zimbotv3 = `*▊▊▊DETECTED▊▊▊*\n*you are admin okay*`
-if (isAdmins) return reply(zimbotv3)
-if (m.key.fromMe) return reply(zimbotv3)
-if (isCreator) return reply(zimbotv3)
-kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no yt links here okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
-} 
-}
+  if (budy.includes("https://www.youtube.com/watch?v=")){ 
+  if (!isBotAdmins) return
+  zimbotv3 = `*▊▊▊DETECTED▊▊▊*\n*you are admin okay*`
+  if (isAdmins) return reply(zimbotv3)
+  if (m.key.fromMe) return reply(zimbotv3)
+  if (isCreator) return reply(zimbotv3)
+  kice = m.sender
+  await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+  ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no yt links here okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+  } 
+  }
 
 if (db.chats[m.chat].antilink) {
 if (budy.match(`chat.whatsapp.com`)) {
@@ -1340,10 +1403,10 @@ if (!isBotAdmins) return m.reply(mess.botAdmin)
 let gclink = (`https://chat.whatsapp.com/`+await ZimBotInc.groupInviteCode(m.chat))
 let isLinkThisGc = new RegExp(gclink, 'i')
 let isgclink = isLinkThisGc.test(m.text)
-if (isgclink) return reply(`◍ تم حظرك 😂😂😂√\n\n\n\n*-›  ههه بهزر معاك يقلبي😂♥️*\n*-› مسموح بارسال رابط هذه المجموعة .*`)
-if (isAdmins) return reply(`◍ تم ارسال رابط من المشرفين √`)
-if (isCreator) return reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
-ZimBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove').then((res) => m.reply(`◍ تم حظر العضو ( @${m.sender.split('@')[0]} ) بنجاح √`)).catch((err) => reply(`◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو  | wa.me/201028453763`))
+if (isgclink) return m.reply(`◍ تم حظرك 😂😂😂√\n\n\n\n*-›  ههه بهزر معاك يقلبي😂♥️*\n*-› مسموح بارسال رابط هذه المجموعة .*`)
+if (isAdmins) return m.reply(`◍ تم ارسال رابط من المشرفين √`)
+if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
+ZimBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove').then((res) => m.reply(`◍ تم حظر العضو ( @${m.sender.split('@')[0]} ) بنجاح √`)).catch((err) => m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو  | wa.me/201028453763`))
 }
 }
 if (budy.length > 3500) {
@@ -1393,7 +1456,7 @@ ZimBotInc.sendMessage(m.chat, {text:`*▊▊▊ ANTILINK ▊▊▊*\n\n@${kice.s
 
 
 if (db.chats[m.chat].antibule)  {
-if (m.sender.includes(`+212`)) {
+if (m.sender.includes(`+20`)) {
 if (!isBotAdmins) return reply('*BOT MUST BE ADMIN OKAY*')
 reply(`*▊▊▊ ANTIBULE ▊▊▊*\n\n*Sorry ${botname} will kick you out because you are a stranger in this group*`)
 if (isAdmins) return reply(`*Ehh sorry you admin*`)
@@ -2302,259 +2365,6 @@ break
 
 //--CREATED BY DRIPS--\\
 
-
-   
-
-case 'antiytchannel': case 'antilinkyoutubechannel': case 'antiytchannel': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
-if (db.chats[m.chat].antiytchannel) return reply(`*Already on umm okay*`)
-db.chats[m.chat].antiytchannel = true
-reply(`*Antilink active*`)
-} else if (args[0] === "off") {
-if (!db.chats[m.chat].antiytchannel) return reply(`*Already off okay*`)
-db.chats[m.chat].antiytchannel = false
-reply(`*Antilink disabled*`)
-} else {
-let drips = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪʏᴛ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-}
-}
-break
- case 'antilinkinstagram': case 'adripsantiig': case 'antiinsta': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
-if (db.chats[m.chat].antiinstagram) return reply(`*Already on umm okay*`)
-db.chats[m.chat].antiinstagram= true
-reply(`*Antilink active*`)
-} else if (args[0] === "off") {
-if (!db.chats[m.chat].antiinstagram) return reply(`*Already off okay*`)
-db.chats[m.chat].antiinstagram = false
-reply(`*Antilink disabled*`)
-} else {
- let drips = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
- ]
- await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ɪɴsᴛᴀ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-}
-}
-break
-case 'antilinkfacebook': case 'antifb': {
- if (!m.isGroup) throw mess.group
- if (!isBotAdmins) throw mess.botAdmin
- if (!isAdmins) throw mess.admin
- if (args[0] === "on") {
- if (db.chats[m.chat].antifb) return reply(`*Already on umm okay*`)
- db.chats[m.chat].antifb = true
- reply(`*Antilink active*`)
- } else if (args[0] === "off") {
- if (!db.chats[m.chat].antifb) return reply(`*Already off okay*`)
- db.chats[m.chat].antifb = false
- reply(`*Antilink disabled*`)
- } else {
-  let drips = [
-    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ғʙ ʟɪɴᴋs ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
- }
-  }
-break
-case 'antitelegram': case 'adripsantitele': {    
- if (!m.isGroup) throw mess.group
- if (!isBotAdmins) throw mess.botAdmin
- if (!isAdmins) throw mess.admin
- if (args[0] === "on") {
- if (db.chats[m.chat].antitelegram) return reply(`*Already on umm okay*`)
- db.chats[m.chat].antitelegram = true
- reply(`*Antilink active*`)
- } else if (args[0] === "off") {
- if (!db.chats[m.chat].antitelegram) return reply(`*Already off okay*`)
- db.chats[m.chat].antitelegram = false
- reply(`*Antilink disabled*`)
- } else {
-let drips = [
-  { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-  { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-   ]
-   await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ᴛᴇʟᴇ ʟɪɴᴋs ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
- }
-}
-break
-case 'antivn': case 'antiaudio': case 'antivoicenote': case 'antivoice': {
-  if (!m.isGroup) throw mess.group
-  if (!isBotAdmins) throw mess.botAdmin
-  if (!isAdmins) throw mess.admin
-  if (args[0] === "on") {
-  if (db.chats[m.chat].antivn) return reply(`*Already on umm okay*`)
-  db.chats[m.chat].antivn = true
-  reply(`*Antivn active*`)
-  } else if (args[0] === "off") {
-  if (!db.chats[m.chat].antivn) return reply(`*Already off okay*`)
-  db.chats[m.chat].antivn = false
-  reply(`*Antivn disabled*`)
-  } else {
-   let drips = [
-     { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-     { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
- ]
- await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ᴠɴ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-  }
-   }
- break
- case 'antisticker': case 'nostickers': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
-if (db.chats[m.chat].antisticker) return reply(`*Already on umm okay*`)
-db.chats[m.chat].antisticker = true
-reply(`*Antisticker active*`)
-} else if (args[0] === "off") {
-if (!db.chats[m.chat].antisticker) return reply(`*Already off okay*`)
-db.chats[m.chat].antisticker = false
-reply(`*Antisticker disabled*`)
-} else {
-let drips = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ sᴛɪᴄᴋᴇʀ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-}
-}
-break
-case 'antiphoto': case 'antipic': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
-if (db.chats[m.chat].antiphoto) return reply(`*Already on umm okay*`)
-db.chats[m.chat].antiphoto = true
-reply(`*Antiphoto active*`)
-} else if (args[0] === "off") {
-if (!db.chats[m.chat].antiphoto) return reply(`*Already off okay*`)
-db.chats[m.chat].antiphoto = false
-reply(`*Antiphoto disabled*`)
-} else {
-let drips = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-}
-}
-break
-case 'antivideo': case 'antivid': {
-  if (!m.isGroup) throw mess.group
-  if (!isBotAdmins) throw mess.botAdmin
-  if (!isAdmins) throw mess.admin
-  if (args[0] === "on") {
-  if (db.chats[m.chat].antivideo) return reply(`*Already on umm okay*`)
-  db.chats[m.chat].antivideo = true
-  reply(`*Antivideo active*`)
-  } else if (args[0] === "off") {
-  if (!db.chats[m.chat].antivideo) return reply(`*Already off okay*`)
-  db.chats[m.chat].antivideo = false
-  reply(`*Antivideo disabled*`)
-  } else {
-   let drips = [
-     { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-     { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
- ]
- await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪᴠɪᴅᴇᴏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-  }
-   }
- break
-case 'antiviewonce': case 'antionce':
-
-if (!m.key.fromMe && !isCreator)  throw mess.owner
-if (args[0] === "on") {
-if (global.db.chats[m.chat].antionce) return reply(`*Already activated*`)
-global.db.chats[m.chat].antionce = true
-reply(`${command} *Successfully Activated*`)
-} else if (args[0] === "off") {
-  if (!global.db.chats[m.chat].antionce) return reply(`*Already deactivated*`)
-global.db.chats[m.chat].antionce = false
-reply(`${command} *Successfully Deactivated*`)
-   } else {
-let drips = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪᴠɪᴇᴡ ᴏɴᴄᴇ ᴍᴏᴅᴇ🔏┃*`, `${global.botname}`, m)
-}
-break
-case 'antitiktok': case 'aantitik': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
-if (db.chats[m.chat].antitiktok) return reply(`*Already on umm okay*`)
-db.chats[m.chat].antitiktok = true
-reply(`*Antilink active*`)
-} else if (args[0] === "off") {
-if (!db.chats[m.chat].antitiktok) return reply(`*Already off okay*`)
-db.chats[m.chat].antitiktok = false
-reply(`*Antilink disabled*`)
-} else {
-let drips = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪᴛɪᴋᴛᴏᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-}
-}
-break
-case 'antilinkall': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
- if (db.chats[m.chat].antilinkall) return reply(`*Already on umm okay*`)
- db.chats[m.chat].antilinkall = true
- reply(`*Antilink active*`)
- } else if (args[0] === "off") {
- if (!db.chats[m.chat].antilinkall) return reply(`*Already off okay*`)
- db.chats[m.chat].antilinkall = false
- reply(`*Antilink disabled*`)
- } else {
-  let drips = [
-    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪʟᴏɴᴋ ᴀʟʟ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
- }
- }
-break
-case 'adripsantitwt': case 'antitwitter': case 'antilinktwit': {
-if (!m.isGroup) throw mess.group
-if (!isBotAdmins) throw mess.botAdmin
-if (!isAdmins) throw mess.admin
-if (args[0] === "on") {
-if (db.chats[m.chat].antitwitter) return reply(`*Already on umm okay*`)
-db.chats[m.chat].antitwitter = true
-reply(`*Antilink active*`)
-} else if (args[0] === "off") {
-if (!db.chats[m.chat].antitwitter) return reply(`*Already off okay*`)
-db.chats[m.chat].antitwitter = false
-reply(`*Antilink disabled*`)
-} else {
- let dripsi = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
- ]
- await ZimBotInc.sendButtonText(m.chat, dripsi, `*┃🔏ᴀɴᴛɪ ᴛᴡɪᴛᴛᴇʀ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
- }
-}
-break
 case 'antibadword': {		
 if (!m.isGroup) return reply(mess.group)
 if (!isBotAdmins) return reply(mess.botAdmin)
@@ -6182,7 +5992,55 @@ case 'الترحيب': case 'xxwelcomexx': {
    }
    break
 
+   case 'افتح': {
+    if (!m.isGroup) return m.reply(mess.group)
+    if (!isAdmins && !isCreator) return m.reply(mess.admin)
+    if (!isBotAdmins) return m.reply(mess.botAdmin)
+    if (args[1] == 'ثانيه') {
+    var timer = args[0] * `1000`
+    } else if (args[1] == 'دقيقه') {
+    var timer = args[0] * `60000`
+    } else if (args[1] == 'ساعه') {
+    var timer = args[0] * `3600000`
+    } else if (args[1] == 'يوم') {
+    var timer = args[0] * `86400000`
+    } else {
+    return m.reply('*◍  اهلا بيك عزيزي الادمن 🙂♥️*\n\n-›  يمكني انا افتح لك الجروب بعد وقت معين \n\n1 -› مثال : افتح 15 ثانيه \n2 -› مثال : افتح 10 دقيقه\n3 -› مثال : افتح 5 ساعه\n4 -› مثال : افتح 2 يوم\n\n\n1 - في الحالة الاولي يتم فتح الجروب بعد 15 ثانيه .\n2 - في الحالة الثانيه يتم فتح الجروب بعد 10 دقايق .\n3 - في الحالة الثالثه يتم فتح الجروب بعد 5 ساعات .\n4 - في الحالة الرابعه يتم فتح الجروب بعد 2 يوم .\n')
+    }
+    m.reply(`◍ يتم فتح الجروب بعد ${q} √`)
+    setTimeout(() => {
+    var nomor = m.participant
+    const open = `◍ تم فتح الجروب بنجاح 🌚😂 √`
+    ZimBotInc.groupSettingUpdate(from, 'not_announcement')
+    m.reply(open)
+    }, timer)
+    }
+    break
 
+    case 'اقفل': {
+      if (!m.isGroup) return m.reply(mess.group)
+      if (!isAdmins && !isCreator) return m.reply(mess.admin)
+      if (!isBotAdmins) return m.reply(mess.botAdmin)
+      if (args[1] == 'ثانيه') {
+      var timer = args[0] * `1000`
+      } else if (args[1] == 'دقيقه') {
+      var timer = args[0] * `60000`
+      } else if (args[1] == 'ساعه') {
+      var timer = args[0] * `3600000`
+      } else if (args[1] == 'يوم') {
+      var timer = args[0] * `86400000`
+      } else {
+      return m.reply('*◍  اهلا بيك عزيزي الادمن 🙂♥️*\n\n-›  يمكني انا اقفل لك الجروب بعد وقت معين \n\n1 -› مثال : اقفل 15 ثانيه \n2 -› مثال : اقفل 10 دقيقه\n3 -› مثال : اقفل 5 ساعه\n4 -› مثال : اقفل 2 يوم\n\n\n1 - في الحالة الاولي يتم قفل الجروب بعد 15 ثانيه .\n2 - في الحالة الثانيه يتم قفل الجروب بعد 10 دقايق .\n3 - في الحالة الثالثه يتم قفل الجروب بعد 5 ساعات .\n4 - في الحالة الرابعه يتم قفل الجروب بعد 2 يوم .\n')
+      }
+      m.reply(`◍ يتم قفل الجروب بعد ${q} ثانيه √`)
+      setTimeout(() => {
+      var nomor = m.participant
+      const close = `◍ تم قفل الجروب بنجاح 🥲🙁 √`
+      ZimBotInc.groupSettingUpdate(from, 'announcement')
+      m.reply(close)
+      }, timer)
+      }
+      break
 ////-------------  حظر روابط ----------/// 
 
 case 'لينك_واتساب': case 'رابط_واتساب': case 'xxantixwamexx': {
@@ -6190,9 +6048,9 @@ case 'لينك_واتساب': case 'رابط_واتساب': case 'xxantixwamexx'
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
   if (args[0] === "on") {
-  if (db.chats[m.chat].antilink) return m.reply(`◍ تم تفعل حظر روابط واتساب من قبل √`)
+  if (db.chats[m.chat].antilink) return m.reply(`◍ تم تفعيل حظر روابط واتساب من قبل √`)
   db.chats[m.chat].antilink = true
-  m.reply(`◍ تم تفعل حظر روابط واتساب √`)
+  m.reply(`◍ تم تفعيل حظر روابط واتساب √`)
   } else if (args[0] === "off") {
   if (!db.chats[m.chat].antilink) return m.reply(`◍ تم تعطيل حظر روابط واتساب من قبل √`)
   db.chats[m.chat].antilink = false
@@ -6212,9 +6070,9 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
   if (args[0] === "on") {
-  if (db.chats[m.chat].antivn) return m.reply(`◍ تم تفعل حظر الصوت + ريكورد من قبل √`)
+  if (db.chats[m.chat].antivn) return m.reply(`◍ تم تفعيل حظر الصوت + ريكورد من قبل √`)
   db.chats[m.chat].antivn = true
-  m.reply(`◍ تم تفعل حظر الصوت + ريكورد √`)
+  m.reply(`◍ تم تفعيل حظر الصوت + ريكورد √`)
   } else if (args[0] === "off") {
   if (!db.chats[m.chat].antivn) return m.reply(`◍ تم تعطيل حظر الصوت + ريكورد من قبل √`)
   db.chats[m.chat].antivn = false
@@ -6234,9 +6092,9 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
   if (args[0] === "on") {
-  if (db.chats[m.chat].antisticker) return m.reply(`◍ تم تفعل حظر الملصقات من قبل √`)
+  if (db.chats[m.chat].antisticker) return m.reply(`◍ تم تفعيل حظر الملصقات من قبل √`)
   db.chats[m.chat].antisticker = true
-  m.reply(`◍ تم تفعل حظر الملصقات √`)
+  m.reply(`◍ تم تفعيل حظر الملصقات √`)
   } else if (args[0] === "off") {
   if (!db.chats[m.chat].antisticker) return m.reply(`◍ تم تعطيل حظر الملصقات من قبل √`)
   db.chats[m.chat].antisticker = false
@@ -6250,14 +6108,14 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   }
   }
   break
-  case 'xxphphxx': case 'حظر_الصور': {
+  case 'xxphphxx': case 'حظر_صور': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
   if (args[0] === "on") {
-  if (db.chats[m.chat].antiphoto) return m.reply(`◍ تم تفعل حظر الصور من قبل √`)
+  if (db.chats[m.chat].antiphoto) return m.reply(`◍ تم تفعيل حظر الصور من قبل √`)
   db.chats[m.chat].antiphoto = true
-  m.reply(`◍ تم تفعل حظر الصور √`)
+  m.reply(`◍ تم تفعيل حظر الصور √`)
   } else if (args[0] === "off") {
   if (!db.chats[m.chat].antiphoto) return m.reply(`◍ تم تعطيل حظر الصور من قبل √`)
   db.chats[m.chat].antiphoto = false
@@ -6276,9 +6134,9 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins && !isCreator) throw mess.admin
     if (args[0] === "on") {
-    if (db.chats[m.chat].antivideo) return m.reply(`◍ تم تفعل حظر الفيديوهات من قبل √`)
+    if (db.chats[m.chat].antivideo) return m.reply(`◍ تم تفعيل حظر الفيديوهات من قبل √`)
     db.chats[m.chat].antivideo = true
-    m.reply(`◍ تم تفعل حظر الفيديوهات √`)
+    m.reply(`◍ تم تفعيل حظر الفيديوهات √`)
     } else if (args[0] === "off") {
     if (!db.chats[m.chat].antivideo) return reply(`◍ تم تعطيل حظر الفيديوهات من قبل √`)
     db.chats[m.chat].antivideo = false
@@ -6293,11 +6151,228 @@ case 'xxvnvnxx': case 'حظر_صوت': {
      }
    break
 
+   case 'حظر_روابط': case 'xxxantixlinkallxxx': {
+    if (!m.isGroup) throw mess.group
+    if (!isBotAdmins) throw mess.botAdmin
+    if (!isAdmins && !isCreator) throw mess.admin
+    if (args[0] === "on") {
+     if (db.chats[m.chat].antilinkall) return m.reply(`◍ تم تفعيل حظر جميع روابط من قبل √`)
+     db.chats[m.chat].antilinkall = true
+     m.reply(`◍ تم تفعيل حظر جميع روابط √`)
+     } else if (args[0] === "off") {
+     if (!db.chats[m.chat].antilinkall) return m.reply(`◍ تم تعطيل حظر جميع روابط من قبل √`)
+     db.chats[m.chat].antilinkall = false
+     m.reply(`◍ تم تعطيل حظر جميع روابط √`)
+     } else {
+      let lido7x = [
+        { buttonId: `xxxantixlinkallxxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+        { buttonId: `xxxantixlinkallxxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
+    ]
+    await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر جميع روابط ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+     }
+     }
+    break   
 
 
 
+      
+    case 'antiytchannel': case 'antilinkyoutubechannel': case 'antiytchannel': {
+      if (!m.isGroup) throw mess.group
+      if (!isBotAdmins) throw mess.botAdmin
+      if (!isAdmins) throw mess.admin
+      if (args[0] === "on") {
+      if (db.chats[m.chat].antilinkyt) return reply(`*Already on umm okay*`)
+      db.chats[m.chat].antilinkyt = true
+      reply(`*Antilink active*`)
+      } else if (args[0] === "off") {
+      if (!db.chats[m.chat].antilinkyt) return reply(`*Already off okay*`)
+      db.chats[m.chat].antilinkyt = false
+      reply(`*Antilink disabled*`)
+      } else {
+      let drips = [
+      { buttonId: `antiytchannel on`, buttonText: { displayText: 'ON' }, type: 1 },
+      { buttonId: `antiytchannel off`, buttonText: { displayText: 'OFF' }, type: 1 }
+      ]
+      await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪʏᴛ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+      }
+      }
+      break
+
+ /* case 'antilinkyoutubevideo': case 'antilinkyoutubevid': case 'antilinkytvid': {
+  if (!m.isGroup) throw mess.group
+  if (!isBotAdmins) throw mess.botAdmin
+  if (!isAdmins && !isCreator) throw mess.admin
+ if (args[0] === "on") {
+ if (db.chats[m.chat].AntiLinkYoutubeVid) return replay('Already activated')
+ ntilinkytvid.push(from)
+ replay('Activated youtube video antilink !')
+ var groupe = await ZimBotInc.groupMetadata(from)
+ var members = groupe['participants']
+ var mems = []
+ members.map(async adm => {
+ mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
+ })
+ ZimBotInc.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ } else if (args[0] === "off") {
+ if (!db.chats[m.chat].AntiLinkYoutubeVid) return replay('Already deactivated')
+ let off = ntilinkytvid.indexOf(from)
+ ntilinkytvid.splice(off, 1)
+ replay('Deactivated youtube video antilink !')
+ } else {
+   let buttonsntilink = [
+   { buttonId: `${prefix}antilinkyoutubevideo on`, buttonText: { displayText: 'On' }, type: 1 },
+   { buttonId: `${prefix}antilinkyoutubevideo off`, buttonText: { displayText: 'Off' }, type: 1 }
+   ]
+   await ZimBotInc.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
+   }
+   }
+   break*/
+
+   case 'لينك_قناه': case 'رابط_قناه': case 'antilinkytch': {
+    if (!m.isGroup) return m.reply(mess.group)
+    if (!isBotAdmins) return m.reply(mess.botAdmin)
+    if (!isAdmins && !isCreator) return m.reply(mess.admin)
+    if (args[0] === "on") {
+    if (AntiLinkYoutubeChannel) return m.reply('*• تم تفعيل سابقا⚠️*')
+    ntilinkytch.push(from)
+    fs.writeFileSync('./database/antilinkytchannel.json', JSON.stringify(ntilinkytch))
+    m.reply('*• تم تفعيل حظر روابط قنوات يوتيوب ⚠️*')
+    var groupe = await ZimBotInc.groupMetadata(from)
+    var members = groupe['participants']
+    var mems = []
+    members.map(async adm => {
+    mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
+    })
+    ZimBotInc.sendMessage(from, {text: `\`\`\`*• تم تفعيل حظر روابط قنوات يوتيوب ⚠️*\`\`\`\n\n*• يتم حظر اي رابط لقنوات يوتيوب يتم ارساله فورا والطرد ⚠️*`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+    } else if (args[0] === "off") {
+    if (!AntiLinkYoutubeChannel) return m.reply('*• تم تعطيل سابقا 📴')
+    let off = ntilinkytch.indexOf(from)
+    fs.writeFileSync('./database/antilinkytchannel.json', JSON.stringify(ntilinkytch))
+    ntilinkytch.splice(off, 1)
+    m.reply('*• تم تعطيل حظر روابط قنوات يوتيوب 📴*')
+    } else {
+      let buttonsntilink = [
+      { buttonId: `antilinkytch on`, buttonText: { displayText: 'تفعيل حظر روابط قنوات يوتيوب' }, type: 1 },
+      { buttonId: `antilinkytch off`, buttonText: { displayText: 'تعطيل حظر روابط قنوات يوتيوب' }, type: 1 }
+      ]
+      await ZimBotInc.sendButtonText(m.chat, buttonsntilink, `⏬ اختار من الازرار بالاسفل \n\n  ⏪ تفعيل حظر روابط قنوات يوتيوب\n  ⏪ تعطيل حظر روابط قنوات يوتيوب`, `${global.botname}`, m)
+      }
+      }
+      break
 
 
+
+  break
+   case 'حظر_انستا': case 'xxantixinstaxx': {
+  if (!m.isGroup) throw mess.group
+  if (!isBotAdmins) throw mess.botAdmin
+  if (!isAdmins) throw mess.admin
+  if (args[0] === "on") {
+  if (db.chats[m.chat].antiinstagram) return reply(`◍ تم تفعيل حظر روابط انستا من قبل √`)
+  db.chats[m.chat].antiinstagram= true
+  reply(`◍ تم تفعيل حظر روابط انستا √`)
+  } else if (args[0] === "off") {
+  if (!db.chats[m.chat].antiinstagram) return reply(`◍ تم تعطيل حظر روابط انستا من قبل √`)
+  db.chats[m.chat].antiinstagram = false
+  reply(`◍ تم تعطيل حظر روابط انستا √`)
+  } else {
+   let drips = [
+  { buttonId: `xxantixinstaxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
+  { buttonId: `xxantixinstaxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
+   ]
+   await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ɪɴsᴛᴀ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+  }
+  }
+  break
+  case 'antilinkfacebook': case 'antifb': {
+   if (!m.isGroup) throw mess.group
+   if (!isBotAdmins) throw mess.botAdmin
+   if (!isAdmins) throw mess.admin
+   if (args[0] === "on") {
+   if (db.chats[m.chat].antifb) return reply(`*Already on umm okay*`)
+   db.chats[m.chat].antifb = true
+   reply(`*Antilink active*`)
+   } else if (args[0] === "off") {
+   if (!db.chats[m.chat].antifb) return reply(`*Already off okay*`)
+   db.chats[m.chat].antifb = false
+   reply(`*Antilink disabled*`)
+   } else {
+    let drips = [
+      { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
+      { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+  ]
+  await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ғʙ ʟɪɴᴋs ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+   }
+    }
+  break
+  case 'antitelegram': case 'adripsantitele': {    
+   if (!m.isGroup) throw mess.group
+   if (!isBotAdmins) throw mess.botAdmin
+   if (!isAdmins) throw mess.admin
+   if (args[0] === "on") {
+   if (db.chats[m.chat].antitelegram) return reply(`*Already on umm okay*`)
+   db.chats[m.chat].antitelegram = true
+   reply(`*Antilink active*`)
+   } else if (args[0] === "off") {
+   if (!db.chats[m.chat].antitelegram) return reply(`*Already off okay*`)
+   db.chats[m.chat].antitelegram = false
+   reply(`*Antilink disabled*`)
+   } else {
+  let drips = [
+    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
+    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+     ]
+     await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪ ᴛᴇʟᴇ ʟɪɴᴋs ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+   }
+  }
+  break
+   
+
+
+
+case 'antitiktok': case 'aantitik': {
+if (!m.isGroup) throw mess.group
+if (!isBotAdmins) throw mess.botAdmin
+if (!isAdmins) throw mess.admin
+if (args[0] === "on") {
+if (db.chats[m.chat].antitiktok) return reply(`*Already on umm okay*`)
+db.chats[m.chat].antitiktok = true
+reply(`*Antilink active*`)
+} else if (args[0] === "off") {
+if (!db.chats[m.chat].antitiktok) return reply(`*Already off okay*`)
+db.chats[m.chat].antitiktok = false
+reply(`*Antilink disabled*`)
+} else {
+let drips = [
+{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
+{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+]
+await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪᴛɪᴋᴛᴏᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+}
+}
+break
+
+case 'adripsantitwt': case 'antitwitter': case 'antilinktwit': {
+if (!m.isGroup) throw mess.group
+if (!isBotAdmins) throw mess.botAdmin
+if (!isAdmins) throw mess.admin
+if (args[0] === "on") {
+if (db.chats[m.chat].antitwitter) return reply(`*Already on umm okay*`)
+db.chats[m.chat].antitwitter = true
+reply(`*Antilink active*`)
+} else if (args[0] === "off") {
+if (!db.chats[m.chat].antitwitter) return reply(`*Already off okay*`)
+db.chats[m.chat].antitwitter = false
+reply(`*Antilink disabled*`)
+} else {
+ let dripsi = [
+{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
+{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+ ]
+ await ZimBotInc.sendButtonText(m.chat, dripsi, `*┃🔏ᴀɴᴛɪ ᴛᴡɪᴛᴛᴇʀ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+ }
+}
+break
 
 
 
