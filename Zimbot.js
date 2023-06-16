@@ -1,25 +1,6 @@
-// ⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈⧈
-//▮ᴢɪᴍ ʙᴏᴛ ɪɴᴄ 2023 ®️ALL RIGHTS RESERVED
-//▮
-//▮FORK AND DON'T FORGET TO GIVE A STAR
-//▮
-//▮THIS SOFTWARE IS UNDER UZ COPYRIGHT
-//▮
-//▮REPORT ABUSE OF THIS SOFTWARE EMAIL US
-//▮blessedtuna@mail.uk
-//▮WHATSAPP US : +44 7441 437150
-//▮YOUTUBE CHANNELL: https://youtube.com/@zim-bot
-//▮
-//╰▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-//
-//┏━━━━━━━━━━━━━━━━━━━━━━━━━
-//┃THIS SOFTWARE INCLUDES 
-//┃SOME ENCRYPTED FILES
-//┃
-//┃THANKS FOR CHOOSING ZIMBOT
-//┃I WROTE THIS SCRIPT BY MYSELF THIS SCRIPT IS FOR EVERYONE DONT SELL IT
-//┗━━━━━━━━━━━━━━━━━━━━━━━━━
-//
+
+// مطور ليدو 
+
 process.on('uncaughtException', console.error)
 require('./bot')
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, WAZimBotIncection, MessageType, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType, fetchLatestBaileysVersion } = require('@adiwajshing/baileys')
@@ -214,236 +195,236 @@ const replay = (teks) => {
 }    
  
 const tempButtons = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'OWNERMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const tempButtoni = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'DATABASEMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
- hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const tempButtonie = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'PHOTOOXYMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
- message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const tempButtono = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'GROUPMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const tempButton1 = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'ALL MENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const saerchmenu = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'SEARCHMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const nsfmenu1 = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'nsfmenu')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-
-
-                    
-const downloadmenu1 = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'DOWNLOADMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const photofiltermenu1 = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'PHOTOFILTERMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const toolmenu1 = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'TOOLMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const ephotomenu1 = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'EPHOTOMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
-const convertmenu = async (remoteJid, text, footer, content) => {
-bufu = await getBuffer(picak+'CONVERTMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
-const templateMessage = {
-viewOnceMessage: {
-message: { 
-templateMessage: {
-hydratedTemplate: {
-imageMessage: message.imageMessage,
-hydratedContentText: text,
-hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-hydratedButtons: content,
-},
-},
-},
-},
-};
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};                                  
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
-};
+  bufu = await getBuffer(picak+'OWNERMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const tempButtoni = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'DATABASEMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+   hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const tempButtonie = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'PHOTOOXYMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+   message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const tempButtono = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'GROUPMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const tempButton1 = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'ALL MENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const saerchmenu = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'SEARCHMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const nsfmenu1 = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'nsfmenu')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  
+  
+                      
+  const downloadmenu1 = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'DOWNLOADMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const photofiltermenu1 = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'PHOTOFILTERMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const toolmenu1 = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'TOOLMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const ephotomenu1 = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'EPHOTOMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  const convertmenu = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(picak+'CONVERTMENU')
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedFooterText: `⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };                                  
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
 const drip =  {
   key : {
     fromMe: false,
@@ -6423,6 +6404,103 @@ break
 
 
 
+// < ================================================== >
+ 
+// --------------   اوامر الاعضاء ----------------//
+
+// < ================================================== >
+
+case 'بوت': case 'البوت': case 'bot':    
+const ndav =[	'*اسمي  بكار  يا قلبي 🤤💚*',
+'*اسمي بكار  يا روحي🙈❤️*',
+'*اسمي  بكار  يعمري🌚🌹*',
+"نعم يقلب البوت🙂❤️",
+    "عايز اي ☺️",
+      "نعم يروحي 🥺♥️",
+          "اي يرجوله 😎", 
+              "معاك يحب 😘😘",
+                  "عيوني 🥹😍" ,
+                    "اي ياصحابي 🙂",
+                     "عاوز ايه من خرا 😒",
+                       " قول مش فاضيك 😏",
+                          "ارغي 🤗",
+                             "معاك اهو 🙂😍", 
+                                "مش فاضي 🙂",
+                                  "اسمي بكار يحب 😍",
+                                    "اخرص ياكلب 😒",
+                                      "خير اللهم خير 🤔",
+                                          "متزولنيش 🙄",
+                                            "صوتك ميعلاش 🤫",
+                                              "هوو اسم شركه 😬",
+                                                "بوت فعينك 😂",
+'*اسمي  بكار  يا قمر 😍♥️*',
+'*اسمي  بكار  يامزه 🥺❤️',
+'*اسمي  بكار  يعم 😒*',
+"كلم نفسك 😎",
+                                                    "هنيمو واجيلك 🫠",
+                                                        "اعم ريح 😛",
+                                                           "انجز عاوزني اشقط مين 😉",
+                                                               "قول يا قلبوو 🥰",
+                                                                    "يسطاا هو علشان بحبك تصدعني 🙄",
+                                                                      "يعم قولتك ليا ام اسم 😠",
+                                                                          "مش هرد 🤗",
+                                                                            "بطل صداع 🤫",
+                                                                                "لا انت زودها 😔",
+'*مقولت اسمي بكار في اي 🙄',
+'اسمي الكيوت بكار  🌝💘',
+'اسمي  بكار  ياحياتي🧸♥️',
+"ايه 🙂",
+"خير يا صاحبي 😇",
+  "مش هرد ☹️",
+     "اخرس 😳",
+       "اشتبي 🙁",
+           "مو بوت 😳",
+            "مصدعش امي 🙄",
+              "هخلص واجيلك 🤭",
+                "محتاج وسطه علشان ارد 😜",
+                      "بس لعب 😒"
+]
+const xeondndav = ndav[Math.floor(Math.random() * ndav.length)]
+var botbbs = JSON.parse(fs.readFileSync('./database/bakarbot.json'))
+var  bakarbots = pickRandom(botbbs)
+let bbndav = [
+  {buttonId: `bakar`, buttonText: {displayText: '𝗕𝗔𝗞𝗔𝗥 😍❤️ ' }, type: 1}
+  ] 
+ZimBotInc.sendMessage(from, { buttons: bbndav, image: { url: bakarbots.url }, caption: ''+ xeondndav }, {quoted:m})
+break  
+
+case 'بكار': case 'botbakar': case 'bakar':    
+		const ffffsawwsa =[
+	'*نعم يروحي 🌚❤️*',
+	'*نعم يا قلب بكار 🌚❤️*',
+	'*عوز اي مني 🙂🤔*',
+	'*موجود يروحي قلبي 😊♥️*',
+	'*بتشقط وجي ويت 🤪*',
+	'*ايوا جاي 😹*',
+	'*يعم هتسحر واجي 😹🤭*',
+	'*طب متصلي على النبي كدا 🙂🤍*',
+	'*تع اشرب شاي 🌚❤️*',
+	'*اي قمر انت 🌚❤️*',
+	'*اي قلبي 😻🥰*',
+	'*ياض خش نام 😂💞*',
+	'*انا بكار احسن البوتات 🌚❤️*',
+	'*نعم يقلبي 💝*',
+	'*مالك حبيبى 🥺❤️‍🩹*',
+	'*مخصماك وبعد عني مش طيقاك 😹*',
+	'*مبكلمكش 🥺💔*',
+	'*ثانيه واحده بتشقط وجى 😹🤍*',
+	'*موجود عايز اى بوشك ده 😒*',
+	'*شبيك لبيك 👻😹*',
+	'*نعم يا قلب بكار ♥️*'
+	]
+		const xeondffffsawwsa = ffffsawwsa[Math.floor(Math.random() * ffffsawwsa.length)]
+  var botbb = JSON.parse(fs.readFileSync('./database/bakarbot.json'))
+	var  bakarbot = pickRandom(botbb)
+		let bbakdsddwa = [
+			{buttonId: `bakar`, buttonText: {displayText: '𝗕𝗔𝗞𝗔𝗥 😍❤️ ' }, type: 1}
+			] 
+    ZimBotInc.sendMessage(from, { buttons: bbakdsddwa, image: { url: bakarbot.url }, caption: ''+ xeondffffsawwsa }, {quoted:m})
+		break
 
 
 
@@ -6440,20 +6518,609 @@ break
 
 
 
+	//---------- من سيربح المليون ------------\\\ 
+	//--------- تطوير مطور ليدو باشا ---------\\\\
+  case 'aginna': case 'المليون': case 'من_سيربح_المليون': {
+    ZimBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
+    buffer = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+    anu =`⦁ مرحبا بك في لعبة من سيربح المليون \n⦁ اللعبة 3 مستويات عبارة عن اسئلة عامة \n⦁ جاهز يوحش ؟! 😂❤️`
+  const nsfmenu = async (remoteJid, text, footer, content) => {
+  bufu = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+  let message = await prepareWAMessageMedia({ image: bufu }, { upload: ZimBotInc.waUploadToServer })
+  const templateMessage = {
+  viewOnceMessage: {
+  message: { 
+  templateMessage: {
+  hydratedTemplate: {
+  imageMessage: message.imageMessage,
+  hydratedContentText: text,
+  hydratedButtons: content,
+  },
+  },
+  },
+  },
+  };
+  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  };
+  var buttonReplyy = [
+          { urlButton: { displayText: `مجتمعنا ✨`, url : `https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e` } },
+          { quickReplyButton: { displayText: `ابدء المستوي الاول من اللعبة 🫶🏻`, id: `r1` } }
+        ]
+        nsfmenu(from, anu, '', buttonReplyy)
+        }
+  break
+	case 'wwwq':    
+		const wsederfrf =[
+	"*•  للأسف خطأ يا صديقي حظ اوفر المره القادمه 🥺💞*",
+	"*اجابتك غلط يروحي 🌚❤️*",
+	"*اجابتك غلط يقلبي 🥺❤️*",
+	"*غلط اجابتك 🥺❤️*",
+	"*غلط اجابتك  يعمري 🙂💔*",
+	]
+		const xeondwsederfrf = wsederfrf[Math.floor(Math.random() * wsederfrf.length)]
+		bufferwsederfrf = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbwsederfrf = [
+			{buttonId: `aginna`, buttonText: {displayText: '⦁ إعادة اللعبه' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbwsederfrf, image: bufferwsederfrf, caption: ''+ xeondwsederfrf }, {quoted:m})
+		break
+	case 'r1':    
+		const jjtgrvdss =[
+	"*☸️ › السوال الاول*\n\n*• ما هي عملة دولة بولاندا ؟*\n",
+	"*☸️ › السوال الاول*\n\n*• ما هي عملة دولة بولاندا ؟*\n",
+	]
+		const xeondjjtgrvdss = jjtgrvdss[Math.floor(Math.random() * jjtgrvdss.length)]
+		bufferjjtgrvdss = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbjjtgrvdss = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'الريال' }, type: 1},
+			{buttonId: `r2`, buttonText: {displayText: 'الزلوط' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'اليورو' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbjjtgrvdss, image: bufferjjtgrvdss, caption: ''+ xeondjjtgrvdss }, {quoted:m})
+		break	
+	case 'r2':    
+		const fefefesasss =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثاني*\n\n*•  كم ساعة في اليوم ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثاني*\n\n*•  كم ساعة في اليوم ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثاني*\n\n*•  كم ساعة في اليوم ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السوال الثاني*\n\n*•  كم ساعة في اليوم ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السوال الثاني*\n\n*•  كم ساعة في اليوم ؟*\n"
+	]
+		const xeondfefefesasss = fefefesasss[Math.floor(Math.random() * fefefesasss.length)]
+		bufferfefefesasss = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbfefefesasss = [
+			{buttonId: `wwwq`, buttonText: {displayText: '23 ساعه' }, type: 1},
+			{buttonId: `r3`, buttonText: {displayText: '24 ساعه' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '22 ساعه' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbfefefesasss, image: bufferfefefesasss, caption: ''+ xeondfefefesasss }, {quoted:m})
+		break
+	case 'r3':    
+		const ggdsdasa =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثالث*\n\n*•  ما هو اسم المكان الذي يعيش فيه النحل ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثالث*\n\n*•  ما هو اسم المكان الذي يعيش فيه النحل ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثالث*\n\n*•  ما هو اسم المكان الذي يعيش فيه النحل ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السوال الثالث*\n\n*•  ما هو اسم المكان الذي يعيش فيه النحل ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السوال الثالث*\n\n*•  ما هو اسم المكان الذي يعيش فيه النحل ؟*\n"
+	]
+		const xeondggdsdasa = ggdsdasa[Math.floor(Math.random() * ggdsdasa.length)]
+		bufferggdsdasa = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbggdsdasa = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'الشجرة' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الكهف' }, type: 1},
+			{buttonId: `r4`, buttonText: {displayText: 'الخلية' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbggdsdasa, image: bufferggdsdasa, caption: ''+ xeondggdsdasa }, {quoted:m})
+		break
+	case 'r4':    
+		const feefsjujuj =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الرابع*\n\n*•  اكمل المثل :- احذر من اللئيم اذا ...........؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الرابع*\n\n*•  اكمل المثل :- احذر من اللئيم اذا ...........؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الرابع*\n\n*•  اكمل المثل :- احذر من اللئيم اذا ...........؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السوال الرابع*\n\n*•  اكمل المثل :- احذر من اللئيم اذا ...........؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السوال الرابع*\n\n*•  اكمل المثل :- احذر من اللئيم اذا ...........؟*\n"
+	]
+		const xeondfeefsjujuj = feefsjujuj[Math.floor(Math.random() * feefsjujuj.length)]
+		bufferfeefsjujuj = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbfeefsjujuj = [
+			{buttonId: `r5`, buttonText: {displayText: 'اكرمته' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'استضفته' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'اطعمته' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbfeefsjujuj, image: bufferfeefsjujuj, caption: ''+ xeondfeefsjujuj }, {quoted:m})
+		break
+	case 'r5':    
+		const ghuuuuuuuyg =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الخامس*\n\n*•  ما هي أكبر مدينة في قارة اوروبا ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الخامس*\n\n*•  ما هي أكبر مدينة في قارة اوروبا ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الخامس*\n\n*•  ما هي أكبر مدينة في قارة اوروبا ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السوال الخامس*\n\n*•  ما هي أكبر مدينة في قارة اوروبا ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السوال الخامس*\n\n*•  ما هي أكبر مدينة في قارة اوروبا ؟*\n"
+	]
+		const xeondghuuuuuuuyg = ghuuuuuuuyg[Math.floor(Math.random() * ghuuuuuuuyg.length)]
+		bufferghuuuuuuuyg = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbghuuuuuuuyg = [
+			{buttonId: `r6`, buttonText: {displayText: 'لندن ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'قبرص' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'باريس' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbghuuuuuuuyg, image: bufferghuuuuuuuyg, caption: ''+ xeondghuuuuuuuyg }, {quoted:m})
+		break
+		case 'r6':    
+		const ghuuuuu =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال السادس*\n\n*•  ما هي اللغة التي تحتل المركز الخامس كأكثر اللغات المتحدث بها*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال السادس*\n\n*•  ما هي اللغة التي تحتل المركز الخامس كأكثر اللغات المتحدث بها*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال السادس*\n\n*•  ما هي اللغة التي تحتل المركز الخامس كأكثر اللغات المتحدث بها*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السوال السادس*\n\n*•  ما هي اللغة التي تحتل المركز الخامس كأكثر اللغات المتحدث بها*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السوال السادس*\n\n*•  ما هي اللغة التي تحتل المركز الخامس كأكثر اللغات المتحدث بها*\n"
+	]
+		const xeondghuuuuu = ghuuuuu[Math.floor(Math.random() * ghuuuuu.length)]
+		bufferghuuuuu = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbghuuuuu = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'الفرنسيه' }, type: 1},
+			{buttonId: `r7`, buttonText: {displayText: 'العربيه ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الانجليزيه' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbghuuuuu, image: bufferghuuuuu, caption: ''+ xeondghuuuuu }, {quoted:m})
+		break
+	case 'r7':    
+		const grfcswww =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال السابع*\n\n*•  ما هو الاسم الحالي لمدينه القسطنطينيه ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال السابع*\n\n*•  ما هو الاسم الحالي لمدينه القسطنطينيه ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال السابع*\n\n*•  ما هو الاسم الحالي لمدينه القسطنطينيه ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السوال السابع*\n\n*•  ما هو الاسم الحالي لمدينه القسطنطينيه ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السوال السابع*\n\n*•  ما هو الاسم الحالي لمدينه القسطنطينيه ؟*\n"
+	]
+		const xeondgrfcswww = grfcswww[Math.floor(Math.random() * grfcswww.length)]
+		buffergrfcswww = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbgrfcswww = [
+			{buttonId: `r8`, buttonText: {displayText: 'اسطنبول' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'مدريد ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'انقرا' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbgrfcswww, image: buffergrfcswww, caption: ''+ xeondgrfcswww }, {quoted:m})
+		break
+	case 'r8':    
+		const grfcs =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثامن*\n\n*•  كم عدد الجيوب الانفية داخل جسم الانسان ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثامن*\n\n*•  كم عدد الجيوب الانفية داخل جسم الانسان ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال الثامن*\n\n*•  كم عدد الجيوب الانفية داخل جسم الانسان ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السوال الثامن*\n\n*•  كم عدد الجيوب الانفية داخل جسم الانسان ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السوال الثامن*\n\n*•  كم عدد الجيوب الانفية داخل جسم الانسان ؟*\n"
+	]
+		const xeondgrfcs = grfcs[Math.floor(Math.random() * grfcs.length)]
+		buffergrfcs = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbgrfcs = [
+			{buttonId: `wwwq`, buttonText: {displayText: '4 جيب' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '6 جيب ' }, type: 1},
+			{buttonId: `r9`, buttonText: {displayText: '8 جيب' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbgrfcs, image: buffergrfcs, caption: ''+ xeondgrfcs }, {quoted:m})
+		break	
+	case 'r9':    
+		const grfcsfegs =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال التاسع*\n\n*•  في أي مدينه تقع ساعة بيج بين الشهيرة ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال التاسع*\n\n*•  في أي مدينه تقع ساعة بيج بين الشهيرة ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السوال التاسع*\n\n*•  في أي مدينه تقع ساعة بيج بين الشهيرة ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السوال التاسع*\n\n*•  في أي مدينه تقع ساعة بيج بين الشهيرة ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السوال التاسع*\n\n*•  في أي مدينه تقع ساعة بيج بين الشهيرة ؟*\n"
+	]
+		const xeondgrfcsfegs = grfcsfegs[Math.floor(Math.random() * grfcsfegs.length)]
+		buffergrfcsfegs = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbgrfcsfegs = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'امريكا' }, type: 1},
+			{buttonId: `r10`, buttonText: {displayText: 'لندن ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'فرنسا' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbgrfcsfegs, image: buffergrfcsfegs, caption: ''+ xeondgrfcsfegs }, {quoted:m})
+		break	
+	case 'r10':    
+		const grfcsf =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  كم عدد فصول السنة ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  كم عدد فصول السنة ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  كم عدد فصول السنة ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  كم عدد فصول السنة ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  كم عدد فصول السنة ؟*\n"
+	]
+		const xeondgrfcsf = grfcsf[Math.floor(Math.random() * grfcsf.length)]
+		buffergrfcsf = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbgrfcsf = [
+			{buttonId: `wwwq`, buttonText: {displayText: '5 فصول' }, type: 1},
+			{buttonId: `r11`, buttonText: {displayText: '4 فصول' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '3 فصول' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbgrfcsf, image: buffergrfcsf, caption: ''+ xeondgrfcsf }, {quoted:m})
+		break
+	case 'r11':    
+		const grfcsfe =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*نجحت في تخطي المستوي الاول يا بطل 🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*نجحت في تخطي المستوي الاول يا بطل 🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*نجحت في تخطي المستوي الاول يا بطل 🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*نجحت في تخطي المستوي الاول يا بطل 🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*نجحت في تخطي المستوي الاول يا بطل 🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n"
+	]
+		const xeondgrfcsfe = grfcsfe[Math.floor(Math.random() * grfcsfe.length)]
+		buffergrfcsfe = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbgrfcsfe = [
+			{buttonId: `r12`, buttonText: {displayText: 'انتقل للمستوي الثاني' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbgrfcsfe, image: buffergrfcsfe, caption: ''+ xeondgrfcsfe }, {quoted:m})
+		break    
+	case 'r12':    
+		const opikolou =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  إلي ماذا يشير مصطلح الذهب الاسود ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  إلي ماذا يشير مصطلح الذهب الاسود ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  إلي ماذا يشير مصطلح الذهب الاسود ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  إلي ماذا يشير مصطلح الذهب الاسود ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  إلي ماذا يشير مصطلح الذهب الاسود ؟*\n"
+	]
+		const xeondopikolou = opikolou[Math.floor(Math.random() * opikolou.length)]
+		bufferopikolou = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbopikolou = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'المنجنيز' }, type: 1},
+			{buttonId: `r13`, buttonText: {displayText: 'البترول' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الفحم' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbopikolou, image: bufferopikolou, caption: ''+ xeondopikolou }, {quoted:m})
+		break
+	case 'r13':    
+		const opikolo =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  الولايات المتحدة الامريكية دولة مميزة وفريدة فما هو شعارها؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  الولايات المتحدة الامريكية دولة مميزة وفريدة فما هو شعارها؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  الولايات المتحدة الامريكية دولة مميزة وفريدة فما هو شعارها؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  الولايات المتحدة الامريكية دولة مميزة وفريدة فما هو شعارها؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  الولايات المتحدة الامريكية دولة مميزة وفريدة فما هو شعارها؟*\n"
+	]
+		const xeondopikolo = opikolo[Math.floor(Math.random() * opikolo.length)]
+		bufferopikolo = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbopikolo = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'الصقر ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الشعلة' }, type: 1},
+			{buttonId: `r14`, buttonText: {displayText: 'النسر ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbopikolo, image: bufferopikolo, caption: ''+ xeondopikolo }, {quoted:m})
+		break
+	case 'r14':    
+		const opik =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  كم عدد أسنان القط ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  كم عدد أسنان القط ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  كم عدد أسنان القط ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  كم عدد أسنان القط ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  كم عدد أسنان القط ؟*\n"
+	]
+		const xeondopik = opik[Math.floor(Math.random() * opik.length)]
+		bufferopik = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbopik = [
+			{buttonId: `r15`, buttonText: {displayText: '40 سن' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '60 سن' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '20 سن' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbopik, image: bufferopik, caption: ''+ xeondopik }, {quoted:m})
+		break
+	case 'r15':    
+		const opopikik =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  كم قلب للاخطبوط ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  كم قلب للاخطبوط ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  كم قلب للاخطبوط ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  كم قلب للاخطبوط ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  كم قلب للاخطبوط ؟*\n"
+	]
+		const xeondopopikik = opopikik[Math.floor(Math.random() * opopikik.length)]
+		bufferopopikik = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbopopikik = [
+			{buttonId: `wwwq`, buttonText: {displayText: '4 قلوب  ' }, type: 1},
+			{buttonId: `r16`, buttonText: {displayText: '3 قلوب ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '5 قلوب' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbopopikik, image: bufferopopikik, caption: ''+ xeondopopikik }, {quoted:m})
+		break
+	case 'r16':    
+		const ddaswkkkkk =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  أين أفتتح اول متحف في العالم؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  أين أفتتح اول متحف في العالم؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  أين أفتتح اول متحف في العالم؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  أين أفتتح اول متحف في العالم؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  أين أفتتح اول متحف في العالم؟*\n"
+	]
+		const xeondddaswkkkkk = ddaswkkkkk[Math.floor(Math.random() * ddaswkkkkk.length)]
+		bufferddaswkkkkk = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbddaswkkkkk = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'انجلترا  ' }, type: 1},
+			{buttonId: `r17`, buttonText: {displayText: 'مصر ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'فرنسا' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbddaswkkkkk, image: bufferddaswkkkkk, caption: ''+ xeondddaswkkkkk }, {quoted:m})
+		break
+	case 'r17':    
+		const ddaswkk =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  ماهي اللغة الرسمية للارجنتين؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  ماهي اللغة الرسمية للارجنتين؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  ماهي اللغة الرسمية للارجنتين؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  ماهي اللغة الرسمية للارجنتين؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  ماهي اللغة الرسمية للارجنتين؟*\n"
+	]
+		const xeondddaswkk = ddaswkk[Math.floor(Math.random() * ddaswkk.length)]
+		bufferddaswkk = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbddaswkk = [
+			{buttonId: `r18`, buttonText: {displayText: 'الإسبانية  ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الفرنسية' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الانجليزية' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbddaswkk, image: bufferddaswkk, caption: ''+ xeondddaswkk }, {quoted:m})
+		break
+	case 'r18':    
+		const fgfeferftt =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السابع*\n\n*•  ما هو أكبر محيط في العالم؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السابع*\n\n*•  ما هو أكبر محيط في العالم؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السابع*\n\n*•  ما هو أكبر محيط في العالم؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال السابع*\n\n*•  ما هو أكبر محيط في العالم؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال السابع*\n\n*•  ما هو أكبر محيط في العالم؟*\n"
+	]
+		const xeondfgfeferftt = fgfeferftt[Math.floor(Math.random() * fgfeferftt.length)]
+		bufferfgfeferftt = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbfgfeferftt = [
+			{buttonId: `r19`, buttonText: {displayText: 'الهادي ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الهندي ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الاطلنطي' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbfgfeferftt, image: bufferfgfeferftt, caption: ''+ xeondfgfeferftt }, {quoted:m})
+		break
+	case 'r19':    
+		const fgfrftt =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثامن*\n\n*•  ماذا تعني كلمة جنكيزخان ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثامن*\n\n*•  ماذا تعني كلمة جنكيزخان ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثامن*\n\n*•  ماذا تعني كلمة جنكيزخان ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الثامن*\n\n*•  ماذا تعني كلمة جنكيزخان ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الثامن*\n\n*•  ماذا تعني كلمة جنكيزخان ؟*\n"
+	]
+		const xeondfgfrftt = fgfrftt[Math.floor(Math.random() * fgfrftt.length)]
+		bufferfgfrftt = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbfgfrftt = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'الكبرياء ' }, type: 1},
+			{buttonId: `r20`, buttonText: {displayText: 'القوة  ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الغرور ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbfgfrftt, image: bufferfgfrftt, caption: ''+ xeondfgfrftt }, {quoted:m})
+		break
+	case 'r20':    
+		const efefevvvvcxx =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال التاسع*\n\n*•  ما سعة جسم الانسان من الدم؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال التاسع*\n\n*•  ما سعة جسم الانسان من الدم؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال التاسع*\n\n*•  ما سعة جسم الانسان من الدم؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال التاسع*\n\n*•  ما سعة جسم الانسان من الدم؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال التاسع*\n\n*•  ما سعة جسم الانسان من الدم؟*\n"
+	]
+		const xeondefefevvvvcxx = efefevvvvcxx[Math.floor(Math.random() * efefevvvvcxx.length)]
+		bufferefefevvvvcxx = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbefefevvvvcxx = [
+			{buttonId: `wwwq`, buttonText: {displayText: '5 لترات ' }, type: 1},
+			{buttonId: `r21`, buttonText: {displayText: '6 لترات  ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '4 لترات' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbefefevvvvcxx, image: bufferefefevvvvcxx, caption: ''+ xeondefefevvvvcxx }, {quoted:m})
+		break
+	case 'r21':    
+		const efefevcxx =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  اين يوجد الجبل الاخضر؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  اين يوجد الجبل الاخضر؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  اين يوجد الجبل الاخضر؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  اين يوجد الجبل الاخضر؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*•  اين يوجد الجبل الاخضر؟*\n"
+	]
+		const xeondefefevcxx = efefevcxx[Math.floor(Math.random() * efefevcxx.length)]
+		bufferefefevcxx = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbefefevcxx = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'السعوديه ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'اليمن  ' }, type: 1},
+			{buttonId: `r22`, buttonText: {displayText: 'عمان ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbefefevcxx, image: bufferefefevcxx, caption: ''+ xeondefefevcxx }, {quoted:m})
+		break
+	case 'r22':    
+		const xxxsasa =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*•  احسنت يا بطل الأبطال لقد تخطيت المستوي الثاني وهو المتوسط انتقل لأخر المستويات الان  🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*•  احسنت يا بطل الأبطال لقد تخطيت المستوي الثاني وهو المتوسط انتقل لأخر المستويات الان  🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*•  احسنت يا بطل الأبطال لقد تخطيت المستوي الثاني وهو المتوسط انتقل لأخر المستويات الان 🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*•  احسنت يا بطل الأبطال لقد تخطيت المستوي الثاني وهو المتوسط انتقل لأخر المستويات الان 🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*•  احسنت يا بطل الأبطال لقد تخطيت المستوي الثاني وهو المتوسط انتقل لأخر المستويات الان 🥳😍*\n\n*•  يلا نكمل يبطلي 🤭❤️*\n"
+	]
+		const xeondxxxsasa = xxxsasa[Math.floor(Math.random() * xxxsasa.length)]
+		bufferxxxsasa = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbxxxsasa = [
+			{buttonId: `r23`, buttonText: {displayText: 'انتقل إلي المستوي الأخير ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbxxxsasa, image: bufferxxxsasa, caption: ''+ xeondxxxsasa }, {quoted:m})
+		break
+	case 'r23':    
+		const xxssxsasa =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  ما هي السورة التي كانت سببا في إسلام عمر بن الخطاب رضي الله عنه ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  ما هي السورة التي كانت سببا في إسلام عمر بن الخطاب رضي الله عنه ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الاول*\n\n**•  ما هي السورة التي كانت سببا في إسلام عمر بن الخطاب رضي الله عنه ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  ما هي السورة التي كانت سببا في إسلام عمر بن الخطاب رضي الله عنه ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الاول*\n\n*•  ما هي السورة التي كانت سببا في إسلام عمر بن الخطاب رضي الله عنه ؟*n"
+	]
+		const xeondxxssxsasa = xxssxsasa[Math.floor(Math.random() * xxssxsasa.length)]
+		bufferxxssxsasa = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbxxssxsasa = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'المطففين' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'العمران  ' }, type: 1},
+			{buttonId: `r24`, buttonText: {displayText: 'طه  ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbxxssxsasa, image: bufferxxssxsasa, caption: ''+ xeondxxssxsasa }, {quoted:m})
+		break
+	case 'r24':    
+		const aqqqqxds =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  ما هي الدولة العربية التي يمر بها خط الاستواء ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  ما هي الدولة العربية التي يمر بها خط الاستواء ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  ما هي الدولة العربية التي يمر بها خط الاستواء ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  ما هي الدولة العربية التي يمر بها خط الاستواء ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الثاني*\n\n*•  ما هي الدولة العربية التي يمر بها خط الاستواء ؟*\n"
+	]
+		const xeondaqqqqxds = aqqqqxds[Math.floor(Math.random() * aqqqqxds.length)]
+		bufferaqqqqxds = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbaqqqqxds = [
+			{buttonId: `r25`, buttonText: {displayText: 'الصومال' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'ماليزيا  ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'السودان ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbaqqqqxds, image: bufferaqqqqxds, caption: ''+ xeondaqqqqxds }, {quoted:m})
+		break
+	case 'r25':    
+		const awwqqxds =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  انجلترا لا تضع إسمها على؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  انجلترا لا تضع إسمها على؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  انجلترا لا تضع إسمها على؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  انجلترا لا تضع إسمها على؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الثالث*\n\n*•  انجلترا لا تضع إسمها على؟*\n"
+	]
+		const xeondawwqqxds = awwqqxds[Math.floor(Math.random() * awwqqxds.length)]
+		bufferawwqqxds = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbawwqqxds = [
+			{buttonId: `r26`, buttonText: {displayText: 'الطوابع' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الاموال ' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الورق ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbawwqqxds, image: bufferawwqqxds, caption: ''+ xeondawwqqxds }, {quoted:m})
+		break
+	case 'r26':    
+		const wwqewq =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  عدد غرف البيت الأبيض؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  عدد غرف البيت الأبيض؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  عدد غرف البيت الأبيض؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  عدد غرف البيت الأبيض؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الرابع*\n\n*•  عدد غرف البيت الأبيض؟*\n"
+	]
+		const xeondwwqewq = wwqewq[Math.floor(Math.random() * wwqewq.length)]
+		bufferwwqewq = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbwwqewq = [
+			{buttonId: `wwwq`, buttonText: {displayText: '126 غرفة' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '110 غرفة' }, type: 1},
+			{buttonId: `r27`, buttonText: {displayText: '143 غرفة ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbwwqewq, image: bufferwwqewq, caption: ''+ xeondwwqewq }, {quoted:m})
+		break
+	case 'r27':    
+		const dwwxccbnm =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  الحيوان الذي يقوم ذكرة بمهمة الحمل بدلاً من الأنثى هو ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  الحيوان الذي يقوم ذكرة بمهمة الحمل بدلاً من الأنثى هو ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  الحيوان الذي يقوم ذكرة بمهمة الحمل بدلاً من الأنثى هو ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  الحيوان الذي يقوم ذكرة بمهمة الحمل بدلاً من الأنثى هو ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الخامس*\n\n*•  الحيوان الذي يقوم ذكرة بمهمة الحمل بدلاً من الأنثى هو ؟*\n"
+	]
+		const xeonddwwxccbnm = dwwxccbnm[Math.floor(Math.random() * dwwxccbnm.length)]
+		bufferdwwxccbnm = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbdwwxccbnm = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'فرس النهر' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'الدب' }, type: 1},
+			{buttonId: `r28`, buttonText: {displayText: 'حصان البحر  ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbdwwxccbnm, image: bufferdwwxccbnm, caption: ''+ xeonddwwxccbnm }, {quoted:m})
+		break
+	case 'r28':    
+		const dwwaaaaxccbnm =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  القرامطة سرقوا الحجر الأسود من مكة المكرمة وأعادوه بعد؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  القرامطة سرقوا الحجر الأسود من مكة المكرمة وأعادوه بعد؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  القرامطة سرقوا الحجر الأسود من مكة المكرمة وأعادوه بعد؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  القرامطة سرقوا الحجر الأسود من مكة المكرمة وأعادوه بعد؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال السادس*\n\n*•  القرامطة سرقوا الحجر الأسود من مكة المكرمة وأعادوه بعد؟*\n"
+	]
+		const xeonddwwaaaaxccbnm = dwwaaaaxccbnm[Math.floor(Math.random() * dwwaaaaxccbnm.length)]
+		bufferdwwaaaaxccbnm = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbdwwaaaaxccbnm = [
+			{buttonId: `wwwq`, buttonText: {displayText: '11 عام' }, type: 1},
+			{buttonId: `r29`, buttonText: {displayText: '22 عام' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '33 عام ' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbdwwaaaaxccbnm, image: bufferdwwaaaaxccbnm, caption: ''+ xeonddwwaaaaxccbnm }, {quoted:m})
+		break
+	case 'r29':    
+		const cvbnmmmmmm =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال السابع\n\n*• من الشعب الذي ابتكر التقويم الشمسي؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️\n\n*☸️ › السؤال السابع\n\n*• من الشعب الذي ابتكر التقويم الشمسي؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*☸️ › السؤال السابع\n\n*• من الشعب الذي ابتكر التقويم الشمسي؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال السابع\n\n*• من الشعب الذي ابتكر التقويم الشمسي؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال السابع\n\n*• من الشعب الذي ابتكر التقويم الشمسي؟*\n"
+	]
+		const xeondcvbnmmmmmm = cvbnmmmmmm[Math.floor(Math.random() * cvbnmmmmmm.length)]
+		buffercvbnmmmmmm = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbcvbnmmmmmm = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'الإغريق' }, type: 1},
+			{buttonId: `r30`, buttonText: {displayText: 'المصريين القدماء' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'اليونانيين' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbcvbnmmmmmm, image: buffercvbnmmmmmm, caption: ''+ xeondcvbnmmmmmm }, {quoted:m})
+		break	
+	case 'r30':    
+		const mnbnbnnn =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثامن\n\n*• مما هو الحيوان الذي يتنفس بلسانه؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثامن\n\n*• مما هو الحيوان الذي يتنفس بلسانه؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال الثامن\n\n*• مما هو الحيوان الذي يتنفس بلسانه؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال الثامن\n\n*• مما هو الحيوان الذي يتنفس بلسانه؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال الثامن\n\n*• مما هو الحيوان الذي يتنفس بلسانه؟*\n"
+	]
+		const xeondmnbnbnnn = mnbnbnnn[Math.floor(Math.random() * mnbnbnnn.length)]
+		buffermnbnbnnn = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbmnbnbnnn = [
+			{buttonId: `wwwq`, buttonText: {displayText: 'التمساح' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'السمك' }, type: 1},
+			{buttonId: `r31`, buttonText: {displayText: 'الثعبان' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbmnbnbnnn, image: buffermnbnbnnn, caption: ''+ xeondmnbnbnnn }, {quoted:m})
+		break
 
+	case 'r31':    
+		const nnnnbvcc =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال التاسع\n\n*• كم عدد الناجين من سفينة التايتنك؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال التاسع\n\n*• كم عدد الناجين من سفينة التايتنك؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال التاسع\n\n*• كم عدد الناجين من سفينة التايتنك؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال التاسع\n\n*• كم عدد الناجين من سفينة التايتنك؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال التاسع\n\n*• كم عدد الناجين من سفينة التايتنك؟*\n"
+	]
+		const xeondnnnnbvcc = nnnnbvcc[Math.floor(Math.random() * nnnnbvcc.length)]
+		buffernnnnbvcc = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbnnnnbvcc = [
+			{buttonId: `wwwq`, buttonText: {displayText: '206' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: '406' }, type: 1},
+			{buttonId: `r32`, buttonText: {displayText: '706' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbnnnnbvcc, image: buffernnnnbvcc, caption: ''+ xeondnnnnbvcc }, {quoted:m})
+		break
+	case 'r32':    
+		const ccxcxc =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*• من هو الحيوان الذي لا يعد من الزواحف من قائمة الحيوانات الآتية ؟*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*• من هو الحيوان الذي لا يعد من الزواحف من قائمة الحيوانات الآتية ؟*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*• من هو الحيوان الذي لا يعد من الزواحف من قائمة الحيوانات الآتية ؟*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*• من هو الحيوان الذي لا يعد من الزواحف من قائمة الحيوانات الآتية ؟*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*☸️ › السؤال العاشر*\n\n*• من هو الحيوان الذي لا يعد من الزواحف من قائمة الحيوانات الآتية ؟*\n"
+	]
+		const xeondccxcxc = ccxcxc[Math.floor(Math.random() * ccxcxc.length)]
+		bufferccxcxc = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbccxcxc = [
+			{buttonId: `r33`, buttonText: {displayText: 'الضفدع' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'السلحفاه' }, type: 1},
+			{buttonId: `wwwq`, buttonText: {displayText: 'السحليه' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbccxcxc, image: bufferccxcxc, caption: ''+ xeondccxcxc }, {quoted:m})
+		break
+	case 'r33':    
+		const qazqaqzzz =[
+	"*•  احسنت يا صديقي إجابتك صحيحة  😂♥️*\n\n*•  تم الانتهاء من جميع الاسئله بنجاح عاش يا بطل 💕😂*\n\n*• بطلي يروحي قلبي 🥺💞*\n",
+	"*•  احسنت يقلبي إجابتك صحيحة  😂♥️*\n\n*•  تم الانتهاء من جميع الاسئله بنجاح عاش يا بطل 💕😂*\n\n*• بطلي يروحي قلبي 🥺💞*\n",
+	"*•  احسنت يروح قلبي إجابتك صحيحة  😂♥️*\n\n*•  تم الانتهاء من جميع الاسئله بنجاح عاش يا بطل 💕😂*\n\n*• بطلي يروحي قلبي 🥺💞*\n",
+	"*•   إجابتك صحيحة يحب 😂♥️*\n\n*•  تم الانتهاء من جميع الاسئله بنجاح عاش يا بطل 💕😂*\n\n*• بطلي يروحي قلبي 🥺💞*\n",
+	"*•   إجابتك صحيحة يعمري😂♥️*\n\n*•  تم الانتهاء من جميع الاسئله بنجاح عاش يا بطل 💕😂*\n\n*• بطلي يروحي قلبي 🥺💞*\n"
+	]
+		const xeondqazqaqzzz = qazqaqzzz[Math.floor(Math.random() * qazqaqzzz.length)]
+		bufferqazqaqzzz = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+		let bbqazqaqzzz = [
+			{buttonId: `aginna`, buttonText: {displayText: 'إعادة اللعبة' }, type: 1},
+			{buttonId: `owner`, buttonText: {displayText: 'المطور 😍❤️' }, type: 1}
+			] 
+		ZimBotInc.sendMessage(from, { buttons: bbqazqaqzzz, image: bufferqazqaqzzz, caption: ''+ xeondqazqaqzzz }, {quoted:m})
+		break
 
-
-
-
-
-
-
-
-
-
-
-
-
+		
+	//--------- نهاية لعبة--------///
 
 
 
