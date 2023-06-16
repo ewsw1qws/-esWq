@@ -39,7 +39,7 @@ global.Api = new (require('./plugins/neoxrApi.js'))(process.env.API_KEY)
 //settings
 
 global.devlido = 'مطور ليدو'
-global.owner = ['201554496598','201101389228'] //owner number ++447441437150
+global.owner = ['201554496598',''] //owner number ++447441437150
 global.wame = ['201554496598'] 
 global.pemilik = ['201554496598'] //owner number ++447441437150
 global.premium = ['201554496598'] //premium number ++447441437150
@@ -60,8 +60,8 @@ global.sp = '🔵' //sp
 global.max_upload = 100
 global.dripstyping = false
 global.dripsreadgroup = false
-global.dripsreadall = true
-global.dripsrecord = true
+global.dripsreadall = false
+global.dripsrecord = false
 global.available = false
 global.unavailable = false
 global.limittot = 100,
@@ -88,6 +88,7 @@ global.mess = {
     botAdmin: '*zim bot  must be admin first!*',
     owner: '*this feature is only for zimbot owner*',
     group: '*Feature is only for groups!*',
+    groupgm: '*Feature is only fofffr groups!*',
     grouponly: '*Group Mode Only*',
     private: 'Features Used Only For Private Chat!',
     bot: 'This feature in only for the bot number',
