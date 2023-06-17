@@ -8,6 +8,7 @@ const fs = require('fs')
 const util = require('util')
 const crypto = require('crypto')
 const chalk = require('chalk')
+const { fetchBuffer } = require("./database/myfunc2")
 const { exec, spawn, execSync } = require('child_process')
 const axios = require('axios')
 const { fetchUrl, isUrl, processTime } = require("./lib/myfunc")
@@ -3228,212 +3229,13 @@ buttons: francisca,
 headerType: 4
 }
 await ZimBotInc.sendMessage(m.chat, tunhastallone, {quoted: m}) 
+break
 //-----END HERE-----\\
 
 
 
 //----DOWNLOAD FEATURES---\\
-break
-case 'play': {
-let { yta } = require('./lib/y2mate')
-if (!text)  reply(`Example : ${prefix + command} story wa anime`)
-let yts = require("yt-search")
-let search = await yts(text)
-let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
-let buf = await getBuffer(anu.thumbnail)
-let muziq = [
-                    {buttonId: `audio ${anu.url}`, buttonText: {displayText: 'AUDIO'}, type: 1},
-                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: 'VIDEO'}, type: 1},
-                     {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: 'DOCUMENT'}, type: 1}
-                ]
-let caption = `
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-       ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴍᴜꜱɪᴄ◉*_ ⟯ 
-   
-0.02━◉━━━━━━━━━━━━3.26
-      🔂   ⏪   ⏸️     ⏩  🎵
 
-*◉Tɪᴛʟᴇ :* ${anu.title}
-*◉Sɪᴢᴇ :* ${anu.filesize}
-*◉Uʀʟ :* ${anu.url}
-*◉Dᴇꜱᴄʀɪᴘᴛɪᴏɴ :* ${anu.description}
- ©ᴢɪᴍʙᴏᴛɪɴᴄ
-
-`
-message = await prepareWAMessageMedia({ image : { url: anu.thumbnail } }, { upload:   ZimBotInc.waUploadToServer })
-let buttonMessage = {
-        image: buf,
-        jpegThumbnail:buf,
-        caption: caption,
-        footer: ` ⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-        buttons: muziq,
-        headerType: 4,
-        contextInfo: { externalAdReply:{
-        title:"ZIM BOT♡",
-        body:"SUB DRIPS OFC",
-        mediaType:2,
-        thumbnail: fs.readFileSync(`./drips.jpg`),
-        }}
-        }
-        ZimBotInc.sendMessage(m.chat, buttonMessage)
-      
-   }
-break
-/*
-case 'yt3':  case 'ytmusc': 
-if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
-const dripsmp3 = require ('./lib/ytdl2')
-let yts = require("youtube-yts")
-let search = await yts(text)
-let bhingu = search.videos[0]
-const kudzi = await dripsmp3.mp3(bhingu.url)
-let caption = `
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-    ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉*_ ⟯ 
-   
-0.02━◉━━━━━━━━━━━━3.26
-      🔂   ⏪   ⏸️     ⏩  🎵\n\n*◉TITLE :* ${bhingu.title}\n*◉FILESIZE :*\n*◉URL :* ${isUrl(text)}\n*◉EXT :* MP3\n*\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
-buf = await getBuffer(kudzi.meta.image)
-await ZimBotInc.sendMessage(m.chat, {text: `*ɪᴍ sᴇɴᴅɪɴɢ ʏᴏᴜʀ sᴏɴɢ📻ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
-ZimBotInc.sendMessage(m.chat, { document: fs.readFileSync(kudzi.path),
-    fileName: bhingu.title + '.mp3',
-    mimetype: 'audio/mp4', quoted: m, contextInfo: { externalAdReply:{
-title:"◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉",
-body:"SUB DRIPS OFC",
-showAdAttribution: true,
-mediaType:2,
-thumbnail: fs.readFileSync(`./drips.jpg`) ,
-mediaUrl:`https://wa.me/447441437150`, 
-sourceUrl: `https://youtu.be/KNu-gr2h7bo` }
-},
-}, {quoted: m})
-
-await fs.unlinkSync(kudzi.path)
-*/
-break
-case 'ytmp3':
-if (!args || !args[0]) throw 'need a link'
-if (!/^(?:https?:\/\/)?(?:www\.|m\.|music\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/.test(args[0])) throw `Invalid link`
-ZimBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
-const jsoni = await fetchJson('https://yt.nxr.my.id/yt2?url=' + args[0] + '&type=audio')
-await ZimBotInc.sendMessage(m.chat, {text: `*ɪᴍ sᴇɴᴅɪɴɢ ʏᴏᴜʀ sᴏɴɢ📻ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
-if (!jsoni.status || !jsoni.data.url) throw `failed to download your music`
-let captiono = `*Y T - P L A Y*\n\n`
-captiono += `	◦  *Title* : ${jsoni.title}\n`
-captiono += `	◦  *Size* : ${jsoni.data.size}\n`
-captiono += `	◦  *Duration* : ${jsoni.duration}\n`
-captiono += `	◦  *Bitrate* : ${jsoni.data.quality}\n\n`
-captiono += 'ZIMBOT'
-zimbotu =  `${jsoni.data.url}`
-
-ZimBotInc.sendMessage(m.chat,{document: {url:jsoni.data.url}, fileName: `${jsoni.title}`, mimetype: 'audio/mp3', quoted: m, contextInfo: { externalAdReply:{
-title:"◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉",
-body:"SUB DRIPS OFC",
-showAdAttribution: true,
-mediaType:2,
-thumbnail: fs.readFileSync(`./drips.jpg`) ,
-mediaUrl:`https://wa.me/447441437150`, 
-sourceUrl: `https://youtu.be/KNu-gr2h7bo` }
-}}, {quoted: m})
-break
-case 'ytmp4': case 'ytvideo': 
-const dripsvideo = require('./lib/ytdl2')
-if (args.length < 1 || !isUrl(text) || !dripsvideo.isYTUrl(text)) throw `Where is the link?🤪`
-ZimBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
-const v5=await dripsvideo.mp4(text)
-/*var capti = `
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-    ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉*_ ⟯ 
-   
-0.02━◉━━━━━━━━━━━━3.26
-      🔂   ⏪   ⏸️     ⏩  🎵\n\n*◉Title* : ${media.title}\n*◉FILESIZE* : ${media.filesizeF}\n*◉URL* : ${isUrl(text)}\n*◉EXT* : MP3\n*◉RESOLUTION* : ${args[1] || '360p'}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
-*/
-var buf = await getBuffer(v5.thumb)
-let hobho = ('*ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ʏᴏᴜʀ ᴠɪᴅᴇᴏ🎬ᴡᴀɪᴛ...*')
-await ZimBotInc.sendMessage(m.chat, {text: `*ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ʏᴏᴜʀ ᴠɪᴅᴇᴏ🎬ᴡᴀɪᴛ...* `}, {quoted: m})
-ZimBotInc.sendMessage(m.chat, { video: { url:v5.videoUrl }, mimetype: 'video/mp4', fileName: `${v5.title}.mp4`, caption: `*ᴛɪᴛʟᴇ:* ${v5.title} \n\n *ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot*` , quoted: m,contextInfo: { externalAdReply:{
-showAdAttribution: true,
-},
-}},{ quoted: m})
-break
-
-case 'ytss': case 'ytsearch': {
-  if (!text) throw `Example : ${prefix + command} story wa anime`
-  let yts = require("youtube-yts")
-  let search = await yts(text)
-  let teks = 'YouTube Search\n\n Result From '+text+'\n\n'
-  let no = 1
-  for (let i of search.all) {
-      teks += ` No : ${no++}\nType : ${i.type}\n Video ID : ${i.videoId}\n$ Title : ${i.title}\n$ Views : ${i.views}\nDuration : ${i.timestamp}\n Uploaded : ${i.ago}\n Url : ${i.url}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
-  }
-  ZimBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
-}
-break
-
-case 'audio':   
-if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
-const dripsmp4 = require ('./lib/ytdl2')
-let ytss = require("youtube-yts")
-let searchi  = await ytss(text)
-let bhinguu = searchi.videos[0]
-const kudzii = await dripsmp4.mp3(bhinguu.url)
-let captionu = `
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-    ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉*_ ⟯ 
-   
-0.02━◉━━━━━━━━━━━━3.26
-      🔂   ⏪   ⏸️     ⏩  🎵\n\n*◉TITLE :* ${bhinguu.title}\n*◉FILESIZE :*\n*◉URL :* ${isUrl(text)}\n*◉EXT :* MP3\n*\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
-buf = await getBuffer(kudzii.meta.image)
-await ZimBotInc.sendMessage(m.chat, {text: `*ɪᴍ sᴇɴᴅɪɴɢ ʏᴏᴜʀ sᴏɴɢ📻ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
-ZimBotInc.sendMessage(m.chat, { audio: fs.readFileSync(kudzii.path), fileName: bhinguu.title + '.mp3', mimetype: 'audio/mp4'}, {quoted: m})
-
-await fs.unlinkSync(kudzii.path)
-break
-case 'ytshorts': case 'shorts': {
-if (!text) return reply(`*Use ${prefix + command} enter pin link*`)
-if (!isUrl(args[0]) && !args[0].includes('youtube')) throw '*The link you provided is not valid*'  
-xa.Youtube(`${text}`).then(async (data) => {
-if (data.medias[0].formattedSize.split('MB')[0] >= 100) return m.reply('*File Over Limit* '+util.format(data)) 
-cap = `
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-    ⟮ _*◉Yᴏᴜᴛᴜʙᴇ Sʜᴏʀᴛꜱ◉*_ ⟯ 
-   
-0.02━◉━━━━━━━━━━━━3.26
-      🔂   ⏪   ⏸️     ⏩  🎵\n\n\n\n*◉TITLE:* ${data.title}\n*◉QUALITY:* ${data.medias[0].quality}\n*◉SIZE:* ${data.medias[0].formattedSize}\n*◉DURATION* ${data.duration}\n*◉ID:* ${data.medias[0].cached}\n*◉LINK:* ${data.url}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
-buf = await getBuffer(data.thumbnail)
-ZimBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${cap}` }, { quoted: m })
-ZimBotInc.sendMessage(m.chat, { video: { url: data.medias[0].url }, jpegThumbnail:buf, caption: `*◉TITLE:* ${data.title}\n*◉QUALITY:* ${data.medias[0].quality}\n*◉SIZE:* ${data.medias[0].formattedSize}` }, { quoted: m })  
-}).catch((err) => {
-reply(`*Failed to download and send media*`)
-})
-}
-break
-case 'getmusic': {
-let { yta } = require('./lib/y2mate')   
-if (!text) throw `Example : ${prefix + command} 1`
-if (!m.quoted) return m.reply('*Reply message*')
-if (!m.quoted.isBaileys) throw `*Can only reply to messages from bots*`
-let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
-if (!urls) throw `*Maybe the message you replied does not contain the ytsearch results`
-let quality = args[1] ? args[1] : '128kbps'
-let media = await yta(urls[text - 1], quality)
-if (media.filesize >= 100000) return m.reply('*File Over Limit* '+util.format(media))
-ZimBotInc.sendImage(m.chat, media.thumb, `*◉TITLE* : ${media.title}\n*◉FILE SIZE :* ${media.filesizeF}\n*◉URL :* ${urls[text - 1]}\n*◉EXT :* MP3\n*◉RESOLUTION :* ${args[1] || '128kbps'}`, m)
-ZimBotInc.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
-}
-break
-case 'getvideo': { 
-let { ytv } = require('./lib/y2mate')  
-if (!text) throw `Example : ${prefix + command} 1`
-if (!m.quoted) return m.reply('Reply Message')
-if (!m.quoted.isBaileys) throw `*Can only reply to messages from bots8`
-let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
-if (!urls) throw `*Maybe the message you replied does not contain the ytsearch result*`
-let quality = args[1] ? args[1] : '360p'
-let media = await ytv(urls[text - 1], quality)
-if (media.filesize >= 100000) return m.reply('*File Over Limit* '+util.format(media))
-ZimBotInc.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `*◉TITLE :* ${media.title}\n*◉FILESIZE :* ${media.filesizeF}\n*◉URL :* ${urls[text - 1]}\n*◉EXT:* MP3\n*◉RESOLUTION :* ${args[1] || '360p'}` }, { quoted: m })
-}
 case 'mediafire': {  
 reply(mess.wait)         
 if (!text) throw '*Enter a Link Query!*'
@@ -5790,7 +5592,7 @@ case 'تنزيل_مشرف': case 'تنزيل': {
 					if (!isBotAdmins) throw mess.botAdmin
 					if (!isAdmins && !isCreator) throw mess.admin
 			let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-			await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(`◍ تم تنزيل العضو  ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم التنزيل عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
+			await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(`◍ تم تنزيل العضو من ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم التنزيل عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
 		}
 		break
     
@@ -6018,7 +5820,7 @@ case 'الترحيب': case 'xxwelcomexx': {
       } else {
       return m.reply('*◍  اهلا بيك عزيزي الادمن 🙂♥️*\n\n-›  يمكني انا اقفل لك الجروب بعد وقت معين \n\n1 -› مثال : اقفل 15 ثانيه \n2 -› مثال : اقفل 10 دقيقه\n3 -› مثال : اقفل 5 ساعه\n4 -› مثال : اقفل 2 يوم\n\n\n1 - في الحالة الاولي يتم قفل الجروب بعد 15 ثانيه .\n2 - في الحالة الثانيه يتم قفل الجروب بعد 10 دقايق .\n3 - في الحالة الثالثه يتم قفل الجروب بعد 5 ساعات .\n4 - في الحالة الرابعه يتم قفل الجروب بعد 2 يوم .\n')
       }
-      m.reply(`◍ يتم قفل الجروب بعد ${q} ثانيه √`)
+      m.reply(`◍ يتم قفل الجروب بعد ${q} √`)
       setTimeout(() => {
       var nomor = m.participant
       const close = `◍ تم قفل الجروب بنجاح 🥲🙁 √`
@@ -6514,7 +6316,7 @@ case 'بكار': case 'botbakar': case 'bakar':
     case 'يوتيوب': {
       ZimBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
       buffer = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
-      anu =`\n◍اهلا بك ${pushname} \n ◍ قم بالاختيار...\n\nㅤㅤㅤㅤㅤㅤㅤㅤㅤ√`
+      anu =`◍اهلا بك ${pushname} \n◍ قم بالاختيار احدي الازرار ...\n`
     const youtube7xmenu = async (remoteJid, text, footer, content) => {
     const templateMessage = {
     viewOnceMessage: {
@@ -6531,15 +6333,263 @@ case 'بكار': case 'botbakar': case 'bakar':
     const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
     };
     var buttonReplyy = [
-      { urlButton: { displayText: `SOURCECODE🍏`, url: `http://dripsofcch` } },
-      { quickReplyButton: { displayText: `SPEED`, id: `${prefix}ping` } },
-              { quickReplyButton: { displayText: `OWNER`, id: `${prefix}owner` } },
-              { quickReplyButton: { displayText: `LIST`, id: `${prefix}listmenu` } }
+      { urlButton: { displayText: `انضم مجتمعنا 🐼`, url: `https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e` } },
+      { quickReplyButton: { displayText: `صوت`, id: `xxaaxx` } },
+              { quickReplyButton: { displayText: `فيديو`, id: `xxffxx` } },
+              { quickReplyButton: { displayText: `نتائج البحث`, id: `xxbbxx` } }
           ]
           youtube7xmenu(from, anu, '', buttonReplyy)
           }
     break
+case 'xxaaxx': 
+    throw `◍ أهلا بيك بقائمه تحميل الصوت من يوتيوب\n•━━━━━━━━━━━━•ٴ\n◍ › ص + اسم اللي عايز تبحث عنه \n-› مثال : ص تامر حسني بحبك\n•━━━━━━━━━━━━━•ٴ\n◍ › م + لينك  & لتحميل صوت مستند mp3 . \n-› مثال : م https://www.youtube.com/watch?v=PyP-Ptoloxc\n•━━━━━━━━━━━━━•ٴ`
+    break
+case 'xxffxx': 
+    throw `◍ أهلا بيك بقائمه تحميل الفيديوهات من يوتيوب\n•━━━━━━━━━━━━━•ٴ\n◍ › ف + لينك \n-› مثال : ف https://www.youtube.com/watch?v=PyP-Ptoloxc\n•━━━━━━━━━━━━━•ٴ`
+    break
+case 'xxbbxx': 
+    throw `◍ أهلا بيك بقائمه بحث في يوتيوب\n•━━━━━━━━━━━━━•ٴ\n◍ › بحث + اللي عايز تبحث عنه & صوت .\n◍ › بحث2 + اللي عايز تبحث عنه & فيديو .\n◍ › بحث3 + اللي عايز تبحث عنه & رابط نتائج بحث .\n•━━━━━━━━━━━━━•ٴ `
+    break
+////-------------- اوامر يوتيوب ------------- ///
 
+case 'ص':   
+  if (!text) throw `-› مثال : ص تامر حسني بحبك`
+  ZimBotInc.sendMessage(m.chat, { react: { text: `🎼`, key: m.key }})
+  const dripsmp4 = require ('./lib/ytdl2')
+  let ytss = require("youtube-yts")
+  let searchi  = await ytss(text)
+  let bhinguu = searchi.videos[0]
+  const kudzii = await dripsmp4.mp3(bhinguu.url)
+  buf = await getBuffer(kudzii.meta.image)
+  await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+  ZimBotInc.sendMessage(m.chat, { audio: fs.readFileSync(kudzii.path), fileName: bhinguu.title + '.mp3', mimetype: 'audio/mp4'}, {quoted: m})
+  
+  await fs.unlinkSync(kudzii.path)
+  break
+
+	case 'صوت': case 'ytmp3': case 'ytaudio': 
+	const xeonaudp3 = require('./lib/ytdl2')
+	if (args.length < 1 || !isUrl(text) || !xeonaudp3.isYTUrl(text)) throw `*◍ ⇜ صوت  +  رابط الفيديو*`
+	const audio=await xeonaudp3.mp3(text)
+	await ZimBotInc.sendMessage(m.chat,{
+		audio: fs.readFileSync(audio.path),
+		mimetype: 'audio/mp4', ptt: true,
+		contextInfo:{
+			externalAdReply:{
+				title:audio.meta.title,
+				body: botname,
+				thumbnail: await fetchBuffer(audio.meta.image),
+				mediaType:2,
+				mediaUrl:text,
+			}
+
+		},
+	},{quoted:m})
+	await fs.unlinkSync(audio.path)
+	break
+
+case 'play': {
+  let { yta } = require('./lib/y2mate')
+  if (!text)  reply(`Example : ${prefix + command} story wa anime`)
+  let yts = require("yt-search")
+  let search = await yts(text)
+  let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
+  let buf = await getBuffer(anu.thumbnail)
+  let muziq = [
+                      {buttonId: `audio ${anu.url}`, buttonText: {displayText: 'AUDIO'}, type: 1},
+                      {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: 'VIDEO'}, type: 1},
+                       {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: 'DOCUMENT'}, type: 1}
+                  ]
+  let caption = `
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+         ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴍᴜꜱɪᴄ◉*_ ⟯ 
+     
+  0.02━◉━━━━━━━━━━━━3.26
+        🔂   ⏪   ⏸️     ⏩  🎵
+  
+  *◉Tɪᴛʟᴇ :* ${anu.title}
+  *◉Sɪᴢᴇ :* ${anu.filesize}
+  *◉Uʀʟ :* ${anu.url}
+  *◉Dᴇꜱᴄʀɪᴘᴛɪᴏɴ :* ${anu.description}
+   ©ᴢɪᴍʙᴏᴛɪɴᴄ
+  
+  `
+  message = await prepareWAMessageMedia({ image : { url: anu.thumbnail } }, { upload:   ZimBotInc.waUploadToServer })
+  let buttonMessage = {
+          image: buf,
+          jpegThumbnail:buf,
+          caption: caption,
+          footer: ` ⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
+          buttons: muziq,
+          headerType: 4,
+          contextInfo: { externalAdReply:{
+          title:"ZIM BOT♡",
+          body:"SUB DRIPS OFC",
+          mediaType:2,
+          thumbnail: fs.readFileSync(`./drips.jpg`),
+          }}
+          }
+          ZimBotInc.sendMessage(m.chat, buttonMessage)
+        
+     }
+  break
+  /*
+  case 'yt3':  case 'ytmusc': 
+  if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
+  const dripsmp3 = require ('./lib/ytdl2')
+  let yts = require("youtube-yts")
+  let search = await yts(text)
+  let bhingu = search.videos[0]
+  const kudzi = await dripsmp3.mp3(bhingu.url)
+  let caption = `
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+      ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉*_ ⟯ 
+     
+  0.02━◉━━━━━━━━━━━━3.26
+        🔂   ⏪   ⏸️     ⏩  🎵\n\n*◉TITLE :* ${bhingu.title}\n*◉FILESIZE :*\n*◉URL :* ${isUrl(text)}\n*◉EXT :* MP3\n*\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
+  buf = await getBuffer(kudzi.meta.image)
+  await ZimBotInc.sendMessage(m.chat, {text: `*ɪᴍ sᴇɴᴅɪɴɢ ʏᴏᴜʀ sᴏɴɢ📻ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
+  ZimBotInc.sendMessage(m.chat, { document: fs.readFileSync(kudzi.path),
+      fileName: bhingu.title + '.mp3',
+      mimetype: 'audio/mp4', quoted: m, contextInfo: { externalAdReply:{
+  title:"◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉",
+  body:"SUB DRIPS OFC",
+  showAdAttribution: true,
+  mediaType:2,
+  thumbnail: fs.readFileSync(`./drips.jpg`) ,
+  mediaUrl:`https://wa.me/447441437150`, 
+  sourceUrl: `https://youtu.be/KNu-gr2h7bo` }
+  },
+  }, {quoted: m})
+  
+  await fs.unlinkSync(kudzi.path)
+  */
+  break
+  case 'ytmp3':
+  if (!args || !args[0]) throw 'need a link'
+  if (!/^(?:https?:\/\/)?(?:www\.|m\.|music\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/.test(args[0])) throw `Invalid link`
+  ZimBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
+  const jsoni = await fetchJson('https://yt.nxr.my.id/yt2?url=' + args[0] + '&type=audio')
+  await ZimBotInc.sendMessage(m.chat, {text: `*ɪᴍ sᴇɴᴅɪɴɢ ʏᴏᴜʀ sᴏɴɢ📻ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
+  if (!jsoni.status || !jsoni.data.url) throw `failed to download your music`
+  let captiono = `*Y T - P L A Y*\n\n`
+  captiono += `	◦  *Title* : ${jsoni.title}\n`
+  captiono += `	◦  *Size* : ${jsoni.data.size}\n`
+  captiono += `	◦  *Duration* : ${jsoni.duration}\n`
+  captiono += `	◦  *Bitrate* : ${jsoni.data.quality}\n\n`
+  captiono += 'ZIMBOT'
+  zimbotu =  `${jsoni.data.url}`
+  
+  ZimBotInc.sendMessage(m.chat,{document: {url:jsoni.data.url}, fileName: `${jsoni.title}`, mimetype: 'audio/mp3', quoted: m, contextInfo: { externalAdReply:{
+  title:"◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉",
+  body:"SUB DRIPS OFC",
+  showAdAttribution: true,
+  mediaType:2,
+  thumbnail: fs.readFileSync(`./drips.jpg`) ,
+  mediaUrl:`https://wa.me/447441437150`, 
+  sourceUrl: `https://youtu.be/KNu-gr2h7bo` }
+  }}, {quoted: m})
+  break
+  case 'ytmp4': case 'ytvideo': 
+  const dripsvideo = require('./lib/ytdl2')
+  if (args.length < 1 || !isUrl(text) || !dripsvideo.isYTUrl(text)) throw `Where is the link?🤪`
+  ZimBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
+  const v5=await dripsvideo.mp4(text)
+  /*var capti = `
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+      ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉*_ ⟯ 
+     
+  0.02━◉━━━━━━━━━━━━3.26
+        🔂   ⏪   ⏸️     ⏩  🎵\n\n*◉Title* : ${media.title}\n*◉FILESIZE* : ${media.filesizeF}\n*◉URL* : ${isUrl(text)}\n*◉EXT* : MP3\n*◉RESOLUTION* : ${args[1] || '360p'}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
+  */
+  var buf = await getBuffer(v5.thumb)
+  let hobho = ('*ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ʏᴏᴜʀ ᴠɪᴅᴇᴏ🎬ᴡᴀɪᴛ...*')
+  await ZimBotInc.sendMessage(m.chat, {text: `*ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ʏᴏᴜʀ ᴠɪᴅᴇᴏ🎬ᴡᴀɪᴛ...* `}, {quoted: m})
+  ZimBotInc.sendMessage(m.chat, { video: { url:v5.videoUrl }, mimetype: 'video/mp4', fileName: `${v5.title}.mp4`, caption: `*ᴛɪᴛʟᴇ:* ${v5.title} \n\n *ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot*` , quoted: m,contextInfo: { externalAdReply:{
+  showAdAttribution: true,
+  },
+  }},{ quoted: m})
+  break
+  
+  case 'ytss': case 'ytsearch': {
+    if (!text) throw `Example : ${prefix + command} story wa anime`
+    let yts = require("youtube-yts")
+    let search = await yts(text)
+    let teks = 'YouTube Search\n\n Result From '+text+'\n\n'
+    let no = 1
+    for (let i of search.all) {
+        teks += ` No : ${no++}\nType : ${i.type}\n Video ID : ${i.videoId}\n$ Title : ${i.title}\n$ Views : ${i.views}\nDuration : ${i.timestamp}\n Uploaded : ${i.ago}\n Url : ${i.url}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
+    }
+    ZimBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+  }
+  break
+  
+  
+  case 'ytshorts': case 'shorts': {
+  if (!text) return reply(`*Use ${prefix + command} enter pin link*`)
+  if (!isUrl(args[0]) && !args[0].includes('youtube')) throw '*The link you provided is not valid*'  
+  xa.Youtube(`${text}`).then(async (data) => {
+  if (data.medias[0].formattedSize.split('MB')[0] >= 100) return m.reply('*File Over Limit* '+util.format(data)) 
+  cap = `
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+      ⟮ _*◉Yᴏᴜᴛᴜʙᴇ Sʜᴏʀᴛꜱ◉*_ ⟯ 
+     
+  0.02━◉━━━━━━━━━━━━3.26
+        🔂   ⏪   ⏸️     ⏩  🎵\n\n\n\n*◉TITLE:* ${data.title}\n*◉QUALITY:* ${data.medias[0].quality}\n*◉SIZE:* ${data.medias[0].formattedSize}\n*◉DURATION* ${data.duration}\n*◉ID:* ${data.medias[0].cached}\n*◉LINK:* ${data.url}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
+  buf = await getBuffer(data.thumbnail)
+  ZimBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${cap}` }, { quoted: m })
+  ZimBotInc.sendMessage(m.chat, { video: { url: data.medias[0].url }, jpegThumbnail:buf, caption: `*◉TITLE:* ${data.title}\n*◉QUALITY:* ${data.medias[0].quality}\n*◉SIZE:* ${data.medias[0].formattedSize}` }, { quoted: m })  
+  }).catch((err) => {
+  reply(`*Failed to download and send media*`)
+  })
+  }
+  break
+  case 'getmusic': {
+  let { yta } = require('./lib/y2mate')   
+  if (!text) throw `Example : ${prefix + command} 1`
+  if (!m.quoted) return m.reply('*Reply message*')
+  if (!m.quoted.isBaileys) throw `*Can only reply to messages from bots*`
+  let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
+  if (!urls) throw `*Maybe the message you replied does not contain the ytsearch results`
+  let quality = args[1] ? args[1] : '128kbps'
+  let media = await yta(urls[text - 1], quality)
+  if (media.filesize >= 100000) return m.reply('*File Over Limit* '+util.format(media))
+  ZimBotInc.sendImage(m.chat, media.thumb, `*◉TITLE* : ${media.title}\n*◉FILE SIZE :* ${media.filesizeF}\n*◉URL :* ${urls[text - 1]}\n*◉EXT :* MP3\n*◉RESOLUTION :* ${args[1] || '128kbps'}`, m)
+  ZimBotInc.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
+  }
+  break
+  case 'getvideo': { 
+  let { ytv } = require('./lib/y2mate')  
+  if (!text) throw `Example : ${prefix + command} 1`
+  if (!m.quoted) return m.reply('Reply Message')
+  if (!m.quoted.isBaileys) throw `*Can only reply to messages from bots8`
+  let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
+  if (!urls) throw `*Maybe the message you replied does not contain the ytsearch result*`
+  let quality = args[1] ? args[1] : '360p'
+  let media = await ytv(urls[text - 1], quality)
+  if (media.filesize >= 100000) return m.reply('*File Over Limit* '+util.format(media))
+  ZimBotInc.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `*◉TITLE :* ${media.title}\n*◉FILESIZE :* ${media.filesizeF}\n*◉URL :* ${urls[text - 1]}\n*◉EXT:* MP3\n*◉RESOLUTION :* ${args[1] || '360p'}` }, { quoted: m })
+  }
+///--------------------------------------------------------------------------//
+case 'السحري': case 'سحري': {
+  if (!text) throw `*↜ معاك بكار السحري 🧞‍♂️*\n↜  ارسل لي سؤال وساقوم بالاجابة عن الاسئله بصدق او كدب 🧞‍♂️\n↜ مثال :  سحري هل انت بتحب ليدو ؟`
+  let sama = [`فعلا كل الي كلته صح 😁💋`,`كدااب اوى🙄😒`,` ايوه ايوه صح كل اللي تقوله يلا توكل.`,`الكلام ده مظبوط🙂😹!!!`,`ڪلُآمك صادق 💘`,`احس هذا شي كذب 🌚💕`,`اى الكدب ده😔💔`,`عينى فى عينك كده👀🌚`,`انت كداب 🙂🤓`]
+  let sara = sama[Math.floor(Math.random() * sama.length)]
+  let lidoo = `*سؤالك ${text}*\nالاجابة : ${sara}`
+  let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
+await ZimBotInc.sendButtonText(m.chat, buttons, lidoo, botname, m)
+}
+break    
+
+case 'بتحب': case 'بتحب ده': {
+  let esrAA = [`اخويا وصحبي وكفاءة 😂`,`اللي مشرف دوله 🔥`,`ابن قلبي ♥️💪`,`قلباااي😂💗`,`مسمعتش الاسم ده قبل كدة 🙄`,`بدى ارجع يعع 💔😂`,`اخويا الجدع ال مافيش منه مرتجع❤️😂`,`محصليش الشرف😏`,`حبيبي قلبي ده 🙂❤️`,`ده حبيبي والله 🥺♥️`,`اكيد بحبه 😍🥺`,`ايوة يسطا بحبه فشخ 😘♥️`]
+  let Shereen = esrAA[Math.floor(Math.random() * esrAA.length)]
+  let lidoo7x = ` ${Shereen}`
+  let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
+await ZimBotInc.sendButtonText(m.chat, buttons, lidoo7x, botname, m)
+}
+break
+////-----------------------------------------------------------------------------------------//    
 
 
     case 'فيديو': case 'ytmp4': case 'ytvideo': //credit: Ray Senpai â¤ï¸ https://github.com/EternityBots/Nezuko
@@ -6590,7 +6640,7 @@ case 'بكار': case 'botbakar': case 'bakar':
   const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   var buttonReplyy = [
-          { urlButton: { displayText: `مجتمعنا ✨`, url : `https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e` } },
+          { urlButton: { displayText: `انضم مجتمعنا 🐼`, url : `https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e` } },
           { quickReplyButton: { displayText: `ابدء المستوي الاول من اللعبة 🫶🏻`, id: `r1` } }
         ]
         meloinmenu(from, anu, '', buttonReplyy)
