@@ -3356,6 +3356,20 @@ showAdAttribution: true,
 },
 }},{ quoted: m})
 break
+
+case 'ytss': case 'ytsearch': {
+  if (!text) throw `Example : ${prefix + command} story wa anime`
+  let yts = require("youtube-yts")
+  let search = await yts(text)
+  let teks = 'YouTube Search\n\n Result From '+text+'\n\n'
+  let no = 1
+  for (let i of search.all) {
+      teks += ` No : ${no++}\nType : ${i.type}\n Video ID : ${i.videoId}\n$ Title : ${i.title}\n$ Views : ${i.views}\nDuration : ${i.timestamp}\n Uploaded : ${i.ago}\n Url : ${i.url}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
+  }
+  ZimBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+}
+break
+
 case 'audio':   
 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
 const dripsmp4 = require ('./lib/ytdl2')
@@ -3371,16 +3385,7 @@ let captionu = `
       🔂   ⏪   ⏸️     ⏩  🎵\n\n*◉TITLE :* ${bhinguu.title}\n*◉FILESIZE :*\n*◉URL :* ${isUrl(text)}\n*◉EXT :* MP3\n*\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
 buf = await getBuffer(kudzii.meta.image)
 await ZimBotInc.sendMessage(m.chat, {text: `*ɪᴍ sᴇɴᴅɪɴɢ ʏᴏᴜʀ sᴏɴɢ📻ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
-ZimBotInc.sendMessage(m.chat, { audio: fs.readFileSync(kudzii.path), fileName: bhinguu.title + '.mp3', mimetype: 'audio/mp4', quoted: m, contextInfo: { externalAdReply:{
-title:"◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉",
-body:"SUB DRIPS OFC",
-showAdAttribution: true,
-mediaType:2,
-thumbnail: fs.readFileSync(`./drips.jpg`) ,
-mediaUrl:`https://wa.me/447441437150`, 
-sourceUrl: `https://wa.me/447441437150` }
-},
-}, {quoted: m})
+ZimBotInc.sendMessage(m.chat, { audio: fs.readFileSync(kudzii.path), fileName: bhinguu.title + '.mp3', mimetype: 'audio/mp4'}, {quoted: m})
 
 await fs.unlinkSync(kudzii.path)
 break
@@ -3516,7 +3521,7 @@ case 'ytsaudio': case 'ytsmusic': case 'ytsearchmusic': {
                         {
                         text: ` ${text}`,
                         footer: botname,
-                        title: `${ucapannya2} ${pushname} Here are the search results from ytsaudio`,
+                        title: ` ${pushname} Here are the search results from ytsaudio`,
                         buttonText: "LIST OF AUDIOS",
                         sections
                         }, { quoted : m })
@@ -6461,7 +6466,7 @@ const ndav =[	'*اسمي  بكار  يا قلبي 🤤💚*',
                       "بس لعب 😒"
 ]
 const xeondndav = ndav[Math.floor(Math.random() * ndav.length)]
-var botbbs = JSON.parse(fs.readFileSync('./database/bakarbot.json'))
+var botbbs = JSON.parse(fs.readFileSync('./database/bakarbotss.json'))
 var  bakarbots = pickRandom(botbbs)
 let bbndav = [
   {buttonId: `bakar`, buttonText: {displayText: '𝗕𝗔𝗞𝗔𝗥 😍❤️ ' }, type: 1}
@@ -6506,11 +6511,53 @@ case 'بكار': case 'botbakar': case 'bakar':
 
 
 
+    case 'يوتيوب': {
+      ZimBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
+      buffer = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
+      anu =`\n◍اهلا بك ${pushname} \n ◍ قم بالاختيار...\n\nㅤㅤㅤㅤㅤㅤㅤㅤㅤ√`
+    const youtube7xmenu = async (remoteJid, text, footer, content) => {
+    const templateMessage = {
+    viewOnceMessage: {
+    message: { 
+    templateMessage: {
+    hydratedTemplate: {
+    hydratedContentText: text,
+    hydratedButtons: content,
+    },
+    },
+    },
+    },
+    };
+    const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+    };
+    var buttonReplyy = [
+      { urlButton: { displayText: `SOURCECODE🍏`, url: `http://dripsofcch` } },
+      { quickReplyButton: { displayText: `SPEED`, id: `${prefix}ping` } },
+              { quickReplyButton: { displayText: `OWNER`, id: `${prefix}owner` } },
+              { quickReplyButton: { displayText: `LIST`, id: `${prefix}listmenu` } }
+          ]
+          youtube7xmenu(from, anu, '', buttonReplyy)
+          }
+    break
 
 
 
-
-
+    case 'فيديو': case 'ytmp4': case 'ytvideo': //credit: Ray Senpai â¤ï¸ https://github.com/EternityBots/Nezuko
+    const xeonvidoh = require('./lib/ytdl2')
+    if (args.length < 1 || !isUrl(text) || !xeonvidoh.isYTUrl(text)) throw `*◍ ⇜ فيديو  +  رابط الفيديو*`
+    const vid=await xeonvidoh.mp4(text)
+    const ytc=`
+    *◍ العنوان:* ${vid.title}
+    *◍ تاريخ:* ${vid.date}
+    *◍ الوصف:* ${vid.duration}
+    *◍ الجودة:* ${vid.quality}
+    
+    *◍ تم تحميل بواسطة » بوت بكار 🐼* `
+    await ZimBotInc.sendMessage(m.chat,{
+      video: {url:vid.videoUrl},
+      caption: ytc
+    },{quoted:m})
+    break
 
 
 
@@ -6524,7 +6571,7 @@ case 'بكار': case 'botbakar': case 'bakar':
     ZimBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
     buffer = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
     anu =`⦁ مرحبا بك في لعبة من سيربح المليون \n⦁ اللعبة 3 مستويات عبارة عن اسئلة عامة \n⦁ جاهز يوحش ؟! 😂❤️`
-  const nsfmenu = async (remoteJid, text, footer, content) => {
+  const meloinmenu = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
   let message = await prepareWAMessageMedia({ image: bufu }, { upload: ZimBotInc.waUploadToServer })
   const templateMessage = {
@@ -6546,7 +6593,7 @@ case 'بكار': case 'botbakar': case 'bakar':
           { urlButton: { displayText: `مجتمعنا ✨`, url : `https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e` } },
           { quickReplyButton: { displayText: `ابدء المستوي الاول من اللعبة 🫶🏻`, id: `r1` } }
         ]
-        nsfmenu(from, anu, '', buttonReplyy)
+        meloinmenu(from, anu, '', buttonReplyy)
         }
   break
 	case 'wwwq':    
