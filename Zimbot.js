@@ -6309,10 +6309,7 @@ case 'بكار': case 'botbakar': case 'bakar':
     ZimBotInc.sendMessage(from, { buttons: bbakdsddwa, image: { url: bakarbot.url }, caption: ''+ xeondffffsawwsa }, {quoted:m})
 		break
 
-
-
-
-
+//------------- يوتيوب -----------------------///
     case 'يوتيوب': {
       ZimBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
       buffer = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
@@ -6352,7 +6349,7 @@ case 'xxbbxx':
     break
 ////-------------- اوامر يوتيوب ------------- ///
 
-case 'ص':   
+case 'xxwawxx': case 'ص':   
   if (!text) throw `-› مثال : ص تامر حسني بحبك`
   ZimBotInc.sendMessage(m.chat, { react: { text: `🎼`, key: m.key }})
   const dripsmp4 = require ('./lib/ytdl2')
@@ -6367,6 +6364,22 @@ case 'ص':
   await fs.unlinkSync(kudzii.path)
   break
 
+  case 'xxvbvxx': case 'فيديو': case 'ف':
+    const xeonvidoh = require('./lib/ytdl2')
+    if (args.length < 1 || !isUrl(text) || !xeonvidoh.isYTUrl(text)) throw `*◍ ⇜ فيديو  +  رابط الفيديو*`
+    const vid=await xeonvidoh.mp4(text)
+    const ytc=`
+    *◍ العنوان:* ${vid.title}
+    *◍ تاريخ:* ${vid.date}
+    *◍ الوصف:* ${vid.duration}
+    *◍ الجودة:* ${vid.quality}
+    
+    *◍ تم تحميل بواسطة » بوت بكار 🐼* `
+    await ZimBotInc.sendMessage(m.chat,{
+      video: {url:vid.videoUrl},
+      caption: ytc
+    },{quoted:m})
+    break  
 	
 ///-----  تشغيل من يوتيوب ---------------//
 case 'شغل': case 'تشغيل': {
@@ -6411,7 +6424,8 @@ case 'شغل': case 'تشغيل': {
 	const xeonaudp3 = require('./lib/ytdl2')
 	if (args.length < 1 || !isUrl(text) || !xeonaudp3.isYTUrl(text)) throw `*◍ ⇜ صوت  +  رابط الفيديو*`
 	const audio=await xeonaudp3.mp3(text)
-	await ZimBotInc.sendMessage(m.chat,{
+await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+  ZimBotInc.sendMessage(m.chat,{
 		audio: fs.readFileSync(audio.path),
 		mimetype: 'audio/mp4', ptt: true,
 		contextInfo:{
@@ -6436,7 +6450,8 @@ case 'فيديوو': case 'xxvvxx':
 			let xeonsearch13 = await ytsmp4(text)
 			let anuvidoke4 = xeonsearch13.videos[0]
 	const pl2= await xeonplaymp4.mp4(anuvidoke4.url)
-	await ZimBotInc.sendMessage(m.chat,{
+await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+ZimBotInc.sendMessage(m.chat,{
 		document: {url:pl2.videoUrl},
 		fileName: anuvidoke4.title + '.mp4',
 		mimetype: 'video/mp4',
@@ -6463,8 +6478,69 @@ case 'م': case 'xxytmp3xx':
     ZimBotInc.sendMessage(m.chat,{document: {url:jsoni.data.url}, fileName: `${jsoni.title}`, mimetype: 'audio/mp3'}, {quoted: m})
     break 
 //-------------------------------------------------//
-
-
+//----  البحث في يوتيوب ------------//
+case 'بحث': {
+  if (!text) return m.reply(`*◍ ⇜ بحث + اللي عايز تبحث عليه*`)
+    let ytslagu = require("youtube-yts")
+    let lagusearch = await ytslagu(text)
+    listSerch = []
+    teskd = `نتائج البحث : ${text}\n`
+    for (let i of lagusearch.all) {
+      listSerch.push({
+        title: i.title,
+        rowId: `${prefix}xxwawxx ${i.url}`,
+        description: ` المدة : ${i.timestamp}`
+      })
+    }
+    const sections = [
+      {
+        title: "أفضل " + lagusearch.all.length + " تطابق نتائج البحث ",
+        rows: listSerch
+      }
+    ]
+    const listMessage = {
+      text: teskd,
+      footer: botname,
+      title: ``,
+      buttonText: "نتائج البحث الصوت",
+      mentions: parseMention(teskd), sections
+    }
+    return ZimBotInc.sendMessage(m.chat, listMessage, {
+      quoted: m
+    })
+    }
+    break
+case 'بحث_فيديو': case 'بحث2': { 
+      if (!text) return m.reply(`*◍ ⇜ بحث2 + اللي عايز تبحث عليه*`)
+            let ytsvideo = require("youtube-yts")
+            let videosearch = await ytsvideo(text)
+            listSerch = []
+            teskd = `\n نتائج البحث : ${text}\n`
+            for (let i of videosearch.all) {
+              listSerch.push({
+                title: i.title,
+                rowId: `${prefix}xxvbvxx ${i.url}`,
+                description: `المدة : ${i.timestamp}`
+              })
+            }
+            let sections = [
+              {
+                title: "أفضل " + videosearch.all.length + "  تطابق نتائج البحث ",
+                rows: listSerch
+              }
+            ]
+            const listMessage = {
+              text: teskd,
+              footer: botname,
+              title: ``,
+              buttonText: "نتائج البحث الفيديو",
+              mentions: parseMention(teskd), sections
+            }
+            return ZimBotInc.sendMessage(m.chat, listMessage, {
+              quoted: m
+            })
+            }
+          break 
 
 
 
@@ -6618,22 +6694,7 @@ break
 ////-----------------------------------------------------------------------------------------//    
 
 
-    case 'فيديو': case 'ytmp4': case 'ytvideo': //credit: Ray Senpai â¤ï¸ https://github.com/EternityBots/Nezuko
-    const xeonvidoh = require('./lib/ytdl2')
-    if (args.length < 1 || !isUrl(text) || !xeonvidoh.isYTUrl(text)) throw `*◍ ⇜ فيديو  +  رابط الفيديو*`
-    const vid=await xeonvidoh.mp4(text)
-    const ytc=`
-    *◍ العنوان:* ${vid.title}
-    *◍ تاريخ:* ${vid.date}
-    *◍ الوصف:* ${vid.duration}
-    *◍ الجودة:* ${vid.quality}
-    
-    *◍ تم تحميل بواسطة » بوت بكار 🐼* `
-    await ZimBotInc.sendMessage(m.chat,{
-      video: {url:vid.videoUrl},
-      caption: ytc
-    },{quoted:m})
-    break
+
 
 
 
