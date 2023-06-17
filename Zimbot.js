@@ -38,6 +38,9 @@ const { PassThrough } = require('stream');
 const { getLinkPreview, getPreviewFromContent } = require("link-preview-js");
 const primbon = new Primbon()
 const { smsg, formatp, tanggal, formatDate, getTime,  sleep, clockString, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
+const { GIFBufferToVideoBuffer } = require('./database/myfunc')
+
+
 /*let { addLevelingId, addLevelingLevel, addLevelingXp, getLevelingId, getLevelingLevel, getLevelingXp } = require("./lib/lvlfunction")*/
 const speedofbot = require("performance-now")
 const { mediafireDl } = require('./lib/mediafire.js')
@@ -6617,7 +6620,7 @@ break
 case 'نسبه': case 'نسبة': {
   let waleed = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
   let maro = waleed[Math.floor(Math.random() * waleed.length)]
-  let lidoo7x = ` ${maro}`
+  let lidoo7x = `◍ نسبة هي : ${maro}% `
   let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
 await ZimBotInc.sendButtonText(m.chat, buttons, lidoo7x, botname, m)
 }
@@ -6625,9 +6628,95 @@ break
 ////-----------------------------------------------------------------------------------------//    
 
 
+case 'cuddle': case 'killl':{
+  if (!m.isGroup) return replay(mess.group)	
+var pat = await fetchJson(`https://api.waifu.pics/sfw/kill`)
+try {
+  let messsender = m.sender
+let musers=``
+try {
+users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 
+ment=[messsender,users]
+} catch {
+users == "none"
+ ment=[messsender,m.sender]
+}
+if(users == "none"){
+   musers =`@${m.sender.split("@")[0]} ${command}ed themselves!!`
+   console.log(musers)
 
+} else {
+const rcpp =`@${users.split("@"[0])}`
+musers= `@${m.sender.split("@")[0]} ${command}ed  @${users.split("@")[0]} `
 
+console.log(musers)
+}
+const response = await axios.get(pat.url,  { responseType: 'arraybuffer' })
+const buffer = Buffer.from(response.data, "utf-8")
+var fetchedgif = await GIFBufferToVideoBuffer(buffer)
+ZimBotInc.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+} catch (error) {
+console.log(error);
+}
+}
+break
+
+case 'qqw': {
+if (!m.isGroup) return replay(`${mess.group}`)
+let member = participants.map(u => u.id)
+let me = m.sender
+const rcpp =`@${users.split("@"[0])}`
+let jodoh = member[Math.floor(Math.random() * member.length)]
+let jawab = `
+@${me.split('@')[0]} # @@${users.split("@"[0])} 2@${jodoh.split('@')[0]}`
+let ments = [me, users]
+let buttons = [
+{ buttonId: '❤️', buttonText: { displayText: 'Bss' }, type: 1 }
+]
+await ZimBotInc.sendButtonText(m.chat, buttons, jawab, ZimBotInc.user.name, m, {mentions: ments})
+}
+break
+
+case 'cudd': case 'قتل':{
+  if (!m.isGroup) return replay(mess.group)	
+  const mikuarray= [
+    "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
+    "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
+    "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
+    "https://telegra.ph/file/457f59380b347f01faf6c.mp4"
+    ]
+  let buttons = [			
+      {buttonId: `cudd ${users.split("@")[0]}`, buttonText: {displayText: '● ●'}, type: 1},		
+    ]
+try {
+  let messsender = m.sender
+let musers=``
+try {
+users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+
+ment=[messsender,users]
+} catch {
+users == "none"
+ ment=[messsender,m.sender]
+}
+if(users == "none"){
+   musers =`@${m.sender.split("@")[0]} ${command}ed themselves!!`
+   console.log(musers)
+
+} else {
+const rcpp =`@${users.split("@"[0])}`
+musers= `@${m.sender.split("@")[0]} ${command}ed  @${users.split("@")[0]} `
+
+console.log(musers)
+}
+const mikuselection = mikuarray[Math.floor(Math.random()*mikuarray.length)]
+ZimBotInc.sendMessage(m.chat,{video:{url:mikuselection},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+} catch (error) {
+console.log(error);
+}
+}
+break
 
 
 
