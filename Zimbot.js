@@ -6375,7 +6375,8 @@ case 'xxwawxx': case 'ص':
     *◍ الجودة:* ${vid.quality}
     
     *◍ تم تحميل بواسطة » بوت بكار 🐼* `
-    await ZimBotInc.sendMessage(m.chat,{
+   await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+ ZimBotInc.sendMessage(m.chat,{
       video: {url:vid.videoUrl},
       caption: ytc
     },{quoted:m})
@@ -6502,7 +6503,7 @@ case 'بحث': {
       text: teskd,
       footer: botname,
       title: ``,
-      buttonText: "نتائج البحث الصوت",
+      buttonText: "نتائج البحث صوت",
       mentions: parseMention(teskd), sections
     }
     return ZimBotInc.sendMessage(m.chat, listMessage, {
@@ -6533,7 +6534,7 @@ case 'بحث_فيديو': case 'بحث2': {
               text: teskd,
               footer: botname,
               title: ``,
-              buttonText: "نتائج البحث الفيديو",
+              buttonText: "نتائج البحث فيديو",
               mentions: parseMention(teskd), sections
             }
             return ZimBotInc.sendMessage(m.chat, listMessage, {
@@ -6541,6 +6542,19 @@ case 'بحث_فيديو': case 'بحث2': {
             })
             }
           break 
+case 'بحث3': {
+            if (!text) throw ` اكتب : تحميل + اللي عايز تبحث عنه`
+            let yts = require("youtube-yts")
+            let search = await yts(text)
+            let teks = 'بحث في يوتيوب\n\n نتائج البحث عن : '+text+'\n\n'
+            let no = 1
+            for (let i of search.all) {
+              teks += `◍ رقم : ${no++}\n◍ النوع : ${i.type}\n◍ ايدي الفيديو : ${i.videoId}\n◍ العنوان : ${i.title}\n◍ مشاهدات : ${i.views}\n◍ المدة : ${i.timestamp}\n◍ لينك : ${i.url}\n\nـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n\n`
+            }
+            ZimBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+          }
+          break
+///-------------------------------------------///
 
 
 
@@ -6557,74 +6571,7 @@ case 'بحث_فيديو': case 'بحث2': {
 
 
 
-
-
-  /*
-  case 'yt3':  case 'ytmusc': 
-  if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
-  const dripsmp3 = require ('./lib/ytdl2')
-  let yts = require("youtube-yts")
-  let search = await yts(text)
-  let bhingu = search.videos[0]
-  const kudzi = await dripsmp3.mp3(bhingu.url)
-  let caption = `
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-      ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉*_ ⟯ 
-     
-  0.02━◉━━━━━━━━━━━━3.26
-        🔂   ⏪   ⏸️     ⏩  🎵\n\n*◉TITLE :* ${bhingu.title}\n*◉FILESIZE :*\n*◉URL :* ${isUrl(text)}\n*◉EXT :* MP3\n*\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
-  buf = await getBuffer(kudzi.meta.image)
-  await ZimBotInc.sendMessage(m.chat, {text: `*ɪᴍ sᴇɴᴅɪɴɢ ʏᴏᴜʀ sᴏɴɢ📻ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
-  ZimBotInc.sendMessage(m.chat, { document: fs.readFileSync(kudzi.path),
-      fileName: bhingu.title + '.mp3',
-      mimetype: 'audio/mp4', quoted: m, contextInfo: { externalAdReply:{
-  title:"◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉",
-  body:"SUB DRIPS OFC",
-  showAdAttribution: true,
-  mediaType:2,
-  thumbnail: fs.readFileSync(`./drips.jpg`) ,
-  mediaUrl:`https://wa.me/447441437150`, 
-  sourceUrl: `https://youtu.be/KNu-gr2h7bo` }
-  },
-  }, {quoted: m})
   
-  await fs.unlinkSync(kudzi.path)
-  */
-  break
-
-  case 'ytmp4': case 'ytvideo': 
-  const dripsvideo = require('./lib/ytdl2')
-  if (args.length < 1 || !isUrl(text) || !dripsvideo.isYTUrl(text)) throw `Where is the link?🤪`
-  ZimBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
-  const v5=await dripsvideo.mp4(text)
-  /*var capti = `
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-      ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉*_ ⟯ 
-     
-  0.02━◉━━━━━━━━━━━━3.26
-        🔂   ⏪   ⏸️     ⏩  🎵\n\n*◉Title* : ${media.title}\n*◉FILESIZE* : ${media.filesizeF}\n*◉URL* : ${isUrl(text)}\n*◉EXT* : MP3\n*◉RESOLUTION* : ${args[1] || '360p'}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
-  */
-  var buf = await getBuffer(v5.thumb)
-  let hobho = ('*ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ʏᴏᴜʀ ᴠɪᴅᴇᴏ🎬ᴡᴀɪᴛ...*')
-  await ZimBotInc.sendMessage(m.chat, {text: `*ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ʏᴏᴜʀ ᴠɪᴅᴇᴏ🎬ᴡᴀɪᴛ...* `}, {quoted: m})
-  ZimBotInc.sendMessage(m.chat, { video: { url:v5.videoUrl }, mimetype: 'video/mp4', fileName: `${v5.title}.mp4`, caption: `*ᴛɪᴛʟᴇ:* ${v5.title} \n\n *ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot*` , quoted: m,contextInfo: { externalAdReply:{
-  showAdAttribution: true,
-  },
-  }},{ quoted: m})
-  break
-  
-  case 'ytss': case 'ytsearch': {
-    if (!text) throw `Example : ${prefix + command} story wa anime`
-    let yts = require("youtube-yts")
-    let search = await yts(text)
-    let teks = 'YouTube Search\n\n Result From '+text+'\n\n'
-    let no = 1
-    for (let i of search.all) {
-        teks += ` No : ${no++}\nType : ${i.type}\n Video ID : ${i.videoId}\n$ Title : ${i.title}\n$ Views : ${i.views}\nDuration : ${i.timestamp}\n Uploaded : ${i.ago}\n Url : ${i.url}\n\nâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€\n\n`
-    }
-    ZimBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
-  }
-  break
   
   
   case 'ytshorts': case 'shorts': {
@@ -6646,32 +6593,7 @@ case 'بحث_فيديو': case 'بحث2': {
   })
   }
   break
-  case 'getmusic': {
-  let { yta } = require('./lib/y2mate')   
-  if (!text) throw `Example : ${prefix + command} 1`
-  if (!m.quoted) return m.reply('*Reply message*')
-  if (!m.quoted.isBaileys) throw `*Can only reply to messages from bots*`
-  let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
-  if (!urls) throw `*Maybe the message you replied does not contain the ytsearch results`
-  let quality = args[1] ? args[1] : '128kbps'
-  let media = await yta(urls[text - 1], quality)
-  if (media.filesize >= 100000) return m.reply('*File Over Limit* '+util.format(media))
-  ZimBotInc.sendImage(m.chat, media.thumb, `*◉TITLE* : ${media.title}\n*◉FILE SIZE :* ${media.filesizeF}\n*◉URL :* ${urls[text - 1]}\n*◉EXT :* MP3\n*◉RESOLUTION :* ${args[1] || '128kbps'}`, m)
-  ZimBotInc.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
-  }
-  break
-  case 'getvideo': { 
-  let { ytv } = require('./lib/y2mate')  
-  if (!text) throw `Example : ${prefix + command} 1`
-  if (!m.quoted) return m.reply('Reply Message')
-  if (!m.quoted.isBaileys) throw `*Can only reply to messages from bots8`
-  let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
-  if (!urls) throw `*Maybe the message you replied does not contain the ytsearch result*`
-  let quality = args[1] ? args[1] : '360p'
-  let media = await ytv(urls[text - 1], quality)
-  if (media.filesize >= 100000) return m.reply('*File Over Limit* '+util.format(media))
-  ZimBotInc.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `*◉TITLE :* ${media.title}\n*◉FILESIZE :* ${media.filesizeF}\n*◉URL :* ${urls[text - 1]}\n*◉EXT:* MP3\n*◉RESOLUTION :* ${args[1] || '360p'}` }, { quoted: m })
-  }
+  
 ///--------------------------------------------------------------------------//
 case 'السحري': case 'سحري': {
   if (!text) throw `*↜ معاك بكار السحري 🧞‍♂️*\n↜  ارسل لي سؤال وساقوم بالاجابة عن الاسئله بصدق او كدب 🧞‍♂️\n↜ مثال :  سحري هل انت بتحب ليدو ؟`
@@ -6687,6 +6609,15 @@ case 'بتحب': case 'بتحب ده': {
   let esrAA = [`اخويا وصحبي وكفاءة 😂`,`اللي مشرف دوله 🔥`,`ابن قلبي ♥️💪`,`قلباااي😂💗`,`مسمعتش الاسم ده قبل كدة 🙄`,`بدى ارجع يعع 💔😂`,`اخويا الجدع ال مافيش منه مرتجع❤️😂`,`محصليش الشرف😏`,`حبيبي قلبي ده 🙂❤️`,`ده حبيبي والله 🥺♥️`,`اكيد بحبه 😍🥺`,`ايوة يسطا بحبه فشخ 😘♥️`]
   let Shereen = esrAA[Math.floor(Math.random() * esrAA.length)]
   let lidoo7x = ` ${Shereen}`
+  let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
+await ZimBotInc.sendButtonText(m.chat, buttons, lidoo7x, botname, m)
+}
+break
+
+case 'نسبه': case 'نسبة': {
+  let waleed = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
+  let maro = waleed[Math.floor(Math.random() * waleed.length)]
+  let lidoo7x = ` ${maro}`
   let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
 await ZimBotInc.sendButtonText(m.chat, buttons, lidoo7x, botname, m)
 }
