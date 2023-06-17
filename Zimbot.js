@@ -6367,7 +6367,47 @@ case 'ص':
   await fs.unlinkSync(kudzii.path)
   break
 
-	case 'صوت': case 'ytmp3': case 'ytaudio': 
+	
+///-----  تشغيل من يوتيوب ---------------//
+case 'شغل': case 'تشغيل': {
+  let { yta } = require('./lib/y2mate')
+  if (!text)  reply(``)
+  let yts = require("yt-search")
+  let search = await yts(text)
+  let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
+  let buf = await getBuffer(anu.thumbnail)
+  let muziq = [
+                      {buttonId: `xxmp3xx ${anu.url}`, buttonText: {displayText: 'صوت'}, type: 1},
+                      {buttonId: `xxytmp3xx ${anu.url}`, buttonText: {displayText: 'صوت mp3'}, type: 1},
+                       {buttonId: `xxvvxx ${anu.url}`, buttonText: {displayText: 'فيديو'}, type: 1}
+                  ]
+  let caption = `⟮ _*◉ ʏᴏᴜᴛᴜʙᴇ ᴍᴜꜱɪᴄ ◉*_ ⟯ 
+
+0.00━◉━━━━━━━00.00
+
+🔂   ⏩   ⏸️     ⏪ 
+  
+*◉ الاسم :* ${anu.title}
+
+*◉ الحجم :* ${anu.filesize}
+
+*◉ رابط :* ${anu.url}
+   
+  `
+  message = await prepareWAMessageMedia({ image : { url: anu.thumbnail } }, { upload:   ZimBotInc.waUploadToServer })
+  let buttonMessage = {
+          image: buf,
+          jpegThumbnail:buf,
+          caption: caption,
+          footer: botname,
+          buttons: muziq,
+          headerType: 4,
+          }
+          ZimBotInc.sendMessage(m.chat, buttonMessage)
+        
+     }
+  break
+  case 'صوتت': case 'xxmp3xx': 
 	const xeonaudp3 = require('./lib/ytdl2')
 	if (args.length < 1 || !isUrl(text) || !xeonaudp3.isYTUrl(text)) throw `*◍ ⇜ صوت  +  رابط الفيديو*`
 	const audio=await xeonaudp3.mp3(text)
@@ -6388,51 +6428,61 @@ case 'ص':
 	await fs.unlinkSync(audio.path)
 	break
 
-case 'play': {
-  let { yta } = require('./lib/y2mate')
-  if (!text)  reply(`Example : ${prefix + command} story wa anime`)
-  let yts = require("yt-search")
-  let search = await yts(text)
-  let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
-  let buf = await getBuffer(anu.thumbnail)
-  let muziq = [
-                      {buttonId: `audio ${anu.url}`, buttonText: {displayText: 'AUDIO'}, type: 1},
-                      {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: 'VIDEO'}, type: 1},
-                       {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: 'DOCUMENT'}, type: 1}
-                  ]
-  let caption = `
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-         ⟮ _*◉ʏᴏᴜᴛᴜʙᴇ ᴍᴜꜱɪᴄ◉*_ ⟯ 
-     
-  0.02━◉━━━━━━━━━━━━3.26
-        🔂   ⏪   ⏸️     ⏩  🎵
-  
-  *◉Tɪᴛʟᴇ :* ${anu.title}
-  *◉Sɪᴢᴇ :* ${anu.filesize}
-  *◉Uʀʟ :* ${anu.url}
-  *◉Dᴇꜱᴄʀɪᴘᴛɪᴏɴ :* ${anu.description}
-   ©ᴢɪᴍʙᴏᴛɪɴᴄ
-  
-  `
-  message = await prepareWAMessageMedia({ image : { url: anu.thumbnail } }, { upload:   ZimBotInc.waUploadToServer })
-  let buttonMessage = {
-          image: buf,
-          jpegThumbnail:buf,
-          caption: caption,
-          footer: ` ⦿ɢɪᴛʜᴜʙ: https://youtube.com/@zim-bot \n®ᴢɪᴍʙᴏᴛɪɴᴄ 2023`,
-          buttons: muziq,
-          headerType: 4,
-          contextInfo: { externalAdReply:{
-          title:"ZIM BOT♡",
-          body:"SUB DRIPS OFC",
-          mediaType:2,
-          thumbnail: fs.readFileSync(`./drips.jpg`),
-          }}
-          }
-          ZimBotInc.sendMessage(m.chat, buttonMessage)
-        
-     }
-  break
+
+case 'فيديوو': case 'xxvvxx': 
+	if(!text) throw `-`
+	const xeonplaymp4 = require('./lib/ytdl2')
+	let ytsmp4 = require("youtube-yts")
+			let xeonsearch13 = await ytsmp4(text)
+			let anuvidoke4 = xeonsearch13.videos[0]
+	const pl2= await xeonplaymp4.mp4(anuvidoke4.url)
+	await ZimBotInc.sendMessage(m.chat,{
+		document: {url:pl2.videoUrl},
+		fileName: anuvidoke4.title + '.mp4',
+		mimetype: 'video/mp4',
+		contextInfo:{
+			externalAdReply:{
+				title:anuvidoke4.title,
+				body: botname,
+				thumbnail: await fetchBuffer(anuvidoke4.thumbnail),
+				mediaType:2,
+				mediaUrl:anuvidoke4.url,
+			}
+
+		},
+	},{quoted:m})
+	break
+
+case 'م': case 'xxytmp3xx':
+    if (!args || !args[0]) throw '-› مثال : م https://www.youtube.com/watch?v=PyP-Ptoloxc'
+    if (!/^(?:https?:\/\/)?(?:www\.|m\.|music\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/.test(args[0])) throw `لينك غلط يعم`
+    ZimBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
+    const jsoni = await fetchJson('https://yt.nxr.my.id/yt2?url=' + args[0] + '&type=audio')
+    await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+    if (!jsoni.status || !jsoni.data.url) throw `◍ حدث خطا...`
+    ZimBotInc.sendMessage(m.chat,{document: {url:jsoni.data.url}, fileName: `${jsoni.title}`, mimetype: 'audio/mp3'}, {quoted: m})
+    break 
+//-------------------------------------------------//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /*
   case 'yt3':  case 'ytmusc': 
   if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
@@ -6465,31 +6515,7 @@ case 'play': {
   await fs.unlinkSync(kudzi.path)
   */
   break
-  case 'ytmp3':
-  if (!args || !args[0]) throw 'need a link'
-  if (!/^(?:https?:\/\/)?(?:www\.|m\.|music\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/.test(args[0])) throw `Invalid link`
-  ZimBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
-  const jsoni = await fetchJson('https://yt.nxr.my.id/yt2?url=' + args[0] + '&type=audio')
-  await ZimBotInc.sendMessage(m.chat, {text: `*ɪᴍ sᴇɴᴅɪɴɢ ʏᴏᴜʀ sᴏɴɢ📻ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
-  if (!jsoni.status || !jsoni.data.url) throw `failed to download your music`
-  let captiono = `*Y T - P L A Y*\n\n`
-  captiono += `	◦  *Title* : ${jsoni.title}\n`
-  captiono += `	◦  *Size* : ${jsoni.data.size}\n`
-  captiono += `	◦  *Duration* : ${jsoni.duration}\n`
-  captiono += `	◦  *Bitrate* : ${jsoni.data.quality}\n\n`
-  captiono += 'ZIMBOT'
-  zimbotu =  `${jsoni.data.url}`
-  
-  ZimBotInc.sendMessage(m.chat,{document: {url:jsoni.data.url}, fileName: `${jsoni.title}`, mimetype: 'audio/mp3', quoted: m, contextInfo: { externalAdReply:{
-  title:"◉ʏᴏᴜᴛᴜʙᴇ ᴅᴏᴡɴʟᴏᴀᴅ◉",
-  body:"SUB DRIPS OFC",
-  showAdAttribution: true,
-  mediaType:2,
-  thumbnail: fs.readFileSync(`./drips.jpg`) ,
-  mediaUrl:`https://wa.me/447441437150`, 
-  sourceUrl: `https://youtu.be/KNu-gr2h7bo` }
-  }}, {quoted: m})
-  break
+
   case 'ytmp4': case 'ytvideo': 
   const dripsvideo = require('./lib/ytdl2')
   if (args.length < 1 || !isUrl(text) || !dripsvideo.isYTUrl(text)) throw `Where is the link?🤪`
