@@ -1974,21 +1974,7 @@ downloader.downloadAPK("com.microbees.floatingapp")
    }
  }
  break
- case 'mysoulmate': {
- if (!m.isGroup) throw mess.group
- let member = participants.map(u => u.id)
- let me = m.sender
- let jodoh = member[Math.floor(Math.random() * member.length)]
- let jawab = `👫Your match is
-
-@${me.split('@')[0]} ❤️ @${jodoh.split('@')[0]}`
- let ments = [me, jodoh]
- let buttons = [
-{ buttonId: '❤️', buttonText: { displayText: 'LOVE♥️' }, type: 1 }
-  ]
-  await ZimBotInc.sendButtonText(m.chat, buttons, jawab, ZimBotInc.user.name, m, {mentions: ments})
- }
- break
+ 
  case 'couple': {
  if (!m.isGroup) throw mess.group
  let member = participants.map(u => u.id)
@@ -6559,7 +6545,21 @@ case 'بحث3': {
           break
 ///-------------------------------------------///
 
-
+case 'زوجني': case 'جوزني': {
+  if (!m.isGroup) throw mess.group
+  let member = participants.map(u => u.id)
+  let me = m.sender
+  let jodoh = member[Math.floor(Math.random() * member.length)]
+  let esrAA = [`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`عقبال عندكم جميعا \nاتشرف انا كبوت بكار 🙂 \nبان اقوم بجواز @${me.split('@')[0]} مع @${jodoh.split('@')[0]}\nالقاعه: اللؤلؤه\nبتاربخ:13/09/2023\nالساعه: 8م\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂 `,`*اخترت لك هذا الشخص* \n @${jodoh.split('@')[0]} \n **انتم الان متزوجين رسميا يلا نعمل فرح 🌚♥️ \n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`,`*اخترت لك هذا الشخص* @${jodoh.split('@')[0]} \n **اعلنكم الان امام الجروب زوجاً وزوجه يلا اعملوا فرح 🙈♥️\n@${me.split('@')[0]} + @${jodoh.split('@')[0]} = ❤️\nلوووولوووووووولي💃💃💃💃♥️😂`]
+  let Shereen = esrAA[Math.floor(Math.random() * esrAA.length)]
+  let mrlido7x = `${Shereen}`
+  let ments = [me, jodoh]
+  let buttons = [
+ { buttonId: '❤️', buttonText: { displayText: '❤️' }, type: 1 }
+   ]
+   await ZimBotInc.sendButtonText(m.chat, buttons, mrlido7x, botname, m, {mentions: ments})
+  }
+  break
 
 
 
@@ -6627,67 +6627,36 @@ await ZimBotInc.sendButtonText(m.chat, buttons, lidoo7x, botname, m)
 break
 ////-----------------------------------------------------------------------------------------//    
 
-
-case 'cuddle': case 'killl':{
+case 'تخ': case 'قتل':{
   if (!m.isGroup) return replay(mess.group)	
-var pat = await fetchJson(`https://api.waifu.pics/sfw/kill`)
-try {
-  let messsender = m.sender
-let musers=``
-try {
-users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-
-ment=[messsender,users]
-} catch {
-users == "none"
- ment=[messsender,m.sender]
-}
-if(users == "none"){
-   musers =`@${m.sender.split("@")[0]} ${command}ed themselves!!`
-   console.log(musers)
-
-} else {
-const rcpp =`@${users.split("@"[0])}`
-musers= `@${m.sender.split("@")[0]} ${command}ed  @${users.split("@")[0]} `
-
-console.log(musers)
-}
-const response = await axios.get(pat.url,  { responseType: 'arraybuffer' })
-const buffer = Buffer.from(response.data, "utf-8")
-var fetchedgif = await GIFBufferToVideoBuffer(buffer)
-ZimBotInc.sendMessage(m.chat,{video: fetchedgif, gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
-} catch (error) {
-console.log(error);
-}
-}
-break
-
-case 'qqw': {
-if (!m.isGroup) return replay(`${mess.group}`)
-let member = participants.map(u => u.id)
-let me = m.sender
-const rcpp =`@${users.split("@"[0])}`
-let jodoh = member[Math.floor(Math.random() * member.length)]
-let jawab = `
-@${me.split('@')[0]} # @@${users.split("@"[0])} 2@${jodoh.split('@')[0]}`
-let ments = [me, users]
-let buttons = [
-{ buttonId: '❤️', buttonText: { displayText: 'Bss' }, type: 1 }
-]
-await ZimBotInc.sendButtonText(m.chat, buttons, jawab, ZimBotInc.user.name, m, {mentions: ments})
-}
-break
-
-case 'cudd': case 'قتل':{
-  if (!m.isGroup) return replay(mess.group)	
-  const mikuarray= [
+  const killlidoo = [
     "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
+    "https://telegra.ph/file/f460416fff8c2ca884dfe.mp4",
+    "https://telegra.ph/file/d210ec1fc6aa98305ddbe.mp4",
+    "https://telegra.ph/file/de2e28b197fa971b799db.mp4",
     "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
+    "https://telegra.ph/file/f460416fff8c2ca884dfe.mp4",
+    "https://telegra.ph/file/d210ec1fc6aa98305ddbe.mp4",
+    "https://telegra.ph/file/de2e28b197fa971b799db.mp4",
     "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
-    "https://telegra.ph/file/457f59380b347f01faf6c.mp4"
+    "https://telegra.ph/file/f460416fff8c2ca884dfe.mp4",
+    "https://telegra.ph/file/d210ec1fc6aa98305ddbe.mp4",
+    "https://telegra.ph/file/de2e28b197fa971b799db.mp4",
+    "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
+    "https://telegra.ph/file/f460416fff8c2ca884dfe.mp4",
+    "https://telegra.ph/file/d210ec1fc6aa98305ddbe.mp4",
+    "https://telegra.ph/file/de2e28b197fa971b799db.mp4",
+    "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
+    "https://telegra.ph/file/f460416fff8c2ca884dfe.mp4",
+    "https://telegra.ph/file/d210ec1fc6aa98305ddbe.mp4",
+    "https://telegra.ph/file/de2e28b197fa971b799db.mp4",
+    "https://telegra.ph/file/457f59380b347f01faf6c.mp4",
+    "https://telegra.ph/file/f460416fff8c2ca884dfe.mp4",
+    "https://telegra.ph/file/d210ec1fc6aa98305ddbe.mp4",
+    "https://telegra.ph/file/de2e28b197fa971b799db.mp4"
     ]
   let buttons = [			
-      {buttonId: `cudd ${users.split("@")[0]}`, buttonText: {displayText: '● ●'}, type: 1},		
+    { buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }	
     ]
 try {
   let messsender = m.sender
@@ -6701,23 +6670,315 @@ users == "none"
  ment=[messsender,m.sender]
 }
 if(users == "none"){
-   musers =`@${m.sender.split("@")[0]} ${command}ed themselves!!`
+   musers =`@${m.sender.split("@")[0]} `
    console.log(musers)
 
 } else {
 const rcpp =`@${users.split("@"[0])}`
-musers= `@${m.sender.split("@")[0]} ${command}ed  @${users.split("@")[0]} `
+musers= `تم قتل -» @${users.split("@")[0]}
+المجرم دا 😢 -» @${m.sender.split("@")[0]}
+انـا لله وانـا اليـه راجعـون 😢  `
 
 console.log(musers)
 }
-const mikuselection = mikuarray[Math.floor(Math.random()*mikuarray.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:mikuselection},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+const llido = killlidoo[Math.floor(Math.random()*killlidoo.length)]
+ZimBotInc.sendMessage(m.chat,{video:{url:llido},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
 }
 break
 
+case 'تفف': case 'تف':{
+  if (!m.isGroup) return replay(mess.group)	
+  const killlido = [
+    "https://telegra.ph/file/1cb54d675db29db010f20.mp4",
+    "https://telegra.ph/file/74c8aa54d1a349d135747.mp4",
+    "https://telegra.ph/file/a146a4c1af5c70b045575.mp4",
+    "https://telegra.ph/file/74dd2dbeec2bc1a84e35a.mp4",
+    "https://telegra.ph/file/f2bdcceac5fa71dc24664.mp4",
+    "https://telegra.ph/file/46c2891da7ae73eeb56be.mp4",
+    "https://telegra.ph/file/1cb54d675db29db010f20.mp4",
+    "https://telegra.ph/file/74c8aa54d1a349d135747.mp4",
+    "https://telegra.ph/file/a146a4c1af5c70b045575.mp4",
+    "https://telegra.ph/file/74dd2dbeec2bc1a84e35a.mp4",
+    "https://telegra.ph/file/f2bdcceac5fa71dc24664.mp4",
+    "https://telegra.ph/file/46c2891da7ae73eeb56be.mp4",
+    "https://telegra.ph/file/1cb54d675db29db010f20.mp4",
+    "https://telegra.ph/file/74c8aa54d1a349d135747.mp4",
+    "https://telegra.ph/file/a146a4c1af5c70b045575.mp4",
+    "https://telegra.ph/file/74dd2dbeec2bc1a84e35a.mp4",
+    "https://telegra.ph/file/f2bdcceac5fa71dc24664.mp4",
+    "https://telegra.ph/file/46c2891da7ae73eeb56be.mp4",
+    "https://telegra.ph/file/1cb54d675db29db010f20.mp4",
+    "https://telegra.ph/file/74c8aa54d1a349d135747.mp4",
+    "https://telegra.ph/file/a146a4c1af5c70b045575.mp4",
+    "https://telegra.ph/file/74dd2dbeec2bc1a84e35a.mp4",
+    "https://telegra.ph/file/f2bdcceac5fa71dc24664.mp4",
+    "https://telegra.ph/file/46c2891da7ae73eeb56be.mp4",
+    "https://telegra.ph/file/1cb54d675db29db010f20.mp4",
+    "https://telegra.ph/file/74c8aa54d1a349d135747.mp4",
+    "https://telegra.ph/file/a146a4c1af5c70b045575.mp4",
+    "https://telegra.ph/file/74dd2dbeec2bc1a84e35a.mp4",
+    "https://telegra.ph/file/f2bdcceac5fa71dc24664.mp4",
+    "https://telegra.ph/file/46c2891da7ae73eeb56be.mp4"
+    ]
+  let buttons = [			
+    { buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }		
+    ]
+try {
+  let messsender = m.sender
+let musers=``
+try {
+users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+
+ment=[messsender,users]
+} catch {
+users == "none"
+ ment=[messsender,m.sender]
+}
+if(users == "none"){
+   musers =`@${m.sender.split("@")[0]} `
+   console.log(musers)
+
+} else {
+const rcpp =`@${users.split("@"[0])}`
+musers= `امححح @${users.split("@")[0]}
+ -» @${m.sender.split("@")[0]}
+  `
+
+console.log(musers)
+}
+const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+} catch (error) {
+console.log(error);
+}
+}
+break
+
+case 'محح': case 'مح':{
+  if (!m.isGroup) return replay(mess.group)	
+  const killlido = [
+    "https://telegra.ph/file/0e70e9dcb629021ca6c5f.mp4",
+    "https://telegra.ph/file/af9cfe37709af76500d33.mp4",
+    "https://telegra.ph/file/9e983bc8c19b65f5d76b7.mp4",
+    "https://telegra.ph/file/0e70e9dcb629021ca6c5f.mp4",
+    "https://telegra.ph/file/af9cfe37709af76500d33.mp4",
+    "https://telegra.ph/file/9e983bc8c19b65f5d76b7.mp4",
+    "https://telegra.ph/file/0e70e9dcb629021ca6c5f.mp4",
+    "https://telegra.ph/file/af9cfe37709af76500d33.mp4",
+    "https://telegra.ph/file/9e983bc8c19b65f5d76b7.mp4",
+    "https://telegra.ph/file/0e70e9dcb629021ca6c5f.mp4",
+    "https://telegra.ph/file/af9cfe37709af76500d33.mp4",
+    "https://telegra.ph/file/9e983bc8c19b65f5d76b7.mp4",
+    "https://telegra.ph/file/0e70e9dcb629021ca6c5f.mp4",
+    "https://telegra.ph/file/af9cfe37709af76500d33.mp4",
+    "https://telegra.ph/file/9e983bc8c19b65f5d76b7.mp4"
+    ]
+  let buttons = [			
+    { buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }		
+    ]
+try {
+  let messsender = m.sender
+let musers=``
+try {
+users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+
+ment=[messsender,users]
+} catch {
+users == "none"
+ ment=[messsender,m.sender]
+}
+if(users == "none"){
+   musers =`@${m.sender.split("@")[0]} `
+   console.log(musers)
+
+} else {
+const rcpp =`@${users.split("@"[0])}`
+musers= `القمر 🌚💞 -» @${m.sender.split("@")[0]}
+بعتلك بوسه 😉🥰 يا @${users.split("@")[0]}
+◍ تم القبله بنجاح 😂😍 `
+
+console.log(musers)
+}
+const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+} catch (error) {
+console.log(error);
+}
+}
+break
+
+
+//----  تتجوزيني ----------------///
+
+case 'تتجوزيني':{
+  if (!m.isGroup) return replay(mess.group)	
+  const killlido = [
+    "https://telegra.ph/file/53ccb3d77ef0a43bc5f7f.mp4",
+    "https://telegra.ph/file/acd6827a1f1f5c7464b99.mp4",
+    "https://telegra.ph/file/7809712d72e4f8879dbb2.mp4",
+    "https://telegra.ph/file/c046e6c7e2192710cd150.mp4",
+    "https://telegra.ph/file/53ccb3d77ef0a43bc5f7f.mp4",
+    "https://telegra.ph/file/acd6827a1f1f5c7464b99.mp4",
+    "https://telegra.ph/file/7809712d72e4f8879dbb2.mp4",
+    "https://telegra.ph/file/c046e6c7e2192710cd150.mp4",
+    "https://telegra.ph/file/53ccb3d77ef0a43bc5f7f.mp4",
+    "https://telegra.ph/file/acd6827a1f1f5c7464b99.mp4",
+    "https://telegra.ph/file/7809712d72e4f8879dbb2.mp4",
+    "https://telegra.ph/file/c046e6c7e2192710cd150.mp4",
+    "https://telegra.ph/file/53ccb3d77ef0a43bc5f7f.mp4",
+    "https://telegra.ph/file/acd6827a1f1f5c7464b99.mp4",
+    "https://telegra.ph/file/7809712d72e4f8879dbb2.mp4",
+    "https://telegra.ph/file/c046e6c7e2192710cd150.mp4"
+    ]
+  let buttons = [			
+    { buttonId: 'gfdxazaaaz ${users.split("@")[0]}', buttonText: { displayText: 'موافقة' }, type: 1 },	
+    { buttonId: 'gfdxazqqaz ${users.split("@")[0]}', buttonText: { displayText: 'مش موافقة' }, type: 2 }		
+    ]
+try {
+  let messsender = m.sender
+let musers=``
+try {
+users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+
+ment=[messsender,users]
+} catch {
+users == "none"
+ ment=[messsender,m.sender]
+}
+if(users == "none"){
+   musers =`@${m.sender.split("@")[0]} `
+   console.log(musers)
+
+} else {
+const rcpp =`@${users.split("@"[0])}`
+musers= `◍ اهلا عزيزتي @${users.split("@")[0]}
+◍ طلب @${m.sender.split("@")[0]} الزواج منكى
+◍ هل تقبلين الزواج به؟ ❤️🥺
+  `
+
+console.log(musers)
+}
+const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+} catch (error) {
+console.log(error);
+}
+}
+break
+
+
+case 'gfdxazaaaz':{
+  if (!m.isGroup) return replay(mess.group)	
+  const killlido = [
+    "https://telegra.ph/file/d50174fc9d7c1d6f8e5d4.mp4",
+    "https://telegra.ph/file/805dd44db85982d1a6b35.mp4",
+    "https://telegra.ph/file/639d5fd948bfaa6380508.mp4",
+    "https://telegra.ph/file/d50174fc9d7c1d6f8e5d4.mp4",
+    "https://telegra.ph/file/805dd44db85982d1a6b35.mp4",
+    "https://telegra.ph/file/639d5fd948bfaa6380508.mp4",
+    "https://telegra.ph/file/d50174fc9d7c1d6f8e5d4.mp4",
+    "https://telegra.ph/file/805dd44db85982d1a6b35.mp4",
+    "https://telegra.ph/file/639d5fd948bfaa6380508.mp4",
+    "https://telegra.ph/file/d50174fc9d7c1d6f8e5d4.mp4",
+    "https://telegra.ph/file/805dd44db85982d1a6b35.mp4",
+    "https://telegra.ph/file/639d5fd948bfaa6380508.mp4",
+    "https://telegra.ph/file/d50174fc9d7c1d6f8e5d4.mp4",
+    "https://telegra.ph/file/805dd44db85982d1a6b35.mp4",
+    "https://telegra.ph/file/639d5fd948bfaa6380508.mp4"
+
+  ]
+  let buttons = [			
+    { buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }		
+    ]
+try {
+  let messsender = m.sender
+let musers=``
+try {
+users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+
+ment=[messsender,users]
+} catch {
+users == "none"
+ ment=[messsender,m.sender]
+}
+if(users == "none"){
+   musers =`@${m.sender.split("@")[0]} `
+   console.log(musers)
+
+} else {
+const rcpp =`@${users.split("@"[0])}`
+musers= `تم زواجك يا أخت @${m.sender.split("@")[0]} علي الأخ وبارك الله لهما ولنا وكفايه كدة لا تتجوزو بجد 😂❤️
+  `
+
+console.log(musers)
+}
+const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+} catch (error) {
+console.log(error);
+}
+}
+ZimBotInc.sendMessage(from, { react: { text: `👫🏻`, key: m.key }}) 
+break
+case 'gfdxazqqaz':{
+  if (!m.isGroup) return replay(mess.group)	
+  const killlido = [
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4",
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4",
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4",
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4",
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4",
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4",
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4",
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4",
+    "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
+    "https://telegra.ph/file/180a5d8e2832a62a9dbe5.mp4"
+    ]
+  let buttons = [			
+    { buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }		
+    ]
+try {
+  let messsender = m.sender
+let musers=``
+try {
+users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+
+ment=[messsender,users]
+} catch {
+users == "none"
+ ment=[messsender,m.sender]
+}
+if(users == "none"){
+   musers =`@${m.sender.split("@")[0]} `
+   console.log(musers)
+
+} else {
+const rcpp =`@${users.split("@"[0])}`
+musers= `البت @${m.sender.split("@")[0]} مرضتش بيك يا حزين 😂😂💔
+  `
+
+console.log(musers)
+}
+const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+} catch (error) {
+console.log(error);
+}
+}
+ZimBotInc.sendMessage(from, { react: { text: `🙂`, key: m.key }}) 
+break
+//-----------------------------------------//
 
 
 
