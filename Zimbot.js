@@ -8,6 +8,7 @@ const fs = require('fs')
 const util = require('util')
 const crypto = require('crypto')
 const chalk = require('chalk')
+const mathjs = require('mathjs')
 const { fetchBuffer } = require("./database/myfunc2")
 const { exec, spawn, execSync } = require('child_process')
 const axios = require('axios')
@@ -501,7 +502,7 @@ let picak = picaks[Math.floor(Math.random() * picaks.length)]
    if (typeof chats !== 'object') global.db.chats[m.chat] = {}
    if (chats) {
   if (!('mute' in chats)) chats.mute = false
-  if (!('chatbot' in chats)) chats.chatbot = false
+  if (!('chatbot' in chats)) chats.chatbot = true
   if (!('antilink' in chats)) chats.antilink = true
   if (!('antilinkyt' in chats)) chats.antilinkyt = false
   if (!('autoblock' in chats)) chats.autoblock = false
@@ -1153,20 +1154,7 @@ let bhabhi = jsonu.data.choices[0].text.trim()
 ZimBotInc.sendMessage(m.chat,{ text: bhabhi},  {quoted: m})
 }
 }
-if (db.settings[botNumber].privatechat) {
-if (m.chat.endsWith("@s.whatsapp.net")) {
-const got = require('got')
-let {body} = await got(`http://api.brainshop.ai/get?bid=173030&key=zK0sxNKb6C9pA3gr&uid=[${m.sender}]&msg=[${budy}]`)
-  let value = JSON.parse(body).cnt;
-   m.reply(value)
- }
- }
- if (db.settings[botNumber].chatbot) {
-const got = require('got')
-let {body} = await got(`http://api.brainshop.ai/get?bid=173030&key=zK0sxNKb6C9pA3gr&uid=[${m.sender}]&msg=[${budy}]`)
-  let value = JSON.parse(body).cnt;
-   m.reply(value)
- }
+
  
 
 if (db.chats[m.chat].wame) {
@@ -2293,45 +2281,7 @@ reply(`*It was nice to chat with you goodbye _Artificial Intelligence(AI) chatgp
 }
 break 
 
- 
-  case 'grouponly': {
-    if (!isCreator) throw mess.owner
-    if (args[0] === "on") {
-    if (db.settings[botNumber].grouponly) return reply(`*Grouponly already on okay*`)
-    db.settings[botNumber].grouponly = true
-    reply(`*grouponly on*`)
-    } else if (args[0] === "off") {
-    if (!db.settings[botNumber].grouponly) return reply(`*Grouponly Already off okay*`)
-    db.settings[botNumber].grouponly = false
-    reply(`*Grouponly off*`)
-    } else {
-     let drips = [
-    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-      ]
-      await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ɢʀᴏᴜᴘ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-    }
-      } 
-  break
-  case 'autoblock': {
-    if (!isCreator) throw mess.owner
-    if (args[0] === "on") {
-    if (db.settings[botNumber].autoblock) return reply(`*Autoblock already on okay*`)
-    db.settings[botNumber].autoblock = true
-    reply(`*Autoblock on*`)
-    } else if (args[0] === "off") {
-    if (!db.settings[botNumber].autoblock) return reply(`*Autoblock Already off okay*`)
-    db.settings[botNumber].autoblock = false
-    reply(`*Autoblock off*`)
-    } else {
-     let drips = [
-    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-      ]
-      await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀᴜᴛᴏʙʟᴏᴄᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-    }
-      } 
-  break
+
 //-----GROUP---\\
 
 //--CREATED BY DRIPS--\\
@@ -2488,7 +2438,7 @@ break
   let btn = [{
  urlButton: {
   displayText: 'SUBSCRIBE',
-  url: 'https://youtube.ccom/c/DRIPSOFC'
+  url: 'https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e'
  }
   }, {
  callButton: {
@@ -2508,7 +2458,7 @@ break
   }, {
  quickReplyButton: {
   displayText: 'SCRIPT',
-  id: 'sc'
+  id: 'scs'
  }
   }]
  fatihgans = fs.readFileSync('./Zimbot/drips.jpg')
@@ -2518,6 +2468,40 @@ break
    reply(`Successful Sending Broadcast To ${anu.length} Group(s)`)
  }
  break
+ case 'broadcastimage': case 'bcimagde': case 'broadcastvideo': case 'broadcastvid':
+  if (!isCreator) throw global.owner
+        if (!q) return reply(`Enter text`)
+        let getGroups = await ZimBotInc.groupFetchAllParticipating()
+        let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+        let xeoncast = groups.map(v => v.id)
+        reply(` Broadcasting in ${xeoncast.length} Group Chat, in ${xeoncast.length * 1.5} seconds`)
+        for (let i of xeoncast) {
+let txt = `   ${q}`
+if(/image/.test(mime)) {
+let media = await quoted.download()
+await ZimBotInc.sendMessage(i, { image:media,  caption: txt,mentions:participants.map(a => a.id) })
+}
+if(/video/.test(mime)){
+let media = await quoted.download()
+await ZimBotInc.sendMessage(i, { video:media,  caption: txt, mentions:participants.map(a => a.id) })
+}
+            }
+        reply(`Successfuly Broadcasted in ${xeoncast.length} Groups`)      
+        break
+
+
+ case 'bctexwdtt': case 'broadcasttext': case 'broadcast': {
+  if (!isCreator) throw global.owner
+        if (!q) return reply(`Enter text`)
+                        const data = await store.chats.all()
+                    for (let i of data) {
+                      ZimBotInc.sendMessage(i.id, {text: ` ${q}` })
+                       await sleep(1000)
+                    }
+                    }
+                    break
+
+
  case 'bc': case 'broadcast': case 'bcall': {
    if (!isCreator) throw global.owner
    if (!text) throw `Where is the text?\n\nExample : ${prefix + command} Zimbot here`
@@ -2527,8 +2511,8 @@ for (let yoi of anu) {
     await sleep(1500)
     let btn = [{
  urlButton: {
-  displayText: 'GITHUB',
-  url: 'https://youtube.com/@zim-bot/zimbot-v2'
+  displayText: 'مجتمعنا',
+  url: 'https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e'
  }
   }, {
  quickReplyButton: {
@@ -2538,7 +2522,7 @@ for (let yoi of anu) {
   }]
  fatihgans = fs.readFileSync('./Zimbot/drips.jpg')
  let txt = `「 ZIM BOT BROADCAST 」\n\n${text}`
- ZimBotInc.send5ButImg(yoi, txt, `Broadcast By ${global.pengguna}`, fatihgans, btn)
+ ZimBotInc.sendMessage(yoi, txt, `Broadcast By ${global.pengguna}`)
 }
 reply('*Broadcast Success*')
  }
@@ -5495,9 +5479,9 @@ case 'الجروب': case 'grup': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
-  if (args[0] === 'close'){
+  if (args[0] === 'قفل'){
  await ZimBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => m.reply(`*• تم قفل جروب بنجاح يقلبي 🥺💔*`)).catch((err) => m.reply(jsonformat(err)))
-  } else if (args[0] === 'open'){
+  } else if (args[0] === 'فتح'){
  await ZimBotInc.groupSettingUpdate(m.chat, 'not_announcement').then((res) => m.reply(`*• تم فتح جروب بنجاح يقلبي 😂♥️*`)).catch((err) => m.reply(jsonformat(err)))
   } else {
   let buttons = [
@@ -5514,9 +5498,9 @@ case 'التعديل': case 'xxinfoxx': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
-if (args[0] === 'open'){
+if (args[0] === 'فتح'){
   await ZimBotInc.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`*•  تم فتح تعديل معلومات جروب لكل الاعضاء 😍❤️*`)).catch((err) => m.reply(jsonformat(err)))
-} else if (args[0] === 'close'){
+} else if (args[0] === 'قفل'){
   await ZimBotInc.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`*•  تم قفل تعديل معلومات جروب للمشرفين فقط 🙂💙*`)).catch((err) => m.reply(jsonformat(err)))
 } else {
 let buttons = [
@@ -5641,9 +5625,9 @@ case 'زخرفه': case 'زخرفة': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins && !isCreator) throw mess.admin
-                if (args[0] === 'enable') {
+                if (args[0] === 'تفعيل') {
                await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => m.reply(`◍ تم تشغيل الاختفاء بنجاح √`)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'disable') {
+                } else if (args[0] === 'تعطيل') {
                await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => m.reply(`◍ تم ايقاف الاختفاء بنجاح √`)).catch((err) => reply(`◍ √`))
                 } else {
                let buttons = [
@@ -5661,12 +5645,12 @@ case 'زخرفه': case 'زخرفة': {
     if (!m.isGroup) return m.reply(mess.group)
     if (!isBotAdmins) return m.reply(mess.botAdmin)
     if (!isAdmins && !isCreator) return m.reply(mess.admin)
-    if (args[0]  === 'on'){
+    if (args[0]  === 'فتح'){
     if (isAutoSticker) return m.reply(`◍ تم تشغيل تحويل صور بنجاح √`)
     autosticker.push(from)
     fs.writeFileSync('./database/autosticker.json', JSON.stringify(autosticker))
-    m.reply('◍ تم ايقاف تحويل صور بنجاح √')
-    } else if (args[0] === 'off'){
+    m.reply('◍ تم تشغيل تحويل صور بنجاح √')
+    } else if (args[0] === 'قفل'){
     let anuticker1 = autosticker.indexOf(from)
     autosticker.splice(anuticker1, 1)
     fs.writeFileSync('./database/autosticker.json', JSON.stringify(autosticker))
@@ -5708,11 +5692,11 @@ case 'الترحيب': case 'xxwelcomexx': {
   if (!m.isGroup) return m.reply(mess.group)
   if (!isBotAdmins) return m.reply(mess.botAdmin)
   if (!isAdmins && !isCreator) return m.reply(mess.admin)
-  if (args[0] === "on") {
+  if (args[0] === "فتح") {
   if (db.chats[m.chat].isWelcome) return m.reply(`◍ تم تشغيل الترحيب بنجاح √`)
   db.chats[m.chat].isWelcome = true
   m.reply(`◍ تم تشغيل الترحيب بنجاح √`)
-  } else if (args[0] === "off") {
+  } else if (args[0] === "قفل") {
   if (!db.chats[m.chat].isWelcome) return m.reply(`◍ تم ايقاف الترحيب بنجاح √`)
   db.chats[m.chat].isWelcome = false
   m.reply(`◍ تم ايقاف الترحيب بنجاح √`)
@@ -5730,11 +5714,11 @@ case 'الترحيب': case 'xxwelcomexx': {
     if (!m.isGroup) return m.reply(mess.group)
     if (!isBotAdmins) return m.reply(mess.botAdmin)
     if (!isAdmins && !isCreator) return m.reply(mess.admin)
-    if (args[0] === "on") {
+    if (args[0] === "فتح") {
     if (db.chats[m.chat].localonly) return m.reply(`◍ تم تشغيل حظر الارقام الفيك بنجاح √`)
     db.chats[m.chat].localonly = true
     m.reply(`◍ تم تشغيل حظر الارقام الفيك بنجاح √`)
-    } else if (args[0] === "off") {
+    } else if (args[0] === "قفل") {
     if (!db.chats[m.chat].localonly) return m.reply(`◍ تم ايقاف حظر الارقام الفيك بنجاح √`)
     db.chats[m.chat].localonly = false
     m.reply(`◍ تم ايقاف حظر الارقام الفيك بنجاح √`)
@@ -5751,11 +5735,11 @@ case 'الترحيب': case 'xxwelcomexx': {
     case 'تعطيل': case 'تفعيل':case 'xxmuuteexx': {
       if (!m.isGroup) return m.reply(mess.group)
       if (!isAdmins && !isCreator) return m.reply(mess.admin)
-      if (args[0] === "on") {
+      if (args[0] === "فتح") {
       if (db.chats[m.chat].mute) return m.reply(`◍ الجروب معطل من قبل √`)
       db.chats[m.chat].mute = true
       m.reply(`◍ تم تعطيل البوت لكل الاعضاء بنجاح √`)
-      } else if (args[0] === "off") {
+      } else if (args[0] === "قفل") {
       if (!db.chats[m.chat].mute) return m.reply(`◍ الجروب مفعل من قبل √`)
       db.chats[m.chat].mute = false
       m.reply(`◍ تم تفعيل البوت لكل الاعضاء بنجاح √`)
@@ -5824,11 +5808,11 @@ case 'لينك_واتساب': case 'رابط_واتساب': case 'xxantixwamexx'
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
-  if (args[0] === "on") {
+  if (args[0] === "فتح") {
   if (db.chats[m.chat].antilink) return m.reply(`◍ تم تفعيل حظر روابط واتساب من قبل √`)
   db.chats[m.chat].antilink = true
   m.reply(`◍ تم تفعيل حظر روابط واتساب √`)
-  } else if (args[0] === "off") {
+  } else if (args[0] === "قفل") {
   if (!db.chats[m.chat].antilink) return m.reply(`◍ تم تعطيل حظر روابط واتساب من قبل √`)
   db.chats[m.chat].antilink = false
   m.reply(`◍ تم تعطيل حظر روابط واتساب √`)
@@ -5846,11 +5830,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
-  if (args[0] === "on") {
+  if (args[0] === "فتح") {
   if (db.chats[m.chat].antivn) return m.reply(`◍ تم تفعيل حظر الصوت + ريكورد من قبل √`)
   db.chats[m.chat].antivn = true
   m.reply(`◍ تم تفعيل حظر الصوت + ريكورد √`)
-  } else if (args[0] === "off") {
+  } else if (args[0] === "قفل") {
   if (!db.chats[m.chat].antivn) return m.reply(`◍ تم تعطيل حظر الصوت + ريكورد من قبل √`)
   db.chats[m.chat].antivn = false
   reply(`◍ تم تعطيل حظر الصوت + ريكورد √`)
@@ -5868,11 +5852,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
-  if (args[0] === "on") {
+  if (args[0] === "فتح") {
   if (db.chats[m.chat].antisticker) return m.reply(`◍ تم تفعيل حظر الملصقات من قبل √`)
   db.chats[m.chat].antisticker = true
   m.reply(`◍ تم تفعيل حظر الملصقات √`)
-  } else if (args[0] === "off") {
+  } else if (args[0] === "قفل") {
   if (!db.chats[m.chat].antisticker) return m.reply(`◍ تم تعطيل حظر الملصقات من قبل √`)
   db.chats[m.chat].antisticker = false
   m.reply(`◍ تم تعطيل حظر الملصقات √`)
@@ -5889,11 +5873,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins && !isCreator) throw mess.admin
-  if (args[0] === "on") {
+  if (args[0] === "فتح") {
   if (db.chats[m.chat].antiphoto) return m.reply(`◍ تم تفعيل حظر الصور من قبل √`)
   db.chats[m.chat].antiphoto = true
   m.reply(`◍ تم تفعيل حظر الصور √`)
-  } else if (args[0] === "off") {
+  } else if (args[0] === "قفل") {
   if (!db.chats[m.chat].antiphoto) return m.reply(`◍ تم تعطيل حظر الصور من قبل √`)
   db.chats[m.chat].antiphoto = false
   m.reply(`◍ تم تعطيل حظر الصور √`)
@@ -5910,11 +5894,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     if (!m.isGroup) throw mess.group
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins && !isCreator) throw mess.admin
-    if (args[0] === "on") {
+    if (args[0] === "فتح") {
     if (db.chats[m.chat].antivideo) return m.reply(`◍ تم تفعيل حظر الفيديوهات من قبل √`)
     db.chats[m.chat].antivideo = true
     m.reply(`◍ تم تفعيل حظر الفيديوهات √`)
-    } else if (args[0] === "off") {
+    } else if (args[0] === "قفل") {
     if (!db.chats[m.chat].antivideo) return reply(`◍ تم تعطيل حظر الفيديوهات من قبل √`)
     db.chats[m.chat].antivideo = false
     reply(`◍ تم تعطيل حظر الفيديوهات √`)
@@ -5932,11 +5916,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     if (!m.isGroup) throw mess.group
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins && !isCreator) throw mess.admin
-    if (args[0] === "on") {
+    if (args[0] === "فتح") {
      if (db.chats[m.chat].antilinkall) return m.reply(`◍ تم تفعيل حظر جميع روابط من قبل √`)
      db.chats[m.chat].antilinkall = true
      m.reply(`◍ تم تفعيل حظر جميع روابط √`)
-     } else if (args[0] === "off") {
+     } else if (args[0] === "قفل") {
      if (!db.chats[m.chat].antilinkall) return m.reply(`◍ تم تعطيل حظر جميع روابط من قبل √`)
      db.chats[m.chat].antilinkall = false
      m.reply(`◍ تم تعطيل حظر جميع روابط √`)
@@ -6009,7 +5993,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     if (!m.isGroup) return m.reply(mess.group)
     if (!isBotAdmins) return m.reply(mess.botAdmin)
     if (!isAdmins && !isCreator) return m.reply(mess.admin)
-    if (args[0] === "on") {
+    if (args[0] === "فتح") {
     if (AntiLinkYoutubeChannel) return m.reply('*• تم تفعيل سابقا⚠️*')
     ntilinkytch.push(from)
     fs.writeFileSync('./database/antilinkytchannel.json', JSON.stringify(ntilinkytch))
@@ -6021,7 +6005,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
     })
     ZimBotInc.sendMessage(from, {text: `\`\`\`*• تم تفعيل حظر روابط قنوات يوتيوب ⚠️*\`\`\`\n\n*• يتم حظر اي رابط لقنوات يوتيوب يتم ارساله فورا والطرد ⚠️*`, contextInfo: { mentionedJid : mems }}, {quoted:m})
-    } else if (args[0] === "off") {
+    } else if (args[0] === "قفل") {
     if (!AntiLinkYoutubeChannel) return m.reply('*• تم تعطيل سابقا 📴')
     let off = ntilinkytch.indexOf(from)
     fs.writeFileSync('./database/antilinkytchannel.json', JSON.stringify(ntilinkytch))
@@ -6045,11 +6029,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     if (!m.isGroup) throw mess.group
     if (!isBotAdmins) throw mess.botAdmin
     if (!isAdmins) throw mess.admin
-    if (args[0] === "on") {
+    if (args[0] === "فتح") {
     if (db.chats[m.chat].antiinstagram) return m.m.reply(`◍ تم تفعيل حظر روابط انستا من قبل √`)
     db.chats[m.chat].antiinstagram= true
     m.m.reply(`◍ تم تفعيل حظر روابط انستا √`)
-    } else if (args[0] === "off") {
+    } else if (args[0] === "قفل") {
     if (!db.chats[m.chat].antiinstagram) return m.m.reply(`◍ تم تعطيل حظر روابط انستا من قبل √`)
     db.chats[m.chat].antiinstagram = false
     m.m.reply(`◍ تم تعطيل حظر روابط انستا √`)
@@ -6066,11 +6050,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
      if (!m.isGroup) throw mess.group
      if (!isBotAdmins) throw mess.botAdmin
      if (!isAdmins) throw mess.admin
-     if (args[0] === "on") {
+     if (args[0] === "فتح") {
      if (db.chats[m.chat].antifb) return m.m.reply(`◍ تم تفعيل حظر روابط فيسبوك من قبل √`)
      db.chats[m.chat].antifb = true
      m.m.reply(`◍ تم تفعيل حظر روابط فيسبوك √`)
-     } else if (args[0] === "off") {
+     } else if (args[0] === "قفل") {
      if (!db.chats[m.chat].antifb) return m.m.reply(`◍ تم تعطيل حظر روابط فيسبوك من قبل √`)
      db.chats[m.chat].antifb = false
      m.m.reply(`◍ تم تعطيل حظر روابط فيسبوك √`)
@@ -6087,11 +6071,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
      if (!m.isGroup) throw mess.group
      if (!isBotAdmins) throw mess.botAdmin
      if (!isAdmins) throw mess.admin
-     if (args[0] === "on") {
+     if (args[0] === "فتح") {
      if (db.chats[m.chat].antitelegram) return m.reply(`◍ تم تفعيل حظر روابط تليجرام من قبل √`)
      db.chats[m.chat].antitelegram = true
      m.reply(`◍ تم تفعيل حظر روابط تليجرام √`)
-     } else if (args[0] === "off") {
+     } else if (args[0] === "قفل") {
      if (!db.chats[m.chat].antitelegram) return m.reply(`◍ تم تعطيل حظر روابط تليجرام من قبل √`)
      db.chats[m.chat].antitelegram = false
      m.reply(`◍ تم تعطيل حظر روابط تليجرام √`)
@@ -6112,11 +6096,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
-  if (args[0] === "on") {
+  if (args[0] === "فتح") {
   if (db.chats[m.chat].antitiktok) return m.reply(`◍ تم تفعيل حظر روابط تيكتوك من قبل √`)
   db.chats[m.chat].antitiktok = true
   m.reply(`◍ تم تفعيل حظر روابط تيكتوك √`)
-  } else if (args[0] === "off") {
+  } else if (args[0] === "قفل") {
   if (!db.chats[m.chat].antitiktok) return m.reply(`◍ تم تعطيل حظر روابط تيكتوك من قبل √`)
   db.chats[m.chat].antitiktok = false
   m.reply(`◍ تم تعطيل حظر روابط تيكتوك √`)
@@ -6134,11 +6118,11 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
-  if (args[0] === "on") {
+  if (args[0] === "فتح") {
   if (db.chats[m.chat].antitwitter) return m.reply(`◍ تم تفعيل حظر روابط تويتر من قبل √`)
   db.chats[m.chat].antitwitter = true
   m.reply(`◍ تم تفعيل حظر روابط تويتر √`)
-  } else if (args[0] === "off") {
+  } else if (args[0] === "قفل") {
   if (!db.chats[m.chat].antitwitter) return m.reply(`◍ تم تعطيل حظر روابط تويتر من قبل √`)
   db.chats[m.chat].antitwitter = false
   m.reply(`◍ تم تعطيل حظر روابط تويتر √`)
@@ -6262,7 +6246,7 @@ var  bakarbots = pickRandom(botbbs)
 let bbndav = [
   {buttonId: `bakar`, buttonText: {displayText: '𝗕𝗔𝗞𝗔𝗥 😍❤️ ' }, type: 1}
   ] 
-ZimBotInc.sendMessage(from, { buttons: bbndav, image: { url: bakarbots.url }, caption: ''+ xeondndav }, {quoted:m})
+ZimBotInc.sendMessage(from, { image: { url: bakarbots.url }, caption: ''+ xeondndav }, {quoted:m})
 break  
 
 case 'بكار': case 'botbakar': case 'bakar':    
@@ -6295,11 +6279,11 @@ case 'بكار': case 'botbakar': case 'bakar':
 		let bbakdsddwa = [
 			{buttonId: `bakar`, buttonText: {displayText: '𝗕𝗔𝗞𝗔𝗥 😍❤️ ' }, type: 1}
 			] 
-    ZimBotInc.sendMessage(from, { buttons: bbakdsddwa, image: { url: bakarbot.url }, caption: ''+ xeondffffsawwsa }, {quoted:m})
+    ZimBotInc.sendMessage(from, { image: { url: bakarbot.url }, caption: ''+ xeondffffsawwsa }, {quoted:m})
 		break
 
 //------------- يوتيوب -----------------------///
-    case 'يوتيوب': {
+/*case 'يوتيوب': {
       ZimBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
       buffer = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
       anu =`◍اهلا بك ${pushname} \n◍ قم بالاختيار احدي الازرار ...\n`
@@ -6326,10 +6310,27 @@ case 'بكار': case 'botbakar': case 'bakar':
           ]
           youtube7xmenu(from, anu, '', buttonReplyy)
           }
-    break
+    break*/
+
+
+    case 'يوتيوب':  {
+      teks = `*⩹━━━ 𝑩𝑨𝑲𝑨𝑹 𝑩𝑶𝑻 ━━━━⩺*\n\n◍ أهلا بيك بقائمه تحميل الصوت من يوتيوب\n•━━━━━━━━━━━━•ٴ\n◍ › ص + اسم اللي عايز تبحث عنه \n-› مثال : ص تامر حسني بحبك\n•━━━━━━━━━━━━━•ٴ\n◍ › م + لينك  & لتحميل صوت مستند mp3 . \n-› مثال : م https://www.youtube.com/watch?v=PyP-Ptoloxc\n\n*⩹━━━ 𝑩𝑨𝑲𝑨𝑹 𝑩𝑶𝑻 ━━━━⩺*\n\n◍ أهلا بيك بقائمه تحميل الفيديوهات من يوتيوب\n•━━━━━━━━━━━━━•ٴ\n◍ › ف + لينك \n-› مثال : ف https://www.youtube.com/watch?v=PyP-Ptoloxc\n\n*⩹━━━ 𝑩𝑨𝑲𝑨𝑹 𝑩𝑶𝑻 ━━━━⩺*\n\n◍ أهلا بيك بقائمه بحث في يوتيوب\n•━━━━━━━━━━━━━•ٴ\n◍ › بحث + اللي عايز تبحث عنه & صوت .\n◍ › بحث2 + اللي عايز تبحث عنه & فيديو .\n◍ › بحث3 + اللي عايز تبحث عنه & رابط نتائج بحث .\n•━━━━━━━━━━━━━•ٴ `
+
+    let buttonMessage = {
+    image: {url: `https://telegra.ph/file/cfefbedaad69afde40a4d.jpg`},
+    caption: teks,
+    footer: `${botname}`,
+    headerType: 4
+    }
+    ZimBotInc.sendMessage(from, { react: { text: `👨🏻‍💻`, key: m.key }}) 
+    ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+    }
+          break
+
 case 'xxaaxx': 
     throw `◍ أهلا بيك بقائمه تحميل الصوت من يوتيوب\n•━━━━━━━━━━━━•ٴ\n◍ › ص + اسم اللي عايز تبحث عنه \n-› مثال : ص تامر حسني بحبك\n•━━━━━━━━━━━━━•ٴ\n◍ › م + لينك  & لتحميل صوت مستند mp3 . \n-› مثال : م https://www.youtube.com/watch?v=PyP-Ptoloxc\n•━━━━━━━━━━━━━•ٴ`
     break
+    
 case 'xxffxx': 
     throw `◍ أهلا بيك بقائمه تحميل الفيديوهات من يوتيوب\n•━━━━━━━━━━━━━•ٴ\n◍ › ف + لينك \n-› مثال : ف https://www.youtube.com/watch?v=PyP-Ptoloxc\n•━━━━━━━━━━━━━•ٴ`
     break
@@ -6557,7 +6558,7 @@ case 'زوجني': case 'جوزني': {
   let buttons = [
  { buttonId: '❤️', buttonText: { displayText: '❤️' }, type: 1 }
    ]
-   await ZimBotInc.sendButtonText(m.chat, buttons, mrlido7x, botname, m, {mentions: ments})
+   await ZimBotInc.sendButtonText(m.chat, mrlido7x, botname, m, {mentions: ments})
   }
   break
 
@@ -6604,7 +6605,7 @@ case 'السحري': case 'سحري': {
   let sara = sama[Math.floor(Math.random() * sama.length)]
   let lidoo = `*سؤالك ${text}*\nالاجابة : ${sara}`
   let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
-await ZimBotInc.sendButtonText(m.chat, buttons, lidoo, botname, m)
+await ZimBotInc.sendButtonText(m.chat, lidoo, botname, m)
 }
 break    
 
@@ -6613,7 +6614,7 @@ case 'بتحب': case 'بتحب ده': {
   let Shereen = esrAA[Math.floor(Math.random() * esrAA.length)]
   let lidoo7x = ` ${Shereen}`
   let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
-await ZimBotInc.sendButtonText(m.chat, buttons, lidoo7x, botname, m)
+await ZimBotInc.sendButtonText(m.chat, lidoo7x, botname, m)
 }
 break
 
@@ -6622,7 +6623,7 @@ case 'نسبه': case 'نسبة': {
   let maro = waleed[Math.floor(Math.random() * waleed.length)]
   let lidoo7x = `◍ نسبة هي : ${maro}% `
   let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
-await ZimBotInc.sendButtonText(m.chat, buttons, lidoo7x, botname, m)
+await ZimBotInc.sendButtonText(m.chat, lidoo7x, botname, m)
 }
 break
 ////-----------------------------------------------------------------------------------------//    
@@ -6682,7 +6683,7 @@ musers= `تم قتل -» @${users.split("@")[0]}
 console.log(musers)
 }
 const llido = killlidoo[Math.floor(Math.random()*killlidoo.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:llido},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+ZimBotInc.sendMessage(m.chat,{video:{url:llido},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6750,7 +6751,7 @@ musers= `امححح @${users.split("@")[0]}
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6803,7 +6804,7 @@ musers= `القمر 🌚💞 -» @${m.sender.split("@")[0]}
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6857,12 +6858,12 @@ const rcpp =`@${users.split("@"[0])}`
 musers= `◍ اهلا عزيزتي @${users.split("@")[0]}
 ◍ طلب @${m.sender.split("@")[0]} الزواج منكى
 ◍ هل تقبلين الزواج به؟ ❤️🥺
-  `
+*════════ ××× ════════*\n*« الاجابة عن طلب الجواز 💍 » ⇊*\n*════════ ××× ════════*\n↫ موافقة @${m.sender.split("@")[0]} \n\n↫ مش_موافقة @${m.sender.split("@")[0]} \n`
 
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6870,7 +6871,7 @@ console.log(error);
 break
 
 
-case 'gfdxazaaaz':{
+case 'موافقة': case 'موافقه':{
   if (!m.isGroup) return replay(mess.group)	
   const killlido = [
     "https://telegra.ph/file/d50174fc9d7c1d6f8e5d4.mp4",
@@ -6916,14 +6917,14 @@ musers= `تم زواجك يا أخت @${m.sender.split("@")[0]} علي الأخ 
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
 }
 ZimBotInc.sendMessage(from, { react: { text: `👫🏻`, key: m.key }}) 
 break
-case 'gfdxazqqaz':{
+case 'مش_موافقة': case 'مش_موافقه':{
   if (!m.isGroup) return replay(mess.group)	
   const killlido = [
     "https://telegra.ph/file/4a7934f19a91073cc84ca.mp4",
@@ -6971,7 +6972,7 @@ musers= `البت @${m.sender.split("@")[0]} مرضتش بيك يا حزين �
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,buttons:buttons,mentions:ment,caption:musers},{quoted:m})
+ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6980,8 +6981,115 @@ ZimBotInc.sendMessage(from, { react: { text: `🙂`, key: m.key }})
 break
 //-----------------------------------------//
 
+case 'حاسبه': case 'احسب': case 'حاسبة':{
+if (args.length < 1) return reply(`*「 آلــة حــاســبــة بــكار 」*\n\n- مــرحــبــا يا ${pushname}\n\n•  عـ( * )ـلامة :  تعني ضرب ×\n•  عـ( + )ـلامة :  تعني جمع +\n•  عـ( - )ـلامة :  تعني طرح  -\n•  عـ( / )ـلامة :  تعني قسمة ÷\n\n• الامـثـلـة : - \nمــثــال :  احــســب 5*8 \nمــثــال :  احــســب 5+9\nمــثــال :  احــســب 9-2\nمــثــال :  احــســب 10/5\nمــثــال :  احــســب 4+3*9-1/10\n`)
+let qsd = args.join(" ")
+if (typeof mathjs.evaluate(qsd) !== 'number') {
+reply('Error')
+} else {
+reply(`*「 آلــة حــاســبــة بــكار 」*\n\n*output :* ${qsd} = ${mathjs.evaluate(qsd.replace(/×/g, "*").replace(/x/g, "*").replace(/÷/g, "/"))} \n`)
+}
+}
+break
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// < ================================================== >
+ 
+// --------------   اوامر المطور ليدو  ----------------//
+
+// < ================================================== >
+
+case 'نشر': {
+  if (!isCreator) throw mess.owner
+    if (!m.isGroup) return m.reply(`◍ هذا الامر يستخدم في جروبات فقط`)
+  if (!text) return m.reply(`text?`)
+  let mem = await participants.filter(v => v.id.endsWith('.net')).map(v => v.id)
+  m.reply(`◍ تم ارسال رسالتك الي كل الاعضاء`)
+  for (let pler of mem) {
+  ZimBotInc.sendMessage(pler, { text: q})
+   }  
+   m.reply(`◍ ضن `)
+    }
+    break
+case "نشر_جروب":{
+if (!isCreator) throw mess.owner
+if (!q) return m.reply(`◍ نشر_جروب ايدي|رسالتك \n◍ مثال : نشر_جروب  120363143449233813@g.us|مرحبا`)
+await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+const metadata2 = await ZimBotInc.groupMetadata(q.split("|")[0])
+const halss = metadata2.participants
+for (let mem of halss) {
+ZimBotInc.sendMessage(`${mem.id.split('@')[0]}` + "@s.whatsapp.net", { text: q.split("|")[1] })
+await sleep(5000)
+}
+m.reply(`◍ تم ارسال رسالتك الي كل الاعضاء`)
+}
+break
+
+case 'ايدي':{
+  m.reply(from)
+   }
+  break
+
+ 
+  case 'grouponly': {
+    if (!isCreator) throw mess.owner
+    if (args[0] === "on") {
+    if (db.settings[botNumber].grouponly) return reply(`*Grouponly already on okay*`)
+    db.settings[botNumber].grouponly = true
+    reply(`*grouponly on*`)
+    } else if (args[0] === "off") {
+    if (!db.settings[botNumber].grouponly) return reply(`*Grouponly Already off okay*`)
+    db.settings[botNumber].grouponly = false
+    reply(`*Grouponly off*`)
+    } else {
+     let drips = [
+    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
+    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+      ]
+      await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ɢʀᴏᴜᴘ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+    }
+      } 
+  break
+  case 'autoblock': {
+    if (!isCreator) throw mess.owner
+    if (args[0] === "on") {
+    if (db.settings[botNumber].autoblock) return reply(`*Autoblock already on okay*`)
+    db.settings[botNumber].autoblock = true
+    reply(`*Autoblock on*`)
+    } else if (args[0] === "off") {
+    if (!db.settings[botNumber].autoblock) return reply(`*Autoblock Already off okay*`)
+    db.settings[botNumber].autoblock = false
+    reply(`*Autoblock off*`)
+    } else {
+     let drips = [
+    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
+    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+      ]
+      await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀᴜᴛᴏʙʟᴏᴄᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+    }
+      } 
+  break
+
+/// ------------  endd --------------------//////
 
 	//---------- من سيربح المليون ------------\\\ 
 	//--------- تطوير مطور ليدو باشا ---------\\\\
@@ -7587,21 +7695,7 @@ break
 		
 	//--------- نهاية لعبة--------///
 
-
-
-// < ================================================== >
- 
-// --------------   اوامر المطور ليدو  ----------------//
-
-// < ================================================== >
-
-
-
-/// ------------  endd --------------------//////
-
-
-
-case 'tes': case 'test': case 'alive': case 'bot': case 'robot': case 'zimbot': case 'drips': case 'menu': {
+case 'قايم': case 'test': case 'alive': case 'bot': case 'robot': case 'zimbot': case 'drips': case 'menu': {
 ram9000 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 timestampe = speed();
 latensie = speed() - timestampe
