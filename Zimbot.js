@@ -9,6 +9,7 @@ const util = require('util')
 const crypto = require('crypto')
 const chalk = require('chalk')
 const mathjs = require('mathjs')
+const scp1 = require('./plugins/scraperr')
 const { fetchBuffer } = require("./database/myfunc2")
 const { exec, spawn, execSync } = require('child_process')
 const axios = require('axios')
@@ -62,9 +63,9 @@ const { isLimit, limitAdd, getLimit, giveLimit, addBalance, kurangBalance, getBa
 */
 
         //TIME
-        const xtime = moment.tz('Asia/Kolkata').format('HH:mm:ss')
-        const xdate = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
-        const time2 = moment().tz('Asia/Kolkata').format('HH:mm:ss')  
+        const xtime = moment.tz('Africa/Cairo').format('HH:mm:ss')
+        const xdate = moment.tz('Africa/Cairo').format('DD/MM/YYYY')
+        const time2 = moment().tz('Africa/Cairo').format('HH:mm:ss')  
          if(time2 < "23:59:00"){
 var xeonytimewisher = `Good Night 🌌`
  }
@@ -85,6 +86,8 @@ var xeonytimewisher = `Good Morning 🌄`
  } 
 
 //database
+let banUser = JSON.parse(fs.readFileSync('./database/banUser.json'))
+let banchat = JSON.parse(fs.readFileSync('./database/banChat.json'))
 const  dripsno = JSON.parse(fs.readFileSync('./database/antilink.json'))
 const _level = JSON.parse(fs.readFileSync('./database/leveluser.json'))
 const _petualang = JSON.parse(fs.readFileSync('./database/inventori.json'))
@@ -134,6 +137,10 @@ const groupAdmins = m.isGroup ? await participants.filter(v => v.admin !== null)
 const groupOwner = m.isGroup ? groupMetadata.owner : ''
 const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
 const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
+const isBan = banUser.includes(m.sender)
+const banUserr = await ZimBotInc.fetchBlocklist()
+const isBanned = banUser ? banUser.includes(m.sender) : false
+const isBanChat = m.isGroup ? banchat.includes(from) : false
 const isAntinsfw = m.isGroup ?  dripsno.includes(m.chat) : false
 const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || false
 const antiToxic = m.isGroup ? dripsanti.includes(from) : false
@@ -1442,9 +1449,9 @@ ZimBotInc.sendMessage(m.chat, {text:`*▊▊▊ ANTILINK ▊▊▊*\n\n@${kice.s
 if (db.settings[botNumber].grouponly) {
   if (!m.isGroup) {
     let a = 'a'
-    if (!isCreator) throw `*INBOX NOT ALLOWED*`
+    if (!isCreator) throw `◍ › البوب يعمل في جروبات فقط ✅`
     if (budy === a) 
-    throw  '*inbox not allowed*'
+    throw  '◍ › البوب يعمل في جروبات فقط ✅'
    
     }
   }
@@ -1925,27 +1932,7 @@ downloader.downloadAPK("com.microbees.floatingapp")
   ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
   }
   break
- case 'chat': {
-   if (!isCreator) throw global.owner
-   if (!q) throw 'Option : 1. mute\n2. unmute\n3. archive\n4. unarchive\n5. read\n6. unread\n7. delete'
-   if (args[0] === 'mute') {
-  ZimBotInc.chatModify({ mute: 'Infinity' }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   } else if (args[0] === 'unmute') {
-  ZimBotInc.chatModify({ mute: null }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   } else if (args[0] === 'archive') {
-  ZimBotInc.chatModify({  archive: true }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   } else if (args[0] === 'unarchive') {
-  ZimBotInc.chatModify({ archive: false }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   } else if (args[0] === 'read') {
-  ZimBotInc.chatModify({ markRead: true }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   } else if (args[0] === 'unread') {
-  ZimBotInc.chatModify({ markRead: false }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   } else if (args[0] === 'delete') {
-  ZimBotInc.chatModify({ clear: { message: { id: m.quoted.id, fromMe: true }} }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-   }
- }
  
- break
  case 'mathquiz': case 'math': {
    if (kuismath.hasOwnProperty(m.sender.split('@')[0])) throw "*There are still unfinished match*"
    let { genMath, modes } = require('./src/math')
@@ -1977,20 +1964,7 @@ Ciee Whats Going On💖👀`
   await ZimBotInc.sendButtonText(m.chat, buttons, jawab, ZimBotInc.user.name, m, {mentions: menst})
  }
  break
- case 'join': {
-   if (!isCreator) throw global.owner
-   if (!text) throw 'Enter the group link!'
-   if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw '*LINK INVALID*'
-   replay(mess.wait)
-   let result = args[0].split('https://chat.whatsapp.com/')[1]
-   await ZimBotInc.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
- }
- break
- case 'leave': {
-   if (!isCreator) throw global.owner
-   await ZimBotInc.groupLeave(m.chat).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
- }
- break
+ 
 case 'kick': {
 if (!m.isGroup) throw mess.group
    if (!isBotAdmins) throw mess.botAdmin
@@ -2000,36 +1974,7 @@ await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'remove')
 }
 break
 
-case 'block': {
-if (!isCreator) throw global.owner
-let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await ZimBotInc.updateBlockStatus(users, 'block').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-}
-break
-case 'unblock': {
-if (!isCreator) throw global.owner
-let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await ZimBotInc.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-}
-break
 
-  case 'setppbot': case 'setbotpp': {
-   if (!isCreator) throw global.owner
-   if (!quoted) throw `Send/Reply Image With Caption ${prefix + command}`
-   if (!/image/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
-   if (/webp/.test(mime)) throw `Send/Reply Image With Caption ${prefix + command}`
-   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
-   await ZimBotInc.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
-   reply(mess.success)
-   }
-   break
-
-   case 'setbio':
-   reply(mess.wait)
-if (!q) return reply('Send orders *#setbio text*')
-ZimBotInc.setStatus(`${q}`)
-reply(mess.success)
-break
 
 case 'grupinfo': case 'groupinfo':
 try{
@@ -2243,24 +2188,7 @@ reply(`*It was nice to chat with you goodbye _chatbot off_*`)
 }
   } 
 break
-case 'privatechat': {
-if (!isCreator) throw mess.owner
-if (args[0] === "on") {
-if (db.settings[botNumber].privatechat) return reply(`*chatbot already on okay*`)
-db.settings[botNumber].privatechat = true
-reply(`*chatbot on enjoy talking to me okay*`)
-} else if (args[0] === "off") {
-if (!db.settings[botNumber].privatechat) return reply(`*Already off okay*`)
-db.settings[botNumber].privatechat = false
-reply(`*It was nice to chat with you goodbye _chatbot off_*`)
-} else {
- let dripsu = [
-{ buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-{ buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
-  ]
-  await ZimBotInc.sendButtonText(m.chat, dripsu, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
-}
-  } 
+
 case 'chatgpt': {
 if (!isCreator) throw mess.owner
 if (args[0] === "on") {
@@ -2549,27 +2477,7 @@ if (!wokwol.quoted) return reply('*The message you replied to does not contain a
 await wokwol.quoted.copyNForward(m.chat, true)
  }
     break
- case 'listpc': {
-  let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v.id)
-  let teks = `⬣ *LIST PERSONAL CHAT*\n\nTotal Chat : ${anu.length} Chat\n\n`
-  for (let i of anu) {
-      let nama = store.messages[i].array[0].pushName
-      teks += `⬡ *NAME :* ${nama}\n⬡ *USER :* @${i.split('@')[0]}\n⬡ *CHAT :* https://wa.me/${i.split('@')[0]}\n\n━━━━━━━━━━━━━━━━━━━━━━━━\n\n`
-  }
-  ZimBotInc.sendTextWithMentions(m.chat, teks, m)
-}
-break
-break
-   case 'listgc': {
-    let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
-    let teks = `🔏𝗚𝗥𝗢𝗨𝗣 𝗖𝗛𝗔𝗧 𝗟𝗜𝗦𝗧\n\n𝗧𝗢𝗧𝗔𝗟 𝗚𝗥𝗢𝗨𝗣 : ${anu.length} Group\n\n`
-    for (let i of anu) {
-let metadata = await ZimBotInc.groupMetadata(i)
-teks += `🔏𝗡𝗔𝗠𝗘 : ${metadata.subject}\n🔏𝗢𝗪𝗡𝗘𝗥 : @${metadata.owner.split('@')[0]}\n🔏𝗜𝗗 : ${metadata.id}\n🔏 𝗠𝗔𝗗𝗘 : ${moment(metadata.creation * 1000).tz('Africa/Harare').format('DD/MM/YYYY HH:mm:ss')}\n🔏 𝗠𝗘𝗠𝗕𝗘𝗥 : ${metadata.participants.length}\n\n────────────────────────\n\n`
-    }
-    ZimBotInc.sendTextWithMentions(m.chat, teks, m)
-}
-break
+ 
 case 'listonline': case 'onlinelist': case 'liston': {
   let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
   let online = [...Object.keys(store.presences[id]), botNumber]
@@ -5370,33 +5278,6 @@ reply(`Successfully deleted '${text}' from the message list`)
    
 break
 
- case 'public': {
-   if (!isCreator) throw global.owner
-   ZimBotInc.public = true
-   reply('𝗭𝗶𝗺 𝗯𝗼𝘁 𝗻𝗼𝘄 𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗮𝘀 𝗽𝘂𝗯𝗹𝗶𝗰')
- }// https://hardianto.xyz/api/rip?image=https://i.imgur.com/rANDwCP.jpeg&apikey=hardianto
- break
- case 'attp': {
-  reply(mess.wait)
-  if (!text) throw `*Example : ${prefix + command} drips hi*`
-  await ZimBotInc.sendMedia(m.chat, `https://hardianto.xyz/api/maker/attp?text=${text}&apikey=hardianto`,'ZIM', 'BOT M D', m, {asSticker: true}).catch((err) => m.reply('*error while sending sticker*'))
-            }
-            break
-/*case 'ripmaker':
-  reply(mess.wait)
-  try{
-  ripdri = await axios(`https://hardianto.xyz/api/rip?image=https://i.imgur.com/rANDwCP.jpeg&apikey=hardianto`)
-  stalloni = await getBuffer(ripdri)
-  ZimBotInc.sendMessage(from, {image:stalloni},{quoted:m})
-  } catch (e) {error("Error")}
-    reply(mess.wait)*/
-            
- case 'self': {
-   if (!isCreator) throw global.owner
-   ZimBotInc.public = false
-   reply('𝗭𝗶𝗺 𝗯𝗼𝘁 𝗻𝗼𝘄 𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗮𝘀 𝗽𝗿𝗶𝘃𝗮𝘁𝗲')
- }
- break
  case 'ping': case 'botstatus': case 'statusbot': {
    const used = process.memoryUsage()
    const cpus = os.cpus().map(cpu => {
@@ -5476,9 +5357,12 @@ break
 // < ================================================== >
 
 case 'الجروب': case 'grup': {
+  if (isBan) return reply(mess.banned)	 			
+  if (isBanChat) return reply(mess.bangc)
   if (!m.isGroup) throw mess.group
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
+  if (!text) throw '*•  اكتب وصف + وصف اللي عايز تكتبه ف جروبك جروبك*'
   if (args[0] === 'قفل'){
  await ZimBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => m.reply(`*• تم قفل جروب بنجاح يقلبي 🥺💔*`)).catch((err) => m.reply(jsonformat(err)))
   } else if (args[0] === 'فتح'){
@@ -6191,6 +6075,8 @@ break
 // < ================================================== >
 
 case 'بوت': case 'البوت': case 'bot':    
+if (isBan) return reply(mess.banned)	 			
+if (isBanChat) return reply(mess.bangc)
 const ndav =[	'*اسمي  بكار  يا قلبي 🤤💚*',
 '*اسمي بكار  يا روحي🙈❤️*',
 '*اسمي  بكار  يعمري🌚🌹*',
@@ -6249,7 +6135,9 @@ let bbndav = [
 ZimBotInc.sendMessage(from, { image: { url: bakarbots.url }, caption: ''+ xeondndav }, {quoted:m})
 break  
 
-case 'بكار': case 'botbakar': case 'bakar':    
+case 'بكار': case 'botbakar': case 'bakar':  
+if (isBan) return reply(mess.banned)	 			
+if (isBanChat) return reply(mess.bangc)  
 		const ffffsawwsa =[
 	'*نعم يروحي 🌚❤️*',
 	'*نعم يا قلب بكار 🌚❤️*',
@@ -6314,6 +6202,8 @@ case 'بكار': case 'botbakar': case 'bakar':
 
 
     case 'يوتيوب':  {
+      if (isBan) return reply(mess.banned)	 			
+      if (isBanChat) return reply(mess.bangc)
       teks = `*⩹━━━ 𝑩𝑨𝑲𝑨𝑹 𝑩𝑶𝑻 ━━━━⩺*\n\n◍ أهلا بيك بقائمه تحميل الصوت من يوتيوب\n•━━━━━━━━━━━━•ٴ\n◍ › ص + اسم اللي عايز تبحث عنه \n-› مثال : ص تامر حسني بحبك\n•━━━━━━━━━━━━━•ٴ\n◍ › م + لينك  & لتحميل صوت مستند mp3 . \n-› مثال : م https://www.youtube.com/watch?v=PyP-Ptoloxc\n\n*⩹━━━ 𝑩𝑨𝑲𝑨𝑹 𝑩𝑶𝑻 ━━━━⩺*\n\n◍ أهلا بيك بقائمه تحميل الفيديوهات من يوتيوب\n•━━━━━━━━━━━━━•ٴ\n◍ › ف + لينك \n-› مثال : ف https://www.youtube.com/watch?v=PyP-Ptoloxc\n\n*⩹━━━ 𝑩𝑨𝑲𝑨𝑹 𝑩𝑶𝑻 ━━━━⩺*\n\n◍ أهلا بيك بقائمه بحث في يوتيوب\n•━━━━━━━━━━━━━•ٴ\n◍ › بحث + اللي عايز تبحث عنه & صوت .\n◍ › بحث2 + اللي عايز تبحث عنه & فيديو .\n◍ › بحث3 + اللي عايز تبحث عنه & رابط نتائج بحث .\n•━━━━━━━━━━━━━•ٴ `
 
     let buttonMessage = {
@@ -6340,6 +6230,8 @@ case 'xxbbxx':
 ////-------------- اوامر يوتيوب ------------- ///
 
 case 'xxwawxx': case 'ص':   
+  if (isBan) return reply(mess.banned)	 			
+  if (isBanChat) return reply(mess.bangc)
   if (!text) throw `-› مثال : ص تامر حسني بحبك`
   ZimBotInc.sendMessage(m.chat, { react: { text: `🎼`, key: m.key }})
   const dripsmp4 = require ('./lib/ytdl2')
@@ -6578,34 +6470,13 @@ case 'زوجني': case 'جوزني': {
   
   
   
-  case 'ytshorts': case 'shorts': {
-  if (!text) return reply(`*Use ${prefix + command} enter pin link*`)
-  if (!isUrl(args[0]) && !args[0].includes('youtube')) throw '*The link you provided is not valid*'  
-  xa.Youtube(`${text}`).then(async (data) => {
-  if (data.medias[0].formattedSize.split('MB')[0] >= 100) return m.reply('*File Over Limit* '+util.format(data)) 
-  cap = `
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-      ⟮ _*◉Yᴏᴜᴛᴜʙᴇ Sʜᴏʀᴛꜱ◉*_ ⟯ 
-     
-  0.02━◉━━━━━━━━━━━━3.26
-        🔂   ⏪   ⏸️     ⏩  🎵\n\n\n\n*◉TITLE:* ${data.title}\n*◉QUALITY:* ${data.medias[0].quality}\n*◉SIZE:* ${data.medias[0].formattedSize}\n*◉DURATION* ${data.duration}\n*◉ID:* ${data.medias[0].cached}\n*◉LINK:* ${data.url}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
-  buf = await getBuffer(data.thumbnail)
-  ZimBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${cap}` }, { quoted: m })
-  ZimBotInc.sendMessage(m.chat, { video: { url: data.medias[0].url }, jpegThumbnail:buf, caption: `*◉TITLE:* ${data.title}\n*◉QUALITY:* ${data.medias[0].quality}\n*◉SIZE:* ${data.medias[0].formattedSize}` }, { quoted: m })  
-  }).catch((err) => {
-  reply(`*Failed to download and send media*`)
-  })
-  }
-  break
-  
 ///--------------------------------------------------------------------------//
 case 'السحري': case 'سحري': {
   if (!text) throw `*↜ معاك بكار السحري 🧞‍♂️*\n↜  ارسل لي سؤال وساقوم بالاجابة عن الاسئله بصدق او كدب 🧞‍♂️\n↜ مثال :  سحري هل انت بتحب ليدو ؟`
   let sama = [`فعلا كل الي كلته صح 😁💋`,`كدااب اوى🙄😒`,` ايوه ايوه صح كل اللي تقوله يلا توكل.`,`الكلام ده مظبوط🙂😹!!!`,`ڪلُآمك صادق 💘`,`احس هذا شي كذب 🌚💕`,`اى الكدب ده😔💔`,`عينى فى عينك كده👀🌚`,`انت كداب 🙂🤓`]
   let sara = sama[Math.floor(Math.random() * sama.length)]
-  let lidoo = `*سؤالك ${text}*\nالاجابة : ${sara}`
-  let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
-await ZimBotInc.sendButtonText(m.chat, lidoo, botname, m)
+ZimBotInc.sendMessage(from, { text: `*سؤالك ${text}*\nالاجابة : ${sara}` }, botname, { quoted: m })
+
 }
 break    
 
@@ -6993,6 +6864,25 @@ reply(`*「 آلــة حــاســبــة بــكار 」*\n\n*output :* ${
 break
 
 
+case 'ss':
+  async (ZimBotInc, m, { pushName, prefix, args, text }) => {
+    if (!args[0]) return m.reply(`Please provide me a link to lookup!`);
+
+     let lookupURL;
+     if (!args[0].includes("http")) {
+     lookupURL = `https://${args[0]}`;
+    } else {
+       lookupURL = args[0];
+     }
+
+     try {
+      const resImage = await getBuffer(`https://api.popcat.xyz/screenshot?url=${lookupURL}`);
+       await ZimBotInc.sendMessage(m.from, { image: resImage, caption: `_Here's how this URL looks like:` }, { quoted: m });
+     } catch (error) {
+       m.reply(`An error occurred while processing your request!\n\nPlease recheck your link and try again!`);
+     }
+   };
+   break
 
 
 
@@ -7000,14 +6890,43 @@ break
 
 
 
+   case 'سشش':               
+   if (!m.isGroup) return m.reply(mess.group)
+ await ZimBotInc.sendMessage(m.chat, {text:"تم تفعيل الاذان"})
+ await sleep(60000)
+ await ZimBotInc.sendMessage(m.chat, {text:"  ققب "})
+ await sleep(60)
+ await ZimBotInc.sendMessage(m.chat, { audio: fs.readFileSync('./Zimbot/bot.mp3'), mimetype: 'audio/ogg', ptt: true }, { quoted: m })
+ await sleep(120000)
+ await ZimBotInc.sendMessage(m.chat, {text:" بق بق  قب"})
+ await sleep(180000)
+ await ZimBotInc.sendMessage(m.chat, {text:"بثب"})
+ await sleep(30)
+ reply(mess.success)
+ break
 
 
 
 
+ case 'قرآن': case 'قران':
+  if (isBan) return m.reply(mess.banned)	 			
+  if (isBanChat) return m.reply(mess.bangc)
+  if (!text) return m.reply(`◍ ⇜ اكتب رقم الصفحة : قران 1`)					
+quran7x = await axios.get(`https://ava-tar.online/api/qor/get?text=${text}`)
+    let lido7x = {
+     image: {url:quran7x.data.jack},
+     caption:  `◍ اليك صفحة القران الكريم `,
+    }     
+          await ZimBotInc.sendMessage(m.chat, lido7x,{ quoted:m })
+break
 
-
-
-
+case 'ss': case 'ssweb': {
+  if (!q) return reply(`Example ${prefix+command} link`)
+  replay(mess.wait)
+  let krt = await scp1.ssweb(q)
+  ZimBotInc.sendMessage(from,{image:krt.result,caption:mess.succes}, {quoted:m})
+  }
+  break
 
 
 
@@ -7017,6 +6936,65 @@ break
 // --------------   اوامر المطور ليدو  ----------------//
 
 // < ================================================== >
+
+
+case 'بان': {
+  if (isBan) return m.reply(mess.banned)	 			
+  if (isBanChat) return m.reply(mess.bangc)
+  if (!isCreator) return m.replay(mess.owner)
+  ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+  
+  if (!args[0]) return m.reply(`◍ مرحبا مطوري \n◍ لحظر عضو : بان +  \n◍ الغاء الحظر : بان -`)
+  if (args[1]) {
+  orgnye = args[1] + "@s.whatsapp.net"
+  } else if (m.quoted) {
+  orgnye = m.quoted.sender
+  }
+  const isBane = banUser.includes(orgnye)
+  if (args[0] === "+") {
+  if (isBane) return m.reply('◍ تم اضافة العضو في قايمة الحظر من قبل ')
+  banUser.push(orgnye)
+  m.reply(`◍ تم اضافة العضو في قايمة الحظر `)
+  } else if (args[0] === "-") {
+  if (!isBane) return m.reply('◍ تم حذف العضو من قايمة الحظر من قبل ')
+  let delbans = banUser.indexOf(orgnye)
+  banUser.splice(delbans, 1)
+  m.reply(`◍ تم حذف العضو من قايمة الحظر `)
+  } else {
+    m.reply("◍ Error")
+  }
+  }
+  break
+
+  
+case 'جروب': {
+    if (isBan) return m.reply(mess.banned);	 			
+    if (!isCreator) return m.reply(mess.owner);
+    ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+    if (!args[0]) return m.reply(`◍ مرحبا مطوري \n◍ لحظر جروب : جروب +  \n◍ الغاء جروب : جروب -`)
+    if (args[0] === "+") {
+      if (isBanChat) return m.reply('◍ تم اضافة الجروب في قايمة الحظر من قبل ');
+      banchat.push(from);
+      m.reply('◍ تم اضافة الجروب في قايمة الحظر');
+  
+      var groupe = await ZimBotInc.groupMetadata(from);
+      var members = groupe['participants'];
+      var mems = [];
+      members.map(async adm => {
+        mems.push(adm.id.replace('c.us', 's.whatsapp.net'));
+      });
+  
+      ZimBotInc.sendMessage(from, { text: "「 تم حظر الجروب ! 」 \n\n◍ تم حظر الجروب بالكامل من استخدام البوت . ", contextInfo: { mentionedJid: mems } }, { quoted: m });
+    } else if (args[0] === "-") {
+      if (!isBanChat) return m.reply('◍ تم حذف الجروب من قايمة الحظر من قبل ');
+      let off = banchat.indexOf(from);
+      banchat.splice(off, 1);
+      m.reply('◍ تم حذف الجروب من قايمة الحظر ');
+    } else {
+      m.reply('◍ مرحبا مطوري \n◍ لحظر جروب : جروب +  \n◍ الغاء جروب : جروب -');
+    }
+  }
+  break  
 
 case 'نشر': {
   if (!isCreator) throw mess.owner
@@ -7050,44 +7028,246 @@ case 'ايدي':{
   break
 
  
-  case 'grouponly': {
+  case 'جروبات': {
     if (!isCreator) throw mess.owner
-    if (args[0] === "on") {
-    if (db.settings[botNumber].grouponly) return reply(`*Grouponly already on okay*`)
+    if (!args[0]) return m.reply(`◍ مرحبا مطوري \n◍ لتشغيل البوت في جروبات  : جروبات تشغيل \n◍ لايقاف تشغيل : جروبات ايقاف`)
+    if (args[0] === "تشغيل") {
+    if (db.settings[botNumber].grouponly) return m.reply(`◍ › تم تشغيل البوت في جروبات فقط من قبل✅`)
     db.settings[botNumber].grouponly = true
-    reply(`*grouponly on*`)
-    } else if (args[0] === "off") {
-    if (!db.settings[botNumber].grouponly) return reply(`*Grouponly Already off okay*`)
+    m.reply(`◍ › تم تشغيل البوت في جروبات فقط ✅`)
+    } else if (args[0] === "ايقاف") {
+    if (!db.settings[botNumber].grouponly) return m.reply(`◍ › تم ايقاف تشغيل البوت في جروبات فقط من قبل✅`)
     db.settings[botNumber].grouponly = false
-    reply(`*Grouponly off*`)
+    m.reply(`◍ › تم ايقاف تشغيل البوت في جروبات فقط ✅`)
     } else {
-     let drips = [
-    { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
-    { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
+     let lido7x = [
+    { buttonId: `${command} on`, buttonText: { displayText: 'تشغيل' }, type: 1 },
+    { buttonId: `${command} off`, buttonText: { displayText: 'ايقاف' }, type: 1 }
       ]
-      await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ɢʀᴏᴜᴘ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+      await ZimBotInc.sendButtonText(m.chat, lido7x, `-`, ZimBotInc.user.name, m)
     }
       } 
   break
-  case 'autoblock': {
+  case 'بلوك_تلقائي': {
+    if (!isCreator) throw mess.owner
+    if (args[0] === "تشغيل") {
+    if (db.settings[botNumber].autoblock) return m.reply(`◍ › تم تشغيل البلوك تلقائي من قبل `)
+    db.settings[botNumber].autoblock = true
+    m.reply(`◍ › تم تشغيل البلوك تلقائي `)
+    } else if (args[0] === "ايقاف") {
+    if (!db.settings[botNumber].autoblock) return m.reply(`◍ › تم ايقاف تشغيل البلوك تلقائي من قبل `)
+    db.settings[botNumber].autoblock = false
+    m.reply(`◍ › تم ايقاف تشغيل البلوك تلقائي `)
+    } else {
+     let lido7x = [
+    { buttonId: `${command} on`, buttonText: { displayText: 'تشغيل' }, type: 1 },
+    { buttonId: `${command} off`, buttonText: { displayText: 'ايقاف' }, type: 1 }
+      ]
+      await ZimBotInc.sendButtonText(m.chat, lido7x, `-`, ZimBotInc.user.name, m)
+    }
+      } 
+  break
+
+  case 'انشاء_جروب': {
+    if (!isCreator) return replay(mess.owner)
+    if (!args.join(" ")) return m.reply(`◍ › اكتب اسم الجروب `)
+    try {
+    let cret = await ZimBotInc.groupCreate(args.join(" "), [])
+    let response = await ZimBotInc.groupInviteCode(cret.id)
+    teks = `「 تم انشاء جروب ${cret.subject} 」
+    
+    ▸ المالك : @${cret.owner.split("@")[0]}
+    ▸ الساعه والتاريخ : ${moment(cret.creation * 1000).tz("Africa/Cairo").format("DD/MM/YYYY HH:mm:ss")}   
+    ▸ الرابط : 
+https://chat.whatsapp.com/${response}
+           `
+    ZimBotInc.sendMessage(m.chat, { text:teks, mentions: await ZimBotInc.parseMention(teks)}, {quoted:m})
+    } catch {
+    reply("Error!")
+    }
+    }
+    break
+    case 'غادر': {
+      if (!isCreator) return m.reply(mess.owner)
+      await ZimBotInc.groupLeave(m.chat).then((res) =>  m.reply(`◍ √`)).catch((err) =>  m.reply(`◍ √`))
+    }
+    break
+
+  case 'قايمة_جروبات': case 'قايمه_جروبات': {
+	  if (!isCreator) return m.reply(mess.owner)
+      if (isBan) return m.reply(mess.banned)	 			
+     if (isBanChat) return m.reply(mess.bangc)
+     ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+     let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
+     let teks = ` 「  قايمه جروبات   」\n\n عدد الجروبات ${anu.length} جروب .`
+     for (let i of anu) {
+     let metadata = await ZimBotInc.groupMetadata(i)
+     if (metadata.owner === "غير معروف") {
+     loldd = false
+     } else {
+     loldd = metadata.owner
+     }
+     teks += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━\n\n الاسم : ${metadata.subject ? metadata.subject : "undefined"}\n المالك : ${loldd ? '@' + loldd.split("@")[0] : "غير معروف"}\n ايدي : ${metadata.id ? metadata.id : "undefined"}\n تاريخ الانشاء : ${metadata.creation ? moment(metadata.creation * 1000).tz('Africa/Cairo').format('DD/MM/YYYY HH:mm:ss') : "undefined"}\n عدد الاعضاء : ${metadata.participants.length ? metadata.participants.length : "undefined"} \n`
+     }
+     ZimBotInc.sendTextWithMentions(m.chat, teks, m)
+     }
+     break
+  
+  case 'مستخدمين': case 'المستخدمين': {
+	  if (!isCreator) return m.reply(mess.owner)	
+     ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})		  
+        let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v.id)
+        let teks = `◍ › عدد المسخدمين بوت${botnamee} : ${anu.length} مستخدم \n\n`
+        for (let i of anu) {
+            let nama = store.messages[i].array[0].pushName
+            teks += `◍ › *الاسم :* ${nama}\n◍ › *رقمه :* @${i.split('@')[0]}\n◍ › *شاته :* https://wa.me/${i.split('@')[0]}\n\n━━━━━━━━━━━━━━━━━━━━━━━━\n\n`
+        }
+        ZimBotInc.sendTextWithMentions(m.chat, teks, m)
+      }
+      break
+
+
+case 'حظر': {
+if (!isCreator) return m.reply(mess.owner)	
+let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+await ZimBotInc.updateBlockStatus(users, 'block').then((res) => reply('◍ › تم حظر المستخدم بنجاح ✅')).catch((err) => reply('◍ › تم حظر المستخدم بنجاح ✅#error'))
+}
+break
+case 'فك_حظر': {
+if (!isCreator) return m.reply(mess.owner)	
+let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+await ZimBotInc.updateBlockStatus(users, 'unblock').then((res) => reply('◍ › تم فك حظر المستخدم بنجاح ✅')).catch((err) => reply('◍ › تم فك حظر المستخدم بنجاح ✅ #error'))
+}
+break
+case 'المحظورين': {
+  if (!isCreator) return m.reply(mess.owner)	
+	const lisben = "عدد المحظورين: " + banUserr.length
+	reply(lisben)
+	}
+	break
+  case 'ضع_صورة': {
+if (!isCreator) return m.reply(mess.owner)	
+   if (!quoted) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يا مطوري 😍*`
+   if (!/image/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يا مطوري 😍*`
+   if (/webp/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يا مطوري 😍*`
+   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
+   await ZimBotInc.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
+   m.reply("تم تغيير الصورة بنجاح")
+   }
+   break
+
+   case 'ضع_بايو':
+  if (!isCreator) return m.reply(mess.owner)	
+  m.reply('جاري تغير البايو')
+if (!q) return m.reply('اكتب البايو بعد الامر ')
+ZimBotInc.setStatus(`${q}`)
+m.reply('تم بنجاح تغير البايو ')
+break
+
+ case 'عام': {
+   if (!isCreator) throw global.owner
+   ZimBotInc.public = true
+   reply('اصبح البوت للجميع')
+ }
+ break
+  
+ case 'خاص': {
+   if (!isCreator) throw global.owner
+   ZimBotInc.public = false
+   reply('اصبح البوت خاص')
+ }
+ break
+
+
+
+  
+  case 'دخول': {
+    if (!isCreator) throw global.owner
+    if (!text) throw 'Enter the group link!'
+    if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw '*LINK INVALID*'
+    replay(mess.wait)
+    let result = args[0].split('https://chat.whatsapp.com/')[1]
+    await ZimBotInc.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+  }
+  break
+
+
+  case 'joinn': {
+    if (!isCreator) return replay(mess.owner)
+    if (!text) return reply(`Contoh ${prefix+command} linkgc`)
+    if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('Link Invalid!')
+    let result = args[0].split('https://chat.whatsapp.com/')[1]
+    await ZimBotInc.groupAcceptInvite(result)
+    await reply(`Done`)
+    }
+    break
+
+    
+
+case 'join': {
+  if (isBan) return reply(mess.banned)	 			
+if (isBanChat) return reply(mess.bangc)
+if (!isCreator) return replay(mess.owner)
+ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+if (!args[0]) return replay(`Where's the link?`)
+vdd = args[0]
+let vcc = vdd.split("https://chat.whatsapp.com/")[1]
+if (!vcc) return replay("Link invalid!")
+if (isCreator) {
+await ZimBotInc.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
+replay("Succes!")
+} else {
+ZimBotInc.query({
+tag: "iq",
+attrs: {
+type: "get",
+xmlns: "w:g2",
+to: "@g.us"
+},
+content: [{ tag: "invite", attrs: { code: vcc } }]
+}).then(async(res) => {
+sizny = res.content[0].attrs.size
+if (sizny < 20) {
+teks = `Sorry, munimun 20 members are required in a group to add bot!`
+sendOrder(m.chat, teks, "667140254502463", fs.readFileSync('./drips.jpg'), `${global.packname}`, `${global.BotName}`, "916297175943@s.whatsapp.net", "AR6NCY8euY5cbS8Ybg5Ca55R8HFSuLO3qZqrIYCT7hQp0g==", "99999999999999999999")
+} else if (sizny > 20) {
+await ZimBotInc.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
+replay("Joined !")
+} else {
+replay("Error")
+}
+}).catch(_ => _)
+}
+}
+break
+
+
+
+  case 'privatechat': {
     if (!isCreator) throw mess.owner
     if (args[0] === "on") {
-    if (db.settings[botNumber].autoblock) return reply(`*Autoblock already on okay*`)
-    db.settings[botNumber].autoblock = true
-    reply(`*Autoblock on*`)
+    if (db.settings[botNumber].privatechat) return reply(`*chatbot already on okay*`)
+    db.settings[botNumber].privatechat = true
+    reply(`*chatbot on enjoy talking to me okay*`)
     } else if (args[0] === "off") {
-    if (!db.settings[botNumber].autoblock) return reply(`*Autoblock Already off okay*`)
-    db.settings[botNumber].autoblock = false
-    reply(`*Autoblock off*`)
+    if (!db.settings[botNumber].privatechat) return reply(`*Already off okay*`)
+    db.settings[botNumber].privatechat = false
+    reply(`*It was nice to chat with you goodbye _chatbot off_*`)
     } else {
-     let drips = [
+     let dripsu = [
     { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
     { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
       ]
-      await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀᴜᴛᴏʙʟᴏᴄᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+      await ZimBotInc.sendButtonText(m.chat, dripsu, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
     }
       } 
-  break
+      break
+   
+
+
+
+
+
 
 /// ------------  endd --------------------//////
 
@@ -9316,3 +9496,4 @@ console.log(chalk.redBright(`Update ${__filename}`))
 delete require.cache[file]
 require(file)
 })
+ 
