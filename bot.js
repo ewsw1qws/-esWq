@@ -39,14 +39,17 @@ global.Api = new (require('./plugins/neoxrApi.js'))(process.env.API_KEY)
 //settings
 
 global.devlido = 'مطور ليدو'
-global.owner = ['201554496598',''] //owner number ++447441437150
-global.wame = ['201554496598'] 
-global.pemilik = ['201554496598'] //owner number ++447441437150
-global.premium = ['201554496598'] //premium number ++447441437150
+global.owner = ['201554496598','201101389228'] //owner number ++447441437150
+global.wame = ['201554496598',"201101389228"] 
+global.pemilik = ['201554496598',"201101389228"] //owner number ++447441437150
+global.premium = ['201554496598',"201101389228"] //premium number ++447441437150
 global.pengguna = 'Drips' //username
 global.footer = 'ZIM BOT INC'
 global.botnma = 'ZIM BOT INC' //bot name
 global.botname = 'ZIM BOT V4'
+global.botnamee = ' بكار'
+global.group1 = 'https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e'
+global.group2 = 'https://chat.whatsapp.com/C1zaxP4j614E0NEHO5lC6H'
 global.ownernma = 'Drips' //owner name
 global.packname = 'Drips' //sticker package name
 
@@ -92,6 +95,8 @@ global.mess = {
     grouponly: '*Group Mode Only*',
     private: 'Features Used Only For Private Chat!',
     bot: 'This feature in only for the bot number',
+    banned: 'You are *Banned* fron using commands!',
+    bangc: 'This Group is *Banned* from using Commands!',
     wait: '*whoa wait a moment zim bot proccessing*',
     endLimit: '*Your daily limit has expired the limit will be reseted every 12 hours*',
     noPetualang: '*you are not in rpg database type #joinrpg* _ur name_'
@@ -131,3 +136,4 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+ 
