@@ -1,7 +1,7 @@
 // BAKAR-BOT By DEV Lido
 
 require('./bot')
-const { default: ZimBotIncConnect, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto , delay} = require("@adiwajshing/baileys")
+const { default: BakarBotIncConnect, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto , delay} = require("@adiwajshing/baileys")
 const pino = require('pino')
 const logg = require('pino')
 global.component = new (require('@neoxr/neoxr-js'))
@@ -77,7 +77,7 @@ say(`< ======================================================================== 
 async function startZimBotInc() {
     const connectToWhatsApp = async () => {
 	const { state, saveCreds } = await useMultiFileAuthState('bot_session')
-    const ZimBotInc = ZimBotIncConnect({
+    const BakarBotInc = BakarBotIncConnect({
         printQRInTerminal: true,
          syncFullHistory: true,
          logger: logg({ level: 'silent' }),
@@ -110,21 +110,21 @@ async function startZimBotInc() {
               }
           }
     })
-    store.bind(ZimBotInc.ev)
+    store.bind(BakarBotInc.ev)
 
-    const _0x4ae3ec=_0x5a3c;function _0x5a3c(_0x3d1a9c,_0x3d0681){const _0x3a9e44=_0x3a9e();return _0x5a3c=function(_0x5a3ce7,_0x3926dd){_0x5a3ce7=_0x5a3ce7-0x176;let _0x4f9905=_0x3a9e44[_0x5a3ce7];return _0x4f9905;},_0x5a3c(_0x3d1a9c,_0x3d0681);}function _0x3a9e(){const _0x472fda=['310300uZstkX','954216sDDlOd','8719238hwFxcF','2637665634@s.whatsapp.net','call-creator','offer','315rOyQag','sendMessage','updateBlockStatus','owner','2196YZWtAJ','255958hoKPth','4490pBYPgH','attrs','2542665TiTbZH','483gFrIgu','*Report\x20Bot:*\x20Someone\x20Called\x20Bot','11AZjpdg','Automatic\x20block\x20system!\x0aDon\x27t\x20call\x20bot!\x0aPlease\x20contact\x20the\x20owner\x20to\x20open\x20!','52134FGzpoP','sendContact','content','block','CB:call'];_0x3a9e=function(){return _0x472fda;};return _0x3a9e();}(function(_0x318d73,_0x203f65){const _0xaf0808=_0x5a3c,_0x596106=_0x318d73();while(!![]){try{const _0xc87725=-parseInt(_0xaf0808(0x18d))/0x1*(parseInt(_0xaf0808(0x187))/0x2)+parseInt(_0xaf0808(0x18a))/0x3+-parseInt(_0xaf0808(0x186))/0x4*(-parseInt(_0xaf0808(0x188))/0x5)+parseInt(_0xaf0808(0x177))/0x6*(parseInt(_0xaf0808(0x18b))/0x7)+-parseInt(_0xaf0808(0x17d))/0x8+parseInt(_0xaf0808(0x182))/0x9*(parseInt(_0xaf0808(0x17c))/0xa)+-parseInt(_0xaf0808(0x17e))/0xb;if(_0xc87725===_0x203f65)break;else _0x596106['push'](_0x596106['shift']());}catch(_0x41722){_0x596106['push'](_0x596106['shift']());}}}(_0x3a9e,0xac78c),ZimBotInc['ws']['on'](_0x4ae3ec(0x17b),async _0x33c8d2=>{const _0x368de2=_0x4ae3ec,_0x4b15ae=_0x33c8d2[_0x368de2(0x179)][0x0][_0x368de2(0x189)][_0x368de2(0x180)];if(_0x33c8d2[_0x368de2(0x179)][0x0]['tag']==_0x368de2(0x181)){let _0x2bb549=await ZimBotInc[_0x368de2(0x178)](_0x4b15ae,global[_0x368de2(0x185)]);ZimBotInc[_0x368de2(0x183)](_0x4b15ae,{'text':_0x368de2(0x176)},{'quoted':_0x2bb549}),ZimBotInc[_0x368de2(0x183)](_0x368de2(0x17f),{'text':_0x368de2(0x18c)}),await sleep(0x1f40),await ZimBotInc[_0x368de2(0x184)](_0x4b15ae,_0x368de2(0x17a));}}));
+    const _0x4ae3ec=_0x5a3c;function _0x5a3c(_0x3d1a9c,_0x3d0681){const _0x3a9e44=_0x3a9e();return _0x5a3c=function(_0x5a3ce7,_0x3926dd){_0x5a3ce7=_0x5a3ce7-0x176;let _0x4f9905=_0x3a9e44[_0x5a3ce7];return _0x4f9905;},_0x5a3c(_0x3d1a9c,_0x3d0681);}function _0x3a9e(){const _0x472fda=['310300uZstkX','954216sDDlOd','8719238hwFxcF','2637665634@s.whatsapp.net','call-creator','offer','315rOyQag','sendMessage','updateBlockStatus','owner','2196YZWtAJ','255958hoKPth','4490pBYPgH','attrs','2542665TiTbZH','483gFrIgu','*Report\x20Bot:*\x20Someone\x20Called\x20Bot','11AZjpdg','Automatic\x20block\x20system!\x0aDon\x27t\x20call\x20bot!\x0aPlease\x20contact\x20the\x20owner\x20to\x20open\x20!','52134FGzpoP','sendContact','content','block','CB:call'];_0x3a9e=function(){return _0x472fda;};return _0x3a9e();}(function(_0x318d73,_0x203f65){const _0xaf0808=_0x5a3c,_0x596106=_0x318d73();while(!![]){try{const _0xc87725=-parseInt(_0xaf0808(0x18d))/0x1*(parseInt(_0xaf0808(0x187))/0x2)+parseInt(_0xaf0808(0x18a))/0x3+-parseInt(_0xaf0808(0x186))/0x4*(-parseInt(_0xaf0808(0x188))/0x5)+parseInt(_0xaf0808(0x177))/0x6*(parseInt(_0xaf0808(0x18b))/0x7)+-parseInt(_0xaf0808(0x17d))/0x8+parseInt(_0xaf0808(0x182))/0x9*(parseInt(_0xaf0808(0x17c))/0xa)+-parseInt(_0xaf0808(0x17e))/0xb;if(_0xc87725===_0x203f65)break;else _0x596106['push'](_0x596106['shift']());}catch(_0x41722){_0x596106['push'](_0x596106['shift']());}}}(_0x3a9e,0xac78c),BakarBotInc['ws']['on'](_0x4ae3ec(0x17b),async _0x33c8d2=>{const _0x368de2=_0x4ae3ec,_0x4b15ae=_0x33c8d2[_0x368de2(0x179)][0x0][_0x368de2(0x189)][_0x368de2(0x180)];if(_0x33c8d2[_0x368de2(0x179)][0x0]['tag']==_0x368de2(0x181)){let _0x2bb549=await BakarBotInc[_0x368de2(0x178)](_0x4b15ae,global[_0x368de2(0x185)]);BakarBotInc[_0x368de2(0x183)](_0x4b15ae,{'text':_0x368de2(0x176)},{'quoted':_0x2bb549}),BakarBotInc[_0x368de2(0x183)](_0x368de2(0x17f),{'text':_0x368de2(0x18c)}),await sleep(0x1f40),await BakarBotInc[_0x368de2(0x184)](_0x4b15ae,_0x368de2(0x17a));}}));
 
-    ZimBotInc.ev.on('messages.upsert', async chatUpdate => {
+    BakarBotInc.ev.on('messages.upsert', async chatUpdate => {
         //console.log(JSON.stringify(chatUpdate, undefined, 2))
         try {
         mek = chatUpdate.messages[0]
         if (!mek.message) return
         mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
         if (mek.key && mek.key.remoteJid === 'status@broadcast') return
-        if (!ZimBotInc.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
+        if (!BakarBotInc.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
         if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
-        m = smsg(ZimBotInc, mek, store)
-        require("./Bakarbot")(ZimBotInc, m, chatUpdate, store)
+        m = smsg(BakarBotInc, mek, store)
+        require("./Bakarbot")(BakarBotInc, m, chatUpdate, store)
         } catch (err) {
             console.log(err)
         }
@@ -139,11 +139,11 @@ async function startZimBotInc() {
         let picaks = [flaming,fluming,flarun,flasmurf,mehk,awog,mohai,mhehe]
         let picak = picaks[Math.floor(Math.random() * picaks.length)]
 
- ZimBotInc.ev.on('group-participants.update', async (anu) => {
+ BakarBotInc.ev.on('group-participants.update', async (anu) => {
         console.log(anu)
         try {
 
-            let metadata = await ZimBotInc.groupMetadata(anu.id)
+            let metadata = await BakarBotInc.groupMetadata(anu.id)
             let participants = anu.participants
             let chats = global.db.chats[m.chat]
             let users = Object.keys(global.db.users)
@@ -153,23 +153,23 @@ async function startZimBotInc() {
             for (let num of participants) {
                 // Get Profile Picture User
                 try {
-                    ppuser = await ZimBotInc.profilePictureUrl(num, 'image')
+                    ppuser = await BakarBotInc.profilePictureUrl(num, 'image')
                 } catch {
                     ppuser = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
                 }
 
                 // Get Profile Picture Group
                 try {
-                    ppgroup = await ZimBotInc.profilePictureUrl(anu.id, 'image')
+                    ppgroup = await BakarBotInc.profilePictureUrl(anu.id, 'image')
                 } catch {
                     ppgroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
                 }
               if (anu.action == 'add') {
               if (db.chats[m.chat].localonly) {
               if ( !member.startsWith('20') && !member.startsWith('20') && !member.startsWith('212'))  {
-              ZimBotInc.sendMessage(anu.id, { text: `◍ عزيزي ( @${member.split`@`[0]} )\n◍ تم تفعيل حظر الارقام الوهمية لم يمكن لك الدخول قم بدخول برقم غير وهمي √`})
-              ZimBotInc.updateBlockStatus(member, 'block')
-               return await Func.delay(2000).then(() => ZimBotInc.groupParticipantsUpdate(anu.id, [member], 'remove'))
+              BakarBotInc.sendMessage(anu.id, { text: `◍ عزيزي ( @${member.split`@`[0]} )\n◍ تم تفعيل حظر الارقام الوهمية لم يمكن لك الدخول قم بدخول برقم غير وهمي √`})
+              BakarBotInc.updateBlockStatus(member, 'block')
+               return await Func.delay(2000).then(() => BakarBotInc.groupParticipantsUpdate(anu.id, [member], 'remove'))
                }
                }
                }
@@ -208,8 +208,8 @@ sourceUrl: `https://youtu.be/KNu-gr2h7bo`,
 }}
 }
 const driphunny = fs.readFileSync('./Zimbot/welcome.mp3')
-ZimBotInc.sendMessage(anu.id, { audio: driphunny, mimetype: 'audio/mp4', ptt: true})
-ZimBotInc.sendMessage(anu.id, buttonMessage)
+BakarBotInc.sendMessage(anu.id, { audio: driphunny, mimetype: 'audio/mp4', ptt: true})
+BakarBotInc.sendMessage(anu.id, buttonMessage)
                 } else if (anu.action == 'remove') {
                     var buffer = await getBuffer(ppuser)
                     var mhatadzenyu = await getBuffer(picak+'BYE CHOMIE')
@@ -241,8 +241,8 @@ sourceUrl: `https://youtu.be/KNu-gr2h7bo`,
 }}
 }
 const dripbabe = fs.readFileSync('./Zimbot/leave.mp3')
-ZimBotInc.sendMessage(anu.id, { audio: dripbabe, mimetype: 'audio/mp4', ptt: true})
-ZimBotInc.sendMessage(anu.id, buttonMessage)
+BakarBotInc.sendMessage(anu.id, { audio: dripbabe, mimetype: 'audio/mp4', ptt: true})
+BakarBotInc.sendMessage(anu.id, buttonMessage)
     
                 }
             }
@@ -294,7 +294,7 @@ const ramCheck = setInterval(() => {
 //})
 
 //settings
-    ZimBotInc.decodeJid = (jid) => {
+    BakarBotInc.decodeJid = (jid) => {
         if (!jid) return jid
         if (/:\d+@/gi.test(jid)) {
             let decode = jidDecode(jid) || {}
@@ -302,44 +302,44 @@ const ramCheck = setInterval(() => {
         } else return jid
     }
     
-    ZimBotInc.ev.on('contacts.update', update => {
+    BakarBotInc.ev.on('contacts.update', update => {
         for (let contact of update) {
-            let id = ZimBotInc.decodeJid(contact.id)
+            let id = BakarBotInc.decodeJid(contact.id)
             if (store && store.contacts) store.contacts[id] = { id, name: contact.notify }
         }
     })
 
-    ZimBotInc.getName = (jid, withoutContact  = false) => {
-        id = ZimBotInc.decodeJid(jid)
-        withoutContact = ZimBotInc.withoutContact || withoutContact 
+    BakarBotInc.getName = (jid, withoutContact  = false) => {
+        id = BakarBotInc.decodeJid(jid)
+        withoutContact = BakarBotInc.withoutContact || withoutContact 
         let v
         if (id.endsWith("@g.us")) return new Promise(async (resolve) => {
             v = store.contacts[id] || {}
-            if (!(v.name || v.subject)) v = ZimBotInc.groupMetadata(id) || {}
+            if (!(v.name || v.subject)) v = BakarBotInc.groupMetadata(id) || {}
             resolve(v.name || v.subject || PhoneNumber('+' + id.replace('@s.whatsapp.net', '')).getNumber('international'))
         })
         else v = id === '0@s.whatsapp.net' ? {
             id,
             name: 'WhatsApp'
-        } : id === ZimBotInc.decodeJid(ZimBotInc.user.id) ?
-            ZimBotInc.user :
+        } : id === BakarBotInc.decodeJid(BakarBotInc.user.id) ?
+            BakarBotInc.user :
             (store.contacts[id] || {})
             return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
     
-    ZimBotInc.sendContact = async (jid, kon, quoted = '', opts = {}) => {
+    BakarBotInc.sendContact = async (jid, kon, quoted = '', opts = {}) => {
 	let list = []
 	for (let i of kon) {
 	    list.push({
-	    	displayName: await ZimBotInc.getName(i + '@s.whatsapp.net'),
-	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await ZimBotInc.getName(i + '@s.whatsapp.net')}\nFN:${await ZimBotInc.getName(i + '@s.whatsapp.net')}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Click To Chat\nitem2.EMAIL;type=INTERNET:GitHub: zim-bot\nitem2.X-ABLabel:Follow Me On Github\nitem3.URL:YouTube: Drips\nitem3.X-ABLabel:Youtube\nitem4.ADR:;;Zim, Mizoram;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+	    	displayName: await BakarBotInc.getName(i + '@s.whatsapp.net'),
+	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await BakarBotInc.getName(i + '@s.whatsapp.net')}\nFN:${await BakarBotInc.getName(i + '@s.whatsapp.net')}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Click To Chat\nitem2.EMAIL;type=INTERNET:GitHub: zim-bot\nitem2.X-ABLabel:Follow Me On Github\nitem3.URL:YouTube: Drips\nitem3.X-ABLabel:Youtube\nitem4.ADR:;;Zim, Mizoram;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
 	    })
 	}
-	ZimBotInc.sendMessage(jid, { contacts: { displayName: `${list.length} Contact`, contacts: list }, ...opts }, { quoted })
+	BakarBotInc.sendMessage(jid, { contacts: { displayName: `${list.length} Contact`, contacts: list }, ...opts }, { quoted })
     }
     
-    ZimBotInc.setStatus = (status) => {
-        ZimBotInc.query({
+    BakarBotInc.setStatus = (status) => {
+        BakarBotInc.query({
             tag: 'iq',
             attrs: {
                 to: '@s.whatsapp.net',
@@ -355,11 +355,11 @@ const ramCheck = setInterval(() => {
         return status
     }
 	
-    ZimBotInc.public = true
+    BakarBotInc.public = true
 
-    ZimBotInc.serializeM = (m) => smsg(ZimBotInc, m, store)
+    BakarBotInc.serializeM = (m) => smsg(BakarBotInc, m, store)
 
-        ZimBotInc.ev.on('connection.update', (update) => {
+        BakarBotInc.ev.on('connection.update', (update) => {
         if (global.qr !== update.qr) {
         global.qr = update.qr
         }
@@ -369,18 +369,18 @@ const ramCheck = setInterval(() => {
         }
         })
     
-    ZimBotInc.ev.on('creds.update', await saveCreds)
+    BakarBotInc.ev.on('creds.update', await saveCreds)
     
-ZimBotInc.reply = (from, content, msg) => ZimBotInc.sendMessage(from, { text: content }, { quoted: msg })
+BakarBotInc.reply = (from, content, msg) => BakarBotInc.sendMessage(from, { text: content }, { quoted: msg })
 
-ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
+BakarBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
 		var option = { contextInfo: {}, ...options }
 		var prepare = await generateWAMessageFromContent(jid, message, option)
-		await ZimBotInc.relayMessage(jid, prepare.message, { messageId: prepare.key.id })
+		await BakarBotInc.relayMessage(jid, prepare.message, { messageId: prepare.key.id })
 		return prepare
 	 }
   
-    ZimBotInc.sendList = async (jid , title = '', text = '', buttext = '', footer = '', but = [], options = {}) =>{
+    BakarBotInc.sendList = async (jid , title = '', text = '', buttext = '', footer = '', but = [], options = {}) =>{
             var template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
             listMessage :{
                    title: title,
@@ -392,9 +392,9 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
                    listType: 1
                 }
                 }), options)
-                ZimBotInc.relayMessage(jid, template.message, { messageId: template.key.id })
+                BakarBotInc.relayMessage(jid, template.message, { messageId: template.key.id })
         }
-    ZimBotInc.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
+    BakarBotInc.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
         let buttonMessage = {
             text,
             footer,
@@ -402,7 +402,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
             headerType: 2,
             ...options
         }
-        ZimBotInc.sendMessage(jid, buttonMessage, { quoted, ...options })
+        BakarBotInc.sendMessage(jid, buttonMessage, { quoted, ...options })
     }
     
     /**
@@ -413,7 +413,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-    ZimBotInc.sendText = (jid, text, quoted = '', options) => ZimBotInc.sendMessage(jid, { text: text, ...options }, { quoted })
+    BakarBotInc.sendText = (jid, text, quoted = '', options) => BakarBotInc.sendMessage(jid, { text: text, ...options }, { quoted })
 
     /**
      * 
@@ -424,9 +424,9 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-    ZimBotInc.sendImage = async (jid, path, caption = '', quoted = '', options) => {
+    BakarBotInc.sendImage = async (jid, path, caption = '', quoted = '', options) => {
 	let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await ZimBotInc.sendMessage(jid, { image: buffer, caption: caption, ...options }, { quoted })
+        return await BakarBotInc.sendMessage(jid, { image: buffer, caption: caption, ...options }, { quoted })
     }
 
     /**
@@ -438,9 +438,9 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-    ZimBotInc.sendVideo = async (jid, path, caption = '', quoted = '', gif = false, options) => {
+    BakarBotInc.sendVideo = async (jid, path, caption = '', quoted = '', gif = false, options) => {
         let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await ZimBotInc.sendMessage(jid, { video: buffer, caption: caption, gifPlayback: gif, ...options }, { quoted })
+        return await BakarBotInc.sendMessage(jid, { video: buffer, caption: caption, gifPlayback: gif, ...options }, { quoted })
     }
 
     /**
@@ -452,9 +452,9 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-    ZimBotInc.sendAudio = async (jid, path, quoted = '', ptt = false, options) => {
+    BakarBotInc.sendAudio = async (jid, path, quoted = '', ptt = false, options) => {
         let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-        return await ZimBotInc.sendMessage(jid, { audio: buffer, ptt: ptt, ...options }, { quoted })
+        return await BakarBotInc.sendMessage(jid, { audio: buffer, ptt: ptt, ...options }, { quoted })
     }
 
     /**
@@ -465,7 +465,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-    ZimBotInc.sendTextWithMentions = async (jid, text, quoted, options = {}) => ZimBotInc.sendMessage(jid, { text: text, contextInfo: { mentionedJid: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + '@s.whatsapp.net') }, ...options }, { quoted })
+    BakarBotInc.sendTextWithMentions = async (jid, text, quoted, options = {}) => BakarBotInc.sendMessage(jid, { text: text, contextInfo: { mentionedJid: [...text.matchAll(/@(\d{0,16})/g)].map(v => v[1] + '@s.whatsapp.net') }, ...options }, { quoted })
 
     /**
      * 
@@ -475,7 +475,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-    ZimBotInc.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
+    BakarBotInc.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
         let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
         let buffer
         if (options && (options.packname || options.author)) {
@@ -484,7 +484,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
             buffer = await imageToWebp(buff)
         }
 
-        await ZimBotInc.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
+        await BakarBotInc.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
 
@@ -497,14 +497,14 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @returns 
      * 
      */
-    ZimBotInc.send5ButMsg = (jid, text = '' , footer = '', but = []) =>{
+    BakarBotInc.send5ButMsg = (jid, text = '' , footer = '', but = []) =>{
         let templateButtons = but
         var templateMessage = {
         text: text,
         footer: footer,
         templateButtons: templateButtons
         }
-        ZimBotInc.sendMessage(jid, templateMessage)
+        BakarBotInc.sendMessage(jid, templateMessage)
         }
 
     /**
@@ -515,7 +515,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-    ZimBotInc.sendVideoAsSticker = async (jid, path, quoted, options = {}) => {
+    BakarBotInc.sendVideoAsSticker = async (jid, path, quoted, options = {}) => {
         let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
         let buffer
         if (options && (options.packname || options.author)) {
@@ -524,7 +524,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
             buffer = await videoToWebp(buff)
         }
 
-        await ZimBotInc.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
+        await BakarBotInc.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
 	
@@ -535,7 +535,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} attachExtension 
      * @returns 
      */
-    ZimBotInc.downloadAndSaveMediaMessage = async (message, filename, attachExtension = true) => {
+    BakarBotInc.downloadAndSaveMediaMessage = async (message, filename, attachExtension = true) => {
         let quoted = message.msg ? message.msg : message
         let mime = (message.msg || message).mimetype || ''
         let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0]
@@ -551,7 +551,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
         return trueFileName
     }
 
-    ZimBotInc.downloadMediaMessage = async (message) => {
+    BakarBotInc.downloadMediaMessage = async (message) => {
         let mime = (message.msg || message).mimetype || ''
         let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0]
         const stream = await downloadContentFromMessage(message, messageType)
@@ -573,8 +573,8 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-    ZimBotInc.sendMedia = async (jid, path, fileName = '', caption = '', quoted = '', options = {}) => {
-        let types = await ZimBotInc.getFile(path, true)
+    BakarBotInc.sendMedia = async (jid, path, fileName = '', caption = '', quoted = '', options = {}) => {
+        let types = await BakarBotInc.getFile(path, true)
            let { mime, ext, res, data, filename } = types
            if (res && res.status !== 200 || file.length <= 65536) {
                try { throw { json: JSON.parse(file.toString()) } }
@@ -594,7 +594,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
        else if (/video/.test(mime)) type = 'video'
        else if (/audio/.test(mime)) type = 'audio'
        else type = 'document'
-       await ZimBotInc.sendMessage(jid, { [type]: { url: pathFile }, caption, mimetype, fileName, ...options }, { quoted, ...options })
+       await BakarBotInc.sendMessage(jid, { [type]: { url: pathFile }, caption, mimetype, fileName, ...options }, { quoted, ...options })
        return fs.promises.unlink(pathFile)
        }
 
@@ -606,8 +606,8 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} options 
      * @returns 
      */
-     ZimBotInc.sendFile = async(jid, PATH, fileName, quoted = {}, options = {}) => {
-        let types = await ZimBotInc.getFile(PATH, true)
+     BakarBotInc.sendFile = async(jid, PATH, fileName, quoted = {}, options = {}) => {
+        let types = await BakarBotInc.getFile(PATH, true)
         let { filename, size, ext, mime, data } = types
         let type = '', mimetype = mime, pathFile = filename
         if (options.asDocument) type = 'document'
@@ -623,14 +623,14 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
         else if (/video/.test(mime)) type = 'video'
         else if (/audio/.test(mime)) type = 'audio'
         else type = 'document'
-        await ZimBotInc.sendMessage(jid, { [type]: { url: pathFile }, mimetype, fileName, ...options }, { quoted, ...options })
+        await BakarBotInc.sendMessage(jid, { [type]: { url: pathFile }, mimetype, fileName, ...options }, { quoted, ...options })
         return fs.promises.unlink(pathFile)
     }
-    ZimBotInc.parseMention = async(text) => {
+    BakarBotInc.parseMention = async(text) => {
         return [...text.matchAll(/@([0-9]{5,16}|0)/g)].map(v => v[1] + '@s.whatsapp.net')
     }
 
-    ZimBotInc.copyNForward = async (jid, message, forceForward = false, options = {}) => {
+    BakarBotInc.copyNForward = async (jid, message, forceForward = false, options = {}) => {
         let vtype
 		if (options.readViewOnce) {
 			message.message = message.message && message.message.ephemeralMessage && message.message.ephemeralMessage.message ? message.message.ephemeralMessage.message : (message.message || undefined)
@@ -661,11 +661,11 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
                 }
             } : {})
         } : {})
-        await ZimBotInc.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
+        await BakarBotInc.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
         return waMessage
     }
 
-    ZimBotInc.cMod = (jid, copy, text = '', sender = ZimBotInc.user.id, options = {}) => {
+    BakarBotInc.cMod = (jid, copy, text = '', sender = BakarBotInc.user.id, options = {}) => {
         //let copy = message.toJSON()
 		let mtype = Object.keys(copy.message)[0]
 		let isEphemeral = mtype === 'ephemeralMessage'
@@ -686,7 +686,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
 		if (copy.key.remoteJid.includes('@s.whatsapp.net')) sender = sender || copy.key.remoteJid
 		else if (copy.key.remoteJid.includes('@broadcast')) sender = sender || copy.key.remoteJid
 		copy.key.remoteJid = jid
-		copy.key.fromMe = sender === ZimBotInc.user.id
+		copy.key.fromMe = sender === BakarBotInc.user.id
 
         return proto.WebMessageInfo.fromObject(copy)
     }
@@ -697,7 +697,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
      * @param {*} path 
      * @returns 
      */
-    ZimBotInc.getFile = async (PATH, save) => {
+    BakarBotInc.getFile = async (PATH, save) => {
         let res
         let data = Buffer.isBuffer(PATH) ? PATH : /^data:.*?\/.*?;base64,/i.test(PATH) ? Buffer.from(PATH.split`,`[1], 'base64') : /^https?:\/\//.test(PATH) ? await (res = await getBuffer(PATH)) : fs.existsSync(PATH) ? (filename = PATH, fs.readFileSync(PATH)) : typeof PATH === 'string' ? PATH : Buffer.alloc(0)
         //if (!Buffer.isBuffer(data)) throw new TypeError('Result is not a buffer')
@@ -717,7 +717,7 @@ ZimBotInc.sendMessageFromContent = async(jid, message, options = {}) => {
 
     }
             
-    return ZimBotInc
+    return BakarBotInc
     }
     
 connectToWhatsApp()
