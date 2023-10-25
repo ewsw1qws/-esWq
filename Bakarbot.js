@@ -49,7 +49,7 @@ const { mediafireDl } = require('./lib/mediafire.js')
 const { lirikLagu } = require('./lib/lirik.js')
 const { fromBuffer } = require('file-type')
 const mel = require('kitsune-api');
-let { msgFilter } = require('./Zimbot/zimbotii.js')
+let { msgFilter } = require('./Bakarbot/zimbotii.js')
 const { Boom } = require("@hapi/boom")
 const ffmpeg = require('fluent-ffmpeg')
 const { checkPetualangUser, addInventori, addBesi, sellBesi, getBesi, addDm, sellDm, getDm, addEmas, sellEmas, getEmas, addFish, sellFish, getFish } = require('./tez.js')
@@ -59,7 +59,7 @@ const { isLimit, limitAdd, getLimit, giveLimit, addBalance, kurangBalance, getBa
 //xp and leveling database⧈⧈⧈⧈
 
 //message type
-/* let drips = fs.readFileSync('./Zimbot/drips.jpg') 
+/* let drips = fs.readFileSync('./Bakarbot/drips.jpg') 
 */
 
         //TIME
@@ -1896,7 +1896,7 @@ downloader.downloadAPK("com.microbees.floatingapp")
   title:"DONATE ME",
   body: "DRIPS OFC", 
   showAdAttribution: true,
-  thumbnail: fs.readFileSync("Zimbot/drips.jpg"),
+  thumbnail: fs.readFileSync("Bakarbot/drips.jpg"),
   mediaType:1,
   mediaUrl: 'https://youtu.be/KNu-gr2h7bo',
   sourceUrl: "https://youtu.be/KNu-gr2h7bog"
@@ -1923,7 +1923,7 @@ downloader.downloadAPK("com.microbees.floatingapp")
   title:"DONATE ME",
   body: "DRIPS OFC", 
   showAdAttribution: true,
-  thumbnail: fs.readFileSync("Zimbot/drips.jpg"),
+  thumbnail: fs.readFileSync("Bakarbot/drips.jpg"),
   mediaType:1,
   mediaUrl: 'https://youtu.be/KNu-gr2h7bo',
   sourceUrl: "https://youtu.be/KNu-gr2h7bog"
@@ -2389,7 +2389,7 @@ break
   id: 'scs'
  }
   }]
- fatihgans = fs.readFileSync('./Zimbot/drips.jpg')
+ fatihgans = fs.readFileSync('./Bakarbot/drips.jpg')
  let txt = `「 ZimBot Broadcast 」\n\n${text}`
  BakarBotInc.send5ButImg(i, txt, BakarBotInc.user.name, fatihgans, btn)
   }
@@ -2432,7 +2432,7 @@ await BakarBotInc.sendMessage(i, { video:media,  caption: txt, mentions:particip
 
  case 'bc': case 'broadcast': case 'bcall': {
    if (!isCreator) throw global.owner
-   if (!text) throw `Where is the text?\n\nExample : ${prefix + command} Zimbot here`
+   if (!text) throw `Where is the text?\n\nExample : ${prefix + command} Bakarbot here`
    let anu = await store.chats.all().map(v => v.id)
    reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} second`)
 for (let yoi of anu) {
@@ -2448,7 +2448,7 @@ for (let yoi of anu) {
   id: 'owner'
  }
   }]
- fatihgans = fs.readFileSync('./Zimbot/drips.jpg')
+ fatihgans = fs.readFileSync('./Bakarbot/drips.jpg')
  let txt = `「 ZIM BOT BROADCAST 」\n\n${text}`
  BakarBotInc.sendMessage(yoi, txt, `Broadcast By ${global.pengguna}`)
 }
@@ -2564,7 +2564,7 @@ let { webp2mp4File } = require('./lib/uploader')
  }
  break
  case 'tts':
-  const gtts = require('./Zimbot/gtts')(args[0])
+  const gtts = require('./Bakarbot/gtts')(args[0])
   if (args.length < 1) return BakarBotInc.sendMessage(from, `ᴇxᴀᴍᴘʟᴇ: ${prefix}ᴇɴ ʜᴇʟʟᴏ`, text, {quoted: m})
   if (args.length < 2) return BakarBotInc.sendMessage(from, `ᴇxᴀᴍᴘʟᴇ: ${prefix}ᴇɴ ʜᴇʟʟᴏ`, text, {quoted: m})
  var dtt = body.slice(20)
@@ -5327,7 +5327,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
  break
  case 'owner': case 'creator': {
  BakarBotInc.sendContact(m.chat, global.pemilik, m)
-const devsound = fs.readFileSync('./Zimbot/bot.mp3')
+const devsound = fs.readFileSync('./Bakarbot/bot.mp3')
 BakarBotInc.sendMessage(m.chat, { audio: devsound, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
  }
  
@@ -6896,7 +6896,7 @@ case 'ss':
  await sleep(60000)
  await BakarBotInc.sendMessage(m.chat, {text:"  ققب "})
  await sleep(60)
- await BakarBotInc.sendMessage(m.chat, { audio: fs.readFileSync('./Zimbot/bot.mp3'), mimetype: 'audio/ogg', ptt: true }, { quoted: m })
+ await BakarBotInc.sendMessage(m.chat, { audio: fs.readFileSync('./Bakarbot/bot.mp3'), mimetype: 'audio/ogg', ptt: true }, { quoted: m })
  await sleep(120000)
  await BakarBotInc.sendMessage(m.chat, {text:" بق بق  قب"})
  await sleep(180000)
@@ -7895,7 +7895,7 @@ latensie = speed() - timestampe
 └───────────●
 └───────────●
 `
-const aliveer = fs.readFileSync('./Zimbot/alive.mp3')
+const aliveer = fs.readFileSync('./Bakarbot/alive.mp3')
 BakarBotInc.sendMessage(m.chat, { audio: aliveer, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
 let buttoni = [
         {buttonId: `sc`, buttonText: {displayText: 'SOURCE CODE'}, type: 1},
