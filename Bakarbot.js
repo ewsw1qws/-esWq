@@ -110,7 +110,7 @@ if (global.db) global.db = {
 
 let vote = db.others.vote = []
 
-module.exports = ZimBotInc = async (ZimBotInc, m, chatUpdate, store) => {
+module.exports = BakarBotInc = async (BakarBotInc, m, chatUpdate, store) => {
 try {
 var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
 var budy = (typeof m.text == 'string' ? m.text : '')
@@ -119,7 +119,7 @@ const isCmd = body.startsWith(prefix)
 const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
 const args = body.trim().split(/ +/).slice(1)
 const pushname = m.pushName || "No Name"
-const botNumber = await ZimBotInc.decodeJid(ZimBotInc.user.id)
+const botNumber = await BakarBotInc.decodeJid(BakarBotInc.user.id)
 const isCreator = [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
 const itsMe = m.sender == botNumber ? true : false
 const text = q = args.join(" ")
@@ -130,7 +130,7 @@ const isMedia = /image|video|sticker|audio/.test(mime)
 const sender = m.isGroup ? (m.key.participant ? m.key.participant : m.participant) : m.key.remoteJid
 const isPetualang = checkPetualangUser(sender)
 //----GROUP METADATA----\\
-const groupMetadata = m.isGroup ? await ZimBotInc.groupMetadata(m.chat).catch(e => {}) : ''
+const groupMetadata = m.isGroup ? await BakarBotInc.groupMetadata(m.chat).catch(e => {}) : ''
 const groupName = m.isGroup ? groupMetadata.subject : ''
 const participants = m.isGroup ? await groupMetadata.participants : ''
 const groupAdmins = m.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
@@ -138,7 +138,7 @@ const groupOwner = m.isGroup ? groupMetadata.owner : ''
 const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
 const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
 const isBan = banUser.includes(m.sender)
-const banUserr = await ZimBotInc.fetchBlocklist()
+const banUserr = await BakarBotInc.fetchBlocklist()
 const isBanned = banUser ? banUser.includes(m.sender) : false
 const isBanChat = m.isGroup ? banchat.includes(from) : false
 const isAntinsfw = m.isGroup ?  dripsno.includes(m.chat) : false
@@ -154,12 +154,12 @@ const AntiLinkYoutubeChannel = m.isGroup ? ntilinkytch.includes(from) : false
 			if (isAutoSticker) {
 				if (/image/.test(mime) && !/webp/.test(mime)) {
 					let mediac = await quoted.download()
-					await ZimBotInc.sendImageAsSticker(from, mediac, m, { packname: global.author7X, author: pack7xname })
+					await BakarBotInc.sendImageAsSticker(from, mediac, m, { packname: global.author7X, author: pack7xname })
 					console.log(`Auto sticker detected`)
 				} else if (/video/.test(mime)) {
 					if ((quoted.msg || quoted).seconds > 11) return
 					let mediac = await quoted.download()
-					await ZimBotInc.sendVideoAsSticker(from, mediac, m, { packname: global.author7X, author: pack7xname })
+					await BakarBotInc.sendVideoAsSticker(from, mediac, m, { packname: global.author7X, author: pack7xname })
 				}
 			}
 			
@@ -196,19 +196,19 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
     
 const reply = (teks) => {
-  ZimBotInc.sendMessage(m.chat, {text: teks, contextInfo: {"externalAdReply": {title: "ᴢɪᴍ ʙᴏᴛ ᴠ5",mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, detectLinks: true,body: "DRIPS OFC", thumbnail: fs.readFileSync('./drips.jpg'),sourceUrl: ("https://youtu.be/KNu-gr2h7bo")}}})
+  BakarBotInc.sendMessage(m.chat, {text: teks, contextInfo: {"externalAdReply": {title: "ᴢɪᴍ ʙᴏᴛ ᴠ5",mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, detectLinks: true,body: "DRIPS OFC", thumbnail: fs.readFileSync('./drips.jpg'),sourceUrl: ("https://youtu.be/KNu-gr2h7bo")}}})
 }
 const replay = (teks) => {
-  ZimBotInc.sendMessage(m.chat, {text: teks, contextInfo: {"externalAdReply": {title: "ᴢɪᴍ ʙᴏᴛ ᴠ5",mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, body: "DRIPS OFC", thumbnail: fs.readFileSync('./drips.jpg'),sourceUrl: ("https://youtu.be/KNu-gr2h7bo")}}})
+  BakarBotInc.sendMessage(m.chat, {text: teks, contextInfo: {"externalAdReply": {title: "ᴢɪᴍ ʙᴏᴛ ᴠ5",mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, body: "DRIPS OFC", thumbnail: fs.readFileSync('./drips.jpg'),sourceUrl: ("https://youtu.be/KNu-gr2h7bo")}}})
 }    
  
 const tempButtons = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'OWNERMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -223,11 +223,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const tempButtoni = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'DATABASEMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -242,11 +242,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const tempButtonie = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'PHOTOOXYMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
    message: { 
@@ -261,11 +261,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const tempButtono = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'GROUPMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -280,11 +280,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const tempButton1 = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'ALL MENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -299,11 +299,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const saerchmenu = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'SEARCHMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -320,7 +320,7 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   };
   const nsfmenu1 = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'nsfmenu')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -335,14 +335,14 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   
   
                       
   const downloadmenu1 = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'DOWNLOADMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -357,11 +357,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const photofiltermenu1 = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'PHOTOFILTERMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -376,11 +376,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const toolmenu1 = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'TOOLMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -395,11 +395,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const ephotomenu1 = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'EPHOTOMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -414,11 +414,11 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   const convertmenu = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'CONVERTMENU')
-  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -433,9 +433,9 @@ const tempButtons = async (remoteJid, text, footer, content) => {
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };                                  
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
 const drip =  {
   key : {
@@ -575,19 +575,19 @@ chatgpt: false,
 } catch (err) {
  console.error(err)
 }
-ZimBotInc.ws.on('CB:action,,battery', json => {
+BakarBotInc.ws.on('CB:action,,battery', json => {
 const batteryLevelStr = json[2][0][1].value
 const batterylevel = parseInt (batteryLevelStr)
   battre = batterylevel
 })  
 
-ZimBotInc.ws.on('CB:action,,charger', json => {
+BakarBotInc.ws.on('CB:action,,charger', json => {
 const chargerLevelStr = json[2][0][1].value
 const charging = parseInt (chargerLevelStr)
   charger = charging
 })  
 //public/self
-if (!ZimBotInc.public) {
+if (!BakarBotInc.public) {
 if (!m.key.fromMe) return
 }
 
@@ -631,18 +631,18 @@ role = 'Good In Game'
 
 //CHATBOT
 if (global.dripsreadgroup) {
-if (m.isGroup) { ZimBotInc.readMessages(m.chat, m.sender, [m.key.id]) }
+if (m.isGroup) { BakarBotInc.readMessages(m.chat, m.sender, [m.key.id]) }
 }
-if (global.dripsreadall) { if (m.message) { ZimBotInc.readMessages(m.chat, m.sender, [m.key.id]) }
+if (global.dripsreadall) { if (m.message) { BakarBotInc.readMessages(m.chat, m.sender, [m.key.id]) }
 }
-if (global.dripsrecord) { if (m.chat) { ZimBotInc.sendPresenceUpdate('recording', m.chat) }
+if (global.dripsrecord) { if (m.chat) { BakarBotInc.sendPresenceUpdate('recording', m.chat) }
 }
 
-if (global.dripstyping) { if (m.chat) { ZimBotInc.sendPresenceUpdate('composing', m.chat) }
+if (global.dripstyping) { if (m.chat) { BakarBotInc.sendPresenceUpdate('composing', m.chat) }
 }
-if (global.available) { if (m.chat) { ZimBotInc.sendPresenceUpdate('available', m.chat) }
+if (global.available) { if (m.chat) { BakarBotInc.sendPresenceUpdate('available', m.chat) }
 }
-if (global.unavailable) { if (m.chat) { ZimBotInc.sendPresenceUpdate('unavailable', m.chat) }
+if (global.unavailable) { if (m.chat) { BakarBotInc.sendPresenceUpdate('unavailable', m.chat) }
 }
 //RPG FUNCTION BY DRIPS
 function randomNomor(min, max = null) {
@@ -666,7 +666,7 @@ if (budy.includes("://chat.whatsapp.com/")) {
     color("[AUTO-JOIN]", "red"),
     color("YAHAHAHHAHAH", "white")
   );
-  ZimBotInc.query({
+  BakarBotInc.query({
     json: [
       "action",
       "invite",
@@ -749,7 +749,7 @@ var DADYDR = `
  ┊ʏᴏᴜʀ ᴄʀᴇᴅɪᴛꜱ
  └───〔 *_ᴢɪᴍ ʙᴏᴛ ɪɴᴄ_* 〕
  `
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 templateMessage: {
 hydratedTemplate: {
@@ -775,7 +775,7 @@ quickReplyButton: {
 }
 }
 }), { userJid: m.chat })
-ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
 .catch ((err) => reply(err))
 }
 async function sendButJoin(from, query) {
@@ -802,7 +802,7 @@ var hg = `
 ┊ *Sᴛᴀᴛᴜꜱ :* ${elit}
 ┊ *Xᴘ:*  ${getLevelingXp(sender)}/${reqXp}
 ❲ *_ʀᴘɢ ɢᴀᴍᴇ_* ❳`
-  let message = await prepareWAMessageMedia({ image: bufut, jpegThumbnail:bufut }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufut, jpegThumbnail:bufut }, { upload: BakarBotInc.waUploadToServer })
   const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
   templateMessage: {
   hydratedTemplate: {
@@ -828,7 +828,7 @@ var hg = `
   }
   }
   }), { userJid: m.chat })
-  ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+  BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
   .catch ((err) => reply(err))
   }
           
@@ -851,7 +851,7 @@ var button = [
 { quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } }
 ]
 var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Money:* $${b}\n ┊ *Iron:* ${c}\n ┊ *Gold:* ${a}\n ┊ *Diamond:* ${d}\n\n*Thank you for carrying out this mission*`
-          let message = await prepareWAMessageMedia({ image: bufutI, jpegThumbnail:bufutI }, { upload: ZimBotInc.waUploadToServer })
+          let message = await prepareWAMessageMedia({ image: bufutI, jpegThumbnail:bufutI }, { upload: BakarBotInc.waUploadToServer })
           const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
           templateMessage: {
           hydratedTemplate: {
@@ -877,7 +877,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
           }
           }
           }), { userJid: m.chat })
-          ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+          BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
           .catch ((err) => reply(err))
           }
           
@@ -900,7 +900,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
                 { quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } }
                 ]
             var hg = `*Mission To kill Goblin*\n\n🎁 *Reward for killing Goblin*\n ┊ *Money:* $${b}\n ┊ *Iron:* ${c}\n ┊ *Gold:* ${a}\n ┊ *Diamond:* ${d}\n\n*Thank you for carrying out this misssion*`
-            let message = await prepareWAMessageMedia({ image: bufo, jpegThumbnail:bufo }, { upload: ZimBotInc.waUploadToServer })
+            let message = await prepareWAMessageMedia({ image: bufo, jpegThumbnail:bufo }, { upload: BakarBotInc.waUploadToServer })
             const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
             templateMessage: {
             hydratedTemplate: {
@@ -926,7 +926,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
             }
             }
             }), { userJid: m.chat })
-            ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+            BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             .catch ((err) => reply(err))
             }
           
@@ -949,7 +949,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
                 { quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } }
                 ]
             var hg = `*Mission to kill 𝗗𝗲𝘃𝗶𝗹️*\n\n🎁 *Reward for killing Devil*\n ┊ *Money:* $${b}\n ┊ *Iron:* ${c}\n ┊ *Gold:* ${a}\n ┊ *Diamond:* ${d}\n\n*Thank you for carrying out this mission*`
-            let message = await prepareWAMessageMedia({ image: bufas, jpegThumbnail:bufas }, { upload: ZimBotInc.waUploadToServer })
+            let message = await prepareWAMessageMedia({ image: bufas, jpegThumbnail:bufas }, { upload: BakarBotInc.waUploadToServer })
             const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
             templateMessage: {
             hydratedTemplate: {
@@ -975,7 +975,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
             }
             }
             }), { userJid: m.chat })
-            ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+            BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             .catch ((err) => reply(err))
             }
           
@@ -998,7 +998,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
                 { quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } }
                 ]
             var hg = `*Mission to kill Behemoth*\n\n🎁 *Reward for kiling Behemoth*\n ┊ *Money:* $${b}\n ┊ *Iron:* ${c}\n ┊ *Gold:* ${a}\n ┊ *Diamond:* ${d}\n\n*Thank you for carrying out this mission*`
-            let message = await prepareWAMessageMedia({ image: batai, jpegThumbnail: batai }, { upload: ZimBotInc.waUploadToServer })
+            let message = await prepareWAMessageMedia({ image: batai, jpegThumbnail: batai }, { upload: BakarBotInc.waUploadToServer })
             const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
               templateMessage: {
               hydratedTemplate: {
@@ -1025,7 +1025,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
               }
               }
               }), { userJid: m.chat })
-              ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+              BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
                   
             .catch ((err) => reply(err))
           }
@@ -1049,7 +1049,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
                 { quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } }
                 ]
             var hg = `*Mission to kill Demon*\n🎁 *Demon Kill Reward*\n ┊ *Money:* $${b}\n ┊ *Iron:* ${c}\n ┊ *Gold*: ${a}\n ┊ *Diamond:* ${d}\n\n*Thank You for Carrying Out This Mission*`
-            let message = await prepareWAMessageMedia({ image: bhuu, jpegThumbnail: bhuu }, { upload: ZimBotInc.waUploadToServer })
+            let message = await prepareWAMessageMedia({ image: bhuu, jpegThumbnail: bhuu }, { upload: BakarBotInc.waUploadToServer })
             const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
               templateMessage: {
               hydratedTemplate: {
@@ -1076,7 +1076,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
               }
               }
               }), { userJid: m.chat })
-              ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+              BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
                   
             .catch ((err) => reply(err))
           }
@@ -1096,7 +1096,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
                 { quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } }
                 ]
             var hg = `*Mission to kill DemonKing*\n\n🎁 *DemonKing Kill Reward*\n ┊ *Money* : $${b}\n ┊ *Iron :* ${c}\n ┊ *Gold :* ${a}\n ┊ *Diamond :* ${d}\n\n*Thank You for Carrying Out This Mission*`
-            let message = await prepareWAMessageMedia({ image: bhuud, jpegThumbnail:bhuud }, { upload: ZimBotInc.waUploadToServer })
+            let message = await prepareWAMessageMedia({ image: bhuud, jpegThumbnail:bhuud }, { upload: BakarBotInc.waUploadToServer })
             const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
             templateMessage: {
             hydratedTemplate: {
@@ -1122,7 +1122,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
             }
             }
             }), { userJid: m.chat })
-            ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+            BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
             .catch ((err) => reply(err))
             }
           const emote = (satu, dua) => {
@@ -1133,7 +1133,7 @@ var hg = `*Mission to kill Slime*\n\n🎁 *Reward for killing Slime*\n ┊ *Mone
             .then(emoji => {
             const buttons = [{buttonId: "y", buttonText: {displayText:satu}, type: 1}]
             const buttonMessage = {image: {url: emoji.images[dua].url},caption: "ᴢɪᴍ ʙᴏᴛ ᴠ5",footerText: 'Loading...',buttons: buttons,headerType: 4}
-            ZimBotInc.sendMessage(from, buttonMessage, {quoted:m})
+            BakarBotInc.sendMessage(from, buttonMessage, {quoted:m})
             })
             } catch (e) {
             reply("Emoji error, please enter another emojinNOTE : Just enter 1 emoji")
@@ -1158,7 +1158,7 @@ presence_penalty: 0,
 })
 if (jsonu.statusText != 'OK' || jsonu.data.choices.length == 0) return reply('fail')
 let bhabhi = jsonu.data.choices[0].text.trim()
-ZimBotInc.sendMessage(m.chat,{ text: bhabhi},  {quoted: m})
+BakarBotInc.sendMessage(m.chat,{ text: bhabhi},  {quoted: m})
 }
 }
 
@@ -1174,7 +1174,7 @@ let isgclink = isLinkThisGc.test(m.text)
 if (isgclink) return reply(`𝘖𝘏 𝘠𝘦𝘢𝘩 𝘪𝘵 𝘥𝘪𝘥𝘯𝘵 𝘩𝘢𝘱𝘱𝘦𝘯, 𝘣𝘦𝘤𝘢𝘶𝘴𝘦 𝘺𝘰𝘶 𝘴𝘦𝘯𝘵 𝘵𝘩𝘪𝘴 𝘸𝘢.𝘮𝘦 𝘭𝘪𝘯𝘬𝘺 𝘰𝘬𝘢𝘺😌`)
 if (isAdmins) return reply(`𝘏𝘦𝘭𝘭 𝘯𝘰😱 𝘺𝘰𝘶 𝘢𝘥𝘮𝘪𝘯`)
 if (isCreator) return reply(`𝘖𝘰𝘰𝘰𝘩 𝘴𝘩𝘪𝘵😩 𝘴𝘰𝘳𝘳𝘺 𝘺𝘶 𝘢𝘳𝘦 𝘵𝘩𝘦 𝘰𝘸𝘯𝘦𝘳 𝘭𝘶𝘤𝘬𝘺 𝘺𝘰𝘶`)
-ZimBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+BakarBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 }
 }
 
@@ -1187,8 +1187,8 @@ if (isAdmins) return reply(bvl)
 if (m.key.fromMe) return reply(bvl)
 if (isCreator) return reply(bvl)
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Yt video link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+BakarBotInc.sendMessage(from, {text:`\`\`\`「  Antilink System  」\`\`\`\n\n@${kice.split("@")[0]} Baka has been removed for sending Yt video link in this group!`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 } else {
 }*/
 
@@ -1200,7 +1200,7 @@ bvl = `\`\`\`ã€Œ YoutTube Channel Link Detected ã€\`\`\`\n\nAdmin has s
 if (isAdmins) return m.reply(bvl)
 if (m.key.fromMe) return m.reply(bvl)
 if (isCreator) return m.reply(bvl)
- await ZimBotInc.sendMessage(m.chat,
+ await BakarBotInc.sendMessage(m.chat,
      {
        delete: {
          remoteJid: m.chat,
@@ -1209,8 +1209,8 @@ if (isCreator) return m.reply(bvl)
          participant: m.key.participant
        }
      })
-     ZimBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-   ZimBotInc.sendMessage(from, {text:`\`\`\`ã€Œ YouTube Channel Link Detected ã€\`\`\`\n\n@${m.sender.split("@")[0]} Has been kicked because of sending youtube channel link in this group`, contextInfo:{mentionedJid:[m.sendet]}}, {quoted:m})
+     BakarBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+   BakarBotInc.sendMessage(from, {text:`\`\`\`ã€Œ YouTube Channel Link Detected ã€\`\`\`\n\n@${m.sender.split("@")[0]} Has been kicked because of sending youtube channel link in this group`, contextInfo:{mentionedJid:[m.sendet]}}, {quoted:m})
 } else {
 }*/
 
@@ -1222,8 +1222,8 @@ if (isAdmins) return m.reply(`◍ تم ارسال ملصق من المشرفين
 if (isCreator) return m.reply(`◍ تم ارسال ملصق من  ${global.devlido} روح قلبي 🥺♥️ √`)
 m.reply('*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال ملصقات في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .')
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √ \n◍ قام بارسال ملصقات .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √ \n◍ قام بارسال ملصقات .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 }
@@ -1239,8 +1239,8 @@ if (isAdmins) return m.reply(`◍ تم ارسال صوت من المشرفين �
 if (isCreator) return m.reply(`◍ تم ارسال صوت من  ${global.devlido} روح قلبي 🥺♥️ √`)
 m.reply('*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال صوت + ريكورد في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .')
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال صوت .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال صوت .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 }
@@ -1254,8 +1254,8 @@ if (isAdmins) return m.reply(`◍ تم ارسال فيديو من المشرفي
 if (isCreator) return m.reply(`◍ تم ارسال فيديو من  ${global.devlido} روح قلبي 🥺♥️ √`)
 m.reply('*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال فيديوهات في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .')
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال فيديو .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال فيديو .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 }
@@ -1268,8 +1268,8 @@ if (isAdmins) return m.reply(`◍ تم ارسال صورة من المشرفين
 if (isCreator) return m.reply(`◍ تم ارسال صورة من  ${global.devlido} روح قلبي 🥺♥️ √`)
 m.reply('*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال صور في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .')
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال صور .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال صور .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 }
@@ -1277,7 +1277,7 @@ ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@
 if (db.chats[m.chat].antilinkall) {
   if (budy.includes("http")){ 
   if (!isBotAdmins) return m.reply(mess.botAdmin)
-let gclink = (`https://chat.whatsapp.com/`+await ZimBotInc.groupInviteCode(m.chat))
+let gclink = (`https://chat.whatsapp.com/`+await BakarBotInc.groupInviteCode(m.chat))
 let isLinkThisGc = new RegExp(gclink, 'i')
 let isgclink = isLinkThisGc.test(m.text)
 if (isgclink) return m.reply(`◍ تم حظرك 😂😂😂√\n\n\n\n*-›  ههه بهزر معاك يقلبي😂♥️*\n*-› مسموح بارسال رابط هذه المجموعة .*`)
@@ -1286,8 +1286,8 @@ if (isgclink) return m.reply(`◍ تم حظرك 😂😂😂√\n\n\n\n*-›  ه
   if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
   m.reply(`*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال روابط في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .`)
   kice = m.sender
-  await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-  ZimBotInc.sendMessage(m.chat, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال روابط .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+  await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+  BakarBotInc.sendMessage(m.chat, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال روابط .`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
   }
   }
 
@@ -1298,8 +1298,8 @@ if (isgclink) return m.reply(`◍ تم حظرك 😂😂😂√\n\n\n\n*-›  ه
  if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 405 تواصل مع المطور ليدو  | wa.me/201028453763`)
  if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
  kice = m.sender
- await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
- ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط انستا . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+ BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط انستا . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
  }
 }  
   
@@ -1310,8 +1310,8 @@ if (isAdmins) return m.reply(`◍ تم ارسال رابط فيسبوك من ا�
 if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 406 تواصل مع المطور ليدو  | wa.me/201028453763`)
 if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
- ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط فيسبوك . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+ BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط فيسبوك . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 } 
  }
 
@@ -1322,8 +1322,8 @@ await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
  if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 407 تواصل مع المطور ليدو  | wa.me/201028453763`)
  if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
  kice = m.sender
- await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
- ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تليجرام . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+ await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+ BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تليجرام . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 } 
  }
 
@@ -1334,8 +1334,8 @@ if (isAdmins) return m.reply(`◍ تم ارسال رابط تيكتوك من ا�
 if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 408 تواصل مع المطور ليدو  | wa.me/201028453763`)
 if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
   kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تيكتوك . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تيكتوك . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 
@@ -1346,8 +1346,8 @@ if (isAdmins) return m.reply(`◍ تم ارسال رابط تويتر من ال�
 if (m.key.fromMe) return m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله http 409 تواصل مع المطور ليدو  | wa.me/201028453763`)
 if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تويتر . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+BakarBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@")[0]} ) بنجاح √\n◍ قام بارسال رابط تويتر . `, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 
@@ -1356,7 +1356,7 @@ ZimBotInc.sendMessage(from, {text:`◍ تم حظر العضو ( @${kice.split("@
 if (m.mtype == 'viewOnceMessage') {
 if (!db.chats[m.chat].antionce) return
 teks = `*`
-ZimBotInc.sendTextWithMentions(m.chat, teks, m)
+BakarBotInc.sendTextWithMentions(m.chat, teks, m)
 await sleep(500)
 m.copyNForward(m.chat, true, { readViewOnce: true }).catch(_ => reply(`*I opened it by force*`))
 }
@@ -1371,8 +1371,8 @@ if (db.chats[m.chat].antilinkyt) {
   if (m.key.fromMe) return reply(zimbotv3)
   if (isCreator) return reply(zimbotv3)
   kice = m.sender
-  await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-  ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no yt links here okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+  await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+  BakarBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no yt links here okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
   } 
   }
 
@@ -1380,13 +1380,13 @@ if (db.chats[m.chat].antilink) {
 if (budy.match(`chat.whatsapp.com`)) {
 m.reply(`*⚠️ تحذير هام ⚠️*\n-› غير مسموح بارسال روابط واتساب في هذه المجموعة !\n-› مسموح للمشرفين فقط بالارسال .`)
 if (!isBotAdmins) return m.reply(mess.botAdmin)
-let gclink = (`https://chat.whatsapp.com/`+await ZimBotInc.groupInviteCode(m.chat))
+let gclink = (`https://chat.whatsapp.com/`+await BakarBotInc.groupInviteCode(m.chat))
 let isLinkThisGc = new RegExp(gclink, 'i')
 let isgclink = isLinkThisGc.test(m.text)
 if (isgclink) return m.reply(`◍ تم حظرك 😂😂😂√\n\n\n\n*-›  ههه بهزر معاك يقلبي😂♥️*\n*-› مسموح بارسال رابط هذه المجموعة .*`)
 if (isAdmins) return m.reply(`◍ تم ارسال رابط من المشرفين √`)
 if (isCreator) return m.reply(`◍ تم ارسال رابط من  ${global.devlido} روح قلبي 🥺♥️ √`)
-ZimBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove').then((res) => m.reply(`◍ تم حظر العضو ( @${m.sender.split('@')[0]} ) بنجاح √`)).catch((err) => m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو  | wa.me/201028453763`))
+BakarBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove').then((res) => m.reply(`◍ تم حظر العضو ( @${m.sender.split('@')[0]} ) بنجاح √`)).catch((err) => m.reply(`◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو  | wa.me/201028453763`))
 }
 }
 if (budy.length > 3500) {
@@ -1396,7 +1396,7 @@ if (groupAdmins) return
 reply('Mark as read\n'.repeat(300))
 reply(`*▊▊▊DETECTED▊▊▊*\n\n*You sent a virtex, sorry you will be kicked from the group*`)
 console.log(('[KICK]', 'red'), color('Received a text virus!', 'yellow'))
-ZimBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+BakarBotInc.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 }  
 
 
@@ -1408,8 +1408,8 @@ if (isAdmins) return reply(zimbotv3)
 if (m.key.fromMe) return reply(zimbotv3)
 if (isCreator) return reply(zimbotv3)
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-ZimBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no links okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+BakarBotInc.sendMessage(from, {text:`*▊▊▊DETECTED▊▊▊*\n\n@${kice.split("@")[0]} *I said no links okay, now get out*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 
@@ -1417,8 +1417,8 @@ if (db.settings[botNumber].autoblock) {
 if (m.chat.endsWith("@s.whatsapp.net")) {
 if (isCreator) reply('*you are bot creator okay*')
 block = m.sender
-await ZimBotInc.sendMessage(from, {text:`*▊▊▊AUTO BLOCK▊▊▊*\n\n@${block.split("@")[0]} *today I'm blocking dumps bye you are _blocked_* *if you want to use bot join this group* ${global.group1}\n\n${global.group2}`, m})
-ZimBotInc.updateBlockStatus(m.sender,'block')
+await BakarBotInc.sendMessage(from, {text:`*▊▊▊AUTO BLOCK▊▊▊*\n\n@${block.split("@")[0]} *today I'm blocking dumps bye you are _blocked_* *if you want to use bot join this group* ${global.group1}\n\n${global.group2}`, m})
+BakarBotInc.updateBlockStatus(m.sender,'block')
 }
 }
 
@@ -1429,8 +1429,8 @@ reply(`*▊▊▊ ANTIYT ▊▊▊*\n\n*SOrry ${botname} will kick you out becau
 if (isAdmins) return reply(`*Ehh sorry you admin*`)
  if (isCreator) return reply(`*whoa you are  bot creator i wont kick you okay*`)
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
-ZimBotInc.sendMessage(m.chat, {text:`*▊▊▊ ANTILINK ▊▊▊*\n\n@${kice.split("@")[0]} *Has been kicked for sending the youtube link in this group*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+BakarBotInc.sendMessage(m.chat, {text:`*▊▊▊ ANTILINK ▊▊▊*\n\n@${kice.split("@")[0]} *Has been kicked for sending the youtube link in this group*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 
@@ -1442,8 +1442,8 @@ reply(`*▊▊▊ ANTIBULE ▊▊▊*\n\n*Sorry ${botname} will kick you out bec
 if (isAdmins) return reply(`*Ehh sorry you admin*`)
 if (isCreator) return reply(`*whoa you are  bot creator i wont kick you okay*`)
 kice = m.sender
-await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
-ZimBotInc.sendMessage(m.chat, {text:`*▊▊▊ ANTILINK ▊▊▊*\n\n@${kice.split("@")[0]} *You shouldn't be in this group*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+BakarBotInc.sendMessage(m.chat, {text:`*▊▊▊ ANTILINK ▊▊▊*\n\n@${kice.split("@")[0]} *You shouldn't be in this group*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 }
 }
 if (db.settings[botNumber].grouponly) {
@@ -1474,7 +1474,7 @@ setInterval(() => {
 //But5Loc
 var nextMinutes = Math.random() * 300 + 1000;
 setTimeout(function(){
-  ZimBotInc.sendMessage(ZimBotInc.user.id, {text: `*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ ANNOUNCEMENT:* *SUBSCRIBE TO DRIPS OFC*\n\n*YOUTUBE:* https://youtube.com/@zim-bot\n\n*NEW FEATURES COMING SOON SO STAY TUNED*\n\n*FEEL FREE TO BRING IDEAS OF THE FEATURES ON THE TABLE*\n\n*IF YOU WANT TO CONTRUBUTE FORK THE REPO, MAKE CHANGES PUSH YOUR CHANGES TO THE ORIGIN BRANCH AND WAIT FOR YOUR PULL REQUEST TO BE VERIFIED*\n\n*Thanks for choosing zim-bot*`,contextInfo: { externalAdReply:{title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",body:"SUBSCRIBE DRIPS OFC",showAdAttribution: true,mediaType:2,thumbnail: fs.readFileSync(`./drips.jpg`) ,mediaUrl:`https://youtu.be/KNu-gr2h7bo`, sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: m})
+  BakarBotInc.sendMessage(BakarBotInc.user.id, {text: `*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ ANNOUNCEMENT:* *SUBSCRIBE TO DRIPS OFC*\n\n*YOUTUBE:* https://youtube.com/@zim-bot\n\n*NEW FEATURES COMING SOON SO STAY TUNED*\n\n*FEEL FREE TO BRING IDEAS OF THE FEATURES ON THE TABLE*\n\n*IF YOU WANT TO CONTRUBUTE FORK THE REPO, MAKE CHANGES PUSH YOUR CHANGES TO THE ORIGIN BRANCH AND WAIT FOR YOUR PULL REQUEST TO BE VERIFIED*\n\n*Thanks for choosing zim-bot*`,contextInfo: { externalAdReply:{title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",body:"SUBSCRIBE DRIPS OFC",showAdAttribution: true,mediaType:2,thumbnail: fs.readFileSync(`./drips.jpg`) ,mediaUrl:`https://youtu.be/KNu-gr2h7bo`, sourceUrl: `https://youtu.be/KNu-gr2h7bo` }}}, {quoted: m})
   //anouncement by drips 
 }, nextMinutes * 300 * 1000);
 const send5Butlmg = async (jid , text = '' , footer = '', img, but = [], options = {}) =>{
@@ -1488,7 +1488,7 @@ templateMessage: {
    }
    }
    }), options)
-    return ZimBotInc.relayMessage(jid, template.message, { messageId: template.key.id })
+    return BakarBotInc.relayMessage(jid, template.message, { messageId: template.key.id })
     }
 //reset limit every 12hrs
 let cron = require('node-cron')
@@ -1507,10 +1507,10 @@ if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in globa
 let hash = global.db.sticker[m.msg.fileSha256.toString('base64')]
 let { text, mentionedJid } = hash
 let messages = await generateWAMessage(m.chat, { text: text, mentions: mentionedJid }, {
- userJid: ZimBotInc.user.id,
+ userJid: BakarBotInc.user.id,
  quoted: m.quoted && m.quoted.fakeObj
 })
-messages.key.fromMe = areJidsSameUser(m.sender, ZimBotInc.user.id)
+messages.key.fromMe = areJidsSameUser(m.sender, BakarBotInc.user.id)
 messages.key.id = m.key.id
 messages.pushName = m.pushName
 if (m.isGroup) messages.participant = m.sender
@@ -1519,7 +1519,7 @@ let msg = {
  messages: [proto.WebMessageInfo.fromObject(messages)],
  type: 'append'
 }
-ZimBotInc.ev.emit('messages.upsert', msg)
+BakarBotInc.ev.emit('messages.upsert', msg)
 }
     
 
@@ -1619,7 +1619,7 @@ switch(command) {
     ]
     }
     ]
-    ZimBotInc.sendList(m.chat, `Hi Chomie *${pushname}*`, `Please Select Below`, "CLICK", "ʀᴘɢ ɢᴀᴍᴇ ʙʏ ᴢɪᴍʙᴏᴛ ", sectionnya, { quoted: m})
+    BakarBotInc.sendList(m.chat, `Hi Chomie *${pushname}*`, `Please Select Below`, "CLICK", "ʀᴘɢ ɢᴀᴍᴇ ʙʏ ᴢɪᴍʙᴏᴛ ", sectionnya, { quoted: m})
     break
     case 'slime':
     case 'killslime':
@@ -1685,19 +1685,19 @@ setTimeout( () => {
 buttons = [
 { buttonId: 'mining', buttonText: { displayText: 'Mining' }, type: 1 }
 ]
-ZimBotInc.sendButtonText(m.chat, buttons, `*Completed Mining🚧nlist results:*\n*Gold* ${emas}🪙\n*Money:* $${pp}💰\n*Iron:* ${besi}⛓️\n*Diamond:* ${dm}💎`, ZimBotInc.user.name, m)
+BakarBotInc.sendButtonText(m.chat, buttons, `*Completed Mining🚧nlist results:*\n*Gold* ${emas}🪙\n*Money:* $${pp}💰\n*Iron:* ${besi}⛓️\n*Diamond:* ${dm}💎`, BakarBotInc.user.name, m)
 }, 9000) // 1000 = 1s,
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: '🚧 Finished Kneading . . .🪙👷' }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: '🚧 Finished Kneading . . .🪙👷' }, { quoted: m })
 }, 7000) // 1000 = 1s,
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: '🚧 Finding Gold . . .⚒️🏔️️️' }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: '🚧 Finding Gold . . .⚒️🏔️️️' }, { quoted: m })
 }, 4000) // 1000 = 1s,
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: '🚧 Start Mining . . .⚒️🏔️️' }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: '🚧 Start Mining . . .⚒️🏔️️' }, { quoted: m })
 }, 1500) // 1000 = 1s,
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: mining }, {quoted: m}) 
+BakarBotInc.sendMessage(from, { text: mining }, {quoted: m}) 
 }, 0) // 1000 = 1s,
 break
 case 'inventori':
@@ -1707,7 +1707,7 @@ var reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 buttons = [
 { buttonId: 'adventure', buttonText: { displayText: 'Adventure' }, type: 1 }
 ]
-ZimBotInc.sendButtonText(m.chat, buttons, `📍 𝗣𝗿𝗼𝗳𝗶𝗹𝗲 𝗣𝗹𝗮𝘆𝗲𝗿\n ┊ Name: ${pushname}\n ┊ Rank : ${role}\n ┊ Status : ${elit}\n ┊ Xp : ${getLevelingXp(sender)}/${reqXp}\n ┊ Level : ${getLevelingLevel(sender)}\n🎒 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝗶 :\n ┊ Gold : ${getEmas(sender)}🪙\n ┊ Money : $${(getBalance(sender, balance))}💰\n ┊ Iron : ${getBesi(sender)}⛓️\n ┊ Diamond : ${getDm(sender)}💎\n ┊ Fish : ${getFish(sender)}🎣`, ZimBotInc.user.name, m)
+BakarBotInc.sendButtonText(m.chat, buttons, `📍 𝗣𝗿𝗼𝗳𝗶𝗹𝗲 𝗣𝗹𝗮𝘆𝗲𝗿\n ┊ Name: ${pushname}\n ┊ Rank : ${role}\n ┊ Status : ${elit}\n ┊ Xp : ${getLevelingXp(sender)}/${reqXp}\n ┊ Level : ${getLevelingLevel(sender)}\n🎒 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝗶 :\n ┊ Gold : ${getEmas(sender)}🪙\n ┊ Money : $${(getBalance(sender, balance))}💰\n ┊ Iron : ${getBesi(sender)}⛓️\n ┊ Diamond : ${getDm(sender)}💎\n ┊ Fish : ${getFish(sender)}🎣`, BakarBotInc.user.name, m)
 break
 case 'sellikan':
 if (!m.isGroup) return reply(mess.group) 
@@ -1721,7 +1721,7 @@ addBalance(sender, rp, balance)
 buttons = [
 { buttonId: 'inventori', buttonText: { displayText: 'Inventori' }, type: 1 }
 ]
-ZimBotInc.sendButtonText(m.chat, buttons, `🛒 *MARKET*\n ┊ Seller : ${pushname}\n ┊ Buyer : Admin\n ┊ Price/Fish : 5\n ┊ Status : Success\n ┊ Left FishPrice/Fish : ${getFish(sender)}\n ┊ Sales Results : $${rp}`,  ZimBotInc.user.name, m)
+BakarBotInc.sendButtonText(m.chat, buttons, `🛒 *MARKET*\n ┊ Seller : ${pushname}\n ┊ Buyer : Admin\n ┊ Price/Fish : 5\n ┊ Status : Success\n ┊ Left FishPrice/Fish : ${getFish(sender)}\n ┊ Sales Results : $${rp}`,  BakarBotInc.user.name, m)
 break
 case 'sellbesi':
 if (!m.isGroup) return reply(mess.group) 
@@ -1735,7 +1735,7 @@ addBalance(sender, rp, balance)
 buttons = [
 { buttonId: 'inventori', buttonText: { displayText: 'Inventori' }, type: 1 }
 ]
-ZimBotInc.sendButtonText(m.chat, buttons, `🛒 MARKET\n ┊ Seller : ${pushname}\n ┊ Buyer : Admin\n ┊ Harga/Besi : 10\n ┊ Status : Sukses\n ┊ Sisa Besi : ${getBesi(sender)}\n ┊ Sales Results : $${rp}`, ZimBotInc.user.name, m)
+BakarBotInc.sendButtonText(m.chat, buttons, `🛒 MARKET\n ┊ Seller : ${pushname}\n ┊ Buyer : Admin\n ┊ Harga/Besi : 10\n ┊ Status : Sukses\n ┊ Sisa Besi : ${getBesi(sender)}\n ┊ Sales Results : $${rp}`, BakarBotInc.user.name, m)
 break
 case 'sellemas':
 if (!m.isGroup) return reply(mess.group) 
@@ -1749,7 +1749,7 @@ addBalance(sender, rp, balance)
 buttons = [
 { buttonId: 'inventori', buttonText: { displayText: 'Inventori' }, type: 1 }
 ]
-ZimBotInc.sendButtonText(m.chat, buttons, `🛒 MARKET\n ┊ Seller : ${pushname}\n ┊ Buyer : Admin\n ┊ Harga/Emas : 25\n ┊ Status : Sukses\n ┊ Sisa Emas : ${getEmas(sender)}\n ┊ Sales Results : $${rp}`, ZimBotInc.user.name, m)
+BakarBotInc.sendButtonText(m.chat, buttons, `🛒 MARKET\n ┊ Seller : ${pushname}\n ┊ Buyer : Admin\n ┊ Harga/Emas : 25\n ┊ Status : Sukses\n ┊ Sisa Emas : ${getEmas(sender)}\n ┊ Sales Results : $${rp}`, BakarBotInc.user.name, m)
 break 
 case 'selldiamond':
 if (!m.isGroup) return reply(mess.group) 
@@ -1763,7 +1763,7 @@ addBalance(sender, etoo, balance)
 buttons = [
 { buttonId: 'inventori', buttonText: { displayText: 'Inventori' }, type: 1 }
 ]
-ZimBotInc.sendButtonText(m.chat, buttons, `🛒 MARKET\n ┊ Seller : ${pushname}\n ┊ Buyer : Admin\n ┊ Harga/Dm : 75\n ┊ Status : Sukses\n ┊ Sisa Diamond : ${getDm(sender)}\n ┊ Sales Results : $${etoo}`, ZimBotInc.user.name, m)
+BakarBotInc.sendButtonText(m.chat, buttons, `🛒 MARKET\n ┊ Seller : ${pushname}\n ┊ Buyer : Admin\n ┊ Harga/Dm : 75\n ┊ Status : Sukses\n ┊ Sisa Diamond : ${getDm(sender)}\n ┊ Sales Results : $${etoo}`, BakarBotInc.user.name, m)
 break 
 case 'mancing':
 if (!m.isGroup) return reply(mess.group) 
@@ -1780,17 +1780,17 @@ var button = [
 		{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } }
 		]
         var hg = `「 Memancing 」\n\n ┊ *Capture:* ${ikannya}\n ┊ *Total Get:* ${ditangkap} *Fish*\n ┊ MONEY : $${coin}\n ┊ EXP : ${xp}Xp`
-        ZimBotInc.sendMessage(from, { caption: hg, location: { jpegThumbnail: cing }, templateButtons: button, footer: `ʀᴘɢ ɢᴀᴍᴇ ʙʏ ᴢɪᴍʙᴏᴛ`, mentions: [sender] })
+        BakarBotInc.sendMessage(from, { caption: hg, location: { jpegThumbnail: cing }, templateButtons: button, footer: `ʀᴘɢ ɢᴀᴍᴇ ʙʏ ᴢɪᴍʙᴏᴛ`, mentions: [sender] })
         .catch ((err) => reply(mess.error))
 }, 6000)
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: 'Managed to Get a Fish . . .' }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: 'Managed to Get a Fish . . .' }, { quoted: m })
 }, 5000) // 1000 = 1s,
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: '🎣 Attracting Kail. . .' }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: '🎣 Attracting Kail. . .' }, { quoted: m })
 }, 3000) // 1000 = 1s,
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: '🎣 Start Fishing . . .' }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: '🎣 Start Fishing . . .' }, { quoted: m })
 }, 1500) // 1000 = 1s,
 addFish(sender, ditangkap)
 addLevelingXp(sender, xp)
@@ -1817,17 +1817,17 @@ var button = [
 		{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } }
 		]
         var hg = `「 DEATH 」\n\n *┊ Place*  ${ad}\n ┊ *MONEY :* $${money}\n ┊ *EXP :* ${adven}Xp`
-        ZimBotInc.sendMessage(from, { caption: hg, location: { jpegThumbnail: hasm }, templateButtons: button, footer: `ʀᴘɢ ɢᴀᴍᴇ ʙʏ ᴢɪᴍʙᴏᴛ`, mentions: [sender] })
+        BakarBotInc.sendMessage(from, { caption: hg, location: { jpegThumbnail: hasm }, templateButtons: button, footer: `ʀᴘɢ ɢᴀᴍᴇ ʙʏ ᴢɪᴍʙᴏᴛ`, mentions: [sender] })
         .catch ((err) => reply(mess.error))
 }, 7000)
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: `Awass` }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: `Awass` }, { quoted: m })
 }, 5000) // 1000 = 1s,
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: `Suddenly There ${sesuatu}` }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: `Suddenly There ${sesuatu}` }, { quoted: m })
 }, 3000) // 1000 = 1s,
 setTimeout( () => {
-ZimBotInc.sendMessage(from, { text: `${pushname} On an Adventure` }, { quoted: m })
+BakarBotInc.sendMessage(from, { text: `${pushname} On an Adventure` }, { quoted: m })
 }, 1500) // 1000 = 1s,
 addLevelingXp(sender, adven)
 addBalance(sender, money, balance)
@@ -1848,7 +1848,7 @@ addBesi(sender, c)
 buttons = [
 { buttonId: `${command}`, buttonText: { displayText: `TRY LUCKY` }, type: 1 }
 ]
-ZimBotInc.sendButtonText(m.chat, buttons, `🎰 *Lucky*\n┊ *Money:* $${b}\n┊ *Gold :* ${a}\n┊ *Iron :* ${c}\n┊ *XP :* ${ez}`, ZimBotInc.user.name, m)
+BakarBotInc.sendButtonText(m.chat, buttons, `🎰 *Lucky*\n┊ *Money:* $${b}\n┊ *Gold :* ${a}\n┊ *Iron :* ${c}\n┊ *XP :* ${ez}`, BakarBotInc.user.name, m)
 }
 break
 case 'afk': {
@@ -1874,7 +1874,7 @@ downloader.downloadAPK("com.microbees.floatingapp")
  
  
   /*  case 'donasi': case 'donate': case 'sewabot': case 'sewa': case 'buypremium': case 'donate': {
-   ZimBotInc.sendMessage(m.chat, { image: { url: 'https://i.imgur.com/TfI3QYW.jpg' }, caption: `*𝗛𝗜 𝗕𝗥𝗢 ${m.pushName}*\n\n 𝗕𝗢𝗧 𝗥𝗘𝗡𝗧𝗔𝗟 𝗣𝗥𝗜𝗖𝗘\n 250rands Per Group via Gpay/paytm/phonepe 1 Month\n\nFor more details, you can chat with the owner\nhttps://wa.me/2+447441437150 (ZIM BOT OWNER)\n\n𝗗𝗢𝗡𝗔𝗧𝗘 : \n\n 𝗙𝗔𝗠𝗣𝗔𝗬 : https://i.imgur.com/TfI3QYW.jpg\n` }, { quoted: m })
+   BakarBotInc.sendMessage(m.chat, { image: { url: 'https://i.imgur.com/TfI3QYW.jpg' }, caption: `*𝗛𝗜 𝗕𝗥𝗢 ${m.pushName}*\n\n 𝗕𝗢𝗧 𝗥𝗘𝗡𝗧𝗔𝗟 𝗣𝗥𝗜𝗖𝗘\n 250rands Per Group via Gpay/paytm/phonepe 1 Month\n\nFor more details, you can chat with the owner\nhttps://wa.me/2+447441437150 (ZIM BOT OWNER)\n\n𝗗𝗢𝗡𝗔𝗧𝗘 : \n\n 𝗙𝗔𝗠𝗣𝗔𝗬 : https://i.imgur.com/TfI3QYW.jpg\n` }, { quoted: m })
  }
  */
  break
@@ -1902,7 +1902,7 @@ downloader.downloadAPK("com.microbees.floatingapp")
   sourceUrl: "https://youtu.be/KNu-gr2h7bog"
   }}
   }
-  ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+  BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
   }
  break
  case 'forex': case 'broker': case 'binary': case 'trading': {
@@ -1929,7 +1929,7 @@ downloader.downloadAPK("com.microbees.floatingapp")
   sourceUrl: "https://youtu.be/KNu-gr2h7bog"
   }}
   }
-  ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+  BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
   }
   break
  
@@ -1938,7 +1938,7 @@ downloader.downloadAPK("com.microbees.floatingapp")
    let { genMath, modes } = require('./src/math')
    if (!text) throw `Mode: ${Object.keys(modes).join(' | ')}\nExample: ${prefix}math medium`
    let result = await genMath(text.toLowerCase())
-   ZimBotInc.sendText(m.chat, `*What is the result of: ${result.soal.toLowerCase()}*?\n\nTime: ${(result.waktu / 1000).toFixed(2)} seconds`, m).then(() => {
+   BakarBotInc.sendText(m.chat, `*What is the result of: ${result.soal.toLowerCase()}*?\n\nTime: ${(result.waktu / 1000).toFixed(2)} seconds`, m).then(() => {
   kuismath[m.sender.split('@')[0]] = result.jawaban
    })
    await sleep(result.waktu)
@@ -1961,7 +1961,7 @@ Ciee Whats Going On💖👀`
  let buttons = [
 { buttonId: '❤️', buttonText: { displayText: 'DATING♥️' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, buttons, jawab, ZimBotInc.user.name, m, {mentions: menst})
+  await BakarBotInc.sendButtonText(m.chat, buttons, jawab, BakarBotInc.user.name, m, {mentions: menst})
  }
  break
  
@@ -1970,7 +1970,7 @@ if (!m.isGroup) throw mess.group
    if (!isBotAdmins) throw mess.botAdmin
    if (!isAdmins) throw mess.admin
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'remove')
+await BakarBotInc.groupParticipantsUpdate(m.chat, [users], 'remove')
 }
 break
 
@@ -1978,13 +1978,13 @@ break
 
 case 'grupinfo': case 'groupinfo':
 try{
- var pic = await ZimBotInc.getProfilePicture(m.chat)
+ var pic = await BakarBotInc.getProfilePicture(m.chat)
   } catch {
  var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
   }
 let ingfo = `*𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢*\n\n*𝗡𝗔𝗠𝗘 :* ${groupName}\n*𝗜𝗗 𝗚𝗥𝗢𝗨𝗣:* ${m.chat}\n*𝗠𝗔𝗗𝗘 :* ${moment(`${groupMetadata.creation}` * 1000).tz('Africa/Harare').format('DD/MM/YYYY HH:mm:ss')}\n*𝗚𝗥𝗢𝗨𝗣 𝗢𝗪𝗡𝗘𝗥:* @${groupMetadata.owner.split('@')[0]}\n*𝗔𝗗𝗠𝗜𝗡𝗦 :* ${groupAdmins.length}\n*𝗠𝗘𝗠𝗕𝗘𝗥𝗦 :* ${participants.length}\n*𝗗𝗘𝗦𝗖 :* \n${groupMetadata.desc}`
 ds = await getBuffer(pic)
-ZimBotInc.sendMessage(m.chat, { image: ds,caption: ingfo, mentions: [groupMetadata.owner] }, { quoted: m})
+BakarBotInc.sendMessage(m.chat, { image: ds,caption: ingfo, mentions: [groupMetadata.owner] }, { quoted: m})
 break
  
   case 'vote': {
@@ -2019,11 +2019,11 @@ let buttonsVote = [
 
  let buttonMessageVote = {
    text: teks_vote,
-   footer: ZimBotInc.user.name,
+   footer: BakarBotInc.user.name,
    buttons: buttonsVote,
    headerType: 1
  }
- ZimBotInc.sendMessage(m.chat, buttonMessageVote)
+ BakarBotInc.sendMessage(m.chat, buttonMessageVote)
     }
  break
   case 'upvote': {
@@ -2060,12 +2060,12 @@ let buttonsVote = [
 
  let buttonMessageUpvote = {
    text: teks_vote,
-   footer: ZimBotInc.user.name,
+   footer: BakarBotInc.user.name,
    buttons: buttonsUpvote,
    headerType: 1,
    mentions: menvote
 }
- ZimBotInc.sendMessage(m.chat, buttonMessageUpvote)
+ BakarBotInc.sendMessage(m.chat, buttonMessageUpvote)
     }
 break
    case 'devote': {
@@ -2102,12 +2102,12 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 
  let buttonMessageDevote = {
    text: teks_vote,
-   footer: ZimBotInc.user.name,
+   footer: BakarBotInc.user.name,
    buttons: buttonsDevote,
    headerType: 1,
    mentions: menvote
  }
- ZimBotInc.sendMessage(m.chat, buttonMessageDevote)
+ BakarBotInc.sendMessage(m.chat, buttonMessageDevote)
 }
  break
     
@@ -2135,9 +2135,9 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
 *${prefix}hapusvote* - to delete votes
 
 
-©${ZimBotInc.user.id}
+©${BakarBotInc.user.id}
 `
-ZimBotInc.sendTextWithMentions(m.chat, teks_vote, m)
+BakarBotInc.sendTextWithMentions(m.chat, teks_vote, m)
 break
 case 'deletevote': case'delvote': case 'hapusvote': {
  if (!m.isGroup) throw mess.group
@@ -2165,7 +2165,7 @@ let buttons = [
 { buttonId: 'chatbot on', buttonText: { displayText: 'ON' }, type: 1 },
 { buttonId: 'chatbot off', buttonText: { displayText: 'OFF' }, type: 1 }
  ]
- await ZimBotInc.sendButtonText(m.chat, buttons, `*CHATBOT SESSION*`, ZimBotInc.user.name, m)
+ await BakarBotInc.sendButtonText(m.chat, buttons, `*CHATBOT SESSION*`, BakarBotInc.user.name, m)
 }
 */
  break
@@ -2184,7 +2184,7 @@ reply(`*It was nice to chat with you goodbye _chatbot off_*`)
 { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
 { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+  await BakarBotInc.sendButtonText(m.chat, drips, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, BakarBotInc.user.name, m)
 }
   } 
 break
@@ -2204,7 +2204,7 @@ reply(`*It was nice to chat with you goodbye _Artificial Intelligence(AI) chatgp
 { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
 { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, dripsu, `*┃🔏ᴄʜᴀᴛɢᴘᴛ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+  await BakarBotInc.sendButtonText(m.chat, dripsu, `*┃🔏ᴄʜᴀᴛɢᴘᴛ ᴍᴏᴅᴇ🔏┃*`, BakarBotInc.user.name, m)
 }
 }
 break 
@@ -2222,13 +2222,13 @@ if (args[0] === "on") {
 if (antiToxic) return reply('*Already activated*')
 dripsanti.push(from)
 reply('*Success turning on anti rude in this group*')
-var group = await ZimBotInc.groupMetadata(from)
+var group = await BakarBotInc.groupMetadata(from)
 var members = group['participants']
 var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-ZimBotInc.sendMessage(from, {text: `*▊▊▊ANTILINK RUDE▊▊▊*\n\n*no hate speech anymore, watch space im going to kick dumps*`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+BakarBotInc.sendMessage(from, {text: `*▊▊▊ANTILINK RUDE▊▊▊*\n\n*no hate speech anymore, watch space im going to kick dumps*`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
 if (!antiToxic) return reply('*Already deactivated*')
 let off = dripsanti.indexOf(from)
@@ -2239,7 +2239,7 @@ reply('*Success in turning off antirude in this group happy now*')
  { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
  { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
  ]
- await ZimBotInc.sendButtonText(m.chat, buttons, `*▊▊▊ANTI BADWORDS▊▊▊*\n\n.`, `${global.botname}`, m)
+ await BakarBotInc.sendButtonText(m.chat, buttons, `*▊▊▊ANTI BADWORDS▊▊▊*\n\n.`, `${global.botname}`, m)
  }
  }
  
@@ -2253,13 +2253,13 @@ break
  if (isAntinsfw) return reply('*Already activated*')
  dripsno.push(from)
  reply('*hahaha turning on horny mood in this group happy now*')
- var group = await ZimBotInc.groupMetadata(from)
+ var group = await BakarBotInc.groupMetadata(from)
  var members = group['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
- ZimBotInc.sendMessage(from, {text: `*horny mood activated everyone be ready for masturbation*`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ BakarBotInc.sendMessage(from, {text: `*horny mood activated everyone be ready for masturbation*`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!isAntinsfw) return reply('*Already deactivated*')
  let off = dripsno.indexOf(from)
@@ -2270,7 +2270,7 @@ let button = [
 { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
 { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
 ]
-await ZimBotInc.sendButtonText(m.chat, button, `*▊▊▊HORNY MOOD▊▊▊*\n\n*TURN IT ON SO PEOPLE THEY WILL START TO MASTURBATE LOL*`, `${global.botname}`, m)
+await BakarBotInc.sendButtonText(m.chat, button, `*▊▊▊HORNY MOOD▊▊▊*\n\n*TURN IT ON SO PEOPLE THEY WILL START TO MASTURBATE LOL*`, `${global.botname}`, m)
 }
 }
 break
@@ -2303,7 +2303,7 @@ if (!regex1.test(args[0])) throw 'link!'
     let filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1]
     // 'attachment; filenameq=ZidniGanz.zip'
     reply(`*Please wait, sending repository..*`)
-    ZimBotInc.sendMessage(m.chat, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' , quoted: m,contextInfo: { externalAdReply:{
+    BakarBotInc.sendMessage(m.chat, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' , quoted: m,contextInfo: { externalAdReply:{
       title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",
       body:"SUB DRIPS OFC",
       showAdAttribution: true,
@@ -2316,14 +2316,14 @@ if (!regex1.test(args[0])) throw 'link!'
  
  break
  case 'tagme': {
-   ZimBotInc.sendMessage(m.chat, {text:`@${m.sender.split("@")[0]}`, contextInfo:{mentionedJid:[m.sender]}}, {quoted:m})
+   BakarBotInc.sendMessage(m.chat, {text:`@${m.sender.split("@")[0]}`, contextInfo:{mentionedJid:[m.sender]}}, {quoted:m})
    }
  break
  case 'truth':
 				const trut =['Have you loved anyone? How long?','If you can or if you want, outside school/college Who will you make friends? (May be different / high school)','What is your biggest fear?','Have you liked a people and felt that person likes you too?','Who is your ex-girlfriend?','What makes you happy when you are sad?','Ever loved someone? what does it feels like?','Have you ever been in an affair?','The most feared thing','Who is the most influential person to your life?','What is the proud thing you did this year?',' Who can make you smile?','Who is the person you truly love? What is the reason? ','Mention the incident that makes you hurt that you still remember','What are the achievements that have been crushed on this year?','What is your worst habit when at school?']
 				const ttrth = trut[Math.floor(Math.random() * trut.length)]
 				truteh = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
-			ZimBotInc.sendMessage(m.chat, {image: truteh, caption: '*Truth*\n\n'+ ttrth, quoted: m,contextInfo: { externalAdReply:{
+			BakarBotInc.sendMessage(m.chat, {image: truteh, caption: '*Truth*\n\n'+ ttrth, quoted: m,contextInfo: { externalAdReply:{
         title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",
         body:"SUB DRIPS OFC",
         showAdAttribution: true,
@@ -2357,7 +2357,7 @@ break
  case 'bcgc': case 'bcgroup': {
    if (!isCreator) throw global.owner
    if (!text) throw `Where is the text?\n\nExample : ${prefix + command} hello guys, am back`
-   let getGroups = await ZimBotInc.groupFetchAllParticipating()
+   let getGroups = await BakarBotInc.groupFetchAllParticipating()
    let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
    let anu = groups.map(v => v.id)
    reply(`Send Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} second`)
@@ -2391,7 +2391,7 @@ break
   }]
  fatihgans = fs.readFileSync('./Zimbot/drips.jpg')
  let txt = `「 ZimBot Broadcast 」\n\n${text}`
- ZimBotInc.send5ButImg(i, txt, ZimBotInc.user.name, fatihgans, btn)
+ BakarBotInc.send5ButImg(i, txt, BakarBotInc.user.name, fatihgans, btn)
   }
    reply(`Successful Sending Broadcast To ${anu.length} Group(s)`)
  }
@@ -2399,7 +2399,7 @@ break
  case 'broadcastimage': case 'bcimagde': case 'broadcastvideo': case 'broadcastvid':
   if (!isCreator) throw global.owner
         if (!q) return reply(`Enter text`)
-        let getGroups = await ZimBotInc.groupFetchAllParticipating()
+        let getGroups = await BakarBotInc.groupFetchAllParticipating()
         let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
         let xeoncast = groups.map(v => v.id)
         reply(` Broadcasting in ${xeoncast.length} Group Chat, in ${xeoncast.length * 1.5} seconds`)
@@ -2407,11 +2407,11 @@ break
 let txt = `   ${q}`
 if(/image/.test(mime)) {
 let media = await quoted.download()
-await ZimBotInc.sendMessage(i, { image:media,  caption: txt,mentions:participants.map(a => a.id) })
+await BakarBotInc.sendMessage(i, { image:media,  caption: txt,mentions:participants.map(a => a.id) })
 }
 if(/video/.test(mime)){
 let media = await quoted.download()
-await ZimBotInc.sendMessage(i, { video:media,  caption: txt, mentions:participants.map(a => a.id) })
+await BakarBotInc.sendMessage(i, { video:media,  caption: txt, mentions:participants.map(a => a.id) })
 }
             }
         reply(`Successfuly Broadcasted in ${xeoncast.length} Groups`)      
@@ -2423,7 +2423,7 @@ await ZimBotInc.sendMessage(i, { video:media,  caption: txt, mentions:participan
         if (!q) return reply(`Enter text`)
                         const data = await store.chats.all()
                     for (let i of data) {
-                      ZimBotInc.sendMessage(i.id, {text: ` ${q}` })
+                      BakarBotInc.sendMessage(i.id, {text: ` ${q}` })
                        await sleep(1000)
                     }
                     }
@@ -2450,7 +2450,7 @@ for (let yoi of anu) {
   }]
  fatihgans = fs.readFileSync('./Zimbot/drips.jpg')
  let txt = `「 ZIM BOT BROADCAST 」\n\n${text}`
- ZimBotInc.sendMessage(yoi, txt, `Broadcast By ${global.pengguna}`)
+ BakarBotInc.sendMessage(yoi, txt, `Broadcast By ${global.pengguna}`)
 }
 reply('*Broadcast Success*')
  }
@@ -2467,12 +2467,12 @@ reply('*Broadcast Success*')
   teks += `🔏 @${i.userJid.split('@')[0]}\n`
   teks += `🔏 *𝗧𝗜𝗠𝗘 :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} 🔏 *𝗦𝗧𝗔𝗧𝗨𝗦 :* ${read ? 'Read' : 'Unread'}\n\n`
    }
-   ZimBotInc.sendTextWithMentions(m.chat, teks, m)
+   BakarBotInc.sendTextWithMentions(m.chat, teks, m)
  }
  break
  case 'q': case 'quoted': {
 if (!m.quoted) return reply('Reply Message!!')
-let wokwol = await ZimBotInc.serializeM(await m.getQuotedObj())
+let wokwol = await BakarBotInc.serializeM(await m.getQuotedObj())
 if (!wokwol.quoted) return reply('*The message you replied to does not contain a reply💫*')
 await wokwol.quoted.copyNForward(m.chat, true)
  }
@@ -2481,7 +2481,7 @@ await wokwol.quoted.copyNForward(m.chat, true)
 case 'listonline': case 'onlinelist': case 'liston': {
   let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
   let online = [...Object.keys(store.presences[id]), botNumber]
-  ZimBotInc.sendText(m.chat, '*LIST ONLINE*:\n\n' + online.map(v => '> @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
+  BakarBotInc.sendText(m.chat, '*LIST ONLINE*:\n\n' + online.map(v => '> @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
 }
 break
  case 'sticker': case 's': case 'stickergif': case 'sgif': {
@@ -2489,12 +2489,12 @@ break
  replay(mess.wait)
   if (/image/.test(mime)) {
    let media = await quoted.download()
-   let encmedia = await ZimBotInc.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+   let encmedia = await BakarBotInc.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
    await fs.unlinkSync(encmedia)
  } else if (/video/.test(mime)) {
    if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 seconds!')
    let media = await quoted.download()
-   let encmedia = await ZimBotInc.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+   let encmedia = await BakarBotInc.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
    await fs.unlinkSync(encmedia)
  } else {
    throw `Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
@@ -2509,7 +2509,7 @@ let res = await fetch('https://nekos.life/api/kiss')
 let jsonk = await res.json()
 let { uri } = jsonk
 let stiker = await sticker(null, uri, `+${m.sender.split('@')[0]} le dio una bofetada a ${m.mentionedJid.map((user)=>(user === m.sender)? 'alguien ': `+${user.split('@')[0]}`).join(', ')}`)
-ZimBotInc.sendVideoAsSticker(m.chat, stiker, m, { packname: global.packname, author: global.author })
+BakarBotInc.sendVideoAsSticker(m.chat, stiker, m, { packname: global.packname, author: global.author })
  break
  case 'ebinary': {
  if (!m.quoted.text && !text) throw `Send/reply text with caption ${prefix + command}`
@@ -2532,7 +2532,7 @@ if (!text) throw `Example : ${prefix + command} 😅+🤔`
 let [emoji1, emoji2] = text.split`+`
 let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 for (let res of anu.results) {
-    let encmedia = await ZimBotInc.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+    let encmedia = await BakarBotInc.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
     await fs.unlinkSync(encmedia)
 }
     }
@@ -2541,13 +2541,13 @@ for (let res of anu.results) {
    if (!quoted) throw '*Reply Image*'
    if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
    replay(mess.wait)
-   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
+   let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
    let ran = await getRandom('.png')
    exec(`ffmpeg -i ${media} ${ran}`, (err) => {
   fs.unlinkSync(media)
   if (err) throw err
   let buffer = fs.readFileSync(ran)
-  ZimBotInc.sendMessage(m.chat, { image: buffer }, { quoted: m })
+  BakarBotInc.sendMessage(m.chat, { image: buffer }, { quoted: m })
   fs.unlinkSync(ran)
    })
  }
@@ -2557,16 +2557,16 @@ case 'tomp4': case 'tovideo': {
    if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
    replay(mess.wait)
 let { webp2mp4File } = require('./lib/uploader')
-   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
+   let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
    let webpToMp4 = await webp2mp4File(media)
-   await ZimBotInc.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: '*Convert webp to video*' } }, { quoted: m })
+   await BakarBotInc.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: '*Convert webp to video*' } }, { quoted: m })
    await fs.unlinkSync(media)
  }
  break
  case 'tts':
   const gtts = require('./Zimbot/gtts')(args[0])
-  if (args.length < 1) return ZimBotInc.sendMessage(from, `ᴇxᴀᴍᴘʟᴇ: ${prefix}ᴇɴ ʜᴇʟʟᴏ`, text, {quoted: m})
-  if (args.length < 2) return ZimBotInc.sendMessage(from, `ᴇxᴀᴍᴘʟᴇ: ${prefix}ᴇɴ ʜᴇʟʟᴏ`, text, {quoted: m})
+  if (args.length < 1) return BakarBotInc.sendMessage(from, `ᴇxᴀᴍᴘʟᴇ: ${prefix}ᴇɴ ʜᴇʟʟᴏ`, text, {quoted: m})
+  if (args.length < 2) return BakarBotInc.sendMessage(from, `ᴇxᴀᴍᴘʟᴇ: ${prefix}ᴇɴ ʜᴇʟʟᴏ`, text, {quoted: m})
  var dtt = body.slice(20)
   reply(mess.wait)
   var ranm = getRandom('.mp3')
@@ -2578,7 +2578,7 @@ let { webp2mp4File } = require('./lib/uploader')
           buffer = fs.readFileSync(rano)
           if (err) return reply('error')
           Ruri.sendMessage(from,  audio, {quoted: freply, ptt:true})
-          ZimBotInc.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
+          BakarBotInc.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
           fs.unlinkSync(rano)
           })
           })
@@ -2590,7 +2590,7 @@ let { webp2mp4File } = require('./lib/uploader')
  let media = await quoted.download()
  let { toAudio } = require('./lib/converter')
  let audio = await toAudio(media, 'mp4')
- ZimBotInc.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
+ BakarBotInc.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
  }
  break
  case 'tomp3': {
@@ -2601,7 +2601,7 @@ let { webp2mp4File } = require('./lib/uploader')
  let media = await quoted.download()
  let { toAudio } = require('./lib/converter')
  let audio = await toAudio(media, 'mp4')
- ZimBotInc.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Converted By ${ZimBotInc.user.name}.mp3`}, { quoted : m })
+ BakarBotInc.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Converted By ${BakarBotInc.user.name}.mp3`}, { quoted : m })
  }
  break
  case 'tovn': case 'toptt': {
@@ -2611,7 +2611,7 @@ let { webp2mp4File } = require('./lib/uploader')
  let media = await quoted.download()
  let { toPTT } = require('./lib/converter')
  let audio = await toPTT(media, 'mp4')
- ZimBotInc.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+ BakarBotInc.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
  }
  break
  case 'togif': {
@@ -2619,16 +2619,16 @@ let { webp2mp4File } = require('./lib/uploader')
    if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
    replay(mess.wait)
 let { webp2mp4File } = require('./lib/uploader')
-   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
+   let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
    let webpToMp4 = await webp2mp4File(media)
-   await ZimBotInc.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
+   await BakarBotInc.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
    await fs.unlinkSync(media)
  }
  break
 case 'tourl': {
    replay(mess.wait)
 let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
-   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
+   let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
    if (/image/.test(mime)) {
   let anu = await TelegraPh(media)
   reply(util.format(anu))
@@ -2647,7 +2647,7 @@ let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
     let apirnobg = ['q61faXzzR5zNU6cvcrwtUkRU','S258diZhcuFJooAtHTaPEn4T','5LjfCVAp4vVNYiTjq9mXJWHF','aT7ibfUsGSwFyjaPZ9eoJc61','BY63t7Vx2tS68YZFY6AJ4HHF','5Gdq1sSWSeyZzPMHqz7ENfi8','86h6d6u4AXrst4BVMD9dzdGZ','xp8pSDavAgfE5XScqXo9UKHF','dWbCoCb3TacCP93imNEcPxcL']
     let apinobg = apirnobg[Math.floor(Math.random() * apirnobg.length)]
     hmm = await './src/remobg-'+getRandom('')
-    localFile = await ZimBotInc.downloadAndSaveMediaMessage(quoted, hmm)
+    localFile = await BakarBotInc.downloadAndSaveMediaMessage(quoted, hmm)
     outputFile = await './src/hremo-'+getRandom('.png')
     replay(mess.wait)
     remobg.removeBackgroundFromImageFile({
@@ -2658,7 +2658,7 @@ let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
  scale: "100%",
  outputFile 
     }).then(async result => {
-    ZimBotInc.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : m })
+    BakarBotInc.sendMessage(m.chat, {image: fs.readFileSync(outputFile), caption: mess.success}, { quoted : m })
     await fs.unlinkSync(localFile)
     await fs.unlinkSync(outputFile)
     })
@@ -2674,7 +2674,7 @@ let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
    for (let i of search.all) {
   teks += `🔏No: ${no++}\n🧸𝗧𝗬𝗣𝗘 : ${i.type}\n🔳𝗩𝗜𝗗𝗘𝗢 𝗜𝗗: ${i.videoId}\n🔴𝗧𝗜𝗧𝗟𝗘 : ${i.title}\n🔏𝗩𝗜𝗘𝗪𝗦 : ${i.views}\n🎬𝗗𝗨𝗥𝗔𝗧𝗜𝗢𝗡 : ${i.timestamp}\n📡𝗨𝗣𝗟𝗢𝗔𝗗 𝗔𝗧 : ${i.ago}\n🎰𝗔𝗨𝗧𝗛𝗢𝗥 : ${i.author.name}\n📌𝗨𝗥𝗟 : ${i.url}\n\n─────────────────\n\n`
    }
-   ZimBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+   BakarBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
  }
  break
 
@@ -2697,7 +2697,7 @@ case 'google': {
     try {
         let ss = await (await fetch(('nrtm', '/api/ssweb', { delay: 1000, url, full }))).arrayBuffer()
         if (/<!DOCTYPE html>/i.test(ss.toBuffer().toString())) throw ''
-        await ZimBotInc.sendFile(m.chat, ss, 'screenshot.png', url + '\n\n' + msg, m)
+        await BakarBotInc.sendFile(m.chat, ss, 'screenshot.png', url + '\n\n' + msg, m)
     } catch (e) {
         reply(msg)
     }
@@ -2718,11 +2718,11 @@ let buttons = [
   caption: `❰ 𝗚𝗢𝗢𝗚𝗟𝗘 𝗜𝗠𝗔𝗚𝗘 ❱
 *𝗤𝗨𝗘𝗥𝗬* : ${text}
 *𝗠𝗘𝗗𝗜𝗔 𝗨𝗥𝗟* : ${images}`,
-  footer: ZimBotInc.user.name,
+  footer: BakarBotInc.user.name,
   buttons: buttons,
   headerType: 4
    }
-   ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+   BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
 })
 }
 break
@@ -2750,7 +2750,7 @@ rowId: `${prefix}getapk ${text}—${v.no}`,
 description: `[ ${v.size} | ${v.version} ]`
  })
  })
-ZimBotInc.sendList(m.chat, '', `Hey zim-bot user here are your results: showing search results for : “${text}”, select below the application you want to download. 🍻`, '', 'OPTIONS', [{
+BakarBotInc.sendList(m.chat, '', `Hey zim-bot user here are your results: showing search results for : “${text}”, select below the application you want to download. 🍻`, '', 'OPTIONS', [{
 rows
 }], m)
 break
@@ -2765,8 +2765,8 @@ cap = `
 
 *⬤▶━━━━━━━━━2:30*\n\n\n\n*⬤TITLE:* ${data.title}\n*⬤QUALITY:* ${data.medias[0].quality}\n*⬤SIZE:* ${data.medias[0].formattedSize}\n*⬤DURATION* ${data.duration}\n*⬤ID:* ${data.medias[0].cached}\n*⬤LINK:* ${data.url}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
 buf = await getBuffer(data.thumbnail)
-ZimBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${cap}` }, { quoted: m })
-ZimBotInc.sendMessage(m.chat, { video: { url: data.medias[0].url }, jpegThumbnail:buf, caption: `*⬤TITLE:* ${data.title}\n*⬤QUALITY:* ${data.medias[0].quality}\n*⬤SIZE:* ${data.medias[0].formattedSize}` }, { quoted: m })  
+BakarBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${cap}` }, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { video: { url: data.medias[0].url }, jpegThumbnail:buf, caption: `*⬤TITLE:* ${data.title}\n*⬤QUALITY:* ${data.medias[0].quality}\n*⬤SIZE:* ${data.medias[0].formattedSize}` }, { quoted: m })  
             }).catch((err) => {
                 reply(`*Failed to download and send media*`)
             })
@@ -2801,7 +2801,7 @@ replay(mess.wait)
  sourceUrl: `https://youtu.be/KNu-gr2h7bo`
  }}
  }
- ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+ BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
  }).catch(_ => _)
  } catch {
  reply("Error")
@@ -2813,8 +2813,8 @@ replay(mess.wait)
    replay(mess.wait)
    let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
    let random = anu[Math.floor(Math.random() * anu.length)]
-   ZimBotInc.sendMessage(m.chat, { image: { url: random.male }, caption: `Couple Male` }, { quoted: m })
-   ZimBotInc.sendMessage(m.chat, { image: { url: random.female }, caption: `*Couple Female*` }, { quoted: m })
+   BakarBotInc.sendMessage(m.chat, { image: { url: random.male }, caption: `Couple Male` }, { quoted: m })
+   BakarBotInc.sendMessage(m.chat, { image: { url: random.female }, caption: `*Couple Female*` }, { quoted: m })
  }
 break
 //------ANIME FESTURES------\\
@@ -2850,7 +2850,7 @@ case 'handhold':
 reply(mess.wait)
 axios.get(`https://api.waifu.pics/sfw/${command}`)
 .then(({data}) => {
-ZimBotInc.sendImageAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
+BakarBotInc.sendImageAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 })
 break  
 case 'animeslap':
@@ -2866,7 +2866,7 @@ footer: `${global.botname}`,
 buttons: garo,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat, tunhamasawi,{ quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat, tunhamasawi,{ quoted:m }).catch(err => {
 return('Error!')
 })
 
@@ -2884,7 +2884,7 @@ footer: `${global.botname}`,
 buttons: tunhabee,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat, masawitunha,{ quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat, masawitunha,{ quoted:m }).catch(err => {
 return('Error!')
 })
 break
@@ -2901,7 +2901,7 @@ footer: `${global.botname}`,
 buttons: tunhaprince,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat, tanaka,{ quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat, tanaka,{ quoted:m }).catch(err => {
 return('Error!')
 })
 break
@@ -2918,7 +2918,7 @@ footer: `${global.botname}`,
 buttons: madeline,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat, magwetta,{ quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat, magwetta,{ quoted:m }).catch(err => {
 return('Error!')
 })
 break
@@ -2935,7 +2935,7 @@ footer: `${global.botname}`,
 buttons: blessedtuna2,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat, sekedema,{ quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat, sekedema,{ quoted:m }).catch(err => {
 return('Error!')
 })
 break
@@ -2952,7 +2952,7 @@ footer: `${global.botname}`,
 buttons: wati,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat, sekeMutema,{ quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat, sekeMutema,{ quoted:m }).catch(err => {
 return('Error!')
 })
 break
@@ -2969,7 +2969,7 @@ footer: `${global.botname}`,
 buttons: wati,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat, edzai,{ quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat, edzai,{ quoted:m }).catch(err => {
 return('Error!')
 })
 break
@@ -2986,7 +2986,7 @@ footer: `${global.botname}`,
 buttons: wati,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat,haha, { quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat,haha, { quoted:m }).catch(err => {
 return('Error!')
 })  
 break
@@ -3003,7 +3003,7 @@ footer: `${global.botname}`,
 buttons: wati,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat,kuku, { quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat,kuku, { quoted:m }).catch(err => {
 return('Error!')
 })  
 break
@@ -3035,7 +3035,7 @@ case 'update':
         }
     }];
     }
-    await ZimBotInc.sendMessage(m.chat, {text: ` *type updatenow to update the bot*`});
+    await BakarBotInc.sendMessage(m.chat, {text: ` *type updatenow to update the bot*`});
     
 
 break
@@ -3044,14 +3044,14 @@ case 'updatenow':
     await git.fetch();
     var commits = await git.log(['main' + '..origin/' + 'main']);
     if (commits.total === 0) {
-      return await ZimBotInc.sendMessage(m.chat, { text:"_Bot up to date_"})
+      return await BakarBotInc.sendMessage(m.chat, { text:"_Bot up to date_"})
     } else {
-      await ZimBotInc.sendMessage(m.chat, {text: "_Build started ⏫_"})
+      await BakarBotInc.sendMessage(m.chat, {text: "_Build started ⏫_"})
       try {
         var app = await heroku.get('/apps/' + Config.HEROKU_APP_NAME)
         var git_url = await heroku.get(app.git_url)
     } catch {
-        await ZimBotInc.sendMessage(m.chat, { text:"*Heroku app name/api key wrong*"})
+        await BakarBotInc.sendMessage(m.chat, { text:"*Heroku app name/api key wrong*"})
 
         await new Promise(r => setTimeout(r, 1000));
       }
@@ -3065,7 +3065,7 @@ case 'updatenow':
     try { await git.push('heroku', 'main'); } catch(e){ 
     if (e.message.includes("concurrent")) return reply("Your account has reached in-parallel build limit! Please wait for the other app to finish its deploy ❗"); 
     }
-    await ZimBotInc.sendMessage(m.chat, {text:"_Finished build! Restarting.._"})
+    await BakarBotInc.sendMessage(m.chat, {text:"_Finished build! Restarting.._"})
  //
 
   }
@@ -3084,7 +3084,7 @@ footer: `${global.botname}`,
 buttons: pulo,
 headerType: 2
 }  
-await ZimBotInc.sendMessage(m.chat, tidza, { quoted:m }).catch(err => {
+await BakarBotInc.sendMessage(m.chat, tidza, { quoted:m }).catch(err => {
 return('Error!')
 })
 break
@@ -3109,7 +3109,7 @@ footer: `${global.botname}`,
 buttons: francisca,
 headerType: 4
 }
-await ZimBotInc.sendMessage(m.chat, tunhastallone, {quoted: m}) 
+await BakarBotInc.sendMessage(m.chat, tunhastallone, {quoted: m}) 
 break
 //-----END HERE-----\\
 
@@ -3135,7 +3135,7 @@ const result4 = `
  _scraping metadata...._ 
 *${botname}*`
 reply(`${result4}`)
-ZimBotInc.sendMessage(m.chat, { document : { url : baby1[0].link}, fileName : baby1[0].nama, mimetype: baby1[0].mime ,  quoted : mudratunha, contextInfo: { externalAdReply:{
+BakarBotInc.sendMessage(m.chat, { document : { url : baby1[0].link}, fileName : baby1[0].nama, mimetype: baby1[0].mime ,  quoted : mudratunha, contextInfo: { externalAdReply:{
   title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",
   body:"SUBSCRIBE DRIPS OFC",
   showAdAttribution: true,
@@ -3169,7 +3169,7 @@ let listmenu = [`ytmp4 ${search.all[0].url}`,`ytmp3 ${search.all[1].url}`,`ytmp4
 }
 sections.push(list)   
 }
-const sendm =  ZimBotInc.sendMessage(
+const sendm =  BakarBotInc.sendMessage(
 m.chat, 
 {
 text: "\n\n*_DONE SCRAPING DATA_*",
@@ -3199,7 +3199,7 @@ case 'ytsaudio': case 'ytsmusic': case 'ytsearchmusic': {
                         }
                         sections.push(list)   
                         }
-                        const sendm =  ZimBotInc.sendMessage(
+                        const sendm =  BakarBotInc.sendMessage(
                         m.chat, 
                         {
                         text: ` ${text}`,
@@ -3229,7 +3229,7 @@ case 'ytsaudio': case 'ytsmusic': case 'ytsearchmusic': {
                         }
                         sections.push(list)   
                         }
-                        const sendm =  ZimBotInc.sendMessage(
+                        const sendm =  BakarBotInc.sendMessage(
                         m.chat, 
                         {
                         text: ` ${text}`,
@@ -3242,7 +3242,7 @@ case 'ytsaudio': case 'ytsmusic': case 'ytsearchmusic': {
                     break
   case 'yts': case 'youtubesearch': case 'ytsearch': {
     
-                  await ZimBotInc.sendMessage(m.chat, {text: `*sᴇᴀʀᴄʜɪɴɢ🔎 ʏᴏᴜʀ ᴠɪᴅᴇᴏs🎬ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
+                  await BakarBotInc.sendMessage(m.chat, {text: `*sᴇᴀʀᴄʜɪɴɢ🔎 ʏᴏᴜʀ ᴠɪᴅᴇᴏs🎬ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...* `}, {quoted: m})
                   if (!text) throw `Example : ${prefix + command} story wa anime`
                   let yts = require("youtube-yts")
                   let search = await yts(text)                
@@ -3260,7 +3260,7 @@ case 'ytsaudio': case 'ytsmusic': case 'ytsearchmusic': {
                         }
                         sections.push(list)   
                         }
-                        const sendm =  ZimBotInc.sendMessage(
+                        const sendm =  BakarBotInc.sendMessage(
                         m.chat, 
                         {
                         text: `*ϙᴜᴇʀʏ:* \n${text}🎛️`,
@@ -3296,9 +3296,9 @@ case 'fbdl': case 'fb': case 'facebook': case 'fbvideo': {
 
      buf = await getBuffer(data.thumbnail)    
 
-     ZimBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, {quoted: mudratunha})
+     BakarBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, {quoted: mudratunha})
      for (let i of data.result) {  
-    ZimBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, mimetype: 'video/mp4', caption: `*◉ Quality :* ${i.quality}` ,  quoted: m,contextInfo: { externalAdReply:{
+    BakarBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, mimetype: 'video/mp4', caption: `*◉ Quality :* ${i.quality}` ,  quoted: m,contextInfo: { externalAdReply:{
       title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",
       body:"SUBSCRIBE DRIPS OFC",
       showAdAttribution: true,
@@ -3358,7 +3358,7 @@ rows: [
 
  }
 
-const sendm =  ZimBotInc.sendMessage(
+const sendm =  BakarBotInc.sendMessage(
 
   m.chat, 
 
@@ -3391,7 +3391,7 @@ case 'fb2': case 'facebook2': case 'fb': {
     if (!isUrl(args[0]) && !args[0].includes('facebook.com')) throw '*The link you provided is not valid*'
     anu = await fetchJson(`https://violetics.pw/api/downloader/facebook?apikey=beta&url=${text}`)
     tummb = await getBuffer('https://telegra.ph/file/9789a09c964cee5597a05.jpg')    
-    ZimBotInc.sendMessage(m.chat, { video: { url: anu.result.url[0].url }, jpegThumbnail:tummb, caption: `*📽️ FACEBOOK DOWNLOADER*\n\n*Name* : ${anu.result.meta.title}\n*Quality* : ${anu.result.url[0].subname}\n*Ext* : ${anu.result.url[0].ext}\n`}, { quoted: m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
+    BakarBotInc.sendMessage(m.chat, { video: { url: anu.result.url[0].url }, jpegThumbnail:tummb, caption: `*📽️ FACEBOOK DOWNLOADER*\n\n*Name* : ${anu.result.meta.title}\n*Quality* : ${anu.result.url[0].subname}\n*Ext* : ${anu.result.url[0].ext}\n`}, { quoted: m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
 }
 break
 case 'get': {
@@ -3416,7 +3416,7 @@ case 'get': {
 
 let link = await getBuffer(i.url)
 
-      ZimBotInc.sendMessage(m.chat, { video: link, caption: `*quality ${i.subname}*` }, { quoted: m })                  
+      BakarBotInc.sendMessage(m.chat, { video: link, caption: `*quality ${i.subname}*` }, { quoted: m })                  
 
      }
 
@@ -3443,7 +3443,7 @@ case 'tiktok4': { //DOWNLOADER
        buttons: buttons,
        headerType: 5
    }
-   ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })                
+   BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })                
    }).catch((err) => {
        reply(`*Failed to download media and send videos*`)
    })
@@ -3457,7 +3457,7 @@ anu = await fetchJson(`https://violetics.pw/api/downloader/tiktok?apikey=df7d-42
 let listmn = `*▊▊▊TIKTOK DL▊▊▊*\n\n*Title:* ${anu.result.title}\n*Author:* ${anu.result.id}\n*Url:* ${anu.result.url}`
 buf = await getBuffer(anu.result.thumb)
 buf2 = await getBuffer(anu.result.link_dl2)
-let message = await prepareWAMessageMedia({ video: buf2, gifPlayback:false, jpegThumbnail:buf }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ video: buf2, gifPlayback:false, jpegThumbnail:buf }, { upload: BakarBotInc.waUploadToServer })
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 templateMessage: {
 hydratedTemplate: {
@@ -3493,7 +3493,7 @@ id: 'donadi'
 }
 }
 }), { userJid: m.chat, quoted: m })
-ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
+BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
 }
 break
 case 'tiktok': case 'tiktoknowm': case 'tiktokwm': case 'tt': case 'ttnowm': case 'ttwm': {
@@ -3511,8 +3511,8 @@ case 'tiktok': case 'tiktoknowm': case 'tiktokwm': case 'tt': case 'ttnowm': cas
      let caption = `
      *▊▊▊TIKTOK DL▊▊▊*\n\n*AUTHOR* : DRIPS\n*NICKNAME* : ${video.author.nickname}\n*CAPTION* : ${video.description}\n*QUALITY* : nowatermark\n*COMMENTS* : ${memek}\n*CREATE* ${hadir} Ago\n*LIKES* : ${hadi}\n*DISLIKE* : ${hadie}\n*SOURCE* : ${text}\n\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
      buf = await getBuffer(video.author.avatar)                
-     ZimBotInc.sendMessage(m.chat, { image: { url: video.author.avatar }, jpegThumbnail:buf, caption: `${caption}` }, { quoted: m })
-     ZimBotInc.sendMessage(m.chat, { video: { url: video.video.no_watermark }, jpegThumbnail:buf, mimetype: 'video/mp4', caption: `*Downloading From ${text}*` }, { quoted: m })               
+     BakarBotInc.sendMessage(m.chat, { image: { url: video.author.avatar }, jpegThumbnail:buf, caption: `${caption}` }, { quoted: m })
+     BakarBotInc.sendMessage(m.chat, { video: { url: video.video.no_watermark }, jpegThumbnail:buf, mimetype: 'video/mp4', caption: `*Downloading From ${text}*` }, { quoted: m })               
    }).catch((err) => {
        reply(`*Failed to download media and send videos*`)
    })
@@ -3531,8 +3531,8 @@ var hadir = randomNomor(300)
 var memek = randomNomor(1000)                      
 let caption = `*▊▊▊TIKTOK DL▊▊▊*\n\n*AUTHOR* : DRIPS\n*NICKNAME* : ${video.author.nickname}\n*CAPTION* : ${video.description}\n*COMMENTS* : ${memek}\n*CREATE* ${hadir} Ago\n*LIKES* : ${hadi}\n*DISLIKES* : ${hadie}\n*SOURCE* : ${text}\n\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
 buf = await getBuffer(video.author.avatar)                
-ZimBotInc.sendMessage(m.chat, { image: { url: video.author.avatar }, jpegThumbnail:buf, caption: `${caption}` }, { quoted: m })
-ZimBotInc.sendMessage(m.chat, { video: { url: video.video.no_watermark }, jpegThumbnail:buf, mimetype: 'video/mp4', caption: `*Downloading From ${text}*` }, { quoted: m })               
+BakarBotInc.sendMessage(m.chat, { image: { url: video.author.avatar }, jpegThumbnail:buf, caption: `${caption}` }, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { video: { url: video.video.no_watermark }, jpegThumbnail:buf, mimetype: 'video/mp4', caption: `*Downloading From ${text}*` }, { quoted: m })               
 }).catch((err) => {
 reply(`*Failed to download media and send videos*`)
 })
@@ -3551,7 +3551,7 @@ var hadir = randomNomor(300)
 var memek = randomNomor(1000)                      
 let caption = `**▊▊▊TIKTOK DL▊▊▊**\n\n*⬤AUTHOR* : DRIPS\n*⬤NICKNAME* : ${video.author.nickname}\n*⬤CAPTION* : ${video.description}\n*⬤COMMENTS* : ${memek}\n*⬤CREATE* ${hadir} Ago\n*⬤LIKES* : ${hadi}\n*⬤DISLIKES* : ${hadie}\n*⬤ SOURCE* : ${text}`
 buf = await getBuffer(video.author.avatar)                
-let message = await prepareWAMessageMedia({ image: buf, jpegThumbnail: buf }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: buf, jpegThumbnail: buf }, { upload: BakarBotInc.waUploadToServer })
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 templateMessage: {
 hydratedTemplate: {
@@ -3587,7 +3587,7 @@ id: `tiktokmp3 ${text}`
 }
 }
 }), { userJid: m.chat, quoted: m })
-ZimBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })                
+BakarBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })                
 }).catch((err) => {
 reply(`*Failed to download media and send videos*`)
 })
@@ -3600,7 +3600,7 @@ if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) throw '*The link you pro
 let got = require('./lib/tiktok.js')
    
 got.tiktokDown(`${text}`).then(async (data) => {
-ZimBotInc.sendMessage(m.chat, { audio: { url: data.result.nowatermark }, mimetype: 'audio/mp4'}, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { audio: { url: data.result.nowatermark }, mimetype: 'audio/mp4'}, { quoted: m })
 }).catch((err) => {
 reply(`*Failed to download media and send audio*`)
 })
@@ -3613,7 +3613,7 @@ let get = require('./lib/scraper.js')
                                   
 get.aiovideodl(`${text}`).then(async (res) => {        
 var anu = await getBuffer(res.medias[2].url)         
-ZimBotInc.sendMessage(m.chat, { audio: anu, mimetype: 'audio/mpeg'}, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { audio: anu, mimetype: 'audio/mpeg'}, { quoted: m })
 }).catch((err) => {
 reply(`*Failed to download media and send videos*`)
 })
@@ -3641,7 +3641,7 @@ let urlnya = text
  var halo = 0		
 
 
-ZimBotInc.sendMessage(m.chat, { image: { url: result.user.profilePicUrl }, jpegThumbnail: await getBuffer(result.user.profilePicUrl), caption: `*----「 INSTAGRAM DOWNLOADER 」----*\n\n*⬤ Username :* ${result.user.username}\n*⬤ Fullname :* ${result.user.fullName}\n*⬤ Followers :* ${result.user.followers}\n*⬤ Following :* ${result.user.following}\n*⬤ ID :* ${result.user.id}\n*⬤ Filetype :* ${result.medias[0].fileType}\n*⬤ Type :* ${result.medias[0].type}\n*⬤ Jumlah Media :* ${result.medias.length}\n*⬤ Url :* ${text}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*` }, { quoted: m })	                                  	                      	            
+BakarBotInc.sendMessage(m.chat, { image: { url: result.user.profilePicUrl }, jpegThumbnail: await getBuffer(result.user.profilePicUrl), caption: `*----「 INSTAGRAM DOWNLOADER 」----*\n\n*⬤ Username :* ${result.user.username}\n*⬤ Fullname :* ${result.user.fullName}\n*⬤ Followers :* ${result.user.followers}\n*⬤ Following :* ${result.user.following}\n*⬤ ID :* ${result.user.id}\n*⬤ Filetype :* ${result.medias[0].fileType}\n*⬤ Type :* ${result.medias[0].type}\n*⬤ Jumlah Media :* ${result.medias.length}\n*⬤ Url :* ${text}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*` }, { quoted: m })	                                  	                      	            
 
 
 for(let i of result.medias) {		
@@ -3652,14 +3652,14 @@ if(i.url.includes('mp4')){
 
 let link = await getBuffer(i.url)
 
-ZimBotInc.sendMessage(m.chat, { video: link, jpegThumbnail: await getBuffer(i.preview), caption: `*Instagram ${i.type}*` }, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { video: link, jpegThumbnail: await getBuffer(i.preview), caption: `*Instagram ${i.type}*` }, { quoted: m })
 
 } else {
 
 
 let link = await getBuffer(i.url)
 
-ZimBotInc.sendMessage(m.chat, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `*Instagram ${i.type}*` }, { quoted: m })          
+BakarBotInc.sendMessage(m.chat, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `*Instagram ${i.type}*` }, { quoted: m })          
 
 
 }
@@ -3677,29 +3677,29 @@ let urlInsta = args[0];
 if (!(urlInsta.includes("instagram.com/p/") ||
 urlInsta.includes("instagram.com/reel/") ||
 urlInsta.includes("instagram.com/tv/")))
-return ZimBotInc.sendMessage(m.chat,{ text: `The link you provided is not a instagram link` },{ quoted: m });      
+return BakarBotInc.sendMessage(m.chat,{ text: `The link you provided is not a instagram link` },{ quoted: m });      
 if (urlInsta.includes("?"))
 urlInsta = urlInsta.split("/?")[0];
 ig.fetchPost(urlInsta).then((res) => {
 if (res.media_count == 1) {
 if (res.links[0].type == "video") {
-ZimBotInc.sendMessage(m.chat,{video: { url: res.links[0].url }},{ quoted: m })
+BakarBotInc.sendMessage(m.chat,{video: { url: res.links[0].url }},{ quoted: m })
 }else if (res.links[0].type == "image") {
-ZimBotInc.sendMessage(m.chat,{image: { url: res.links[0].url }},{ quoted: m })
+BakarBotInc.sendMessage(m.chat,{image: { url: res.links[0].url }},{ quoted: m })
 }
 }
 else if (res.media_count > 1) {
 for (let i = 0; i < res.media_count; i++) {
 if (res.links[i].type == "video") {
-ZimBotInc.sendMessage(m.chat,{video: { url: res.links[i].url }},{ quoted: m })
+BakarBotInc.sendMessage(m.chat,{video: { url: res.links[i].url }},{ quoted: m })
 } else if (res.links[i].type == "image") {
-ZimBotInc.sendMessage(m.chat,{image: { url: res.links[i].url }},{ quoted: m })
+BakarBotInc.sendMessage(m.chat,{image: { url: res.links[i].url }},{ quoted: m })
 }
 }
 }            
 }).catch((error) => {
 reply(error);
-ZimBotInc.sendMessage(m.chat, { text: `sorry zimbot user must be private or unavailable` }, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { text: `sorry zimbot user must be private or unavailable` }, { quoted: m })
 });
 
 }
@@ -3718,7 +3718,7 @@ break
 case 'creategroup':
 if (!isCreator) return m.reply(mess.owner)
 if (!q) return reply("Enter text")
-const groupu = await ZimBotInc.groupCreate(q, [owner + "@s.whatsapp.net"])
+const groupu = await BakarBotInc.groupCreate(q, [owner + "@s.whatsapp.net"])
 m.reply('done 👍')
 break
 case 'ig3': case 'igdl3': case 'instagram3': {
@@ -3734,10 +3734,10 @@ let urlnya = text
 for(let i of result){
 if(i.url.includes('mp4')){
 let link = await getBuffer(i.url)
-ZimBotInc.sendMessage(m.chat, { video: link, jpegThumbnail: await getBuffer(i.thumbnail), caption: `*${botname}*` }, { quoted: m }) 
+BakarBotInc.sendMessage(m.chat, { video: link, jpegThumbnail: await getBuffer(i.thumbnail), caption: `*${botname}*` }, { quoted: m }) 
 } else {
 let link = await getBuffer(i.url)
-ZimBotInc.sendMessage(m.chat, { image: link, jpegThumbnail: await getBuffer(i.thumbnail), caption: `*${botname}*` }, { quoted: m })                  
+BakarBotInc.sendMessage(m.chat, { image: link, jpegThumbnail: await getBuffer(i.thumbnail), caption: `*${botname}*` }, { quoted: m })                  
 }
 }
 }).catch((err) => reply(`*Failed When Downloading And Sending Media*`))
@@ -3752,8 +3752,8 @@ var oi = 1
 for(let i of anu.medias){                
 var txt = `*▊▊▊INSTA DL▊▊▊*\n\n*Username:* ${anu.user.username}\n*Fullname:* ${anu.user.fullName}\n*Followers:* ${anu.user.followers}\n*Type:* ${anu.medias[0].type}\n*Tipe:* ${anu.medias[0].fileType}\n*ID:* ${anu.user.id}\n*Jumlah Media:* ${oi++}\n*Url:* ${text}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
 var buf = await getBuffer(anu.user.profilePicUrl)        
-ZimBotInc.sendMessage(m.chat, { image: { url: anu.user.profilePicUrl }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m }).catch((err) => m.reply('error'))
-ZimBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `${botname}`}, { quoted: m }).catch((err) => m.reply('error'))
+BakarBotInc.sendMessage(m.chat, { image: { url: anu.user.profilePicUrl }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m }).catch((err) => m.reply('error'))
+BakarBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `${botname}`}, { quoted: m }).catch((err) => m.reply('error'))
 }
 }
 break
@@ -3764,7 +3764,7 @@ if (!isUrl(args[0]) && !args[0].includes('instagram.com')) throw '*The link you 
    
 instagramdlv3(`${text}`).then(async (data) => {
 for (let f of data) {                                      
-ZimBotInc.sendMedia(m.chat, f.url, '', `Download Url Instagram From ${text}`, m)
+BakarBotInc.sendMedia(m.chat, f.url, '', `Download Url Instagram From ${text}`, m)
 }
 }).catch((err) => {
 reply(`*Failed to download media and send videos*`)
@@ -3787,7 +3787,7 @@ let urlnya = text
 
 var halo = 0		
 
-ZimBotInc.sendMessage(m.chat, { image: { url: result.user.profilePicUrl }, jpegThumbnail: await getBuffer(result.user.profilePicUrl), caption: `*----「 INSTAGRAM STORY 」----*\n\n*⬤ Username :* ${result.user.username}\n*⬤ Fullname :* ${result.user.fullName}\n*⬤ Followers :* ${result.user.followers}\n*⬤ Following :* ${result.user.following}\n*⬤ ID :* ${result.user.id}\n*⬤ Filetype :* ${result.medias[0].fileType}\n*⬤ Type :* ${result.medias[0].type}\n*⬤ Media :* ${result.medias.length}\n*⬤ Bio :* ${result.user.biography}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*` }, { quoted: m })	                                  	                      	            
+BakarBotInc.sendMessage(m.chat, { image: { url: result.user.profilePicUrl }, jpegThumbnail: await getBuffer(result.user.profilePicUrl), caption: `*----「 INSTAGRAM STORY 」----*\n\n*⬤ Username :* ${result.user.username}\n*⬤ Fullname :* ${result.user.fullName}\n*⬤ Followers :* ${result.user.followers}\n*⬤ Following :* ${result.user.following}\n*⬤ ID :* ${result.user.id}\n*⬤ Filetype :* ${result.medias[0].fileType}\n*⬤ Type :* ${result.medias[0].type}\n*⬤ Media :* ${result.medias.length}\n*⬤ Bio :* ${result.user.biography}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*` }, { quoted: m })	                                  	                      	            
 
 for(let i of result.medias) {
 
@@ -3795,13 +3795,13 @@ if(i.url.includes('mp4')){
 
 let link = await getBuffer(i.url)
 
-ZimBotInc.sendMessage(m.chat, { video: link, jpegThumbnail: await getBuffer(i.preview), caption: `*Story ${i.type}*` }, { quoted: m }) 
+BakarBotInc.sendMessage(m.chat, { video: link, jpegThumbnail: await getBuffer(i.preview), caption: `*Story ${i.type}*` }, { quoted: m }) 
 
 } else {
 
 let link = await getBuffer(i.url)
 
-ZimBotInc.sendMessage(m.chat, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `*Story ${i.type}*` }, { quoted: m })                  
+BakarBotInc.sendMessage(m.chat, { image: link, jpegThumbnail: await getBuffer(i.preview), caption: `*Story ${i.type}*` }, { quoted: m })                  
 
 }
 
@@ -3820,7 +3820,7 @@ if (!text) throw '*Enter a Link Query!*'
 anu = await fetchJson(`https://api.akuari.my.id/downloader/igStory?username=${text}`)        
 for (let i of anu) {
 tummb = await getBuffer(i.preview)         
-ZimBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:tummb, caption: `*${botname}*`}, { quoted: m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
+BakarBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:tummb, caption: `*${botname}*`}, { quoted: m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
 }
 }
 break
@@ -3833,14 +3833,14 @@ let urlnya = text
 bicil.instagramStoryv2(urlnya)
 .then(async(result) => {	  
 var halo = 1		
-ZimBotInc.sendMessage(m.chat, { image: { url: result.user.profilePicUrl }, jpegThumbnail: await getBuffer(result.user.profilePicUrl), caption: `*----「 INSTA DOWNLOADER 」----*\n\n*⬤ Username :* ${result.user.username}\n*⬤ Fullname :* ${result.user.fullName}\n*⬤ Followers :* ${result.user.followers}\n*⬤ Following :* ${result.user.following}\n*⬤ ID :* ${result.user.id}\n*⬤ Jumlah Media :* ${halo++}\n*⬤ Bio :* ${result.user.biography}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*` }, { quoted: m })	                                  	                      	            
+BakarBotInc.sendMessage(m.chat, { image: { url: result.user.profilePicUrl }, jpegThumbnail: await getBuffer(result.user.profilePicUrl), caption: `*----「 INSTA DOWNLOADER 」----*\n\n*⬤ Username :* ${result.user.username}\n*⬤ Fullname :* ${result.user.fullName}\n*⬤ Followers :* ${result.user.followers}\n*⬤ Following :* ${result.user.following}\n*⬤ ID :* ${result.user.id}\n*⬤ Jumlah Media :* ${halo++}\n*⬤ Bio :* ${result.user.biography}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*` }, { quoted: m })	                                  	                      	            
 for(let i of result.results) {		
 if(i.url.includes('mp4')){		           			    				
 let link = await getBuffer(i.sourceUrl)
-ZimBotInc.sendMessage(m.chat, { video: link, jpegThumbnail: await getBuffer(i.thumbnail), caption: `*Story ${i.type}*` }, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { video: link, jpegThumbnail: await getBuffer(i.thumbnail), caption: `*Story ${i.type}*` }, { quoted: m })
 } else {
 let link = await getBuffer(i.url)
-ZimBotInc.sendMessage(m.chat, { image: link, jpegThumbnail: await getBuffer(i.thumbnail), caption: `*Story ${i.type}*` }, { quoted: m })          
+BakarBotInc.sendMessage(m.chat, { image: link, jpegThumbnail: await getBuffer(i.thumbnail), caption: `*Story ${i.type}*` }, { quoted: m })          
 }
 }
 }).catch((err) => reply(`*Sorry Story Instagram ${text} Tnot found*`))
@@ -3853,7 +3853,7 @@ if (!isUrl(args[0]) && !args[0].includes('instagram.com')) throw '*The link you 
    
 instagramdlv3(`${text}`).then(async (data) => {            
 var buf = await getBuffer(data[0].thumbnail)        
-ZimBotInc.sendMessage(m.chat, { video: { url: data[0].url }, jpegThumbnail:buf, caption: `${botname}`}, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { video: { url: data[0].url }, jpegThumbnail:buf, caption: `${botname}`}, { quoted: m })
 }).catch((err) => {
 reply(`*Failed to download media and send videos*`)
 })
@@ -3873,9 +3873,9 @@ txt += `*⬤DURATION :* ${data.medias.length}\n`
 txt += `*⬤URL :* ${data.url}\n\n`
 txt += `*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
 buf = await getBuffer(data.thumbnail)    
-ZimBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })
 for (let i of data.medias) {
-ZimBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `*Downloading From ${text}*`}, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `*Downloading From ${text}*`}, { quoted: m })
 }
 }).catch((err) => {
 reply(`*Failed to download media and send videos*`)
@@ -3896,7 +3896,7 @@ txt += `*⬤SIZE:* ${x.formattedSize}\n`
 txt += `*⬤URL :* ${data.url}\n\n`
 txt += `*Hi ${pushname}The bot is doing great job dont forget to subcribe*`
 buf = await getBuffer(data.thumbnail)    
-ZimBotInc.sendMessage(m.chat, { video: { url: x.url }, jpegThumbnail:buf, caption: `${txt}`}, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { video: { url: x.url }, jpegThumbnail:buf, caption: `${txt}`}, { quoted: m })
 }
 }).catch((err) => m.reply(`Sorry the faiture is error`))   
  }
@@ -3907,7 +3907,7 @@ case 'twittermp3': case 'twitteraudio': {
   if (!isUrl(args[0]) && !args[0].includes('twitter.com')) throw '*The link you provided is not valid*'
      
   xa.Twitter(`${text}`).then(async (data) => {
-  ZimBotInc.sendMessage(m.chat, { audio: { url: data.medias[1].url }, mimetype: 'audio/mp4'}, { quoted: m })
+  BakarBotInc.sendMessage(m.chat, { audio: { url: data.medias[1].url }, mimetype: 'audio/mp4'}, { quoted: m })
   }).catch((err) => {
   reply(`*Failed to download media and send audio*`)
 })
@@ -3937,11 +3937,11 @@ txt += `*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
 
 buf = await getBuffer(data.thumbnail)    
 
-ZimBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })         
+BakarBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })         
 
 for (let i of data.result) {     
 
-ZimBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `*⬤ Quality :* ${i.quality}`}, { quoted: m })
+BakarBotInc.sendMessage(m.chat, { video: { url: i.url }, jpegThumbnail:buf, caption: `*⬤ Quality :* ${i.quality}`}, { quoted: m })
 
 }          
 
@@ -3961,7 +3961,7 @@ if (!isUrl(args[0]) && !args[0].includes('facebook.com')) throw '*The link you p
      
 let noh = require('@bochilteam/scraper')                
 noh.savefrom(`${text}`).then(async (anu) => {  
-ZimBotInc.sendMessage(m.chat, { audio: { url: anu.url[0].url }, mimetype: 'audio/mp4' }, { quoted: m })      
+BakarBotInc.sendMessage(m.chat, { audio: { url: anu.url[0].url }, mimetype: 'audio/mp4' }, { quoted: m })      
 }).catch((err) => {
 reply(`*Failed to link to audio*`)
 })
@@ -3980,8 +3980,8 @@ txt += `*⬤SIZE :* ${data.medias[1].formattedSize}\n`
 txt += `*⬤URL :* ${data.url}\n\n`
 txt += `*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`
 buf = await getBuffer(data.thumbnail)    
-ZimBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })              
-ZimBotInc.sendMessage(m.chat, { video: { url: data.medias[1].url }, jpegThumbnail:buf, caption: `*⬤ Quality :* ${data.medias[1].quality}`}, { quoted: m })                
+BakarBotInc.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${txt}` }, { quoted: m })              
+BakarBotInc.sendMessage(m.chat, { video: { url: data.medias[1].url }, jpegThumbnail:buf, caption: `*⬤ Quality :* ${data.medias[1].quality}`}, { quoted: m })                
 }).catch((err) => {
 reply(`*Failed When Downloading Media and Sending Files*`)
 })
@@ -3996,8 +3996,8 @@ anu = await fetchJson(`https://api.akuari.my.id/downloader/youtube?link=${text}`
 if (anu.filesize_video >= 100000) return m.reply('*File Over Limit* '+util.format(anu))
 tummb = await getBuffer(anu.thumb)
 audio = await getBuffer(anu.audio)        
-ZimBotInc.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `${anu.title}`}, { quoted : m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
-ZimBotInc.sendMessage(m.chat, { video: { url: anu.video }, jpegThumbnail:tummb, caption: `${util.format(anu)}`}, { quoted: m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
+BakarBotInc.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `${anu.title}`}, { quoted : m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
+BakarBotInc.sendMessage(m.chat, { video: { url: anu.video }, jpegThumbnail:tummb, caption: `${util.format(anu)}`}, { quoted: m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
  }
  break
  case 'igreal': case 'instagramreal': {
@@ -4007,7 +4007,7 @@ if (!isUrl(args[0]) && !args[0].includes('instagram.com')) throw '*The link you 
      
 anu = await fetchJson(`https://api.akuari.my.id/downloader/igdl?link=${text}`)        
 tummb = await getBuffer(anu.medias[0].preview)         
-ZimBotInc.sendMessage(m.chat, { video: { url: anu.medias[0].url }, jpegThumbnail:tummb, caption: `${util.format(anu)}`}, { quoted: m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
+BakarBotInc.sendMessage(m.chat, { video: { url: anu.medias[0].url }, jpegThumbnail:tummb, caption: `${util.format(anu)}`}, { quoted: m }).catch((err) => m.reply('*Sorry, the feature is in error*'))
  }
  break
  case 'cuttly': {
@@ -4040,9 +4040,9 @@ case 'speedtest': {
     teks1 = `\n\nNUMBER : @${m.sender.split("@")[0]}\n*REPORT :* ${args.join(" ")}`
     teks2 = `\n\nSucces send to owner`
     for (let i of owner) {
-    ZimBotInc.sendMessage(i + "@s.whatsapp.net", {text: teks + teks1, mentions:[m.sender]}, {quoted:m})
+    BakarBotInc.sendMessage(i + "@s.whatsapp.net", {text: teks + teks1, mentions:[m.sender]}, {quoted:m})
     }
-    ZimBotInc.sendMessage(m.chat, {text: teks + teks2 + teks1, mentions:[m.sender]}, {quoted:m})
+    BakarBotInc.sendMessage(m.chat, {text: teks + teks2 + teks1, mentions:[m.sender]}, {quoted:m})
     }
     break
     case 'request': case 'suggest': {
@@ -4051,9 +4051,9 @@ case 'speedtest': {
     teks1 = `\n\n*NUMBER :* @${m.sender.split("@")[0]}\n*REQUEST :* ${args.join(" ")}`
     teks2 = `\n\nSucces send to owner`
     for (let i of owner) {
-    ZimBotInc.sendMessage(i + "@s.whatsapp.net", {text: teks + teks1, mentions:[m.sender]}, {quoted:m})
+    BakarBotInc.sendMessage(i + "@s.whatsapp.net", {text: teks + teks1, mentions:[m.sender]}, {quoted:m})
     }
-    ZimBotInc.sendMessage(m.chat, {text: teks + teks2 + teks1, mentions:[m.sender]}, {quoted:m})
+    BakarBotInc.sendMessage(m.chat, {text: teks + teks2 + teks1, mentions:[m.sender]}, {quoted:m})
     }
     break
     case 'amino': {
@@ -4098,7 +4098,7 @@ sections.push(list)
 
 }
 
-const sendm =  ZimBotInc.sendMessage(
+const sendm =  BakarBotInc.sendMessage(
 
 m.chat, 
 
@@ -4123,13 +4123,13 @@ case 'animee': {
 
 res = await fetchJson(`https://api.jikan.moe/v4/anime/${q}`)
 let txt = `𝗔𝗻𝗶𝗺𝗲 𝗜𝗻𝗳𝗼\n\n*TITLE:* *${res.data.title}*\n*ENGLISH:* *${res.data.title_english}*\n*JAPANESE:* *${res.data.title_japanese}*\n*TYPE ANIME:* *${res.data.type}*\n*ADAPTER:* *${res.data.source}*\n*TOTAL EPISODE:* *${res.data.episodes}*\n*STATUS:* *${res.data.status}*\n*ONGOING:* *${res.data.airing ? 'Ya' : 'DRIS'}*\n*AIRED:* *${res.data.aired.string}*\n*DURATION:* *${res.data.duration}*\n*RATING:* *${res.data.rating}*\n*SCORE:* *${res.data.score}*\n*RANK:* *${res.data.rank}*\n*STUDIO:* *${res.data.studios[0].name}* `
-ZimBotInc.sendMessage(m.chat, { image : { url : res.data.images.jpg.image_url}, caption : txt}, {quoted :m }).catch((err) => m.reply('sorry error'))
+BakarBotInc.sendMessage(m.chat, { image : { url : res.data.images.jpg.image_url}, caption : txt}, {quoted :m }).catch((err) => m.reply('sorry error'))
 }
 break
 case 'bcgc': case 'bcgroup': {
 if (!isCreator) throw mess.owner
 if (!text) throw `*Type some text*\n\nExample : ${prefix + command} ZIM-BOT-INC`
-let getGroups = await ZimBotInc.groupFetchAllParticipating()
+let getGroups = await BakarBotInc.groupFetchAllParticipating()
 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 let anu = groups.map(v => v.id)
 reply(`*Send Broadcast To* ${anu.length} *Group Chat, Time ${anu.length * 1.5} second*`)
@@ -4142,7 +4142,7 @@ url: 'https://youtube.com/@zim-bot'
 }
 }]
 let txt = `「 *ZIMBOT BROADCAST* 」\n\n${text}`
-ZimBotInc.send5ButImg(i, txt, botname, global.bc, btn)
+BakarBotInc.send5ButImg(i, txt, botname, global.bc, btn)
 }
 reply(` *Send Broadcast To* ${anu.length} *Group*`)
 }
@@ -4161,7 +4161,7 @@ url: 'https://youtube.com/@zim-bot'
 }
 }]
 let txt = `「 *ZIMBOT BROADCAST* 」\n\n${text}`
-ZimBotInc.send5ButImg(yoi, txt, botname, global.bc, btn)
+BakarBotInc.send5ButImg(yoi, txt, botname, global.bc, btn)
 }
 reply('*Success Broadcast*')
 }
@@ -4175,7 +4175,7 @@ reply(`*Send Broadcast To* ${anu.length} Chat\nTime ${anu.length * 1.5} minutes`
 for (let yoi of anu) {
 await sleep(1500)
 var button = [{ buttonId: `${prefix}ho`, buttonText: { displayText: `${melo2}` }, type: 1 }]              
-ZimBotInc.sendMessage(yoi, { caption: `${melo}`, location: { jpegThumbnail: await getBuffer(picak+'Brodcast') }, buttons: button, footer: `${botname}`, mentions: [m.sender] })
+BakarBotInc.sendMessage(yoi, { caption: `${melo}`, location: { jpegThumbnail: await getBuffer(picak+'Brodcast') }, buttons: button, footer: `${botname}`, mentions: [m.sender] })
 }		
 }
 break
@@ -4199,18 +4199,18 @@ displayText: 'MENU',
 id: 'menu'
 }
 }]
-let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
+let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
 let buffer = fs.readFileSync(media)
 if (/webp/.test(mime)) {
-ZimBotInc.sendMessage(i, { sticker: { url: media } }, { quoted: ftroli })
+BakarBotInc.sendMessage(i, { sticker: { url: media } }, { quoted: ftroli })
 } else if (/image/.test(mime)) {
 let junn = `*_BROADCAST IMAGE_*${text ? '\n\n' + text : ''}`
-ZimBotInc.send5ButImg(i, junn, `${global.botname}`, buffer, butoon)
+BakarBotInc.send5ButImg(i, junn, `${global.botname}`, buffer, butoon)
 } else if (/video/.test(mime)) {
 let junn = `*_BROADCAST VIDIO_*${text ? '\n\n' + text : ''}`
-ZimBotInc.sendMessage(i, {video: buffer, caption: `${junn}`}, { quoted: ftroli })
+BakarBotInc.sendMessage(i, {video: buffer, caption: `${junn}`}, { quoted: ftroli })
 } else if (/audio/.test(mime)) {
-ZimBotInc.sendMessage(i, {audio: buffer, mimetype: 'audio/mpeg'}, { quoted : ftroli })
+BakarBotInc.sendMessage(i, {audio: buffer, mimetype: 'audio/mpeg'}, { quoted : ftroli })
 } else {
 reply(`*Send/Reply Video/Audio/Image You Want to Broadcast With Caption* ${prefix + command}`)
 }
@@ -4223,12 +4223,12 @@ case 'bctext': {
 if (!isCreator) throw mess.owner
 if (!text) throw `*Type some text*\n\nExample : ${prefix + command} zim-ot`
 //let ftroli ={key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 666666666,status: 200, thumbnail: await getBuffer(picak+'Brodcast'), surface: 200, message: `© ${botname}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-let ftroli = {key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `6283136505591-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'displayName': `© ${botname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ZimBotInc.user.name},;;;\nFN:${botname},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': await getBuffer(picak+'Brodcast'), thumbnail: await getBuffer(picak+'Brodcast'),sendEphemeral: true}}}
+let ftroli = {key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `6283136505591-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'displayName': `© ${botname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${BakarBotInc.user.name},;;;\nFN:${botname},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': await getBuffer(picak+'Brodcast'), thumbnail: await getBuffer(picak+'Brodcast'),sendEphemeral: true}}}
 let anu = await store.chats.all().map(v => v.id)
 reply(`*Send Broadcast To* ${anu.length} Chat\n*Time ${anu.length * 1.5} seconds*`)
 for (let yoi of anu) {
 await sleep(1500)
-ZimBotInc.sendMessage(yoi, {text:`${text}`}, {quoted:blessedtuna})
+BakarBotInc.sendMessage(yoi, {text:`${text}`}, {quoted:blessedtuna})
 }
 reply('*Success Broadcast*')
 }
@@ -4242,7 +4242,7 @@ let anu = await store.chats.all().map(v => v.id)
 reply(`*Send Broadcast To* ${anu.length} Chat\n*Time ${anu.length * 1.5} minute*`)
 for (let yoi of anu) {
 await sleep(1500)		    
-ZimBotInc.sendMessage(yoi, { video: await getBuffer(buf), jpegThumbnail: await getBuffer(picak+'Brodcast'), caption: `${text}` }, { quoted: ftroli}).catch ((err) => m.reply('*Sorry, failed to send the video*'))
+BakarBotInc.sendMessage(yoi, { video: await getBuffer(buf), jpegThumbnail: await getBuffer(picak+'Brodcast'), caption: `${text}` }, { quoted: ftroli}).catch ((err) => m.reply('*Sorry, failed to send the video*'))
 }
 reply('*Sucecess Broadcast*')
 }
@@ -4255,16 +4255,16 @@ case 'swm': case 'stickerwm': case 'wm': {
   const atnm = swn.split("|")[1];
   if (!/webp/.test(mime)) throw `*reply sticker with caption* *${prefix + command}*`
   if (m.quoted.isAnimated === true) {
-  ZimBotInc.downloadAndSaveMediaMessage(quoted, "gifee")
-  ZimBotInc.sendMessage(m.chat, {sticker:fs.readFileSync("gifee.webp")},{quoted:m})
+  BakarBotInc.downloadAndSaveMediaMessage(quoted, "gifee")
+  BakarBotInc.sendMessage(m.chat, {sticker:fs.readFileSync("gifee.webp")},{quoted:m})
   } else if (/image/.test(mime)) {
   let media = await quoted.download()
-  let encmedia = await ZimBotInc.sendImageAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
+  let encmedia = await BakarBotInc.sendImageAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
   await fs.unlinkSync(encmedia)
   } else if (/video/.test(mime)) {
   if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
   let media = await quoted.download()
-  let encmedia = await ZimBotInc.sendVideoAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
+  let encmedia = await BakarBotInc.sendVideoAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
   await fs.unlinkSync(encmedia)
   } else {
   reply(`*Send Image/Video With Caption* ${prefix + command}\n*Duration Video 1-9 seconds*`)
@@ -4282,7 +4282,7 @@ let dwnld = await quoted.download()
 let { floNime } = require('./lib/uploader')
 let fatGans = await floNime(dwnld)
 let smeme = `https://api.memegen.link/images/custom/${encodeURIComponent(atas)}/${encodeURIComponent(bawah)}.png?background=${fatGans.result.url}`
-let FaTiH = await ZimBotInc.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.auhor })
+let FaTiH = await BakarBotInc.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.auhor })
 await fs.unlinkSync(FaTiH)
 }
 break
@@ -4302,7 +4302,7 @@ case 'searchanime': {
 reply(mess.wait)
 if (!text) throw `Example : ${prefix + command} nama anime`
 anu = await getBuffer(`https://api.akuari.my.id/search/konachan?query=${text}`)
-ZimBotInc.sendMessage(m.chat, { image: anu, caption: `${command}` }, { quoted: m}).catch((err) => m.reply('*Sorry Xteam server is down*'))
+BakarBotInc.sendMessage(m.chat, { image: anu, caption: `${command}` }, { quoted: m}).catch((err) => m.reply('*Sorry Xteam server is down*'))
 }
 break
 
@@ -4353,10 +4353,10 @@ case 'viewfinder':
 case 'warmsunset': {
 if (!/image/.test(mime)) throw `*Send/Reply Image With Caption* ${prefix + command}`
 let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
-let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)   
+let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)   
 let anu = await TelegraPh(media)
 let buf = await getBuffer(`https://violetics.pw/api/photofilter/${command}?apikey=beta&image=${anu}`)
-ZimBotInc.sendMessage(m.chat, { image: buf, jpegThumbnail:buf, caption: `PhotoFilter ${command}` ,  quoted: m, contextInfo: { externalAdReply:{
+BakarBotInc.sendMessage(m.chat, { image: buf, jpegThumbnail:buf, caption: `PhotoFilter ${command}` ,  quoted: m, contextInfo: { externalAdReply:{
   title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",
   body:"SUBSCRIBE DRIPS OFC",
   showAdAttribution: true,
@@ -4489,7 +4489,7 @@ if (/glue/.test(command)) link = 'https://textpro.me/create-3d-glue-text-effect-
 if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
 if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'
 let anu = await maker.textpro(link, q)
-ZimBotInc.sendMessage(m.chat, { image: { url: anu }, caption: `Made by ${global.botname}` ,  quoted: m, contextInfo: { externalAdReply:{
+BakarBotInc.sendMessage(m.chat, { image: { url: anu }, caption: `Made by ${global.botname}` ,  quoted: m, contextInfo: { externalAdReply:{
   title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",
   body:"SUBSCRIBE DRIPS OFC",
   showAdAttribution: true,
@@ -4532,7 +4532,7 @@ case 'wolfmetal':
 case 'underwaterocean': {
 if (!text) throw `Example : ${prefix + command} text`
 anu = await getBuffer(`https://violetics.pw/api/photooxy/${command}?apikey=beta&text=${text}`)
-ZimBotInc.sendMessage(m.chat, { image: anu, caption: `*PHOTO OXY ${command}*` , quoted: m, contextInfo: { externalAdReply:{
+BakarBotInc.sendMessage(m.chat, { image: anu, caption: `*PHOTO OXY ${command}*` , quoted: m, contextInfo: { externalAdReply:{
   title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",
   body:"SUBSCRIBE DRIPS OFC",
   showAdAttribution: true,
@@ -4561,7 +4561,7 @@ case 'status-mood2':
 case 'summerysand': {
 if (!text) throw `Example : ${prefix + command} nama anime`
 anu = await getBuffer(`https://violetics.pw/api/ephoto360/${command}?apikey=beta&text=${text}`)
-ZimBotInc.sendMessage(m.chat, { image: anu, caption: `*EPHOTO ${command}*` ,  quoted: m, contextInfo: { externalAdReply:{
+BakarBotInc.sendMessage(m.chat, { image: anu, caption: `*EPHOTO ${command}*` ,  quoted: m, contextInfo: { externalAdReply:{
   title:"ᴢɪᴍ ʙᴏᴛ ᴠ5",
   body:"SUBSCRIBE DRIPS OFC",
   showAdAttribution: true,
@@ -4575,11 +4575,11 @@ break
 case 'once': case 'toonce': { //by DRIPS
 if (!quoted) throw 'Reply Image'
 if (/image/.test(mime)) {
-anu = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
-ZimBotInc.sendMessage(from, {image: {url: anu},viewOnce : true},{quoted: m })
+anu = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
+BakarBotInc.sendMessage(from, {image: {url: anu},viewOnce : true},{quoted: m })
 } else if (/video/.test(mime)) {
-anu = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
-ZimBotInc.sendMessage(m.chat, {video: {url: anu},viewOnce : true},{quoted: m })
+anu = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
+BakarBotInc.sendMessage(m.chat, {video: {url: anu},viewOnce : true},{quoted: m })
 }
 }
 break
@@ -4598,7 +4598,7 @@ footer: global.botnma,
 buttons: buttons,
 headerType: 4
 }
-ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
 }
 break
 break
@@ -4892,7 +4892,7 @@ case 'igsearch':
      }
      sections.push(list)   
      }
-  const sendm =  ZimBotInc.sendMessage(
+  const sendm =  BakarBotInc.sendMessage(
       m.chat, 
       {
        text: `${ucapannya2} ${pushname} *Search Results From ${text} Click the button below to choose*`,
@@ -4915,8 +4915,8 @@ case 'igsearch':
                          if (anu[0].size.split('MB')[0] >= 150) return reply('*File Over Limit* '+util.format(anu))
                          for (let i of anu) {    
                          linkye = `*▊▊▊APK DOWNLOAD▊▊▊*\n\n*TITLE:* ${i.title}\n*UPDATE:* ${i.up}\n*VERSION:* ${i.vers}\n*FILESIZE:* ${i.size}\n*URL:* \n*DESCRIPTION:* ${i.desc}\n\n*ᴢɪᴍ ʙᴏᴛ ɪɴᴄ*`         
-                              ZimBotInc.sendMessage(m.chat, { image: await getBuffer(i.thumb), jpegThumbnail: await getBuffer(i.thumb), caption: `${linkye}` }, { quoted: m })
-                              ZimBotInc.sendMessage(m.chat, {document: await getBuffer(i.link), mimetype: `application/vnd.android.package-archive`, fileName: `${i.title}`}, {quoted:m})  
+                              BakarBotInc.sendMessage(m.chat, { image: await getBuffer(i.thumb), jpegThumbnail: await getBuffer(i.thumb), caption: `${linkye}` }, { quoted: m })
+                              BakarBotInc.sendMessage(m.chat, {document: await getBuffer(i.link), mimetype: `application/vnd.android.package-archive`, fileName: `${i.title}`}, {quoted:m})  
                               }  
                               }).catch((err) => {
                                   reply(`*Failed When Downloading Media and Sending Files*`)
@@ -4928,20 +4928,20 @@ case 'igsearch':
   if (!text) throw '*Enter a Link Query! Example: https://i.imgur.com/rANDwCP.jpeg*'
   var dripa = `https://hardianto.xyz/api/rip?image=${text}&apikey=hardianto` 
   dri = await getBuffer(dripa)
-  ZimBotInc.sendMessage(m.chat, { image: dri,caption:'ZIM-BOT-V4' }, { quoted: m})
+  BakarBotInc.sendMessage(m.chat, { image: dri,caption:'ZIM-BOT-V4' }, { quoted: m})
 
 break// https://hardianto.xyz/api/beta/hacker2?apikey=hardianto&pp=https://i.ibb.co/1s8T3sY/48f7ce63c7aa.jpg
   case 'hackermaker':
   if (!text) throw '*Enter a Link Query! Example: https://i.imgur.com/rANDwCP.jpeg*'
   var dripa = `https://hardianto.xyz/api/beta/hacker2?apikey=hardianto&pp=${text}` 
   dri = await getBuffer(dripa)
-  ZimBotInc.sendMessage(m.chat, { image: dri,caption:'ZIM-BOT-V4' }, { quoted: m})
+  BakarBotInc.sendMessage(m.chat, { image: dri,caption:'ZIM-BOT-V4' }, { quoted: m})
 break //https://hardianto.xyz/api/maker/carbon?code=const%20anto%20=%20require(%27pahala%27)&color=cyan&apikey=hardianto
  case 'codecolor':
     if (!text) throw '*Enter a text*'
     var dripa = `https://hardianto.xyz/api/maker/carbon?code=${text}&color=cyan&apikey=hardianto` 
     dri = await getBuffer(dripa)
-    ZimBotInc.sendMessage(m.chat, { image: dri,caption:'ZIM-BOT-V4' }, { quoted: m})
+    BakarBotInc.sendMessage(m.chat, { image: dri,caption:'ZIM-BOT-V4' }, { quoted: m})
   break 
 case 'ipdomain':
     reply(mess.wait)
@@ -5024,7 +5024,7 @@ case 'cry':case 'kill':case 'hug':case 'pat':case 'lick':case 'kiss':case 'bite'
 reply(mess.wait)
 axios.get(`https://api.waifu.pics/sfw/${command}`)
 .then(({data}) => {
-ZimBotInc.sendImageAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
+BakarBotInc.sendImageAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 })
 break
 case 'whois':
@@ -5043,7 +5043,7 @@ break
 // Upload status
 case 'upsw': case 'uploadstatus': {
 if (!isCreator) return reply(global.owner)
- ZimBotInc.sendMessage("status@broadcast", { text: q })
+ BakarBotInc.sendMessage("status@broadcast", { text: q })
  reply("*Uploaded Status*")
  }
  break
@@ -5085,18 +5085,18 @@ ${jsonp.articles}
 break
 case 'ytcoment':
   if (!text) throw 'No Text'
-ZimBotInc.sendMessage(m.chat, ('https://some-random-api.ml', '/canvas/youtube-comment', {
-avatar: await ZimBotInc.profilePictureUrl(m.sender, 'image').catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png'),
+BakarBotInc.sendMessage(m.chat, ('https://some-random-api.ml', '/canvas/youtube-comment', {
+avatar: await BakarBotInc.profilePictureUrl(m.sender, 'image').catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png'),
 comment: text,
-username: ZimBotInc.getName(m.sender)
+username: BakarBotInc.getName(m.sender)
 }), 'error.png', '*Nih Kak*', m)
 break
  // Send image or video from url
  case 'sendimage':
- ZimBotInc.sendMessage(m.chat, { image: { url: q }, fileLength: "5000000000"}, { m })
+ BakarBotInc.sendMessage(m.chat, { image: { url: q }, fileLength: "5000000000"}, { m })
  break
  case 'sendvideo':
- ZimBotInc.sendMessage(m.chat, { video: { url: q }, fileLength: "5000000000" }, { m })
+ BakarBotInc.sendMessage(m.chat, { video: { url: q }, fileLength: "5000000000" }, { m })
  
 break
 case 'todocument': {
@@ -5107,7 +5107,7 @@ m.reply(mess.wait)
 let media = await quoted.download()
 let { toAudio } = require('./lib/converter')
 let audio = await toAudio(media, 'mp4')
-ZimBotInc.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${ZimBotInc.user.name}.mp3`}, { quoted : m })
+BakarBotInc.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${BakarBotInc.user.name}.mp3`}, { quoted : m })
 }
 break
 
@@ -5134,11 +5134,11 @@ let buttons = [
    let buttonMessage = {
   image: { url: result.image[0] },
   caption: `🔮𝗧𝗜𝗧𝗟𝗘 : ${result.title}\n🔮𝗖𝗔𝗧𝗘𝗚𝗢𝗥𝗬 : ${result.type}\n🔮𝗗𝗘𝗧𝗔𝗜𝗟 : ${result.source}\n🔮𝗠𝗘𝗗𝗜𝗔 𝗨𝗥𝗟 : ${result.image[2] || result.image[1] || result.image[0]}`,
-  footer: ZimBotInc.user.name,
+  footer: BakarBotInc.user.name,
   buttons: buttons,
   headerType: 4
    }
-   ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+   BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
  }
  break
  case 'wikimedia': {
@@ -5152,11 +5152,11 @@ let { wikimedia } = require('./lib/scraper')
    let buttonMessage = {
   image: { url: result.image },
   caption: `🔮 𝗧𝗜𝗧𝗟𝗘 : ${result.title}\n🔮 𝗦𝗢𝗨𝗥𝗖𝗘 : ${result.source}\n🔮 𝗠𝗘𝗗𝗜𝗔 𝗨𝗥𝗟 : ${result.image}`,
-  footer: ZimBotInc.user.name,
+  footer: BakarBotInc.user.name,
   buttons: buttons,
   headerType: 4
    }
-   ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+   BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
  }
  
 break
@@ -5179,13 +5179,13 @@ break
    if (/squirrel/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
    if (/audio/.test(mime)) {
    replay(mess.wait)
-   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
+   let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
    let ran = getRandom('.mp3')
    exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
    fs.unlinkSync(media)
    if (err) return reply(err)
    let buff = fs.readFileSync(ran)
-   ZimBotInc.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
+   BakarBotInc.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
    fs.unlinkSync(ran)
    })
    } else reply(`Reply to the audio you want to change with caption *${prefix + command}*`)
@@ -5223,7 +5223,7 @@ break
 Info: *bold* hash is locked
 ${Object.entries(global.db.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `*${key}*` : key} : ${value.text}`).join('\n')}
 `.trim()
-   ZimBotInc.sendText(m.chat, teks, m, { mentions: Object.values(global.db.sticker).map(x => x.mentionedJid).reduce((a,b) => [...a, ...b], []) })
+   BakarBotInc.sendText(m.chat, teks, m, { mentions: Object.values(global.db.sticker).map(x => x.mentionedJid).reduce((a,b) => [...a, ...b], []) })
  }
  break
  case 'lockcmd': {
@@ -5253,7 +5253,7 @@ View list of message with ${prefix}listmsg`)
    if (!text) throw `Example : ${prefix + command} msg name\n\nView message list with ${prefix}listmsg`
    let msgs = global.db.database
    if (!(text.toLowerCase() in msgs)) throw `'${text}' not registered in message list`
-   ZimBotInc.copyNForward(m.chat, msgs[text.toLowerCase()], true)
+   BakarBotInc.copyNForward(m.chat, msgs[text.toLowerCase()], true)
  }
  break
  case 'listmsg': {
@@ -5326,9 +5326,9 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
  }
  break
  case 'owner': case 'creator': {
- ZimBotInc.sendContact(m.chat, global.pemilik, m)
+ BakarBotInc.sendContact(m.chat, global.pemilik, m)
 const devsound = fs.readFileSync('./Zimbot/bot.mp3')
-ZimBotInc.sendMessage(m.chat, { audio: devsound, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
+BakarBotInc.sendMessage(m.chat, { audio: devsound, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
  }
  
  break
@@ -5364,15 +5364,15 @@ case 'الجروب': case 'grup': {
   if (!isAdmins) throw mess.admin
   if (!text) throw '*•  اكتب وصف + وصف اللي عايز تكتبه ف جروبك جروبك*'
   if (args[0] === 'قفل'){
- await ZimBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => m.reply(`*• تم قفل جروب بنجاح يقلبي 🥺💔*`)).catch((err) => m.reply(jsonformat(err)))
+ await BakarBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => m.reply(`*• تم قفل جروب بنجاح يقلبي 🥺💔*`)).catch((err) => m.reply(jsonformat(err)))
   } else if (args[0] === 'فتح'){
- await ZimBotInc.groupSettingUpdate(m.chat, 'not_announcement').then((res) => m.reply(`*• تم فتح جروب بنجاح يقلبي 😂♥️*`)).catch((err) => m.reply(jsonformat(err)))
+ await BakarBotInc.groupSettingUpdate(m.chat, 'not_announcement').then((res) => m.reply(`*• تم فتح جروب بنجاح يقلبي 😂♥️*`)).catch((err) => m.reply(jsonformat(err)))
   } else {
   let buttons = [
 { buttonId: 'grup open', buttonText: { displayText: 'فتح الجروب' }, type: 1 },
 { buttonId: 'grup close', buttonText: { displayText: 'قفل الجروب' }, type: 1 }
  ]
- await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات الجروب ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني جروب مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني جروب مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+ await BakarBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات الجروب ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني جروب مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني جروب مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
 
 }
 }
@@ -5383,15 +5383,15 @@ case 'التعديل': case 'xxinfoxx': {
   if (!isBotAdmins) throw mess.botAdmin
   if (!isAdmins) throw mess.admin
 if (args[0] === 'فتح'){
-  await ZimBotInc.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`*•  تم فتح تعديل معلومات جروب لكل الاعضاء 😍❤️*`)).catch((err) => m.reply(jsonformat(err)))
+  await BakarBotInc.groupSettingUpdate(m.chat, 'unlocked').then((res) => m.reply(`*•  تم فتح تعديل معلومات جروب لكل الاعضاء 😍❤️*`)).catch((err) => m.reply(jsonformat(err)))
 } else if (args[0] === 'قفل'){
-  await ZimBotInc.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`*•  تم قفل تعديل معلومات جروب للمشرفين فقط 🙂💙*`)).catch((err) => m.reply(jsonformat(err)))
+  await BakarBotInc.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`*•  تم قفل تعديل معلومات جروب للمشرفين فقط 🙂💙*`)).catch((err) => m.reply(jsonformat(err)))
 } else {
 let buttons = [
 { buttonId: 'xxinfoxx open', buttonText: { displayText: 'فتح لكل الاعضاء' }, type: 1 },
 { buttonId: 'xxinfoxx close', buttonText: { displayText: 'قفل للمشرفين فقط' }, type: 1 }
  ]
- await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات التعديل ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني للمشرفين فقط  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني لكل الاعضاء ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+ await BakarBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات التعديل ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني للمشرفين فقط  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني لكل الاعضاء ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
 
 }
 }
@@ -5399,8 +5399,8 @@ break
 
 case 'رابط_جروب': case 'لينك_جروب': case 'الرابط': case 'رابط': case 'لينك':{ 
   if (!m.isGroup) throw mess.group
-  let response = await ZimBotInc.groupInviteCode(m.chat)
-  ZimBotInc.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\n *Group Link - لينك جروب*  ›  ${groupMetadata.subject} \n\n`,m ,{ detectLink: true })
+  let response = await BakarBotInc.groupInviteCode(m.chat)
+  BakarBotInc.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\n *Group Link - لينك جروب*  ›  ${groupMetadata.subject} \n\n`,m ,{ detectLink: true })
 }
   break
 
@@ -5408,7 +5408,7 @@ case 'تعيين_رابط': case 'تعيين': {
     if (!m.isGroup) return m.reply(mess.group)
     if (!isBotAdmins) return m.reply(mess.botAdmin)
     if (!isAdmins && !isCreator) return m.reply(mess.admin)
-    ZimBotInc.groupRevokeInvite(m.chat)
+    BakarBotInc.groupRevokeInvite(m.chat)
     }
     break
 
@@ -5422,7 +5422,7 @@ case 'تاك_لكل': case 'all': case 'تاك': {
     for (let mem of participants) {
       teks += `• @${mem.id.split('@')[0]}\n`
       }
-      ZimBotInc.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+      BakarBotInc.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
       }
       break
 
@@ -5431,7 +5431,7 @@ case 'تاك_لكل': case 'all': case 'تاك': {
         if (!isBotAdmins) throw mess.botAdmin
         if (!isAdmins && !isCreator) throw mess.admin
      let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-     await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(`• تم اضافة هذا العضو بنجاح 🙂❤️‍🩹`)).catch((err) => m.reply(`• لا يمكن إضافة هذا المستخدم إلى هذه المجموعة ! \n• يرجي استخدام : اضافه 201028453763`))
+     await BakarBotInc.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(`• تم اضافة هذا العضو بنجاح 🙂❤️‍🩹`)).catch((err) => m.reply(`• لا يمكن إضافة هذا المستخدم إلى هذه المجموعة ! \n• يرجي استخدام : اضافه 201028453763`))
      }
      break      
 
@@ -5440,7 +5440,7 @@ case 'تاك_لكل': case 'all': case 'تاك': {
 					if (!isBotAdmins) throw mess.botAdmin
 					if (!isAdmins && !isCreator) throw mess.admin
 			let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-			await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(`◍ تم رفع العضو  ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم الرفع عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
+			await BakarBotInc.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(`◍ تم رفع العضو  ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم الرفع عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
 		}
 		break
 
@@ -5449,7 +5449,7 @@ case 'تنزيل_مشرف': case 'تنزيل': {
 					if (!isBotAdmins) throw mess.botAdmin
 					if (!isAdmins && !isCreator) throw mess.admin
 			let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-			await ZimBotInc.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(`◍ تم تنزيل العضو من ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم التنزيل عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
+			await BakarBotInc.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(`◍ تم تنزيل العضو من ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم التنزيل عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
 		}
 		break
     
@@ -5458,7 +5458,7 @@ case 'تنزيل_مشرف': case 'تنزيل': {
       if (!isBotAdmins) throw mess.botAdmin
       if (!isAdmins && !isCreator) throw mess.admin
       if (!text) throw '*•  اكتب : وضع_اسم + اسمك جروبك*'
-      await ZimBotInc.groupUpdateSubject(m.chat, text).then((res) => m.reply(`◍ تم تغير اسم جروب بنجاح √`)).catch((err) => m.reply(`◍ لم يتم تغير اسم جروب \n◍ يرجي استخدام : ${prefix + command} + اسمك جروبك`))
+      await BakarBotInc.groupUpdateSubject(m.chat, text).then((res) => m.reply(`◍ تم تغير اسم جروب بنجاح √`)).catch((err) => m.reply(`◍ لم يتم تغير اسم جروب \n◍ يرجي استخدام : ${prefix + command} + اسمك جروبك`))
     }
     break
     case 'وصف': case 'وضع_وصف': {
@@ -5466,7 +5466,7 @@ case 'تنزيل_مشرف': case 'تنزيل': {
       if (!isBotAdmins) throw mess.botAdmin
       if (!isAdmins && !isCreator) throw mess.admin
       if (!text) throw '*•  اكتب وصف + وصف اللي عايز تكتبه ف جروبك جروبك*'
-      await ZimBotInc.groupUpdateDescription(m.chat, text).then((res) => m.reply(`◍ تم تغير وصف جروب بنجاح √`)).catch((err) => m.reply(`◍ لم يتم تغير وصف جروب \n◍ يرجي استخدام : ${prefix + command} + وصف اللي عايز تكتبه ف جروبك جروبك`))
+      await BakarBotInc.groupUpdateDescription(m.chat, text).then((res) => m.reply(`◍ تم تغير وصف جروب بنجاح √`)).catch((err) => m.reply(`◍ لم يتم تغير وصف جروب \n◍ يرجي استخدام : ${prefix + command} + وصف اللي عايز تكتبه ف جروبك جروبك`))
     }
     break
 
@@ -5477,8 +5477,8 @@ case 'تنزيل_مشرف': case 'تنزيل': {
       if (!quoted) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
       if (!/image/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
       if (/webp/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يروحي 😍*`
-      let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
-      await ZimBotInc.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
+      let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
+      await BakarBotInc.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
       m.reply(`◍ تم تغير صورة الجروب بنجاح √`)
       }
       break
@@ -5501,7 +5501,7 @@ case 'زخرفه': case 'زخرفة': {
               if (!m.isGroup) throw mess.group
               if (!isBotAdmins) throw mess.botAdmin
               if (!isAdmins && !isCreator) throw mess.admin
-              ZimBotInc.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
+              BakarBotInc.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
               }
               break
 
@@ -5510,15 +5510,15 @@ case 'زخرفه': case 'زخرفة': {
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins && !isCreator) throw mess.admin
                 if (args[0] === 'تفعيل') {
-               await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => m.reply(`◍ تم تشغيل الاختفاء بنجاح √`)).catch((err) => reply(jsonformat(err)))
+               await BakarBotInc.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => m.reply(`◍ تم تشغيل الاختفاء بنجاح √`)).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'تعطيل') {
-               await ZimBotInc.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => m.reply(`◍ تم ايقاف الاختفاء بنجاح √`)).catch((err) => reply(`◍ √`))
+               await BakarBotInc.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => m.reply(`◍ تم ايقاف الاختفاء بنجاح √`)).catch((err) => reply(`◍ √`))
                 } else {
                let buttons = [
              { buttonId: 'xxephemexx enable', buttonText: { displayText: 'فتح الاختفاء' }, type: 1 },
              { buttonId: 'xxephemexx disable', buttonText: { displayText: 'قفل الاختفاء' }, type: 1 }
               ]
-              await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات خاصية الاختفاء ذاتي ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الاختفاء مقفل  ❬ ✘ ❭\n🔐 ╜ فتح «»  تعني الاختفاء مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+              await BakarBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات خاصية الاختفاء ذاتي ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الاختفاء مقفل  ❬ ✘ ❭\n🔐 ╜ فتح «»  تعني الاختفاء مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
              
              }
              }
@@ -5544,7 +5544,7 @@ case 'زخرفه': case 'زخرفة': {
   { buttonId: 'xxautostickerxx on', buttonText: { displayText: 'فتح التحويل' }, type: 1 },
   { buttonId: 'xxautostickerxx off', buttonText: { displayText: 'قفل التحويل' }, type: 1 }
    ]
-   await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات تحويل الصور ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني تحويل مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني تحويل مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+   await BakarBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات تحويل الصور ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني تحويل مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني تحويل مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
   break
 
@@ -5562,14 +5562,14 @@ const key = {
     participant: m.quoted.sender
 }
 
-await ZimBotInc.sendMessage(m.chat, { delete: key })
+await BakarBotInc.sendMessage(m.chat, { delete: key })
  }
  break
  case 'مسح': case 'حذف': {
   if (!m.quoted) throw false
   let { chat, fromMe, id, isBaileys } = m.quoted
   if (!isBaileys) throw '*◍  رسالة دي مش رسالة البوت » رد علي رسالة البوت*'
-  ZimBotInc.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
+  BakarBotInc.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
 }
 break
 case 'الترحيب': case 'xxwelcomexx': {
@@ -5589,7 +5589,7 @@ case 'الترحيب': case 'xxwelcomexx': {
   { buttonId: `xxwelcomexx on`, buttonText: { displayText: 'فتح الترحيب' }, type: 1 },
   { buttonId: `xxwelcomexx off`, buttonText: { displayText: 'قفل الترحيب' }, type: 1 }
     ]
-    await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات الترحيب ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الترحيب مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الترحيب مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+    await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات الترحيب ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الترحيب مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الترحيب مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
     }   
   break
@@ -5611,7 +5611,7 @@ case 'الترحيب': case 'xxwelcomexx': {
     { buttonId: `xxlocalonlyxx on`, buttonText: { displayText: 'تشغيل حظر الارقام' }, type: 1 },
     { buttonId: `xxlocalonlyxx off`, buttonText: { displayText: 'ايقاف حظر الارقام' }, type: 1 }
       ]
-      await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الارقام الفيك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ ايقاف «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ تشغيل«»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════\n-› الارقام المسموح بيها ( مصر - المغرب ) `, botname, m)
+      await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الارقام الفيك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ ايقاف «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ تشغيل«»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════\n-› الارقام المسموح بيها ( مصر - المغرب ) `, botname, m)
     }
       }   
     break   
@@ -5632,7 +5632,7 @@ case 'الترحيب': case 'xxwelcomexx': {
    { buttonId: 'xxmuuteexx on', buttonText: { displayText: 'تعطيل' }, type: 1 },
    { buttonId: 'xxmuuteexx off', buttonText: { displayText: 'تفعيل' }, type: 1 }
      ]
-     await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات تفعيل - تعطيل ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ تعطيل «» تعني البوت معطل ❬ ✘ ❭ \n🔐 ╜ تفعيل «»  تعني البوت مفعل ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+     await BakarBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات تفعيل - تعطيل ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ تعطيل «» تعني البوت معطل ❬ ✘ ❭ \n🔐 ╜ تفعيل «»  تعني البوت مفعل ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
       }
    }
    break
@@ -5656,7 +5656,7 @@ case 'الترحيب': case 'xxwelcomexx': {
     setTimeout(() => {
     var nomor = m.participant
     const open = `◍ تم فتح الجروب بنجاح 🌚😂 √`
-    ZimBotInc.groupSettingUpdate(from, 'not_announcement')
+    BakarBotInc.groupSettingUpdate(from, 'not_announcement')
     m.reply(open)
     }, timer)
     }
@@ -5681,7 +5681,7 @@ case 'الترحيب': case 'xxwelcomexx': {
       setTimeout(() => {
       var nomor = m.participant
       const close = `◍ تم قفل الجروب بنجاح 🥲🙁 √`
-      ZimBotInc.groupSettingUpdate(from, 'announcement')
+      BakarBotInc.groupSettingUpdate(from, 'announcement')
       m.reply(close)
       }, timer)
       }
@@ -5705,7 +5705,7 @@ case 'لينك_واتساب': case 'رابط_واتساب': case 'xxantixwamexx'
 { buttonId: 'xxantixwamexx on', buttonText: { displayText: 'فتح الحظر' }, type: 1 },
 { buttonId: 'xxantixwamexx off', buttonText: { displayText: 'قفل الحظر' }, type: 1 }
  ]
- await ZimBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات حظر روابط واتساب ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+ await BakarBotInc.sendButtonText(m.chat, buttons, `*⚙️┇اعدادات حظر روابط واتساب ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
 }
 break
@@ -5727,7 +5727,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
      { buttonId: `xxvnvnxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
      { buttonId: `xxvnvnxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
  ]
- await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الصوت + ريكورد ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+ await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الصوت + ريكورد ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
    }
  break
@@ -5749,7 +5749,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   { buttonId: `xxskskxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
   { buttonId: `xxskskxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الملصقات ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+  await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الملصقات ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
   }
   break
@@ -5770,7 +5770,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   { buttonId: `xxphphxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
   { buttonId: `xxphphxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الصور ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+  await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الصور ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
   }
   break
@@ -5791,7 +5791,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
        { buttonId: `xxvidxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
        { buttonId: `xxvidxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
    ]
-   await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الفيديوهات ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+   await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر الفيديوهات ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
     }
      }
    break
@@ -5813,7 +5813,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
         { buttonId: `xxxantixlinkallxxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
         { buttonId: `xxxantixlinkallxxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
     ]
-    await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر جميع روابط ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+    await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر جميع روابط ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
      }
      }
     break   
@@ -5838,7 +5838,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
       { buttonId: `antiytchannel on`, buttonText: { displayText: 'ON' }, type: 1 },
       { buttonId: `antiytchannel off`, buttonText: { displayText: 'OFF' }, type: 1 }
       ]
-      await ZimBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪʏᴛ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+      await BakarBotInc.sendButtonText(m.chat, drips, `*┃🔏ᴀɴᴛɪʏᴛ ʟɪɴᴋ ᴍᴏᴅᴇ🔏┃*`, BakarBotInc.user.name, m)
       }
       }
       break
@@ -5851,13 +5851,13 @@ case 'xxvnvnxx': case 'حظر_صوت': {
  if (db.chats[m.chat].AntiLinkYoutubeVid) return replay('Already activated')
  ntilinkytvid.push(from)
  replay('Activated youtube video antilink !')
- var groupe = await ZimBotInc.groupMetadata(from)
+ var groupe = await BakarBotInc.groupMetadata(from)
  var members = groupe['participants']
  var mems = []
  members.map(async adm => {
  mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
  })
- ZimBotInc.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+ BakarBotInc.sendMessage(from, {text: `\`\`\`「 Warning 」\`\`\`\n\nAntilink System Activated!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
  } else if (args[0] === "off") {
  if (!db.chats[m.chat].AntiLinkYoutubeVid) return replay('Already deactivated')
  let off = ntilinkytvid.indexOf(from)
@@ -5868,7 +5868,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
    { buttonId: `${prefix}antilinkyoutubevideo on`, buttonText: { displayText: 'On' }, type: 1 },
    { buttonId: `${prefix}antilinkyoutubevideo off`, buttonText: { displayText: 'Off' }, type: 1 }
    ]
-   await ZimBotInc.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
+   await BakarBotInc.sendButtonText(m.chat, buttonsntilink, `Please click the button below On / Off`, `${global.BotName}`, m)
    }
    }
    break*/
@@ -5882,13 +5882,13 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     ntilinkytch.push(from)
     fs.writeFileSync('./database/antilinkytchannel.json', JSON.stringify(ntilinkytch))
     m.reply('*• تم تفعيل حظر روابط قنوات يوتيوب ⚠️*')
-    var groupe = await ZimBotInc.groupMetadata(from)
+    var groupe = await BakarBotInc.groupMetadata(from)
     var members = groupe['participants']
     var mems = []
     members.map(async adm => {
     mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
     })
-    ZimBotInc.sendMessage(from, {text: `\`\`\`*• تم تفعيل حظر روابط قنوات يوتيوب ⚠️*\`\`\`\n\n*• يتم حظر اي رابط لقنوات يوتيوب يتم ارساله فورا والطرد ⚠️*`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+    BakarBotInc.sendMessage(from, {text: `\`\`\`*• تم تفعيل حظر روابط قنوات يوتيوب ⚠️*\`\`\`\n\n*• يتم حظر اي رابط لقنوات يوتيوب يتم ارساله فورا والطرد ⚠️*`, contextInfo: { mentionedJid : mems }}, {quoted:m})
     } else if (args[0] === "قفل") {
     if (!AntiLinkYoutubeChannel) return m.reply('*• تم تعطيل سابقا 📴')
     let off = ntilinkytch.indexOf(from)
@@ -5900,7 +5900,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
       { buttonId: `antilinkytch on`, buttonText: { displayText: 'تفعيل حظر روابط قنوات يوتيوب' }, type: 1 },
       { buttonId: `antilinkytch off`, buttonText: { displayText: 'تعطيل حظر روابط قنوات يوتيوب' }, type: 1 }
       ]
-      await ZimBotInc.sendButtonText(m.chat, buttonsntilink, `⏬ اختار من الازرار بالاسفل \n\n  ⏪ تفعيل حظر روابط قنوات يوتيوب\n  ⏪ تعطيل حظر روابط قنوات يوتيوب`, `${global.botname}`, m)
+      await BakarBotInc.sendButtonText(m.chat, buttonsntilink, `⏬ اختار من الازرار بالاسفل \n\n  ⏪ تفعيل حظر روابط قنوات يوتيوب\n  ⏪ تعطيل حظر روابط قنوات يوتيوب`, `${global.botname}`, m)
       }
       }
       break
@@ -5926,7 +5926,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
     { buttonId: `xxantixinstaxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
     { buttonId: `xxantixinstaxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
      ]
-     await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  انستا ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+     await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  انستا ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
     }
     }
     break
@@ -5947,7 +5947,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
         { buttonId: `${command} on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
         { buttonId: `${command} off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
     ]
-    await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  فيسبوك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+    await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  فيسبوك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
      }
       }
     break
@@ -5968,7 +5968,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
       { buttonId: `xxantitelexx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
       { buttonId: `xxantitelexx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
        ]
-       await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تليجرام ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+       await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تليجرام ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
      }
     }
     break
@@ -5993,7 +5993,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   { buttonId: `xxaantitikzxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
   { buttonId: `xxaantitikzxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
   ]
-  await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تيكتوك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+  await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تيكتوك ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
   }
   }
   break
@@ -6015,7 +6015,7 @@ case 'xxvnvnxx': case 'حظر_صوت': {
   { buttonId: `xxantilinktxxwitxx on`, buttonText: { displayText: 'فتح الحظر' }, type: 1 },
   { buttonId: `xxantilinktxxwitxx off`, buttonText: { displayText: 'قفل الحظر' }, type: 1 }
    ]
-   await ZimBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تويتر ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
+   await BakarBotInc.sendButtonText(m.chat, lido7x, `*⚙️┇اعدادات حظر  روابط  تويتر ⇊*\n════════ ××× ════════ٴ\n🔐 ╖ قفل «» تعني الحظر مقفل  ❬ ✘ ❭ \n🔐 ╜ فتح «»  تعني الحظر مفتوح ❬ ✓ ❭\n════════ ××× ════════`, botname, m)
    }
   }
   break
@@ -6061,7 +6061,7 @@ const listMessage = {
   buttonText: "قائمة مواد الترم التاني",
   sections
 }
-const sendMsg = await ZimBotInc.sendMessage(m.chat, listMessage)
+const sendMsg = await BakarBotInc.sendMessage(m.chat, listMessage)
 }
 break
 
@@ -6132,7 +6132,7 @@ var  bakarbots = pickRandom(botbbs)
 let bbndav = [
   {buttonId: `bakar`, buttonText: {displayText: '𝗕𝗔𝗞𝗔𝗥 😍❤️ ' }, type: 1}
   ] 
-ZimBotInc.sendMessage(from, { image: { url: bakarbots.url }, caption: ''+ xeondndav }, {quoted:m})
+BakarBotInc.sendMessage(from, { image: { url: bakarbots.url }, caption: ''+ xeondndav }, {quoted:m})
 break  
 
 case 'بكار': case 'botbakar': case 'bakar':  
@@ -6167,12 +6167,12 @@ if (isBanChat) return reply(mess.bangc)
 		let bbakdsddwa = [
 			{buttonId: `bakar`, buttonText: {displayText: '𝗕𝗔𝗞𝗔𝗥 😍❤️ ' }, type: 1}
 			] 
-    ZimBotInc.sendMessage(from, { image: { url: bakarbot.url }, caption: ''+ xeondffffsawwsa }, {quoted:m})
+    BakarBotInc.sendMessage(from, { image: { url: bakarbot.url }, caption: ''+ xeondffffsawwsa }, {quoted:m})
 		break
 
 //------------- يوتيوب -----------------------///
 /*case 'يوتيوب': {
-      ZimBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
+      BakarBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
       buffer = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
       anu =`◍اهلا بك ${pushname} \n◍ قم بالاختيار احدي الازرار ...\n`
     const youtube7xmenu = async (remoteJid, text, footer, content) => {
@@ -6188,7 +6188,7 @@ if (isBanChat) return reply(mess.bangc)
     },
     },
     };
-    const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+    const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
     };
     var buttonReplyy = [
       { urlButton: { displayText: `انضم مجتمعنا 🐼`, url: `https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e` } },
@@ -6212,8 +6212,8 @@ if (isBanChat) return reply(mess.bangc)
     footer: `${botname}`,
     headerType: 4
     }
-    ZimBotInc.sendMessage(from, { react: { text: `👨🏻‍💻`, key: m.key }}) 
-    ZimBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+    BakarBotInc.sendMessage(from, { react: { text: `👨🏻‍💻`, key: m.key }}) 
+    BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
     }
           break
 
@@ -6233,15 +6233,15 @@ case 'xxwawxx': case 'ص':
   if (isBan) return reply(mess.banned)	 			
   if (isBanChat) return reply(mess.bangc)
   if (!text) throw `-› مثال : ص تامر حسني بحبك`
-  ZimBotInc.sendMessage(m.chat, { react: { text: `🎼`, key: m.key }})
+  BakarBotInc.sendMessage(m.chat, { react: { text: `🎼`, key: m.key }})
   const dripsmp4 = require ('./lib/ytdl2')
   let ytss = require("youtube-yts")
   let searchi  = await ytss(text)
   let bhinguu = searchi.videos[0]
   const kudzii = await dripsmp4.mp3(bhinguu.url)
   buf = await getBuffer(kudzii.meta.image)
-  await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
-  ZimBotInc.sendMessage(m.chat, { audio: fs.readFileSync(kudzii.path), fileName: bhinguu.title + '.mp3', mimetype: 'audio/mp4'}, {quoted: m})
+  await BakarBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+  BakarBotInc.sendMessage(m.chat, { audio: fs.readFileSync(kudzii.path), fileName: bhinguu.title + '.mp3', mimetype: 'audio/mp4'}, {quoted: m})
   
   await fs.unlinkSync(kudzii.path)
   break
@@ -6257,8 +6257,8 @@ case 'xxwawxx': case 'ص':
     *◍ الجودة:* ${vid.quality}
     
     *◍ تم تحميل بواسطة » بوت بكار 🐼* `
-   await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
- ZimBotInc.sendMessage(m.chat,{
+   await BakarBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+ BakarBotInc.sendMessage(m.chat,{
       video: {url:vid.videoUrl},
       caption: ytc
     },{quoted:m})
@@ -6290,7 +6290,7 @@ case 'شغل': case 'تشغيل': {
 *◉ رابط :* ${anu.url}
    
   `
-  message = await prepareWAMessageMedia({ image : { url: anu.thumbnail } }, { upload:   ZimBotInc.waUploadToServer })
+  message = await prepareWAMessageMedia({ image : { url: anu.thumbnail } }, { upload:   BakarBotInc.waUploadToServer })
   let buttonMessage = {
           image: buf,
           jpegThumbnail:buf,
@@ -6299,7 +6299,7 @@ case 'شغل': case 'تشغيل': {
           buttons: muziq,
           headerType: 4,
           }
-          ZimBotInc.sendMessage(m.chat, buttonMessage)
+          BakarBotInc.sendMessage(m.chat, buttonMessage)
         
      }
   break
@@ -6307,8 +6307,8 @@ case 'شغل': case 'تشغيل': {
 	const xeonaudp3 = require('./lib/ytdl2')
 	if (args.length < 1 || !isUrl(text) || !xeonaudp3.isYTUrl(text)) throw `*◍ ⇜ صوت  +  رابط الفيديو*`
 	const audio=await xeonaudp3.mp3(text)
-await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
-  ZimBotInc.sendMessage(m.chat,{
+await BakarBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+  BakarBotInc.sendMessage(m.chat,{
 		audio: fs.readFileSync(audio.path),
 		mimetype: 'audio/mp4', ptt: true,
 		contextInfo:{
@@ -6333,8 +6333,8 @@ case 'فيديوو': case 'xxvvxx':
 			let xeonsearch13 = await ytsmp4(text)
 			let anuvidoke4 = xeonsearch13.videos[0]
 	const pl2= await xeonplaymp4.mp4(anuvidoke4.url)
-await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
-ZimBotInc.sendMessage(m.chat,{
+await BakarBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+BakarBotInc.sendMessage(m.chat,{
 		document: {url:pl2.videoUrl},
 		fileName: anuvidoke4.title + '.mp4',
 		mimetype: 'video/mp4',
@@ -6354,11 +6354,11 @@ ZimBotInc.sendMessage(m.chat,{
 case 'م': case 'xxytmp3xx':
     if (!args || !args[0]) throw '-› مثال : م https://www.youtube.com/watch?v=PyP-Ptoloxc'
     if (!/^(?:https?:\/\/)?(?:www\.|m\.|music\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/.test(args[0])) throw `لينك غلط يعم`
-    ZimBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
+    BakarBotInc.sendMessage(m.chat, { react: { text: `🕒`, key: m.key }})
     const jsoni = await fetchJson('https://yt.nxr.my.id/yt2?url=' + args[0] + '&type=audio')
-    await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+    await BakarBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
     if (!jsoni.status || !jsoni.data.url) throw `◍ حدث خطا...`
-    ZimBotInc.sendMessage(m.chat,{document: {url:jsoni.data.url}, fileName: `${jsoni.title}`, mimetype: 'audio/mp3'}, {quoted: m})
+    BakarBotInc.sendMessage(m.chat,{document: {url:jsoni.data.url}, fileName: `${jsoni.title}`, mimetype: 'audio/mp3'}, {quoted: m})
     break 
 //-------------------------------------------------//
 //----  البحث في يوتيوب ------------//
@@ -6388,7 +6388,7 @@ case 'بحث': {
       buttonText: "نتائج البحث صوت",
       mentions: parseMention(teskd), sections
     }
-    return ZimBotInc.sendMessage(m.chat, listMessage, {
+    return BakarBotInc.sendMessage(m.chat, listMessage, {
       quoted: m
     })
     }
@@ -6419,7 +6419,7 @@ case 'بحث_فيديو': case 'بحث2': {
               buttonText: "نتائج البحث فيديو",
               mentions: parseMention(teskd), sections
             }
-            return ZimBotInc.sendMessage(m.chat, listMessage, {
+            return BakarBotInc.sendMessage(m.chat, listMessage, {
               quoted: m
             })
             }
@@ -6433,7 +6433,7 @@ case 'بحث3': {
             for (let i of search.all) {
               teks += `◍ رقم : ${no++}\n◍ النوع : ${i.type}\n◍ ايدي الفيديو : ${i.videoId}\n◍ العنوان : ${i.title}\n◍ مشاهدات : ${i.views}\n◍ المدة : ${i.timestamp}\n◍ لينك : ${i.url}\n\nـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n\n`
             }
-            ZimBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+            BakarBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
           }
           break
 ///-------------------------------------------///
@@ -6450,7 +6450,7 @@ case 'زوجني': case 'جوزني': {
   let buttons = [
  { buttonId: '❤️', buttonText: { displayText: '❤️' }, type: 1 }
    ]
-   await ZimBotInc.sendButtonText(m.chat, mrlido7x, botname, m, {mentions: ments})
+   await BakarBotInc.sendButtonText(m.chat, mrlido7x, botname, m, {mentions: ments})
   }
   break
 
@@ -6475,7 +6475,7 @@ case 'السحري': case 'سحري': {
   if (!text) throw `*↜ معاك بكار السحري 🧞‍♂️*\n↜  ارسل لي سؤال وساقوم بالاجابة عن الاسئله بصدق او كدب 🧞‍♂️\n↜ مثال :  سحري هل انت بتحب ليدو ؟`
   let sama = [`فعلا كل الي كلته صح 😁💋`,`كدااب اوى🙄😒`,` ايوه ايوه صح كل اللي تقوله يلا توكل.`,`الكلام ده مظبوط🙂😹!!!`,`ڪلُآمك صادق 💘`,`احس هذا شي كذب 🌚💕`,`اى الكدب ده😔💔`,`عينى فى عينك كده👀🌚`,`انت كداب 🙂🤓`]
   let sara = sama[Math.floor(Math.random() * sama.length)]
-ZimBotInc.sendMessage(from, { text: `*سؤالك ${text}*\nالاجابة : ${sara}` }, botname, { quoted: m })
+BakarBotInc.sendMessage(from, { text: `*سؤالك ${text}*\nالاجابة : ${sara}` }, botname, { quoted: m })
 
 }
 break    
@@ -6485,7 +6485,7 @@ case 'بتحب': case 'بتحب ده': {
   let Shereen = esrAA[Math.floor(Math.random() * esrAA.length)]
   let lidoo7x = ` ${Shereen}`
   let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
-await ZimBotInc.sendButtonText(m.chat, lidoo7x, botname, m)
+await BakarBotInc.sendButtonText(m.chat, lidoo7x, botname, m)
 }
 break
 
@@ -6494,7 +6494,7 @@ case 'نسبه': case 'نسبة': {
   let maro = waleed[Math.floor(Math.random() * waleed.length)]
   let lidoo7x = `◍ نسبة هي : ${maro}% `
   let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'المطور 😍❤️' }, type: 1 }]
-await ZimBotInc.sendButtonText(m.chat, lidoo7x, botname, m)
+await BakarBotInc.sendButtonText(m.chat, lidoo7x, botname, m)
 }
 break
 ////-----------------------------------------------------------------------------------------//    
@@ -6554,7 +6554,7 @@ musers= `تم قتل -» @${users.split("@")[0]}
 console.log(musers)
 }
 const llido = killlidoo[Math.floor(Math.random()*killlidoo.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:llido},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+BakarBotInc.sendMessage(m.chat,{video:{url:llido},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6622,7 +6622,7 @@ musers= `امححح @${users.split("@")[0]}
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+BakarBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6675,7 +6675,7 @@ musers= `القمر 🌚💞 -» @${m.sender.split("@")[0]}
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+BakarBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6734,7 +6734,7 @@ musers= `◍ اهلا عزيزتي @${users.split("@")[0]}
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+BakarBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
@@ -6788,12 +6788,12 @@ musers= `تم زواجك يا أخت @${m.sender.split("@")[0]} علي الأخ 
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+BakarBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
 }
-ZimBotInc.sendMessage(from, { react: { text: `👫🏻`, key: m.key }}) 
+BakarBotInc.sendMessage(from, { react: { text: `👫🏻`, key: m.key }}) 
 break
 case 'مش_موافقة': case 'مش_موافقه':{
   if (!m.isGroup) return replay(mess.group)	
@@ -6843,12 +6843,12 @@ musers= `البت @${m.sender.split("@")[0]} مرضتش بيك يا حزين �
 console.log(musers)
 }
 const lido7xx = killlido[Math.floor(Math.random()*killlido.length)]
-ZimBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
+BakarBotInc.sendMessage(m.chat,{video:{url:lido7xx},gifPlayback:true,mentions:ment,caption:musers},{quoted:m})
 } catch (error) {
 console.log(error);
 }
 }
-ZimBotInc.sendMessage(from, { react: { text: `🙂`, key: m.key }}) 
+BakarBotInc.sendMessage(from, { react: { text: `🙂`, key: m.key }}) 
 break
 //-----------------------------------------//
 
@@ -6865,7 +6865,7 @@ break
 
 
 case 'ss':
-  async (ZimBotInc, m, { pushName, prefix, args, text }) => {
+  async (BakarBotInc, m, { pushName, prefix, args, text }) => {
     if (!args[0]) return m.reply(`Please provide me a link to lookup!`);
 
      let lookupURL;
@@ -6877,7 +6877,7 @@ case 'ss':
 
      try {
       const resImage = await getBuffer(`https://api.popcat.xyz/screenshot?url=${lookupURL}`);
-       await ZimBotInc.sendMessage(m.from, { image: resImage, caption: `_Here's how this URL looks like:` }, { quoted: m });
+       await BakarBotInc.sendMessage(m.from, { image: resImage, caption: `_Here's how this URL looks like:` }, { quoted: m });
      } catch (error) {
        m.reply(`An error occurred while processing your request!\n\nPlease recheck your link and try again!`);
      }
@@ -6892,15 +6892,15 @@ case 'ss':
 
    case 'سشش':               
    if (!m.isGroup) return m.reply(mess.group)
- await ZimBotInc.sendMessage(m.chat, {text:"تم تفعيل الاذان"})
+ await BakarBotInc.sendMessage(m.chat, {text:"تم تفعيل الاذان"})
  await sleep(60000)
- await ZimBotInc.sendMessage(m.chat, {text:"  ققب "})
+ await BakarBotInc.sendMessage(m.chat, {text:"  ققب "})
  await sleep(60)
- await ZimBotInc.sendMessage(m.chat, { audio: fs.readFileSync('./Zimbot/bot.mp3'), mimetype: 'audio/ogg', ptt: true }, { quoted: m })
+ await BakarBotInc.sendMessage(m.chat, { audio: fs.readFileSync('./Zimbot/bot.mp3'), mimetype: 'audio/ogg', ptt: true }, { quoted: m })
  await sleep(120000)
- await ZimBotInc.sendMessage(m.chat, {text:" بق بق  قب"})
+ await BakarBotInc.sendMessage(m.chat, {text:" بق بق  قب"})
  await sleep(180000)
- await ZimBotInc.sendMessage(m.chat, {text:"بثب"})
+ await BakarBotInc.sendMessage(m.chat, {text:"بثب"})
  await sleep(30)
  reply(mess.success)
  break
@@ -6917,14 +6917,14 @@ quran7x = await axios.get(`https://ava-tar.online/api/qor/get?text=${text}`)
      image: {url:quran7x.data.jack},
      caption:  `◍ اليك صفحة القران الكريم `,
     }     
-          await ZimBotInc.sendMessage(m.chat, lido7x,{ quoted:m })
+          await BakarBotInc.sendMessage(m.chat, lido7x,{ quoted:m })
 break
 
 case 'ss': case 'ssweb': {
   if (!q) return reply(`Example ${prefix+command} link`)
   replay(mess.wait)
   let krt = await scp1.ssweb(q)
-  ZimBotInc.sendMessage(from,{image:krt.result,caption:mess.succes}, {quoted:m})
+  BakarBotInc.sendMessage(from,{image:krt.result,caption:mess.succes}, {quoted:m})
   }
   break
 
@@ -6942,7 +6942,7 @@ case 'بان': {
   if (isBan) return m.reply(mess.banned)	 			
   if (isBanChat) return m.reply(mess.bangc)
   if (!isCreator) return m.replay(mess.owner)
-  ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+  BakarBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
   
   if (!args[0]) return m.reply(`◍ مرحبا مطوري \n◍ لحظر عضو : بان +  \n◍ الغاء الحظر : بان -`)
   if (args[1]) {
@@ -6970,21 +6970,21 @@ case 'بان': {
 case 'جروب': {
     if (isBan) return m.reply(mess.banned);	 			
     if (!isCreator) return m.reply(mess.owner);
-    ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+    BakarBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
     if (!args[0]) return m.reply(`◍ مرحبا مطوري \n◍ لحظر جروب : جروب +  \n◍ الغاء جروب : جروب -`)
     if (args[0] === "+") {
       if (isBanChat) return m.reply('◍ تم اضافة الجروب في قايمة الحظر من قبل ');
       banchat.push(from);
       m.reply('◍ تم اضافة الجروب في قايمة الحظر');
   
-      var groupe = await ZimBotInc.groupMetadata(from);
+      var groupe = await BakarBotInc.groupMetadata(from);
       var members = groupe['participants'];
       var mems = [];
       members.map(async adm => {
         mems.push(adm.id.replace('c.us', 's.whatsapp.net'));
       });
   
-      ZimBotInc.sendMessage(from, { text: "「 تم حظر الجروب ! 」 \n\n◍ تم حظر الجروب بالكامل من استخدام البوت . ", contextInfo: { mentionedJid: mems } }, { quoted: m });
+      BakarBotInc.sendMessage(from, { text: "「 تم حظر الجروب ! 」 \n\n◍ تم حظر الجروب بالكامل من استخدام البوت . ", contextInfo: { mentionedJid: mems } }, { quoted: m });
     } else if (args[0] === "-") {
       if (!isBanChat) return m.reply('◍ تم حذف الجروب من قايمة الحظر من قبل ');
       let off = banchat.indexOf(from);
@@ -7003,7 +7003,7 @@ case 'نشر': {
   let mem = await participants.filter(v => v.id.endsWith('.net')).map(v => v.id)
   m.reply(`◍ تم ارسال رسالتك الي كل الاعضاء`)
   for (let pler of mem) {
-  ZimBotInc.sendMessage(pler, { text: q})
+  BakarBotInc.sendMessage(pler, { text: q})
    }  
    m.reply(`◍ ضن `)
     }
@@ -7011,11 +7011,11 @@ case 'نشر': {
 case "نشر_جروب":{
 if (!isCreator) throw mess.owner
 if (!q) return m.reply(`◍ نشر_جروب ايدي|رسالتك \n◍ مثال : نشر_جروب  120363143449233813@g.us|مرحبا`)
-await ZimBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
-const metadata2 = await ZimBotInc.groupMetadata(q.split("|")[0])
+await BakarBotInc.sendMessage(m.chat, {text: `◍ جارى التحميل...`}, {quoted: m})
+const metadata2 = await BakarBotInc.groupMetadata(q.split("|")[0])
 const halss = metadata2.participants
 for (let mem of halss) {
-ZimBotInc.sendMessage(`${mem.id.split('@')[0]}` + "@s.whatsapp.net", { text: q.split("|")[1] })
+BakarBotInc.sendMessage(`${mem.id.split('@')[0]}` + "@s.whatsapp.net", { text: q.split("|")[1] })
 await sleep(5000)
 }
 m.reply(`◍ تم ارسال رسالتك الي كل الاعضاء`)
@@ -7044,7 +7044,7 @@ case 'ايدي':{
     { buttonId: `${command} on`, buttonText: { displayText: 'تشغيل' }, type: 1 },
     { buttonId: `${command} off`, buttonText: { displayText: 'ايقاف' }, type: 1 }
       ]
-      await ZimBotInc.sendButtonText(m.chat, lido7x, `-`, ZimBotInc.user.name, m)
+      await BakarBotInc.sendButtonText(m.chat, lido7x, `-`, BakarBotInc.user.name, m)
     }
       } 
   break
@@ -7063,7 +7063,7 @@ case 'ايدي':{
     { buttonId: `${command} on`, buttonText: { displayText: 'تشغيل' }, type: 1 },
     { buttonId: `${command} off`, buttonText: { displayText: 'ايقاف' }, type: 1 }
       ]
-      await ZimBotInc.sendButtonText(m.chat, lido7x, `-`, ZimBotInc.user.name, m)
+      await BakarBotInc.sendButtonText(m.chat, lido7x, `-`, BakarBotInc.user.name, m)
     }
       } 
   break
@@ -7072,8 +7072,8 @@ case 'ايدي':{
     if (!isCreator) return replay(mess.owner)
     if (!args.join(" ")) return m.reply(`◍ › اكتب اسم الجروب `)
     try {
-    let cret = await ZimBotInc.groupCreate(args.join(" "), [])
-    let response = await ZimBotInc.groupInviteCode(cret.id)
+    let cret = await BakarBotInc.groupCreate(args.join(" "), [])
+    let response = await BakarBotInc.groupInviteCode(cret.id)
     teks = `「 تم انشاء جروب ${cret.subject} 」
     
     ▸ المالك : @${cret.owner.split("@")[0]}
@@ -7081,7 +7081,7 @@ case 'ايدي':{
     ▸ الرابط : 
 https://chat.whatsapp.com/${response}
            `
-    ZimBotInc.sendMessage(m.chat, { text:teks, mentions: await ZimBotInc.parseMention(teks)}, {quoted:m})
+    BakarBotInc.sendMessage(m.chat, { text:teks, mentions: await BakarBotInc.parseMention(teks)}, {quoted:m})
     } catch {
     reply("Error!")
     }
@@ -7089,7 +7089,7 @@ https://chat.whatsapp.com/${response}
     break
     case 'غادر': {
       if (!isCreator) return m.reply(mess.owner)
-      await ZimBotInc.groupLeave(m.chat).then((res) =>  m.reply(`◍ √`)).catch((err) =>  m.reply(`◍ √`))
+      await BakarBotInc.groupLeave(m.chat).then((res) =>  m.reply(`◍ √`)).catch((err) =>  m.reply(`◍ √`))
     }
     break
 
@@ -7097,11 +7097,11 @@ https://chat.whatsapp.com/${response}
 	  if (!isCreator) return m.reply(mess.owner)
       if (isBan) return m.reply(mess.banned)	 			
      if (isBanChat) return m.reply(mess.bangc)
-     ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+     BakarBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
      let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
      let teks = ` 「  قايمه جروبات   」\n\n عدد الجروبات ${anu.length} جروب .`
      for (let i of anu) {
-     let metadata = await ZimBotInc.groupMetadata(i)
+     let metadata = await BakarBotInc.groupMetadata(i)
      if (metadata.owner === "غير معروف") {
      loldd = false
      } else {
@@ -7109,20 +7109,20 @@ https://chat.whatsapp.com/${response}
      }
      teks += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━\n\n الاسم : ${metadata.subject ? metadata.subject : "undefined"}\n المالك : ${loldd ? '@' + loldd.split("@")[0] : "غير معروف"}\n ايدي : ${metadata.id ? metadata.id : "undefined"}\n تاريخ الانشاء : ${metadata.creation ? moment(metadata.creation * 1000).tz('Africa/Cairo').format('DD/MM/YYYY HH:mm:ss') : "undefined"}\n عدد الاعضاء : ${metadata.participants.length ? metadata.participants.length : "undefined"} \n`
      }
-     ZimBotInc.sendTextWithMentions(m.chat, teks, m)
+     BakarBotInc.sendTextWithMentions(m.chat, teks, m)
      }
      break
   
   case 'مستخدمين': case 'المستخدمين': {
 	  if (!isCreator) return m.reply(mess.owner)	
-     ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})		  
+     BakarBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})		  
         let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v.id)
         let teks = `◍ › عدد المسخدمين بوت${botnamee} : ${anu.length} مستخدم \n\n`
         for (let i of anu) {
             let nama = store.messages[i].array[0].pushName
             teks += `◍ › *الاسم :* ${nama}\n◍ › *رقمه :* @${i.split('@')[0]}\n◍ › *شاته :* https://wa.me/${i.split('@')[0]}\n\n━━━━━━━━━━━━━━━━━━━━━━━━\n\n`
         }
-        ZimBotInc.sendTextWithMentions(m.chat, teks, m)
+        BakarBotInc.sendTextWithMentions(m.chat, teks, m)
       }
       break
 
@@ -7130,13 +7130,13 @@ https://chat.whatsapp.com/${response}
 case 'حظر': {
 if (!isCreator) return m.reply(mess.owner)	
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await ZimBotInc.updateBlockStatus(users, 'block').then((res) => reply('◍ › تم حظر المستخدم بنجاح ✅')).catch((err) => reply('◍ › تم حظر المستخدم بنجاح ✅#error'))
+await BakarBotInc.updateBlockStatus(users, 'block').then((res) => reply('◍ › تم حظر المستخدم بنجاح ✅')).catch((err) => reply('◍ › تم حظر المستخدم بنجاح ✅#error'))
 }
 break
 case 'فك_حظر': {
 if (!isCreator) return m.reply(mess.owner)	
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await ZimBotInc.updateBlockStatus(users, 'unblock').then((res) => reply('◍ › تم فك حظر المستخدم بنجاح ✅')).catch((err) => reply('◍ › تم فك حظر المستخدم بنجاح ✅ #error'))
+await BakarBotInc.updateBlockStatus(users, 'unblock').then((res) => reply('◍ › تم فك حظر المستخدم بنجاح ✅')).catch((err) => reply('◍ › تم فك حظر المستخدم بنجاح ✅ #error'))
 }
 break
 case 'المحظورين': {
@@ -7150,8 +7150,8 @@ if (!isCreator) return m.reply(mess.owner)
    if (!quoted) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يا مطوري 😍*`
    if (!/image/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يا مطوري 😍*`
    if (/webp/.test(mime)) throw `*• ابعت صورة في شات بعدها رد عليها بالامر يا مطوري 😍*`
-   let media = await ZimBotInc.downloadAndSaveMediaMessage(quoted)
-   await ZimBotInc.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
+   let media = await BakarBotInc.downloadAndSaveMediaMessage(quoted)
+   await BakarBotInc.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
    m.reply("تم تغيير الصورة بنجاح")
    }
    break
@@ -7160,20 +7160,20 @@ if (!isCreator) return m.reply(mess.owner)
   if (!isCreator) return m.reply(mess.owner)	
   m.reply('جاري تغير البايو')
 if (!q) return m.reply('اكتب البايو بعد الامر ')
-ZimBotInc.setStatus(`${q}`)
+BakarBotInc.setStatus(`${q}`)
 m.reply('تم بنجاح تغير البايو ')
 break
 
  case 'عام': {
    if (!isCreator) throw global.owner
-   ZimBotInc.public = true
+   BakarBotInc.public = true
    reply('اصبح البوت للجميع')
  }
  break
   
  case 'خاص': {
    if (!isCreator) throw global.owner
-   ZimBotInc.public = false
+   BakarBotInc.public = false
    reply('اصبح البوت خاص')
  }
  break
@@ -7187,7 +7187,7 @@ break
     if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw '*LINK INVALID*'
     replay(mess.wait)
     let result = args[0].split('https://chat.whatsapp.com/')[1]
-    await ZimBotInc.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+    await BakarBotInc.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
   }
   break
 
@@ -7197,7 +7197,7 @@ break
     if (!text) return reply(`Contoh ${prefix+command} linkgc`)
     if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('Link Invalid!')
     let result = args[0].split('https://chat.whatsapp.com/')[1]
-    await ZimBotInc.groupAcceptInvite(result)
+    await BakarBotInc.groupAcceptInvite(result)
     await reply(`Done`)
     }
     break
@@ -7208,16 +7208,16 @@ case 'join': {
   if (isBan) return reply(mess.banned)	 			
 if (isBanChat) return reply(mess.bangc)
 if (!isCreator) return replay(mess.owner)
-ZimBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+BakarBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
 if (!args[0]) return replay(`Where's the link?`)
 vdd = args[0]
 let vcc = vdd.split("https://chat.whatsapp.com/")[1]
 if (!vcc) return replay("Link invalid!")
 if (isCreator) {
-await ZimBotInc.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
+await BakarBotInc.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
 replay("Succes!")
 } else {
-ZimBotInc.query({
+BakarBotInc.query({
 tag: "iq",
 attrs: {
 type: "get",
@@ -7231,7 +7231,7 @@ if (sizny < 20) {
 teks = `Sorry, munimun 20 members are required in a group to add bot!`
 sendOrder(m.chat, teks, "667140254502463", fs.readFileSync('./drips.jpg'), `${global.packname}`, `${global.BotName}`, "916297175943@s.whatsapp.net", "AR6NCY8euY5cbS8Ybg5Ca55R8HFSuLO3qZqrIYCT7hQp0g==", "99999999999999999999")
 } else if (sizny > 20) {
-await ZimBotInc.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
+await BakarBotInc.groupAcceptInvite(vcc).then(async(res) => replay(jsonformat(res))).catch(_ => _)
 replay("Joined !")
 } else {
 replay("Error")
@@ -7258,7 +7258,7 @@ break
     { buttonId: `${command} on`, buttonText: { displayText: 'ON' }, type: 1 },
     { buttonId: `${command} off`, buttonText: { displayText: 'OFF' }, type: 1 }
       ]
-      await ZimBotInc.sendButtonText(m.chat, dripsu, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, ZimBotInc.user.name, m)
+      await BakarBotInc.sendButtonText(m.chat, dripsu, `*┃🔏ʟᴏᴄᴀʟ ᴏɴʟʏ ᴍᴏᴅᴇ🔏┃*`, BakarBotInc.user.name, m)
     }
       } 
       break
@@ -7274,12 +7274,12 @@ break
 	//---------- من سيربح المليون ------------\\\ 
 	//--------- تطوير مطور ليدو باشا ---------\\\\
   case 'aginna': case 'المليون': case 'من_سيربح_المليون': {
-    ZimBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
+    BakarBotInc.sendMessage(m.chat, { react: { text: `☸️`, key: m.key }})
     buffer = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
     anu =`⦁ مرحبا بك في لعبة من سيربح المليون \n⦁ اللعبة 3 مستويات عبارة عن اسئلة عامة \n⦁ جاهز يوحش ؟! 😂❤️`
   const meloinmenu = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(`https://telegra.ph/file/ce6d860bb9b97d297ab7b.jpg`)
-  let message = await prepareWAMessageMedia({ image: bufu }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: bufu }, { upload: BakarBotInc.waUploadToServer })
   const templateMessage = {
   viewOnceMessage: {
   message: { 
@@ -7293,7 +7293,7 @@ break
   },
   },
   };
-  const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+  const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
   };
   var buttonReplyy = [
           { urlButton: { displayText: `انضم مجتمعنا 🐼`, url : `https://chat.whatsapp.com/IN6XTTosuRX0RnAvVUge0e` } },
@@ -7315,7 +7315,7 @@ break
 		let bbwsederfrf = [
 			{buttonId: `aginna`, buttonText: {displayText: '⦁ إعادة اللعبه' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbwsederfrf, image: bufferwsederfrf, caption: ''+ xeondwsederfrf }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbwsederfrf, image: bufferwsederfrf, caption: ''+ xeondwsederfrf }, {quoted:m})
 		break
 	case 'r1':    
 		const jjtgrvdss =[
@@ -7329,7 +7329,7 @@ break
 			{buttonId: `r2`, buttonText: {displayText: 'الزلوط' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'اليورو' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbjjtgrvdss, image: bufferjjtgrvdss, caption: ''+ xeondjjtgrvdss }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbjjtgrvdss, image: bufferjjtgrvdss, caption: ''+ xeondjjtgrvdss }, {quoted:m})
 		break	
 	case 'r2':    
 		const fefefesasss =[
@@ -7346,7 +7346,7 @@ break
 			{buttonId: `r3`, buttonText: {displayText: '24 ساعه' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: '22 ساعه' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbfefefesasss, image: bufferfefefesasss, caption: ''+ xeondfefefesasss }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbfefefesasss, image: bufferfefefesasss, caption: ''+ xeondfefefesasss }, {quoted:m})
 		break
 	case 'r3':    
 		const ggdsdasa =[
@@ -7363,7 +7363,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'الكهف' }, type: 1},
 			{buttonId: `r4`, buttonText: {displayText: 'الخلية' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbggdsdasa, image: bufferggdsdasa, caption: ''+ xeondggdsdasa }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbggdsdasa, image: bufferggdsdasa, caption: ''+ xeondggdsdasa }, {quoted:m})
 		break
 	case 'r4':    
 		const feefsjujuj =[
@@ -7380,7 +7380,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'استضفته' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'اطعمته' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbfeefsjujuj, image: bufferfeefsjujuj, caption: ''+ xeondfeefsjujuj }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbfeefsjujuj, image: bufferfeefsjujuj, caption: ''+ xeondfeefsjujuj }, {quoted:m})
 		break
 	case 'r5':    
 		const ghuuuuuuuyg =[
@@ -7397,7 +7397,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'قبرص' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'باريس' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbghuuuuuuuyg, image: bufferghuuuuuuuyg, caption: ''+ xeondghuuuuuuuyg }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbghuuuuuuuyg, image: bufferghuuuuuuuyg, caption: ''+ xeondghuuuuuuuyg }, {quoted:m})
 		break
 		case 'r6':    
 		const ghuuuuu =[
@@ -7414,7 +7414,7 @@ break
 			{buttonId: `r7`, buttonText: {displayText: 'العربيه ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'الانجليزيه' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbghuuuuu, image: bufferghuuuuu, caption: ''+ xeondghuuuuu }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbghuuuuu, image: bufferghuuuuu, caption: ''+ xeondghuuuuu }, {quoted:m})
 		break
 	case 'r7':    
 		const grfcswww =[
@@ -7431,7 +7431,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'مدريد ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'انقرا' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbgrfcswww, image: buffergrfcswww, caption: ''+ xeondgrfcswww }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbgrfcswww, image: buffergrfcswww, caption: ''+ xeondgrfcswww }, {quoted:m})
 		break
 	case 'r8':    
 		const grfcs =[
@@ -7448,7 +7448,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: '6 جيب ' }, type: 1},
 			{buttonId: `r9`, buttonText: {displayText: '8 جيب' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbgrfcs, image: buffergrfcs, caption: ''+ xeondgrfcs }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbgrfcs, image: buffergrfcs, caption: ''+ xeondgrfcs }, {quoted:m})
 		break	
 	case 'r9':    
 		const grfcsfegs =[
@@ -7465,7 +7465,7 @@ break
 			{buttonId: `r10`, buttonText: {displayText: 'لندن ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'فرنسا' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbgrfcsfegs, image: buffergrfcsfegs, caption: ''+ xeondgrfcsfegs }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbgrfcsfegs, image: buffergrfcsfegs, caption: ''+ xeondgrfcsfegs }, {quoted:m})
 		break	
 	case 'r10':    
 		const grfcsf =[
@@ -7482,7 +7482,7 @@ break
 			{buttonId: `r11`, buttonText: {displayText: '4 فصول' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: '3 فصول' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbgrfcsf, image: buffergrfcsf, caption: ''+ xeondgrfcsf }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbgrfcsf, image: buffergrfcsf, caption: ''+ xeondgrfcsf }, {quoted:m})
 		break
 	case 'r11':    
 		const grfcsfe =[
@@ -7497,7 +7497,7 @@ break
 		let bbgrfcsfe = [
 			{buttonId: `r12`, buttonText: {displayText: 'انتقل للمستوي الثاني' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbgrfcsfe, image: buffergrfcsfe, caption: ''+ xeondgrfcsfe }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbgrfcsfe, image: buffergrfcsfe, caption: ''+ xeondgrfcsfe }, {quoted:m})
 		break    
 	case 'r12':    
 		const opikolou =[
@@ -7514,7 +7514,7 @@ break
 			{buttonId: `r13`, buttonText: {displayText: 'البترول' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'الفحم' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbopikolou, image: bufferopikolou, caption: ''+ xeondopikolou }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbopikolou, image: bufferopikolou, caption: ''+ xeondopikolou }, {quoted:m})
 		break
 	case 'r13':    
 		const opikolo =[
@@ -7531,7 +7531,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'الشعلة' }, type: 1},
 			{buttonId: `r14`, buttonText: {displayText: 'النسر ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbopikolo, image: bufferopikolo, caption: ''+ xeondopikolo }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbopikolo, image: bufferopikolo, caption: ''+ xeondopikolo }, {quoted:m})
 		break
 	case 'r14':    
 		const opik =[
@@ -7548,7 +7548,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: '60 سن' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: '20 سن' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbopik, image: bufferopik, caption: ''+ xeondopik }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbopik, image: bufferopik, caption: ''+ xeondopik }, {quoted:m})
 		break
 	case 'r15':    
 		const opopikik =[
@@ -7565,7 +7565,7 @@ break
 			{buttonId: `r16`, buttonText: {displayText: '3 قلوب ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: '5 قلوب' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbopopikik, image: bufferopopikik, caption: ''+ xeondopopikik }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbopopikik, image: bufferopopikik, caption: ''+ xeondopopikik }, {quoted:m})
 		break
 	case 'r16':    
 		const ddaswkkkkk =[
@@ -7582,7 +7582,7 @@ break
 			{buttonId: `r17`, buttonText: {displayText: 'مصر ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'فرنسا' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbddaswkkkkk, image: bufferddaswkkkkk, caption: ''+ xeondddaswkkkkk }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbddaswkkkkk, image: bufferddaswkkkkk, caption: ''+ xeondddaswkkkkk }, {quoted:m})
 		break
 	case 'r17':    
 		const ddaswkk =[
@@ -7599,7 +7599,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'الفرنسية' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'الانجليزية' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbddaswkk, image: bufferddaswkk, caption: ''+ xeondddaswkk }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbddaswkk, image: bufferddaswkk, caption: ''+ xeondddaswkk }, {quoted:m})
 		break
 	case 'r18':    
 		const fgfeferftt =[
@@ -7616,7 +7616,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'الهندي ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'الاطلنطي' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbfgfeferftt, image: bufferfgfeferftt, caption: ''+ xeondfgfeferftt }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbfgfeferftt, image: bufferfgfeferftt, caption: ''+ xeondfgfeferftt }, {quoted:m})
 		break
 	case 'r19':    
 		const fgfrftt =[
@@ -7633,7 +7633,7 @@ break
 			{buttonId: `r20`, buttonText: {displayText: 'القوة  ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'الغرور ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbfgfrftt, image: bufferfgfrftt, caption: ''+ xeondfgfrftt }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbfgfrftt, image: bufferfgfrftt, caption: ''+ xeondfgfrftt }, {quoted:m})
 		break
 	case 'r20':    
 		const efefevvvvcxx =[
@@ -7650,7 +7650,7 @@ break
 			{buttonId: `r21`, buttonText: {displayText: '6 لترات  ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: '4 لترات' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbefefevvvvcxx, image: bufferefefevvvvcxx, caption: ''+ xeondefefevvvvcxx }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbefefevvvvcxx, image: bufferefefevvvvcxx, caption: ''+ xeondefefevvvvcxx }, {quoted:m})
 		break
 	case 'r21':    
 		const efefevcxx =[
@@ -7667,7 +7667,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'اليمن  ' }, type: 1},
 			{buttonId: `r22`, buttonText: {displayText: 'عمان ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbefefevcxx, image: bufferefefevcxx, caption: ''+ xeondefefevcxx }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbefefevcxx, image: bufferefefevcxx, caption: ''+ xeondefefevcxx }, {quoted:m})
 		break
 	case 'r22':    
 		const xxxsasa =[
@@ -7682,7 +7682,7 @@ break
 		let bbxxxsasa = [
 			{buttonId: `r23`, buttonText: {displayText: 'انتقل إلي المستوي الأخير ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbxxxsasa, image: bufferxxxsasa, caption: ''+ xeondxxxsasa }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbxxxsasa, image: bufferxxxsasa, caption: ''+ xeondxxxsasa }, {quoted:m})
 		break
 	case 'r23':    
 		const xxssxsasa =[
@@ -7699,7 +7699,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'العمران  ' }, type: 1},
 			{buttonId: `r24`, buttonText: {displayText: 'طه  ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbxxssxsasa, image: bufferxxssxsasa, caption: ''+ xeondxxssxsasa }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbxxssxsasa, image: bufferxxssxsasa, caption: ''+ xeondxxssxsasa }, {quoted:m})
 		break
 	case 'r24':    
 		const aqqqqxds =[
@@ -7716,7 +7716,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'ماليزيا  ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'السودان ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbaqqqqxds, image: bufferaqqqqxds, caption: ''+ xeondaqqqqxds }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbaqqqqxds, image: bufferaqqqqxds, caption: ''+ xeondaqqqqxds }, {quoted:m})
 		break
 	case 'r25':    
 		const awwqqxds =[
@@ -7733,7 +7733,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'الاموال ' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'الورق ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbawwqqxds, image: bufferawwqqxds, caption: ''+ xeondawwqqxds }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbawwqqxds, image: bufferawwqqxds, caption: ''+ xeondawwqqxds }, {quoted:m})
 		break
 	case 'r26':    
 		const wwqewq =[
@@ -7750,7 +7750,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: '110 غرفة' }, type: 1},
 			{buttonId: `r27`, buttonText: {displayText: '143 غرفة ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbwwqewq, image: bufferwwqewq, caption: ''+ xeondwwqewq }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbwwqewq, image: bufferwwqewq, caption: ''+ xeondwwqewq }, {quoted:m})
 		break
 	case 'r27':    
 		const dwwxccbnm =[
@@ -7767,7 +7767,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'الدب' }, type: 1},
 			{buttonId: `r28`, buttonText: {displayText: 'حصان البحر  ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbdwwxccbnm, image: bufferdwwxccbnm, caption: ''+ xeonddwwxccbnm }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbdwwxccbnm, image: bufferdwwxccbnm, caption: ''+ xeonddwwxccbnm }, {quoted:m})
 		break
 	case 'r28':    
 		const dwwaaaaxccbnm =[
@@ -7784,7 +7784,7 @@ break
 			{buttonId: `r29`, buttonText: {displayText: '22 عام' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: '33 عام ' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbdwwaaaaxccbnm, image: bufferdwwaaaaxccbnm, caption: ''+ xeonddwwaaaaxccbnm }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbdwwaaaaxccbnm, image: bufferdwwaaaaxccbnm, caption: ''+ xeonddwwaaaaxccbnm }, {quoted:m})
 		break
 	case 'r29':    
 		const cvbnmmmmmm =[
@@ -7801,7 +7801,7 @@ break
 			{buttonId: `r30`, buttonText: {displayText: 'المصريين القدماء' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'اليونانيين' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbcvbnmmmmmm, image: buffercvbnmmmmmm, caption: ''+ xeondcvbnmmmmmm }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbcvbnmmmmmm, image: buffercvbnmmmmmm, caption: ''+ xeondcvbnmmmmmm }, {quoted:m})
 		break	
 	case 'r30':    
 		const mnbnbnnn =[
@@ -7818,7 +7818,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'السمك' }, type: 1},
 			{buttonId: `r31`, buttonText: {displayText: 'الثعبان' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbmnbnbnnn, image: buffermnbnbnnn, caption: ''+ xeondmnbnbnnn }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbmnbnbnnn, image: buffermnbnbnnn, caption: ''+ xeondmnbnbnnn }, {quoted:m})
 		break
 
 	case 'r31':    
@@ -7836,7 +7836,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: '406' }, type: 1},
 			{buttonId: `r32`, buttonText: {displayText: '706' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbnnnnbvcc, image: buffernnnnbvcc, caption: ''+ xeondnnnnbvcc }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbnnnnbvcc, image: buffernnnnbvcc, caption: ''+ xeondnnnnbvcc }, {quoted:m})
 		break
 	case 'r32':    
 		const ccxcxc =[
@@ -7853,7 +7853,7 @@ break
 			{buttonId: `wwwq`, buttonText: {displayText: 'السلحفاه' }, type: 1},
 			{buttonId: `wwwq`, buttonText: {displayText: 'السحليه' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbccxcxc, image: bufferccxcxc, caption: ''+ xeondccxcxc }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbccxcxc, image: bufferccxcxc, caption: ''+ xeondccxcxc }, {quoted:m})
 		break
 	case 'r33':    
 		const qazqaqzzz =[
@@ -7869,7 +7869,7 @@ break
 			{buttonId: `aginna`, buttonText: {displayText: 'إعادة اللعبة' }, type: 1},
 			{buttonId: `owner`, buttonText: {displayText: 'المطور 😍❤️' }, type: 1}
 			] 
-		ZimBotInc.sendMessage(from, { buttons: bbqazqaqzzz, image: bufferqazqaqzzz, caption: ''+ xeondqazqaqzzz }, {quoted:m})
+		BakarBotInc.sendMessage(from, { buttons: bbqazqaqzzz, image: bufferqazqaqzzz, caption: ''+ xeondqazqaqzzz }, {quoted:m})
 		break
 
 		
@@ -7896,7 +7896,7 @@ latensie = speed() - timestampe
 └───────────●
 `
 const aliveer = fs.readFileSync('./Zimbot/alive.mp3')
-ZimBotInc.sendMessage(m.chat, { audio: aliveer, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
+BakarBotInc.sendMessage(m.chat, { audio: aliveer, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
 let buttoni = [
         {buttonId: `sc`, buttonText: {displayText: 'SOURCE CODE'}, type: 1},
         {buttonId: `owner`, buttonText: {displayText: 'OWNER'}, type: 1},
@@ -7922,13 +7922,13 @@ let buttoni = [
         sourceUrl: `https://youtu.be/KNu-gr2h7bo`,
         }}
         }
-        ZimBotInc.sendMessage(m.chat, buttonMessage)
+        BakarBotInc.sendMessage(m.chat, buttonMessage)
       
     }
 break
   case 'bug': case 'report': {
   if(!text) throw `Enter The Bug Example\n\n${command} Menu Error `
-  ZimBotInc.sendMessage(`447441437150@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
+  BakarBotInc.sendMessage(`447441437150@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
 Report Message: ${text}` })
 reply(`*Successfully reported to the owner\n\nPlease make sure the bug is valid, if you play with this, use this feature again and again for no reason, you will be banned for using zim bot*`)
   }
@@ -7953,7 +7953,7 @@ case 'listmenu':
   }
   sections.push(list)   
   }
-  const sendm =  ZimBotInc.sendMessage(
+  const sendm =  BakarBotInc.sendMessage(
   m.chat, 
   {
   text: `
@@ -7985,7 +7985,7 @@ case 'listmenu':
   }, { quoted : m })
   break
   case 'allmenu': case 'zimbotmenu': {
-ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
 let datane = fs.readFileSync('./lib/random.js')
 jsonData = JSON.parse(datane)
 randIndex = Math.floor(Math.random() * jsonData.length)
@@ -8478,7 +8478,7 @@ anu = `
 			}
 break
 case 'ownermenu': {
-ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
 buffer = await getBuffer(picak+'OWNER MENU')
 ram3 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 anu = `
@@ -8520,7 +8520,7 @@ anu = `
 ┊🪨grouponly
 └───〔 *_ᴢɪᴍ ʙᴏᴛ ɪɴᴄ_* 〕
 `
-let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 
  var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
@@ -8532,7 +8532,7 @@ let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer 
 			
 break
 case 'databasemenu': {
-ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
 buffer = await getBuffer(picak+'DATABASE MENU')
 ram4 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 anu = `
@@ -8560,7 +8560,7 @@ anu = `
  
     *_©ᴢɪᴍ ʙᴏᴛ ɪɴᴄ_*
 `
-let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
  var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -8570,7 +8570,7 @@ let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer 
 			}
 break
 case 'photooxymenu': {
-  ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+  BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
   buffer = await getBuffer(picak+'PHOTOOXY MENU')
   ram5 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
   anu = `
@@ -8614,7 +8614,7 @@ case 'photooxymenu': {
 ┊🪨underwaterocean -text-
 └───〔 *_ᴢɪᴍ ʙᴏᴛ ɪɴᴄ_* 〕
   `
-  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
   var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -8624,7 +8624,7 @@ case 'photooxymenu': {
 			}
 break
 case 'groupmenu': {
-ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
 buffer = await getBuffer(picak+'GROUP MENU')
 ram0 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 anu = `
@@ -8685,7 +8685,7 @@ anu = `
 ┊🪨editinfo -admin-
 └───〔 *_ᴢɪᴍ ʙᴏᴛ ɪɴᴄ_* 〕
 `
-let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -8695,7 +8695,7 @@ var buttonReplyy = [
 			}
 break
 case 'textpromenu': {
-ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
 ram11 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 anu = `
 ┌───〔 *_ᴢɪᴍ ʙᴏᴛ ᴠ5_* 〕
@@ -8771,7 +8771,7 @@ anu = `
 `
 const textpromenus = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'TEXTPROMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -8786,9 +8786,9 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
-let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 var textpromenui = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -8798,7 +8798,7 @@ var textpromenui = [
 			}
 break
 case 'downloadmenu': {
-ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
 ram22 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 anu =`
 ┌───〔 *_ᴢɪᴍ ʙᴏᴛ ᴠ5_* 〕
@@ -8865,7 +8865,7 @@ anu =`
 `
 const donlod = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'DOWNLOADMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -8880,7 +8880,7 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
 
 var downloadmenui = [
@@ -8892,7 +8892,7 @@ var downloadmenui = [
 			}
 break
 case 'photofiltermenu':{
-ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
 ram30 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 anu =`
 ┌───〔 *_ᴢɪᴍ ʙᴏᴛ ᴠ5_* 〕
@@ -8951,7 +8951,7 @@ anu =`
 `
 const photofilter2 = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'PHOTOFILTERMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -8966,9 +8966,9 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
-let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -8978,7 +8978,7 @@ var buttonReplyy = [
 			}
 break
 case 'nsfwmenu':{
-  ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+  BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
   buffer = await getBuffer(picak+'NSFW MENU')
   ram35 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
   anu =`
@@ -9020,7 +9020,7 @@ case 'nsfwmenu':{
   `
 const nsfmenu = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'NSFMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -9035,9 +9035,9 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
-let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -9047,7 +9047,7 @@ var buttonReplyy = [
 			}
 break
 case 'animemenu':{
-  ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+  BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
   ram40 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
   buffer = await getBuffer(picak+'ANIME MENU')
   anu =`
@@ -9110,7 +9110,7 @@ case 'animemenu':{
   `
 const animemenu1 = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'ANIMEMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -9125,9 +9125,9 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
                   };
-  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
   var buttonReplyy = [
           { urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
           { urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -9137,7 +9137,7 @@ const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
         }
 break
 case 'convertmenu': {
-  ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+  BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
   ram70 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
   buffer = await getBuffer(picak+'CONVERT MENU')
   anu =`
@@ -9178,7 +9178,7 @@ case 'convertmenu': {
    `
   const convertmenu1 = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'CONVERTMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -9193,9 +9193,9 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
-  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -9205,7 +9205,7 @@ var buttonReplyy = [
 			}
 break
 case 'toolmenu': {
-  ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+  BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
   buffer = await getBuffer(picak+'TOOL MENU')
   ram90 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
   anu =`
@@ -9242,7 +9242,7 @@ case 'toolmenu': {
   `
 const toolmenu1 = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'TOOLMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -9257,9 +9257,9 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
-  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -9269,7 +9269,7 @@ var buttonReplyy = [
 			}
 break
 case 'searchmenu':{
-  ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+  BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
   buffer = await getBuffer(picak+'SEARCH MENU')
   ram200 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
   anu =`
@@ -9318,7 +9318,7 @@ case 'searchmenu':{
   `
   const searchmenu11 = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'SEARCHMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -9333,9 +9333,9 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
-  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+  let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -9345,7 +9345,7 @@ var buttonReplyy = [
 			}
 break
 case 'ephotomenu': {
-ZimBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
+BakarBotInc.sendMessage(m.chat, { react: { text: `${global.reactmoji}`, key: m.key }})
 buffer = await getBuffer(picak+'EPHOTO MENU')
 ram250 = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
 anu =`
@@ -9378,7 +9378,7 @@ anu =`
 `
 const ephotomenu11 = async (remoteJid, text, footer, content) => {
 bufu = await getBuffer(picak+'EPHOTMENU')
-let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: bufu, jpegThumbnail:bufu }, { upload: BakarBotInc.waUploadToServer })
 const templateMessage = {
 viewOnceMessage: {
 message: { 
@@ -9393,9 +9393,9 @@ hydratedButtons: content,
 },
 },
 };
-const sendMsg = await ZimBotInc.relayMessage(remoteJid, templateMessage, {});
+const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
                   };
-let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: ZimBotInc.waUploadToServer })
+let message = await prepareWAMessageMedia({ image: buffer, jpegThumbnail:buffer }, { upload: BakarBotInc.waUploadToServer })
 var buttonReplyy = [
 				{ urlButton: { displayText: `OWNER🍏`, url : `https://wa.me/447441437150` } },
 				{ urlButton: { displayText: `SOURCECODE🥦`, url: `https://youtube.com/@zim-bot` } },
@@ -9470,15 +9470,15 @@ m.copyNForward(other, true, m.quoted && m.quoted.fromMe ? {
    if (m.key.fromMe) return reply(zimbotv3)
    if (isCreator) return reply(zimbotv3)
    kice = m.sender
-   await ZimBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
-   ZimBotInc.sendMessage(from, {text:`*▊▊▊ANTIBAD WORDS▊▊▊*\n\n@${kice.split("@")[0]} *was kicked because of being rude to others in this group*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})}
+   await BakarBotInc.groupParticipantsUpdate(m.chat, [kice], 'remove')
+   BakarBotInc.sendMessage(from, {text:`*▊▊▊ANTIBAD WORDS▊▊▊*\n\n@${kice.split("@")[0]} *was kicked because of being rude to others in this group*`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})}
    }
 if (isCmd && budy.toLowerCase() != undefined) {
     if (m.chat.endsWith('broadcast')) return
     if (m.isBaileys) return
     let msgs = global.db.database
     if (!(budy.toLowerCase() in msgs)) return
-    ZimBotInc.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
+    BakarBotInc.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
 }
 
 
