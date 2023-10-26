@@ -23,6 +23,7 @@ global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.
 const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
 const { say } =  require('cfonts')
 const { color } = require('./lib/color')
+const moment = require('moment-timezone')
 say('BAKAR  BOT\nV4', {
     font: '3d',
     colors: ["blue",'red',"blue"],
@@ -176,73 +177,79 @@ async function startZimBotInc() {
          
                 
                 if (db.chats[m.chat].isWelcome) {
-                if (anu.action == 'add') {
-                var buffer = await getBuffer(ppuser)
-                var wangu = await getBuffer(picak+'WELCOME CHOMIE')
-                let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: buffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-                he = `Welcome To ${metadata.subject} @${num.split("@")[0]}\n\n${metadata.desc}`
-                
-let buttons = [
-{buttonId: `halo`, buttonText: {displayText: 'WELCOME'}, type: 1}
 
+               memb = metadata.participants.length
+XeonWlcm = await getBuffer(ppuser)
+XeonLft = await getBuffer(ppuser)
+                if (anu.action == 'add') {
+                const xeonbuffer = await getBuffer(ppuser)
+                let xeonName = num
+                const xtime = moment.tz('Africa/Cairo').format('HH:mm:ss')
+	            const xdate = moment.tz('Africa/Cairo').format('DD/MM/YYYY')
+	            const xmembers = metadata.participants.length
+                let unicorndoc = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "916909137213-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: XeonWlcm, surface: 200, message: `${metadata.subject}`, orderTitle: 'xeon', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+                xeonbody = `👋🏻╖ نورت جروبنا 🤍
+😊╢ ❬  @${xeonName.split("@")[0]} ❭ 
+💟╢ فى روم ${metadata.subject}
+🚫╢ ممنوع الالفاظ والبرايفت واللينكات ⚠️
+🤗╢ غير كدة كلنا اخوات واصحاب ❤️‍🩹
+👥╢ عدد الاعضاء الان ❬ ${xmembers} ❭
+🕐╢ وقت دخولك ❬ ${xtime} ❭
+🗓╜ تاريخ دخولك ❬ ${xdate} ❭`
+let buttons = [
+{buttonId: `sound162`, buttonText: {displayText: '• نورت جروبنا 🤗'}, type: 1}
 ]
 let buttonMessage = {
-document: fs.readFileSync('./lib/tes.xlsx'),
-mimetype: feler,
-jpegThumbnail:buffer,
+video: fs.readFileSync('./Bakarbot/botbakar.mp4'), gifPlayback: true,
+jpegThumbnail:XeonWlcm,
 mentions: [num],
-fileName: `WELCOME TO ${metadata.subject}`,
-fileLength: 99999999999999,
-caption: he,
-footer: `©ZIM BOT INC 2022`,
-buttons: buttons,
+caption: xeonbody,
+footer: `wew`,
+
 headerType: 4,
-contextInfo: { externalAdReply:{
-title:"ZIM BOT V4",
-body:"SUB DRIPS OFC",
-showAdAttribution: true,
+contextInfo:{externalAdReply:{
+title: `${metadata.subject}`,
+body: `نورتنا`,
 mediaType:2,
-thumbnail:wangu,
-mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
-sourceUrl: `https://youtu.be/KNu-gr2h7bo`,
+thumbnail: XeonWlcm,
 }}
 }
-const driphunny = fs.readFileSync('./Zimbot/welcome.mp3')
-BakarBotInc.sendMessage(anu.id, { audio: driphunny, mimetype: 'audio/mp4', ptt: true})
 BakarBotInc.sendMessage(anu.id, buttonMessage)
                 } else if (anu.action == 'remove') {
-                    var buffer = await getBuffer(ppuser)
-                    var mhatadzenyu = await getBuffer(picak+'BYE CHOMIE')
-                    let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: buffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-                    he = `He/She is gone bro ${metadata.subject} @${num.split("@")[0]}\n\n${metadata.desc}`
-                    
+                	const xeonbuffer = await getBuffer(ppuser)
+                    const xeontime = moment.tz('Africa/Cairo').format('HH:mm:ss')
+	                const xeondate = moment.tz('Africa/Cairo').format('DD/MM/YYYY')
+                	let xeonName = num
+                    const xeonmembers = metadata.participants.length
+                    let unicorndoc = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "916909137213-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: xeonbuffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'xeon', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+                    xeonbody = `🙄╖ ليه غادرت جروبنا 🥹😞
+😒╢ ❬ @${xeonName.split("@")[0]} ❭ 
+💟╢ حد يكون فى روم ${metadata.subject}
+🤗╢  ده ويخرج ده حتى كلنا اخوات واصحاب 🥺❤️
+🦶🏻╢ يلا بالسلامات 😂💗
+👥╢ عدد الاعضاء الان ❬ ${xeonmembers} ❭
+🕐╢ وقت خروجك ❬ ${xeontime} ❭
+🗓╜ تاريخ خروجك ❬ ${xeondate} ❭`
 let buttons = [
-{buttonId: `halo`, buttonText: {displayText: 'BYE'}, type: 1}
+{buttonId: `sound163`, buttonText: {displayText: '• ليه غادرت جروبنا 😞'}, type: 1}
 ]
 let buttonMessage = {
-document: fs.readFileSync('./lib/tes.xlsx'),
-mimetype: feler,
-jpegThumbnail:buffer,
+video: fs.readFileSync('./Bakarbot/botbakar.mp4'), gifPlayback: true,   
+jpegThumbnail:XeonLft,
 mentions: [num],
-fileName: `HE/SHE IS GONE BRO ${metadata.subject}`,
-fileLength: 99999999999999,
-caption: he,
-footer: `©ZIM BOT INC 2022`,
-buttons: buttons,
+caption: xeonbody,
+footer: `sd`,
+
 headerType: 4,
-contextInfo: { externalAdReply:{
-title:"ZIM BOT V4",
-body:"SUB DRIPS OFC",
-showAdAttribution: true,
+contextInfo:{externalAdReply:{
+title: `${metadata.subject}`,
+body: `مع السلامة`,
 mediaType:2,
-thumbnail: mhatadzenyu,
-mediaUrl:`https://youtu.be/KNu-gr2h7bo`, 
-sourceUrl: `https://youtu.be/KNu-gr2h7bo`,
+thumbnail: XeonLft,
 }}
 }
-const dripbabe = fs.readFileSync('./Zimbot/leave.mp3')
-BakarBotInc.sendMessage(anu.id, { audio: dripbabe, mimetype: 'audio/mp4', ptt: true})
 BakarBotInc.sendMessage(anu.id, buttonMessage)
+        
     
                 }
             }
