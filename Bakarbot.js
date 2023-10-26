@@ -58,6 +58,49 @@ const { isLimit, limitAdd, getLimit, giveLimit, addBalance, kurangBalance, getBa
 
 //xp and leveling database⧈⧈⧈⧈
 
+/// loading 
+
+
+async function loading () {
+  var lidoload = [
+  "《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
+  "《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
+  "《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
+  "《 ██▒▒▒▒▒▒▒▒▒▒》20%",
+  "《 ██▒▒▒▒▒▒▒▒▒▒》20%",
+  "《 ██▒▒▒▒▒▒▒▒▒▒》20%",
+  "《 ███▒▒▒▒▒▒▒▒▒》30%",
+  "《 ███▒▒▒▒▒▒▒▒▒》30%",
+  "《 ███▒▒▒▒▒▒▒▒▒》30%",
+  "《 ████▒▒▒▒▒▒▒▒》40%",
+  "《 ████▒▒▒▒▒▒▒▒》40%",
+  "《 ████▒▒▒▒▒▒▒▒》40%",
+  "《 ██████▒▒▒▒▒▒》50%",
+  "《 ██████▒▒▒▒▒▒》50%",
+  "《 ██████▒▒▒▒▒▒》50%",
+  "《 ████████▒▒▒▒》60%",
+  "《 ████████▒▒▒▒》60%",
+  "《 ████████▒▒▒▒》60%",
+  "《 █████████▒▒▒》70%",
+  "《 █████████▒▒▒》70%",
+  "《 █████████▒▒▒》70%",
+  "《 ██████████▒▒》80%",
+  "《 ██████████▒▒》80%",
+  "《 ██████████▒▒》80%",
+  "《 ███████████▒》90%",
+  "《 ███████████▒》90%",
+  "《 ███████████▒》90%",
+  "《 ████████████》100%",
+  "《 ████████████》100%",
+  "《 ████████████》100%",
+  "تم التحميل..."
+  ]
+  let { key } = await BakarBotInc.sendMessage(from, {text: '[جاري تحميل]...'})
+  
+  for (let i = 0; i < lidoload.length; i++) {
+  await BakarBotInc.sendMessage(from, {text: xeonlod[i], edit: key });
+  }
+  }
 //message type
 /* let drips = fs.readFileSync('./Bakarbot/drips.jpg') 
 */
@@ -6440,6 +6483,7 @@ case 'بحث3': {
 
 case 'زوجني': case 'جوزني': {
   if (!m.isGroup) throw mess.group
+  BakarBotInc.sendMessage(from, { react: { text: "🌝", key: m.key } });
   let member = participants.map(u => u.id)
   let me = m.sender
   let jodoh = member[Math.floor(Math.random() * member.length)]
@@ -6450,17 +6494,9 @@ case 'زوجني': case 'جوزني': {
   let buttons = [
  { buttonId: '❤️', buttonText: { displayText: '❤️' }, type: 1 }
    ]
-   await BakarBotInc.sendButtonText(m.chat, mrlido7x, botname, m, {mentions: ments})
+   BakarBotInc.sendMessage(m.chat, { text: mrlido7x, mentions: ments }, { quoted: m });
   }
-  break
-
-
-
-
-
-
-
-
+  break;
 
 
 
@@ -6888,23 +6924,39 @@ case 'ss':
 
 
 
+ case 'تفعيل-الاذان':     
+ if (!isCreator) throw ("ــــــــــــــــــــــــــــــــــــــــــــ\n◍ › مرحبا صديقي لتفعيل الاذان في جروبك كلم المطور ليدو  ⬇️\n\n◍ › 201028453763\nــــــــــــــــــــــــــــــــــــــــــــ")          
+ if (!m.isGroup) throw mess.group
+ let liodooo = [`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`]
+let Azanapi = liodooo[Math.floor(Math.random() * liodooo.length)]
+lidoo_dev = await getBuffer(`https://github.com/b3390812/Azan-API/raw/master/Azan/${Azanapi}.mp3`)
+await BakarBotInc.sendMessage(m.chat, {text:"تم تفعيل الاذان"})
+await sleep(60)
+await BakarBotInc.sendMessage(m.chat, {text:"  test 1"})
+await sleep(60)
+await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
+await sleep(60)
+await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
 
+await sleep(60)
+await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
 
-   case 'سشش':               
-   if (!m.isGroup) return m.reply(mess.group)
- await BakarBotInc.sendMessage(m.chat, {text:"تم تفعيل الاذان"})
- await sleep(60000)
- await BakarBotInc.sendMessage(m.chat, {text:"  ققب "})
- await sleep(60)
- await BakarBotInc.sendMessage(m.chat, { audio: fs.readFileSync('./Bakarbot/bot.mp3'), mimetype: 'audio/ogg', ptt: true }, { quoted: m })
- await sleep(120000)
- await BakarBotInc.sendMessage(m.chat, {text:" بق بق  قب"})
- await sleep(180000)
- await BakarBotInc.sendMessage(m.chat, {text:"بثب"})
- await sleep(30)
- reply(mess.success)
- break
+await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
+await sleep(120000)
+await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
 
+await BakarBotInc.sendMessage(m.chat, {text:"2"})
+await sleep(180000)
+await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
+
+await BakarBotInc.sendMessage(m.chat, {text:"3"})
+await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
+
+await sleep(30)
+await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
+
+reply("d")
+break
 
 
 
@@ -6937,6 +6989,36 @@ case 'ss': case 'ssweb': {
 
 // < ================================================== >
 
+case 'ليدو': case 'وليد_محمد': case 'وليد': case 'وليد_محمد': case 'lido': case 'lido7x': case 'ledo': case 'waleed': {
+  lidoo = `*ــــــــــــــــــــــــــــــــــــــــــــ*\n*◍ › عــايز اي مــن مــطــوري 🙄🙂*\n◍ › ɪɴғᴏʀᴍᴀᴛɪᴏɴѕ ᴅᴇᴠᴇʟᴏᴘᴇʀ ʟɪᴅᴏ ♡\n◍ › ɴᴀᴍᴇ : ᴡᴀʟᴇᴇᴅ ᴍᴏʜᴀᴍᴇᴅ (ʟɪᴅᴏᴏ)\n◍ › ᴀɢᴇ : 20\n◍ › ʙɪᴏ : "-Try ßut Đon't Cry-" \n◍ › ʟᴀɢ : ᴘʏᴛʜᴏɴ, ʟᴜᴀ, ᴘʜᴘ, ʜᴛᴍʟ, ᴊᴀᴠᴀsᴄʀɪᴘᴛ\n◍ › ғʀᴏᴍ : ᴇɢʏᴘᴛ, sᴏʜᴀɢ\n◍ › ɴụᴍ : ( @201028453763 - @201554496598 )\n◍ › ᴛᴇʟᴇ : @J0KER7x\n◍ › ɪɴѕᴛᴀ : @Lido7x\n◍ › ғᴀᴄᴇʙᴏᴏᴋ  : @Lido7x\n\n*ــــــــــــــــــــــــــــــــــــــــــــ*\n `
+let buttonMessage = {
+image: {url: `https://telegra.ph/file/cfefbedaad69afde40a4d.jpg`},
+jpegThumbnail: {url: `https://telegra.ph/file/cfefbedaad69afde40a4d.jpg`},
+caption : lidoo,
+footer  : `bakar `,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"اضغط هنا لتواصل مع مطور ليدو ",
+body: "اضغط هنا", 
+thumbnail: fs.readFileSync("Zimbot/botbakar.png"),
+mediaType:1,
+  mediaUrl: 'https://wa.me/201028453763?text=*اهلا+بك+في+شات+التواصل+مع+المطور+ليدو+اترك+رسالتك+حتي+يتم+الرد+عليك*',
+sourceUrl: "https://wa.me/201028453763?text=*اهلا+بك+في+شات+التواصل+مع+المطور+ليدو+اترك+رسالتك+حتي+يتم+الرد+عليك*"
+}}
+}
+BakarBotInc.sendMessage(from, { react: { text: `👨🏻‍💻`, key: m.key }}) 
+BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+}
+      break
+
+case 'جلب-الامر':	
+      if (m.sender !='201028453763@s.whatsapp.net') {return;}
+      BakarBotInc.sendMessage(from, { react: { text: "🫡" , key: m.key }})
+      const getCase = (cases) => {
+      return "case"+`'${cases}'`+fs.readFileSync("Bakarbot.js").toString().split('case \''+cases+'\'')[1].split("break;")[0]+"break;"
+      }
+      replay(`${getCase(q)}`)
+      break;
 
 case 'بان': {
   if (isBan) return m.reply(mess.banned)	 			
