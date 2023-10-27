@@ -5475,7 +5475,7 @@ case 'رابط_جروب': case 'لينك_جروب': case 'الرابط': case '�
 }
   break
 
-case 'تعيين_رابط': case 'تعيين': {
+case 'تعيين-رابط': case 'تعيين': {
     if (!m.isGroup) return m.reply(mess.group)
     if (!isBotAdmins) return m.reply(mess.botAdmin)
     if (!isAdmins && !isCreator) return m.reply(mess.admin)
@@ -5506,11 +5506,48 @@ case 'تاك_لكل': case 'all': case 'تاك': {
      }
      break      
 
+     		
+     case 'دعوة': case 'دعوه': {
+      if (isBan) return m.reply(mess.banned)	 			
+      if (isBanChat) return m.reply(mess.bangc)
+      if (!m.isGroup) throw mess.group
+      if (!isBotAdmins) throw mess.botAdmin
+      if (!isAdmins && !isCreator) throw mess.admin
+            BakarBotInc.sendMessage(from, { react: { text: "🫡", key: m.key } })
+            if (!text) return m.reply(`Enter the number you want to invite to the group...\n\nExample :\n*${prefix + command}* 916297175943`)
+            if (text.includes('+')) return m.reply(`◍ › أكتب الرقم بدون *+*`)
+            if (isNaN(text)) return m.reply(`◍ › اكتب الارقام بدون مسافات مع كود الدولة بدون *+*`)
+            let group = m.chat
+            let link = 'https://chat.whatsapp.com/' + await BakarBotInc.groupInviteCode(group)
+            await BakarBotInc.sendMessage(text + '@s.whatsapp.net', { text: `◍ › مرحبا يا صديقي , انا بوت بكار  🐼\n\nتم ارسال هذه الدعوة ليك من الادمن جروب هذا ⬇️\n\n${link}`, mentions: [m.sender] })
+            m.reply(`◍ › تم ارسال الدعوة بنجاح √`)
+          }
+            break;
+
+
+            
+case'الادمنية': case'الادمن': case 'الادمنيه': {
+  if (isBan) return reply(mess.banned)	 			
+  if (isBanChat) return reply(mess.bangc)
+  if (!m.isGroup) return replay(mess.grouponly) 
+  BakarBotInc.sendMessage(from, { react: { text: "🗿" , key: m.key }})
+  if (!text) return replay(`*Please quote or write a meaningful message to tag admins to*`)
+  let teks = `*「 Tag Admins 」*
+  
+  *Message : ${text}*\n\n`
+  for (let mem of groupAdmins) {
+  teks += `🍁 @${mem.split('@')[0]}\n`
+  }
+  BakarBotInc.sendMessage(m.chat, { text: teks, mentions: groupAdmins}, { quoted: m })
+  }
+  break		
+
      case 'ادمن': case 'مشرف': {
 			if (!m.isGroup) throw mess.group
 					if (!isBotAdmins) throw mess.botAdmin
 					if (!isAdmins && !isCreator) throw mess.admin
 			let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+      if (users.length == 0) return reply(`Please write the number of the person you want to add to thhis group`)
 			await BakarBotInc.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(`◍ تم رفع العضو  ادمن بنجاح √`)).catch((err) => m.reply(`◍ لم يتم الرفع عدم تحديد العضو \n◍ يرجي استخدام : ${prefix + command} @201028453763`))
 		}
 		break
@@ -5580,9 +5617,9 @@ case 'زخرفه': case 'زخرفة': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins && !isCreator) throw mess.admin
-                if (args[0] === 'تفعيل') {
+                if (args[0] === 'فتح') {
                await BakarBotInc.sendMessage(m.chat, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL }).then((res) => m.reply(`◍ تم تشغيل الاختفاء بنجاح √`)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'تعطيل') {
+                } else if (args[0] === 'قفل') {
                await BakarBotInc.sendMessage(m.chat, { disappearingMessagesInChat: false }).then((res) => m.reply(`◍ تم ايقاف الاختفاء بنجاح √`)).catch((err) => reply(`◍ √`))
                 } else {
                let buttons = [
