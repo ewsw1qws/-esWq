@@ -105,28 +105,31 @@ async function loading () {
 /* let drips = fs.readFileSync('./Bakarbot/drips.jpg') 
 */
 
-        //TIME
-        const xtime = moment.tz('Africa/Cairo').format('HH:mm:ss')
-        const xdate = moment.tz('Africa/Cairo').format('DD/MM/YYYY')
-        const time2 = moment().tz('Africa/Cairo').format('HH:mm:ss')  
-         if(time2 < "23:59:00"){
-var xeonytimewisher = `Good Night 🌌`
- }
- if(time2 < "19:00:00"){
-var xeonytimewisher = `Good Evening 🌃`
- }
- if(time2 < "18:00:00"){
-var xeonytimewisher = `Good Evening 🌃`
- }
- if(time2 < "15:00:00"){
-var xeonytimewisher = `Good Afternoon 🌅`
- }
- if(time2 < "11:00:00"){
-var xeonytimewisher = `Good Morning 🌄`
- }
- if(time2 < "05:00:00"){
-var xeonytimewisher = `Good Morning 🌄`
- } 
+  	//TIME
+	const xtime = moment.tz('Africa/Cairo').format('HH:mm:ss')
+	const xdate = moment.tz('Africa/Cairo').format('DD/MM/YYYY')
+	const time2 = moment().tz('Africa/Cairo').format('HH:mm:ss')  
+	 if(time2 < "23:59:00"){
+	var LIdotime = `مساء الخير يقلبي 😍💕`
+	 }
+	 if(time2 < "19:00:00"){
+	var LIdotime = `مساء الخير يجميل🙂♥️`
+	 }
+	 if(time2 < "18:00:00"){
+	var LIdotime = `مساء الخير يروحي 🧸❤️‍🩹`
+	 }
+	 if(time2 < "15:00:00"){
+	var LIdotime = `مساؤؤ  الفل 😹🤓`
+	 }
+	 if(time2 < "11:00:00"){
+	var LIdotime = `يسعد صباحك الجميل 💝`
+	 }
+	 if(time2 < "05:00:00"){
+	var LIdotime = `صباح الخير 😊🤎`
+	 } 
+	 
+           
+           /////////////////
 
 //database
 let banUser = JSON.parse(fs.readFileSync('./database/banUser.json'))
@@ -5399,6 +5402,31 @@ break
 
 // < ================================================== >
 
+
+case 'الأوامر': case 'اوامر': case 'الاوامر': case 'بكاراوامر': case 'بكار-الاوامر': {
+  if (isBan) return reply(mess.banned);
+  if (isBanChat) return reply(mess.bangc);
+  BakarBotInc.sendMessage(from, { react: { text: "✨", key: m.key } })
+  const helpmenu = `👋🏻╖  ${LIdotime} يا ${pushname}
+  ⚙️╢ ❬ م1 ❭ اوامر حماية المجموعه ⇊
+  🥳╢ ❬ م2 ❭ اوامر التسليه ⇊
+  💫╢ ❬ م3 ❭ اوامر الاعضاء ⇊
+  👮‍♂️╢ ❬ م4 ❭ اوامر اصحاب الرتب ⇊
+  🎵╢ ❬ م5 ❭ اوامر الموسيقي ⇊
+  💎╢ ❬ م6 ❭ اوامر المطورين ⇊
+  🏦╜ ❬ م7 ❭ اوامر لعبه البنك ⇊▸`
+  let buttonMessage = {
+    video: fs.readFileSync('./Bakarbot/botbakar.mp4'), gifPlayback: true,
+    caption: helpmenu,
+
+    headerType: 4
+
+  }
+  BakarBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+}
+  break;
+  
+
 case 'الجروب': case 'grup': {
   if (isBan) return reply(mess.banned)	 			
   if (isBanChat) return reply(mess.bangc)
@@ -6924,41 +6952,6 @@ case 'ss':
 
 
 
- case 'تفعيل-الاذان':     
- if (!isCreator) throw ("ــــــــــــــــــــــــــــــــــــــــــــ\n◍ › مرحبا صديقي لتفعيل الاذان في جروبك كلم المطور ليدو  ⬇️\n\n◍ › 201028453763\nــــــــــــــــــــــــــــــــــــــــــــ")          
- if (!m.isGroup) throw mess.group
- let liodooo = [`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`,`Azan1`,`Azan2`,`Azan3`,`Azan4`,`Azan5`,`Azan6`]
-let Azanapi = liodooo[Math.floor(Math.random() * liodooo.length)]
-lidoo_dev = await getBuffer(`https://github.com/b3390812/Azan-API/raw/master/Azan/${Azanapi}.mp3`)
-await BakarBotInc.sendMessage(m.chat, {text:"تم تفعيل الاذان"})
-await sleep(60)
-await BakarBotInc.sendMessage(m.chat, {text:"  test 1"})
-await sleep(60)
-await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
-await sleep(60)
-await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
-
-await sleep(60)
-await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
-
-await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
-await sleep(120000)
-await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
-
-await BakarBotInc.sendMessage(m.chat, {text:"2"})
-await sleep(180000)
-await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
-
-await BakarBotInc.sendMessage(m.chat, {text:"3"})
-await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
-
-await sleep(30)
-await BakarBotInc.sendMessage(m.chat, { audio: lidoo_dev, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
-
-reply("d")
-break
-
-
 
  case 'قرآن': case 'قران':
   if (isBan) return m.reply(mess.banned)	 			
@@ -7000,7 +6993,7 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:"اضغط هنا لتواصل مع مطور ليدو ",
 body: "اضغط هنا", 
-thumbnail: fs.readFileSync("Zimbot/botbakar.png"),
+thumbnail: fs.readFileSync("Bakarbot/botbakar.png"),
 mediaType:1,
   mediaUrl: 'https://wa.me/201028453763?text=*اهلا+بك+في+شات+التواصل+مع+المطور+ليدو+اترك+رسالتك+حتي+يتم+الرد+عليك*',
 sourceUrl: "https://wa.me/201028453763?text=*اهلا+بك+في+شات+التواصل+مع+المطور+ليدو+اترك+رسالتك+حتي+يتم+الرد+عليك*"
