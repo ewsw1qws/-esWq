@@ -6990,27 +6990,45 @@ case 'ss':
 
 
 
- case 'قرآن': case 'قران':
-  if (isBan) return m.reply(mess.banned)	 			
-  if (isBanChat) return m.reply(mess.bangc)
-  if (!text) return m.reply(`◍ ⇜ اكتب رقم الصفحة : قران 1`)					
-quran7x = await axios.get(`https://ava-tar.online/api/qor/get?text=${text}`)
-    let lido7x = {
-     image: {url:quran7x.data.jack},
-     caption:  `◍ اليك صفحة القران الكريم `,
-    }     
-          await BakarBotInc.sendMessage(m.chat, lido7x,{ quoted:m })
+
+
+
+case 'فقيسيس': {
+  let LIDOMD = `ــــــــــــــــــــــــــــــــــــــــــــ
+سب`
+  let buttonMessage = { 
+   // image: {url:quranddx.data.jack},
+ image: { url: 'https://vihangayt.me/tools/ssweb?url=https://tinyurl.com/yuyhfqv9'}, 		
+    caption: LIDOMD,
+
+    headerType: 8,
+}
+BakarBotInc.sendMessage(m.chat, buttonMessage )
+}
 break
 
-case 'ss': case 'ssweb': {
-  if (!q) return reply(`Example ${prefix+command} link`)
-  replay(mess.wait)
-  let krt = await scp1.ssweb(q)
-  BakarBotInc.sendMessage(from,{image:krt.result,caption:mess.succes}, {quoted:m})
-  }
-  break
+    
 
+  
+      
 
+case 'قرآن': case 'قران':
+  if (isBan) return m.reply(mess.banned)	 			
+  if (isBanChat) return m.reply(mess.bangc)
+  if (!text) throw " ◍ ⇜ اكتب رقم الصفحة : قران 1"
+  try {		
+      const quran7x = axios.get(`https://ava-tar.online/api/qor/get/?text=${text}`)
+      const lido7x = await quran7x
+      const quranbakar = lido7x.data.jack
+       const codequran7x = `${quranbakar}`
+       imgquran = await getBuffer(`https://vihangayt.me/tools/ssweb?url=${codequran7x}`)
+
+       BakarBotInc.sendMessage(from, { image: imgquran, caption: ` ◍ اليك صفحة القران الكريم رقم ( ${text} ) ` }, {quoted:m})
+      } catch (e) {
+        return "◍ ⇜  حدث خطا في   Api  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763 quran "
+      }
+       break;
+   
 
 
 // < ================================================== >
