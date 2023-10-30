@@ -166,7 +166,7 @@ const AntiLinkYoutubeChannel = m.isGroup ? ntilinkytch.includes(from) : false
       ///////---------------------------
 
       async function loading () {
-        var xeonlod = [
+        var bakarlod = [
         "《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
         "《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
         "《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
@@ -201,14 +201,37 @@ const AntiLinkYoutubeChannel = m.isGroup ? ntilinkytch.includes(from) : false
         ]
         let { key } = await BakarBotInc.sendMessage(from, {text: 'ʟᴏᴀᴅɪɴɢ...'})
         
-        for (let i = 0; i < xeonlod.length; i++) {
-        await BakarBotInc.sendMessage(from, {text: xeonlod[i], edit: key });
+        for (let i = 0; i < bakarlod.length; i++) {
+        await BakarBotInc.sendMessage(from, {text: bakarlod[i], edit: key });
         }
         }
 
 
         ////////////////
 
+      ///////---------------------------
+
+      async function loadding () {
+        var xeonlod = [
+        "《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
+        "《 ██▒▒▒▒▒▒▒▒▒▒》20%",
+        "《 ███▒▒▒▒▒▒▒▒▒》30%",
+        "《 ████▒▒▒▒▒▒▒▒》40%",
+        "《 ██████▒▒▒▒▒▒》50%",
+        "《 ████████▒▒▒▒》60%",
+        "《 █████████▒▒▒》70%",
+        "《 ██████████▒▒》80%",
+        "《 ███████████▒》90%",
+        "《 ████████████》100%",
+        "《 ████████████》100%",
+        "تم التحميل..."
+        ]
+        let { key } = await BakarBotInc.sendMessage(from, {text: 'ʟᴏᴀᴅɪɴɢ...'})
+        
+        for (let i = 0; i < xeonlod.length; i++) {
+        await BakarBotInc.sendMessage(from, {text: xeonlod[i], edit: key });
+        }
+        }
 
 const runtime = function (seconds) {
 seconds = Number(seconds);
@@ -243,11 +266,11 @@ const sendMsg = await BakarBotInc.relayMessage(remoteJid, templateMessage, {});
 };
     
 const reply = (teks) => {
-  BakarBotInc.sendMessage(m.chat, {text: teks, contextInfo: {"externalAdReply": {title: "ᴢɪᴍ ʙᴏᴛ ᴠ5",mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, detectLinks: true,body: "DRIPS OFC", thumbnail: fs.readFileSync('./drips.jpg'),sourceUrl: ("https://youtu.be/KNu-gr2h7bo")}}})
+  BakarBotInc.sendMessage(m.chat, {text: teks, contextInfo: {"externalAdReply": {title: "BAKAR BOT",mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, detectLinks: true,body: "Dev Lido", thumbnail: fs.readFileSync('./Bakarbot/botbakar.png'),sourceUrl: ("https://wa.me/201028453763?text=*اهلا+بك+في+شات+التواصل+مع+المطور+ليدو+اترك+رسالتك+حتي+يتم+الرد+عليك*")}}})
 }
 const replay = (teks) => {
-  BakarBotInc.sendMessage(m.chat, {text: teks, contextInfo: {"externalAdReply": {title: "ᴢɪᴍ ʙᴏᴛ ᴠ5",mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, body: "DRIPS OFC", thumbnail: fs.readFileSync('./drips.jpg'),sourceUrl: ("https://youtu.be/KNu-gr2h7bo")}}})
-}    
+  BakarBotInc.sendMessage(m.chat, {text: teks, contextInfo: {"externalAdReply": {title: "BAKAR BOT",mediaType: 3, renderLargerThumbnail: false, showAdAttribution: true, body: "Dev Lido", thumbnail: fs.readFileSync('./Bakarbot/botbakar.png'),sourceUrl: ("https://wa.me/201028453763?text=*اهلا+بك+في+شات+التواصل+مع+المطور+ليدو+اترك+رسالتك+حتي+يتم+الرد+عليك*")}}})
+}     
  
 const tempButtons = async (remoteJid, text, footer, content) => {
   bufu = await getBuffer(picak+'OWNERMENU')
@@ -6997,17 +7020,6 @@ break
 
 
 
- case 'قرآن': case 'قران':
-  if (isBan) return m.reply(mess.banned)	 			
-  if (isBanChat) return m.reply(mess.bangc)
-  if (!text) return m.reply(`◍ ⇜ اكتب رقم الصفحة : قران 1`)					
-quran7x = await axios.get(`https://ava-tar.online/api/qor/get?text=${text}`)
-    let lido7x = {
-     image: {url:quran7x.data.jack},
-     caption:  `◍ اليك صفحة القران الكريم `,
-    }     
-          await BakarBotInc.sendMessage(m.chat, lido7x,{ quoted:m })
-break
 
 case 'ss': case 'ssweb': {
   if (!q) return reply(`Example ${prefix+command} link`)
@@ -7018,16 +7030,203 @@ case 'ss': case 'ssweb': {
   break
 
  
-  case 'aass': case 'saas':
+  case 'قرآن': case 'قران':
     if (isBan) return m.reply(mess.banned)	 			
     if (isBanChat) return m.reply(mess.bangc)
-      let lidod7x = {
-       image: `https://telegra.ph/file/cfefbedaad69afde40a4d.jpg`,
-       caption:  `◍ اليك صفحة القران الكريم `,
-      }     
-            await BakarBotInc.sendMessage(m.chat, lidod7x,{ quoted:m })
-  break
+    if (!text) throw " ◍ ⇜ اكتب رقم الصفحة : قران 1"
+    try {		
+        const quran7x = axios.get(`https://ava-tar.online/api/qor/get/?text=${text}`)
+        const lido7x = await quran7x
+        const quranbakar = lido7x.data.jack
+         const codequran7x = `${quranbakar}`
+         imgquran = await getBuffer(`https://vihangayt.me/tools/ssweb?url=${codequran7x}`)
+  
+         BakarBotInc.sendMessage(from, { image: imgquran, caption: ` ◍ اليك صفحة القران الكريم رقم ( ${text} ) ` }, {quoted:m})
+        } catch (e) {
+          return "◍ ⇜  حدث خطا في   Api  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763 quran "
+        }
+         break;
+     
 
+   /////////// Screenshot //////////////////
+
+    case 'Screenshot': case 'ssweb':  case 'اسكرين':  case 'اسكرين-ويب':
+      if (!text) return m.reply(`◍ ⇜ اكتب رقم الصفحة : قران 1`)
+      await loading()
+     bufferdsds = await getBuffer(`https://vihangayt.me/tools/ssweb?url=${text}`)
+     BakarBotInc.sendMessage(from, { image: bufferdsds, caption: 'rgrg' }, {quoted:m})
+     break;
+
+     
+
+
+
+    //////////////////////// chat gpt ///////////////////////
+
+
+    case 'chatgpt':
+      case 'شات':
+      case 'gpt': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+        if (!q) return reply(`◍  ⇜ مرحبًا! كيف يمكنني مساعدتك اليوم؟ `);
+        try {
+          const apiUrl1 = `https://vihangayt.me/tools/chatgpt?q=${encodeURIComponent(q)}`;
+
+          const response1 = await fetch(apiUrl1);
+          const responseData1 = await response1.json();
+
+          let message = "";
+
+          if (response1.status === 200 && responseData1 && responseData1.status === true && responseData1.data) {
+            message = responseData1.data;
+          } else {
+            return reply("◍ ⇜  حدث خطا في   Api  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+          }
+
+          const me = m.sender;
+          await BakarBotInc.sendMessage(m.chat, { text: message, mentions: [me] }, { quoted: m });
+
+        } catch (error) {
+          console.error(error);
+          reply("◍ ⇜  خطا An error occurred while fetching the response from the API  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+        }
+      }
+        break;
+
+
+  case 'chatgpt1':
+      case 'شات1':
+      case 'gpt1': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+
+        if (!q) return reply(`◍  ⇜ مرحبًا! كيف يمكنني مساعدتك اليوم؟ `);
+
+        try {
+          const apiUrl1 = `https://vihangayt.me/tools/chatgpt2?q=${encodeURIComponent(q)}`;
+
+          const response1 = await fetch(apiUrl1);
+          const responseData1 = await response1.json();
+
+          let message = "";
+
+          if (response1.status === 200 && responseData1 && responseData1.status === true && responseData1.data) {
+            message = responseData1.data;
+          } else {
+            return reply("◍ ⇜  حدث خطا في   Api  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+          }
+
+          const me = m.sender;
+          await BakarBotInc.sendMessage(m.chat, { text: message, mentions: [me] }, { quoted: m });
+
+        } catch (error) {
+          console.error(error);
+          reply("◍ ⇜  خطا An error occurred while fetching the response from the API  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+        }
+      }
+        break;
+
+
+  case 'chatgpt2':
+      case 'شات2':
+      case 'gpt2': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+
+        if (!q) return reply(`◍  ⇜ مرحبًا! كيف يمكنني مساعدتك اليوم؟ `);
+
+        try {
+          const apiUrl1 = `https://vihangayt.me/tools/chatgpt3?q=${encodeURIComponent(q)}`;
+
+          const response1 = await fetch(apiUrl1);
+          const responseData1 = await response1.json();
+
+          let message = "";
+
+          if (response1.status === 200 && responseData1 && responseData1.status === true && responseData1.data) {
+            message = responseData1.data;
+          } else {
+            return reply("◍ ⇜  حدث خطا في   Api  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+          }
+
+          const me = m.sender;
+          await BakarBotInc.sendMessage(m.chat, { text: message, mentions: [me] }, { quoted: m });
+
+        } catch (error) {
+          console.error(error);
+          reply("◍ ⇜  خطا An error occurred while fetching the response from the API  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+        }
+      }
+        break;
+
+
+  case 'chatgpt3':
+      case 'شات3':
+      case 'gpt3': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+
+        if (!q) return reply(`◍  ⇜ مرحبًا! كيف يمكنني مساعدتك اليوم؟ `);
+
+        try {
+          const apiUrl1 = `https://vihangayt.me/tools/chatgpt4?q=${encodeURIComponent(q)}`;
+
+          const response1 = await fetch(apiUrl1);
+          const responseData1 = await response1.json();
+
+          let message = "";
+
+          if (response1.status === 200 && responseData1 && responseData1.status === true && responseData1.data) {
+            message = responseData1.data;
+          } else {
+            return reply("◍ ⇜  حدث خطا في   Api  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+          }
+
+          const me = m.sender;
+          await BakarBotInc.sendMessage(m.chat, { text: message, mentions: [me] }, { quoted: m });
+
+        } catch (error) {
+          console.error(error);
+          reply("◍ ⇜  خطا An error occurred while fetching the response from the API  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+        }
+      }
+        break;
+
+
+
+  case 'chatgpt4':
+      case 'شات4':
+      case 'gpt4': {
+        if (isBan) return reply(mess.banned);
+        if (isBanChat) return reply(mess.bangc);
+
+        if (!q) return reply(`◍  ⇜ مرحبًا! كيف يمكنني مساعدتك اليوم؟ `);
+
+        try {
+          const apiUrl1 = `https://vihangayt.me/tools/chatgpt5?q=${encodeURIComponent(q)}`;
+
+          const response1 = await fetch(apiUrl1);
+          const responseData1 = await response1.json();
+
+          let message = "";
+
+          if (response1.status === 200 && responseData1 && responseData1.status === true && responseData1.data) {
+            message = responseData1.data;
+          } else {
+            return reply("◍ ⇜  حدث خطا في   Api  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+          }
+
+          const me = m.sender;
+          await BakarBotInc.sendMessage(m.chat, { text: message, mentions: [me] }, { quoted: m });
+
+        } catch (error) {
+          console.error(error);
+          reply("◍ ⇜  خطا An error occurred while fetching the response from the API  √\n◍ فى حاله ظهور لك مثلا هذه الرساله تواصل مع المطور ليدو -> 201028453763");
+        }
+      }
+        break;
+اش
 // < ================================================== >
  
 // --------------   اوامر المطور ليدو  ----------------//
@@ -8014,7 +8213,7 @@ latensie = speed() - timestampe
 └───────────●
 └───────────●
 `
-const aliveer = fs.readFileSync('./Zimbot/alive.mp3')
+const aliveer = fs.readFileSync('./Bakarbot/alive.mp3')
 BakarBotInc.sendMessage(m.chat, { audio: aliveer, mimetype: 'audio/mp4', ptt: true, quoted: mudratunha})
 let buttoni = [
         {buttonId: `sc`, buttonText: {displayText: 'SOURCE CODE'}, type: 1},
