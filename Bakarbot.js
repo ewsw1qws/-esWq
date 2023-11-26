@@ -1,4 +1,4 @@
-// مطور ليدو  
+// مطور ليدو  1
 
 process.on('uncaughtException', console.error)
 require('./bot')
