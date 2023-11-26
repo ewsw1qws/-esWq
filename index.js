@@ -1,4 +1,4 @@
-// BAKAR-BOT By DEV Lido
+// BAKAR-BOT By DEV Lido 
 
 require('./bot')
 const { default: BakarBotIncConnect, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto , delay} = require("@adiwajshing/baileys")
